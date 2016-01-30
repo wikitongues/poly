@@ -1,0 +1,409 @@
+/* ----------- iPhone 4 and 4S ----------- */
+
+/* Portrait and Landscape */
+// @media only screen
+//   and (min-device-width: 320px)
+//   and (max-device-width: 480px)
+//   and (-webkit-min-device-pixel-ratio: 2) {
+
+// }
+
+/* Portrait */
+// @media only screen
+//   and (min-device-width: 320px)
+//   and (max-device-width: 480px)
+//   and (-webkit-min-device-pixel-ratio: 2)
+//   and (orientation: portrait) {
+// }
+
+/* Landscape */
+// @media only screen
+//   and (min-device-width: 320px)
+//   and (max-device-width: 480px)
+//   and (-webkit-min-device-pixel-ratio: 2)
+//   and (orientation: landscape) {
+
+// }
+
+/* ----------- iPhone 5 and 5S ----------- */
+
+/* Portrait and Landscape */
+// @media only screen
+//   and (min-device-width: 320px)
+//   and (max-device-width: 568px)
+//   and (-webkit-min-device-pixel-ratio: 2) {
+
+// }
+
+/* Portrait */
+// @media only screen
+//   and (min-device-width: 320px)
+//   and (max-device-width: 568px)
+//   and (-webkit-min-device-pixel-ratio: 2)
+//   and (orientation: portrait) {
+// }
+
+/* Landscape */
+// @media only screen
+//   and (min-device-width: 320px)
+//   and (max-device-width: 568px)
+//   and (-webkit-min-device-pixel-ratio: 2)
+//   and (orientation: landscape) {
+
+// }
+
+/* ----------- iPhone 6 ----------- */
+
+/* Portrait and Landscape */
+@media only screen and (min-device-width 375px) and (max-device-width 667px) and (-webkit-min-device-pixel-ratio 2)
+  html
+    width 700px
+    font-size 26px
+
+    body
+      float left
+
+      nav
+        height auto
+        display inline-block
+        font-size 40px
+
+        a
+          float left
+
+          img.icon.home
+            height 70px
+            margin 23px
+
+        button
+          img.icon.more
+            height 100px
+            padding 27px
+
+          &.signInButton
+            padding 30px
+
+      .navBar
+        display none
+
+        button
+          img
+            &.more
+              height 65px !important
+              margin 25px
+
+          span
+            display none !important
+
+      .menu
+        top 111px
+        right -300px
+
+        a
+          font-size 1.5em
+          width 225px
+          padding 20px
+
+          &:first-of-type
+            &:after
+              border-width 25px
+              margin-left 52px
+
+            &:before
+              border-width 27px
+              margin-left 50px
+
+      button
+        &.sort
+          height 65px
+          width 65px
+          margin 27px
+          right -200px
+
+          img
+            height 65px !important
+            top 0
+            left 0
+
+        span
+          display none !important
+
+      .container
+        section
+          h3
+            display none
+
+          .content
+            width 100%
+            border 1px solid #ddd
+
+            li
+              a
+                section
+                  &.info
+                    padding 10px 10px 0 10px
+                    width 100%
+                    max-width initial
+
+                    button.favorite
+                      margin-top 33px
+
+                      img.icon.star
+                        height 45px
+
+                    .banner
+                      height 0
+                      padding-bottom 100%
+                      width 100%
+
+                      img
+                        min-width 100%
+                        min-height 105%
+                        top -5%
+
+                    p.title
+                      width 80%
+                      font-size 30px
+                      white-space nowrap
+                      text-overflow ellipsis
+                      overflow hidden
+                      margin 40px 0 40px 20px
+
+                      &.unauthenticated
+                        width 80%
+
+                  &.details
+                    display none
+
+        .newBook
+          height 120px
+          width 120px
+          padding 0
+          margin 0
+          line-height 1.1
+          transform translateX(-50%)
+          font-size 4em
+
+      .book
+        .info
+          padding 0 30px
+
+          .wrapper
+            width 100%
+
+            section
+              h1
+                margin 16px 10px
+                font-size 45px
+
+              button
+                margin 15px 0
+                &.favorite
+                  padding 8px 8px 8px 0
+
+                &.deleteBook
+                  padding 8px 0 8px 8px
+
+                img
+                  height 50px
+
+        .cardinality,
+        &.new .cardinality
+            section
+              width 100%
+
+              input
+                font-size 1.2em
+                padding-top 1.1em
+
+              img
+                background transparent
+                margin 1.4em -25px
+                width 45px
+                height 45px
+
+        .content-wrapper
+          width 100%
+
+          .content
+            li.entry
+              padding .3em .7em
+
+              &:first-of-type
+                padding-top .5em
+              &:last-of-type
+                padding-bottom 7em
+              &#progressElement
+                padding-bottom .7em
+
+              ul
+                li
+                  &.source
+                    margin-bottom 10px
+
+                  p
+                    border-radius 50px 50px 50px 0
+
+                    &::after
+                      content initial
+
+                  &.target
+                    p
+                      border-radius 50px 50px 0 50px
+
+                  p
+                    .progress
+                      width 30px
+
+                      span
+                        height 6px
+                        width 6px
+                        margin 0 4px 0 0
+
+                      @keyframes loading
+                        0%
+                          transform translateY(0px)
+                        50%
+                          transform translateY(-8px)
+                        100%
+                          transform translateY(0px)
+
+                      &:nth-of-type(1)
+                        -webkit-animation loading 1s 0s infinite cubic-bezier(.60,0,.40,1)
+
+                      &:nth-of-type(2)
+                        -webkit-animation loading 1s .1s infinite cubic-bezier(.60,0,.40,1)
+
+                      &:nth-of-type(3)
+                        margin 0
+                        -webkit-animation loading 1s .2s infinite cubic-bezier(.60,0,.40,1)
+
+          .addPhrase
+            button
+              height 120px
+              width 120px
+              padding 0
+              font-size 104px
+
+          .inputMethod
+            label
+              display none
+
+            ul
+              li
+                button
+                  width 80px
+                  height 80px
+                  margin 20px 10px
+
+                  img
+                    width 50px
+
+                &#video
+                  button
+                    img
+                      width 40px
+
+          .newPhrase
+            input
+              width 78%
+              padding 1.2em
+              height initial
+
+            a.savePhrase
+              margin 0
+              padding 40px
+              float right
+              width initial
+
+      .login
+        width 100%
+
+        h1
+          margin 0
+
+        p
+          width 80%
+          margin-top 40px
+
+        ul.counter
+          margin 45px auto 0
+
+          li
+            width 20px
+            height 20px
+            margin 7px
+
+        .container
+          form
+            width 100%
+            padding 0
+
+            .grouping
+              .input
+                width 80%
+
+                input
+                  font-size 40px
+
+                  &:focus ~ label, &:valid ~ label
+                    top -15px
+                    font-size 20px
+                    font-weight 200
+
+                label
+                  font-size 30px
+
+              button
+                font-size 36px
+            a
+              font-size 35px
+
+      .version
+        display none
+
+/* Portrait */
+// @media only screen
+//   and (min-device-width: 375px)
+//   and (max-device-width: 667px)
+//   and (-webkit-min-device-pixel-ratio: 2)
+//   and (orientation: portrait) {
+
+// }
+
+/* Landscape */
+// @media only screen
+//   and (min-device-width: 375px)
+//   and (max-device-width: 667px)
+//   and (-webkit-min-device-pixel-ratio: 2)
+//   and (orientation: landscape) {
+
+// }
+
+/* ----------- iPhone 6+ ----------- */
+
+/* Portrait and Landscape */
+// @media only screen
+//   and (min-device-width: 414px)
+//   and (max-device-width: 736px)
+//   and (-webkit-min-device-pixel-ratio: 3) {
+
+// }
+
+/* Portrait */
+// @media only screen
+//   and (min-device-width: 414px)
+//   and (max-device-width: 736px)
+//   and (-webkit-min-device-pixel-ratio: 3)
+//   and (orientation: portrait) {
+
+// }
+
+/* Landscape */
+// @media only screen
+//   and (min-device-width: 414px)
+//   and (max-device-width: 736px)
+//   and (-webkit-min-device-pixel-ratio: 3)
+//   and (orientation: landscape) {
+
+// }
