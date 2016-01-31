@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160131000230) do
+ActiveRecord::Schema.define(version: 20160131013535) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,25 +31,16 @@ ActiveRecord::Schema.define(version: 20160131000230) do
 
   add_index "dictionaries", ["book_id"], name: "index_dictionaries_on_book_id", using: :btree
 
-  create_table "source_phrases", force: :cascade do |t|
+  create_table "phrase_pairs", force: :cascade do |t|
     t.integer  "dictionary_id"
-    t.string   "text"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.text     "source_phrase", null: false
+    t.text     "target_phrase", null: false
   end
 
-  add_index "source_phrases", ["dictionary_id"], name: "index_source_phrases_on_dictionary_id", using: :btree
-
-  create_table "target_phrases", force: :cascade do |t|
-    t.integer  "source_phrase_id"
-    t.string   "text"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
-  end
-
-  add_index "target_phrases", ["source_phrase_id"], name: "index_target_phrases_on_source_phrase_id", using: :btree
+  add_index "phrase_pairs", ["dictionary_id"], name: "index_phrase_pairs_on_dictionary_id", using: :btree
 
   add_foreign_key "dictionaries", "books"
-  add_foreign_key "source_phrases", "dictionaries"
-  add_foreign_key "target_phrases", "source_phrases"
+  add_foreign_key "phrase_pairs", "dictionaries"
 end
