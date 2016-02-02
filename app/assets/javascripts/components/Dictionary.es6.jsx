@@ -2,7 +2,9 @@ class Dictionary extends React.Component {
   render () {
     return (
        <div>
-        {this.renderPhrasePairs()}
+        <section className="content-wrapper">
+          <ul className="content">{this.renderPhrasePairs()}</ul>
+        </section>
        </div>
     )
   }

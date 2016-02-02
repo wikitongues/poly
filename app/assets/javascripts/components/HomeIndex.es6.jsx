@@ -1,8 +1,11 @@
 class HomeIndex extends React.Component {
   render () {
     return (
-          <div>
-            {this.renderBooks()}
+          <div className="container dashboard">
+            <section>
+              <h3>Books</h3>
+              <ul className="content">{this.renderBooks()}</ul>
+            </section>
           </div>
       )
   }
