@@ -4,7 +4,22 @@ class BooksController < ApplicationController
     @phrase_pairs = @book.phrase_pairs
   end
 
-  def new
-    @book = Book.new
+  def create
+    if book = Book.create(create_params)
+      render json: { id: book.id }, status: :ok
+    else
+      render json: { errors: book.errors.messages }, status: 422
+    end
+  end
+
+  private
+
+  def create_params
+    params.require(:book).permit(
+      :title,
+      :description,
+      :source_language,
+      :target_language
+    )
   end
 end
