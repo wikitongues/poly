@@ -41,6 +41,16 @@ Book = React.createClass( {
     })
   },
 
+  onDeleteBookClick: function() {
+    $.ajax({
+      url: '/books/' + this.props.book.id,
+      type: 'DELETE',
+      success: function() {
+        window.location.href = '/';
+      }
+    })
+  },
+
   render: function() {
     return (
        <div className="book">
@@ -48,6 +58,7 @@ Book = React.createClass( {
         <div className="info">
           <div className="wrapper">
             <h1>{this.props.book.title}</h1>
+            <button onClick={this.onDeleteBookClick}>Delete</button>
             <p>{this.props.book.description}</p>
           </div>
         </div>
