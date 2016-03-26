@@ -1,4 +1,6 @@
 <%= react_component(
   'Book',
   book: @book,
-  phrasePairs: @phrase_pairs)%>
+  dictionary: @dictionary,
+  initialPhrasePairs: @phrase_pairs,
+  cardinality:  asset_path('icons/i_cardinality.svg')) %>
