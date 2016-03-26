@@ -2,7 +2,9 @@ Book = React.createClass( {
 
   getInitialState: function() {
     return {
-      phrasePairs: this.props.initialPhrasePairs
+      phrasePairs: this.props.initialPhrasePairs,
+      isEditingBook: false,
+      book: this.props.initialBook
     }
   },
 
@@ -32,7 +34,7 @@ Book = React.createClass( {
       url: "/phrase_pairs",
       type: "POST",
       data: {
-        book_id: this.props.book.id,
+        book_id: this.state.book.id,
         phrase_pair: phrasePair
       },
       error: function() {
@@ -43,7 +45,7 @@ Book = React.createClass( {
 
   onDeleteBookClick: function() {
     $.ajax({
-      url: '/books/' + this.props.book.id,
+      url: '/books/' + this.state.book.id,
       type: 'DELETE',
       success: function() {
         window.location.href = '/';
@@ -51,23 +53,96 @@ Book = React.createClass( {
     })
   },
 
+  onSaveBookClick: function() {
+    $.ajax({
+      url: '/books/' + this.state.book.id,
+      type: "PUT",
+      data: { book: this.state.book },
+      success: function() {
+        this.toggleEditingBookState();
+      }.bind(this),
+      error: function() {
+        alert('something went wrong')
+      }
+    })
+  },
+
+  toggleEditingBookState: function() {
+      this.setState({
+        isEditingBook: !this.state.isEditingBook
+    });
+  },
+
+  onEditBookClick: function() {
+    this.toggleEditingBookState();
+  },
+
+  onInputChange: function(e) {
+    var newBook = this.state.book;
+    var newState = this.state;
+    newBook[e.target.name] = e.target.value;
+    newState.book = newBook;
+    this.setState(newState);
+  },
+
+  renderEditOrSaveButton: function() {
+    if (this.state.isEditingBook) {
+      return <button onClick={this.onSaveBookClick}>Save</button>;
+    } else {
+       return <button onClick={this.onEditBookClick}>Edit</button>;
+    }
+  } ,
+
+  renderTitle: function() {
+     if (this.state.isEditingBook) {
+      return <input name="title" onChange={this.onInputChange} value={this.state.book.title} />;
+    } else {
+       return <h1>{this.state.book.title}</h1>;
+    }
+  },
+
+  renderDescription: function() {
+     if (this.state.isEditingBook) {
+      return <textarea name="description" onChange={this.onInputChange} value={this.state.book.description} />;
+    } else {
+       return <p>{this.state.book.description}</p>;
+    }
+  },
+
+   renderSourceLanguage: function() {
+     if (this.state.isEditingBook) {
+      return <input name="source_language" onChange={this.onInputChange} value={this.state.book.source_language} />;
+    } else {
+       return <h1 className="language source" title={this.state.book.source_language}>{this.state.book.source_language}</h1>;
+    }
+  },
+
+   renderTargetLanguage: function() {
+     if (this.state.isEditingBook) {
+      return <input name="target_language" onChange={this.onInputChange} value={this.state.book.target_language} />;
+    } else {
+       return <h1 className="language target" title={this.state.book.target_language}>{this.state.book.target_language}</h1>;
+    }
+  },
+
   render: function() {
     return (
        <div className="book">
         <a href="/">Back</a>
+        <button onClick={this.onDeleteBookClick}>Delete</button>
+        {this.renderEditOrSaveButton()}
         <div className="info">
           <div className="wrapper">
-            <h1>{this.props.book.title}</h1>
-            <button onClick={this.onDeleteBookClick}>Delete</button>
-            <p>{this.props.book.description}</p>
+            { this.renderTitle() }
+            { this.renderDescription() }
           </div>
         </div>
-        <div className="bannerWrapper"></div>
+        <div className="NObannerWrapper"></div>
         <div className="cardinality">
           <section>
-            <h1 className="language source" title="Source Language">{this.props.book.source_language}</h1>
+            { this.renderSourceLanguage() }
             <img className="icon cardinality" src={this.props.cardinality} alt=""/>
-            <h1 className="language target" title="Target Language">{this.props.book.target_language}</h1>
+            { this.renderTargetLanguage() }
           </section>
         </div>
         <Dictionary
