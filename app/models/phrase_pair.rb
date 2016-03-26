@@ -1,3 +1,3 @@
 class PhrasePair < ActiveRecord::Base
-    belongs_to :dictionary
+    belongs_to :book
 end

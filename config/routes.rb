@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   devise_for :users, path: ""
   root to:  "home#index"
 
-  resources :books, only: [:show]
+  resources :books, only: [:show, :new]
 
   resources :phrase_pairs, only: [:create]
 

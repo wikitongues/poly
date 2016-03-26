@@ -11,35 +11,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160220154825) do
+ActiveRecord::Schema.define(version: 20160326182518) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "books", force: :cascade do |t|
     t.string   "title"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.string   "description"
+    t.string   "source_language"
+    t.string   "target_language"
   end
-
-  create_table "dictionaries", force: :cascade do |t|
-    t.integer  "book_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "dictionaries", ["book_id"], name: "index_dictionaries_on_book_id", using: :btree
 
   create_table "phrase_pairs", force: :cascade do |t|
-    t.integer  "dictionary_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
     t.text     "source_phrase", null: false
     t.text     "target_phrase", null: false
+    t.integer  "book_id",       null: false
   end
 
-  add_index "phrase_pairs", ["dictionary_id"], name: "index_phrase_pairs_on_dictionary_id", using: :btree
+  add_index "phrase_pairs", ["book_id"], name: "index_phrase_pairs_on_book_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -59,6 +53,4 @@ ActiveRecord::Schema.define(version: 20160220154825) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
-  add_foreign_key "dictionaries", "books"
-  add_foreign_key "phrase_pairs", "dictionaries"
 end

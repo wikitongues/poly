@@ -1,7 +1,10 @@
 class BooksController < ApplicationController
   def show
     @book = Book.find(params[:id])
-    @dictionary = @book.dictionary
-    @phrase_pairs = @dictionary.phrase_pairs
+    @phrase_pairs = @book.phrase_pairs
+  end
+
+  def new
+    @book = Book.new
   end
 end

@@ -32,7 +32,7 @@ Book = React.createClass( {
       url: "/phrase_pairs",
       type: "POST",
       data: {
-        dictionary_id: this.props.dictionary.id,
+        book_id: this.props.book.id,
         phrase_pair: phrasePair
       },
       error: function() {
@@ -60,7 +60,6 @@ Book = React.createClass( {
           </section>
         </div>
         <Dictionary
-          dictionary={this.props.dictionary}
           phrasePairs={this.state.phrasePairs}
           onSourcePhraseSubmit={this.onSourcePhraseSubmit}
           onTargetPhraseSubmit={this.onTargetPhraseSubmit} />

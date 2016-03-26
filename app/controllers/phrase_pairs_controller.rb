@@ -1,8 +1,8 @@
 class PhrasePairsController < ApplicationController
 
   def create
-    dictionary = Dictionary.find(params[:dictionary_id])
-    if dictionary.phrase_pairs.create(create_params)
+    book = Book.find(params[:book_id])
+    if book.phrase_pairs.create(create_params)
       render json: {}, status: :ok
     else
       render json: {}, status: 422

@@ -10,6 +10,7 @@ class HomeIndex extends React.Component {
             <h3>Books</h3>
             <ul className="content">{this.renderBooks()}</ul>
           </section>
+          <a href="/books/new">Create a book</a>
         </div>
       </div>
       )

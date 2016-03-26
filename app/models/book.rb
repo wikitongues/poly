@@ -1,3 +1,3 @@
 class Book < ActiveRecord::Base
-  has_one :dictionary
+  has_many :phrase_pairs
 end
