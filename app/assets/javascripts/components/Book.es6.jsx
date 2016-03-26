@@ -32,7 +32,7 @@ Book = React.createClass( {
       url: "/phrase_pairs",
       type: "POST",
       data: {
-        dictionary_id: this.props.dictionary.id,
+        book_id: this.props.book.id,
         phrase_pair: phrasePair
       },
       error: function() {
@@ -54,13 +54,12 @@ Book = React.createClass( {
         <div className="bannerWrapper"></div>
         <div className="cardinality">
           <section>
-            <h1 className="language source" title="Source Language">Source Language</h1>
+            <h1 className="language source" title="Source Language">{this.props.book.source_language}</h1>
             <img className="icon cardinality" src={this.props.cardinality} alt=""/>
-            <h1 className="language target" title="Target Language">Target Language</h1>
+            <h1 className="language target" title="Target Language">{this.props.book.target_language}</h1>
           </section>
         </div>
         <Dictionary
-          dictionary={this.props.dictionary}
           phrasePairs={this.state.phrasePairs}
           onSourcePhraseSubmit={this.onSourcePhraseSubmit}
           onTargetPhraseSubmit={this.onTargetPhraseSubmit} />
