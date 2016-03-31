@@ -103,7 +103,7 @@ Book = React.createClass( {
 
   renderDescription: function() {
      if (this.state.isEditingBook) {
-      return <textarea className="description new isEditing" name="description" onChange={this.onInputChange} placeholder={this.state.book.description} />;
+      return <textarea rows="4" className="description new isEditing" name="description" onChange={this.onInputChange} placeholder={this.state.book.description} />;
     } else {
        return <p>{this.state.book.description}</p>;
     }
