@@ -9,7 +9,7 @@ class HomeIndex extends React.Component {
           <section>
             <ul className="content">{this.renderBooks()}</ul>
           </section>
-          <a href="/books/new">Create a book</a>
+          <a href="/books/new" className="newBook">+</a>
         </div>
       </div>
       )
