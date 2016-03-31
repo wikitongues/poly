@@ -1,11 +1,12 @@
 class HomeIndex extends React.Component {
   render () {
     return (
-      <div>
+      <div className="container">
         <nav>
-          <a href="/sign_in">Log in</a>
+          <a className="icon home" href="/"></a>
+          <a className="signInButton" href="/sign_in">Sign in</a>
         </nav>
-        <div className="container dashboard">
+        <div className="dashboard">
           <section>
             <ul className="content">{this.renderBooks()}</ul>
           </section>

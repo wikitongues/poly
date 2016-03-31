@@ -127,29 +127,34 @@ Book = React.createClass( {
 
   render: function() {
     return (
-       <div className="book">
-        <a href="/">Back</a>
-        <button onClick={this.onDeleteBookClick}>Delete</button>
-        {this.renderEditOrSaveButton()}
-        <div className="info">
-          <div className="wrapper">
-            { this.renderTitle() }
-            { this.renderDescription() }
+      <div className="container">
+        <nav>
+          <a className="icon home" href="/"></a>
+        </nav>
+        <div className="book">
+          <div className="info">
+            <div className="wrapper">
+              { this.renderTitle() }
+              { this.renderDescription() }
+            </div>
+            <button onClick={this.onDeleteBookClick}>Delete</button>
+            {this.renderEditOrSaveButton()}
           </div>
-        </div>
-        <div className="NObannerWrapper"></div>
-        <div className="cardinality">
-          <section>
-            { this.renderSourceLanguage() }
-            <img className="icon cardinality" src={this.props.cardinality} alt=""/>
-            { this.renderTargetLanguage() }
-          </section>
-        </div>
-        <Dictionary
+          <div className="NObannerWrapper"></div>
+          <div className="cardinality">
+            <section>
+              { this.renderSourceLanguage() }
+              <div className="icon cardinality book" alt=""/>
+              {/*<img className="icon cardinality" src={this.props.cardinality} alt=""/>*/}
+              { this.renderTargetLanguage() }
+            </section>
+          </div>
+          <Dictionary
           phrasePairs={this.state.phrasePairs}
           onSourcePhraseSubmit={this.onSourcePhraseSubmit}
           onTargetPhraseSubmit={this.onTargetPhraseSubmit} />
-       </div>
+        </div>
+      </div>
     )
   }
 })
