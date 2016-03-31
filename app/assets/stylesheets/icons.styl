@@ -3,6 +3,13 @@
 
   &.home
     height 40px
+    width 40px
+    background-image url("/assets/icons/i_home")
+    background-size 36px
+    background-position 2px 3px
+    background-repeat no-repeat
+    float left
+    margin 12px 10px
 
   &.search
     height 30px
@@ -16,13 +23,21 @@
 
   &.cardinality
     background-image url("/assets/icons/i_cardinality")
-    background-size 14px
-    background-position 3px 3px
     height 20px
     width 20px
     background-repeat no-repeat
     float left
-    margin 6px 10px
+
+    &.bookEntry
+      background-position 3px 3px
+      background-size 14px
+      margin 6px 10px
+
+    &.book
+      background-position 1px 1px
+      background-size 18px
+      margin 26px -10px
+      box-shadow none
 
   &.trash
     height 35px

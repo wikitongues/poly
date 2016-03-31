@@ -1,12 +1,14 @@
 class Dictionary extends React.Component {
   render () {
     return (
-       <div>
+       <div className="dictionary">
         <section className="content-wrapper">
           <ul className="content">{this.renderPhrasePairs()}</ul>
+          {/*
           <div className="inputMethod">
             <p>bla</p>
           </div>
+          */}
           <div className="newPhrase">
             <input ref="sourceInput" className="sourcePhrase input" type="text" placeholder="source"/>
             <button className="savePhrase" onClick={this.onSourcePhraseSubmit.bind(this)}>Save</button>

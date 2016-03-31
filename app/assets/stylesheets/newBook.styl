@@ -1,6 +1,9 @@
 .book
   display inline-block
 
+  form
+    margin 0
+
   input, textarea
     border none
     width 100%
@@ -19,12 +22,15 @@
     .new
       &.title
         font-size 2em
-        margin 0.375em 0
+        margin 0.65em 0
 
       &.description
         margin 2em 0
         resize vertical
         font-size 1em
+
+    .isEditing
+      background lighten($target, 80%)
 
   .banner
     width 100%
@@ -40,6 +46,9 @@
         padding .8em 0 .1em
         margin-top 1px
         margin-bottom .4em
+
+        &.isEditing
+          background lighten($target, 80%)
 
   .content-wrapper
     height 27.5%
