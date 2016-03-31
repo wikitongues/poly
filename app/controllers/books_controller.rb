@@ -5,7 +5,7 @@ class BooksController < ApplicationController
   end
 
   def create
-    if book = Book.create(create_params)
+    if book = Book.create(create_or_update_params)
       render json: { id: book.id }, status: :ok
     else
       render json: { errors: book.errors.messages }, status: 422
