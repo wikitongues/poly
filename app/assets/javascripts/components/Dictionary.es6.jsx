@@ -4,13 +4,15 @@ class Dictionary extends React.Component {
        <div>
         <section className="content-wrapper">
           <ul className="content">{this.renderPhrasePairs()}</ul>
-          <div>
-            <input value="glarb" ref="sourceInput" className="sourcePhrase" type="text" placeholder="source"/>
-            <button onClick={this.onSourcePhraseSubmit.bind(this)}>Save</button>
+          <div className="inputMethod">
+            <p>bla</p>
           </div>
-          <div>
-            <input value="target" ref="targetInput" className="targetPhrase" type="text" placeholder="target"/>
-            <button onClick={this.onTargetPhraseSubmit.bind(this)}>Save</button>
+          <div className="newPhrase">
+            <input ref="sourceInput" className="sourcePhrase input" type="text" placeholder="source"/>
+            <button className="savePhrase" onClick={this.onSourcePhraseSubmit.bind(this)}>Save</button>
+
+            <input ref="targetInput" className="targetPhrase input" type="text" placeholder="target"/>
+            <button className="savePhrase" onClick={this.onTargetPhraseSubmit.bind(this)}>Save</button>
           </div>
         </section>
        </div>
