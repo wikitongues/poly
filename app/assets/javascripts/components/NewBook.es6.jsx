@@ -34,12 +34,22 @@ NewBook = React.createClass( {
 
   render: function() {
     return(
-      <div>
+      <div className="book">
+        <a href="/">Back</a>
         <form onSubmit={this.onSubmit}>
-          <input type="text" name="title" value={this.state.title} onChange={this.onInputChange} />
-          <input type="text" name="description" value={this.state.description} onChange={this.onInputChange}/>
-          <input type="text" name="source_language" value={this.state.sourceLanguage} onChange={this.onInputChange}/>
-          <input type="text" name="target_language" value={this.state.targetLanguager} onChange={this.onInputChange}/>
+          <fieldset className="info">
+            <div className="wrapper">
+              <input className="new title" type="text" name="title" placeholder="Useful phrases in Laputa" autofocus value={this.state.title} onChange={this.onInputChange} />
+              <textarea className="new description" type="text" name="description" placeholder="A collection of useful phrases in Laputa, a Swiftian language spoken in Balnibarbi and a number of other islands." value={this.state.description} onChange={this.onInputChange}/>
+            </div>
+          </fieldset>
+          <fieldset className="cardinality">
+            <section>
+              <input className="new languageSource" type="text" name="source_language" placeholder="Source Language" value={this.state.sourceLanguage} onChange={this.onInputChange}/>
+              <img className="icon cardinality" src={this.props.cardinality} alt=""/>
+              <input className="new languageTarget" type="text" name="target_language" placeholder="Target Language" value={this.state.targetLanguager} onChange={this.onInputChange}/>
+            </section>
+          </fieldset>
           <button type="submit">Create Book</button>
         </form>
       </div>
