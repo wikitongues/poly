@@ -12,7 +12,7 @@ class BookEntry extends React.Component {
               <span className="source language" title="Source Language">
                 <p>{this.props.book.source_language}</p>
               </span>
-              <img className="icon cardinality" src="app/assets/images/icons/i_cardinality.svg" alt=""/>
+              <div className="icon cardinality" alt=""/>
               <span className="target language" title="Target Language">
                 <p>{this.props.book.target_language}</p>
               </span>
