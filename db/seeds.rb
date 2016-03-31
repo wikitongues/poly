@@ -6,5 +6,5 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-Book.create(title: "Don Quixote", description: "Miguel De Cervantes")
-Book.create(title: "Anna Karenina", description: "Leo Tolstoy")
+Book.create(title: "Intro to Afrikaans", description: "Afrikaans is spoken throughout South Africa and Namibia. The language is mainly derived from Dutch. However, most Afrikaans speakers in the workplace have some knowledge of English.", source_language:"English", target_language:"Afrikaans")
+Book.create(title: "Visiting Ambrym Island, Daakaka style", description: "Learn how to navigate the local scene in one of the four languages of our beautiful Ambrym island.", source_language:"English", target_language:"Daakaka")
