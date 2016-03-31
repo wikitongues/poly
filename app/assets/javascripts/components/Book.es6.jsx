@@ -95,7 +95,7 @@ Book = React.createClass( {
 
   renderTitle: function() {
      if (this.state.isEditingBook) {
-      return <input name="title" onChange={this.onInputChange} value={this.state.book.title} />;
+      return <input name="title" className="title new isEditing" onChange={this.onInputChange} placeholder={this.state.book.title} />;
     } else {
        return <h1>{this.state.book.title}</h1>;
     }
@@ -103,7 +103,7 @@ Book = React.createClass( {
 
   renderDescription: function() {
      if (this.state.isEditingBook) {
-      return <textarea name="description" onChange={this.onInputChange} value={this.state.book.description} />;
+      return <textarea className="description new isEditing" name="description" onChange={this.onInputChange} placeholder={this.state.book.description} />;
     } else {
        return <p>{this.state.book.description}</p>;
     }
@@ -111,7 +111,7 @@ Book = React.createClass( {
 
    renderSourceLanguage: function() {
      if (this.state.isEditingBook) {
-      return <input name="source_language" onChange={this.onInputChange} value={this.state.book.source_language} />;
+      return <input className="new isEditing" name="source_language" onChange={this.onInputChange} placeholder={this.state.book.source_language} />;
     } else {
        return <h1 className="language source" title={this.state.book.source_language}>{this.state.book.source_language}</h1>;
     }
@@ -119,7 +119,7 @@ Book = React.createClass( {
 
    renderTargetLanguage: function() {
      if (this.state.isEditingBook) {
-      return <input name="target_language" onChange={this.onInputChange} value={this.state.book.target_language} />;
+      return <input className="new isEditing" name="target_language" onChange={this.onInputChange} placeholder={this.state.book.target_language} />;
     } else {
        return <h1 className="language target" title={this.state.book.target_language}>{this.state.book.target_language}</h1>;
     }
