@@ -1,94 +1,94 @@
 .book
-  &.new
-    display inline-block
+  display inline-block
 
-    input, textarea
-      border none
-      width 100%
-      border-bottom 2px solid transparent
-      float left
+  input, textarea
+    border none
+    width 100%
+    border-bottom 2px solid transparent
+    float left
 
-      &.missing
-        ::placeholder
-          color red
+    &.missing
+      ::placeholder
+        color red
 
-      &:focus
-        outline none
-        border-color $hover
+    &:focus
+      outline none
+      border-color $hover
 
-    .info
-      .title
+  .info
+    .new
+      &.title
         font-size 2em
         margin 0.375em 0
 
-      .description
+      &.description
         margin 2em 0
         resize vertical
         font-size 1em
 
-    .banner
-      width 100%
+  .banner
+    width 100%
 
-    .cardinality
-      section
-        input
-          width 50%
-          text-align center
-          float left
-          background transparent
-          font-size 1.5em
-          padding .8em 0 .1em
-          margin-top 1px
-          margin-bottom .4em
+  .cardinality
+    section
+      input
+        width 50%
+        text-align center
+        float left
+        background transparent
+        font-size 1.5em
+        padding .8em 0 .1em
+        margin-top 1px
+        margin-bottom .4em
 
-    .content-wrapper
-      height 27.5%
-      position relative
-      background #fff
+  .content-wrapper
+    height 27.5%
+    position relative
+    background #fff
 
-      .dummy.content
-        pointer-events none
-        .entry
-          ul
-            li
+    .dummy.content
+      pointer-events none
+      .entry
+        ul
+          li
+            p
+              color transparent
+              cursor default
+
+            &.source
               p
-                color transparent
-                cursor default
+                background lighten($source, 70%)
+                border-color lighten($source, 68%)
 
-              &.source
-                p
-                  background lighten($source, 70%)
-                  border-color lighten($source, 68%)
-
-              &.target
-                p
-                  background lighten($target, 70%)
-                  border-color lighten($target, 68%)
-
-          &:hover
-            background transparent
-            border-top-color transparent
-            border-bottom-color transparent
+            &.target
+              p
+                background lighten($target, 70%)
+                border-color lighten($target, 68%)
 
         &:hover
-            background transparent
-            border-top-color transparent
-            border-bottom-color transparent
+          background transparent
+          border-top-color transparent
+          border-bottom-color transparent
+
+      &:hover
+          background transparent
+          border-top-color transparent
+          border-bottom-color transparent
 
 
-      .startBook
-        background $buttonBlue
-        color white
-        border none
-        font-size 1em
-        padding .9em 1.4em
-        font-weight 100
-        display block
-        cursor pointer
-        min-width 45%
-        border-radius 3px
-        margin 0 auto 20px
-        transition margin-bottom $time ease-in-out
+    .startBook
+      background $buttonBlue
+      color white
+      border none
+      font-size 1em
+      padding .9em 1.4em
+      font-weight 100
+      display block
+      cursor pointer
+      min-width 45%
+      border-radius 3px
+      margin 0 auto 20px
+      transition margin-bottom $time ease-in-out
 
-        &.disabled
-          margin-bottom -70px
+      &.disabled
+        margin-bottom -70px
