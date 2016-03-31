@@ -137,8 +137,8 @@ Book = React.createClass( {
               { this.renderTitle() }
               { this.renderDescription() }
             </div>
-            <button onClick={this.onDeleteBookClick}>Delete</button>
             {this.renderEditOrSaveButton()}
+            <button onClick={this.onDeleteBookClick}>Delete</button>
           </div>
           <div className="NObannerWrapper"></div>
           <div className="cardinality">
