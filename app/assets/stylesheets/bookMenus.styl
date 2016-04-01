@@ -1,0 +1,41 @@
+.menu
+  position absolute
+  z-index 1
+  width 40px
+  height 40px
+  overflow hidden
+
+  .icon
+    width 40px
+    height 40px
+    float right
+    cursor pointer
+    opacity 0
+    transition all $time ease-in-out
+    border-radius 100%
+    background-color transparent
+    border none
+    outline none
+    margin-right -40px
+    border 1px solid transparent
+
+    &.more
+      margin 0
+      opacity 1
+
+    &:hover
+      background-color #fafafa
+
+  &:hover
+    width 120px
+
+    .icon
+      margin 0
+      opacity 1
+
+  &.saving
+    width 80px
+
+    .icon
+      margin-right 0
+      opacity 1

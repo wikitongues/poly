@@ -48,6 +48,9 @@
           border-top-color lighten(#E7EFF2, 55%)
           border-bottom-color lighten(#E7EFF2, 55%)
 
+          ul li.menu .more
+            opacity 1
+
         &:last-of-type
           border-bottom none
 
@@ -56,6 +59,7 @@
           width 100%
           padding 0
           float left
+          position relative
 
           li
             display inline-block
@@ -66,7 +70,7 @@
               .options-wrapper
                   width 123px
 
-            p
+            p, input
               width initial
               display inline-block
               margin 0
@@ -130,7 +134,7 @@
                   width 40px
 
             &.source
-              p
+              p, input
                 margin-bottom 4px
                 border-radius 31px 31px 31px 0
                 float left
@@ -157,7 +161,7 @@
                 margin-right 0
 
             &.target
-              p
+              p, input
                 border-radius 31px 31px 0 31px
                 float right
                 background $target
@@ -181,6 +185,26 @@
               span.circle
                 float right
                 margin-left 0
+
+            &.menu
+              width 40px
+              top -10px
+              right -10px
+
+              &:hover
+                width 120px
+
+                .icon
+                  margin 0
+                  opacity 1
+
+              .icon
+                opacity 0
+
+              &.saving
+                width 80px
+                .icon
+                  opacity 1
 
             span.circle
               margin 1.2em .5em
