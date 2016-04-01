@@ -1,5 +1,9 @@
 .icon
   padding 2px
+  background-repeat no-repeat
+  border none
+  background-color transparent
+  cursor pointer
 
   &.home
     height 40px
@@ -7,15 +11,33 @@
     background-image url("/assets/icons/i_home")
     background-size 36px
     background-position 2px 3px
-    background-repeat no-repeat
-    float left
     margin 12px 10px
 
   &.search
     height 30px
 
   &.more
-    height 45px
+    background-image url("/assets/icons/i_more")
+    background-size 20px 20px
+    background-position center
+    padding 10px
+
+  &.edit
+    background-image url("/assets/icons/i_edit")
+    background-size 22px 22px
+    background-position center
+    padding 10px
+
+  &.close
+    background-image url("/assets/icons/i_close")
+    background-size 22px 22px
+    background-position center
+    padding 10px
+
+  &.save
+    background-image url("/assets/icons/i_save")
+    background-size 22px 22px
+    background-position center
     padding 10px
 
   &.star
@@ -25,7 +47,6 @@
     background-image url("/assets/icons/i_cardinality")
     height 20px
     width 20px
-    background-repeat no-repeat
     float left
 
     &.bookEntry
@@ -40,7 +61,10 @@
       box-shadow none
 
   &.trash
-    height 35px
+    background-image url("/assets/icons/i_trash")
+    background-size 20px 20px
+    background-position center
+
 
   &.sort
     height 35px

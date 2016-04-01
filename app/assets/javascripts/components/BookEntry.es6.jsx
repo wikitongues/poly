@@ -1,5 +1,6 @@
-class BookEntry extends React.Component {
-  render () {
+BookEntry = React.createClass ( {
+
+  render: function() {
     return (
        <li className="content">
         <a href={"/books/"+this.props.book.id}>
@@ -22,5 +23,5 @@ class BookEntry extends React.Component {
        </li>
     )
   }
-}
 
+} )

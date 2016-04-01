@@ -4,19 +4,20 @@
   form
     margin 0
 
-  input, textarea
-    border none
-    width 100%
-    border-bottom 2px solid transparent
-    float left
+  .info, .cardinality
+    input, textarea
+      border none
+      width 100%
+      border-bottom 2px solid transparent
+      float left
 
-    &.missing
-      ::placeholder
-        color red
+      &.missing
+        ::placeholder
+          color red
 
-    &:focus
-      outline none
-      border-color $hover
+      &:focus
+        outline none
+        border-color $hover
 
   .info
     .new
@@ -29,8 +30,7 @@
         resize vertical
         font-size 1em
 
-    .isEditing
-      background lighten($target, 80%)
+
 
   .banner
     width 100%
@@ -47,8 +47,12 @@
         margin-top 1px
         margin-bottom .4em
 
-        &.isEditing
-          background lighten($target, 80%)
+
+  .isEditing
+    border-bottom-color #ddd
+
+    &:focus
+      border-bottom-color $hover
 
   .content-wrapper
     height 27.5%

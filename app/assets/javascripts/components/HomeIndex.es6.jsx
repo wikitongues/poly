@@ -1,5 +1,12 @@
-class HomeIndex extends React.Component {
-  render () {
+HomeIndex = React.createClass ( {
+
+  renderBooks() {
+    return this.props.books.map((book) => {
+      return <BookEntry book={book} key={book.id}></BookEntry>
+    })
+  },
+
+  render: function() {
     return (
       <div className="container">
         <nav>
@@ -15,11 +22,4 @@ class HomeIndex extends React.Component {
       </div>
       )
   }
-
-  renderBooks() {
-    return this.props.books.map((book) => {
-      return <BookEntry book={book} key={book.id}></BookEntry>
-    })
-  }
-}
-
+} )

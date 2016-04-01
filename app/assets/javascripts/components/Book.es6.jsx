@@ -44,13 +44,15 @@ Book = React.createClass( {
   },
 
   onDeleteBookClick: function() {
-    $.ajax({
-      url: '/books/' + this.state.book.id,
-      type: 'DELETE',
-      success: function() {
-        window.location.href = '/';
-      }
-    })
+    if(window.confirm("Are you sure you want to delete this book?")) {
+      $.ajax({
+        url: '/books/' + this.state.book.id,
+        type: 'DELETE',
+        success: function() {
+          window.location.href = '/';
+        }
+      })
+    }
   },
 
   onSaveBookClick: function() {
@@ -73,10 +75,6 @@ Book = React.createClass( {
     });
   },
 
-  onEditBookClick: function() {
-    this.toggleEditingBookState();
-  },
-
   onInputChange: function(e) {
     var newBook = this.state.book;
     var newState = this.state;
@@ -85,17 +83,28 @@ Book = React.createClass( {
     this.setState(newState);
   },
 
-  renderEditOrSaveButton: function() {
+  renderBookMenu: function() {
     if (this.state.isEditingBook) {
-      return <button onClick={this.onSaveBookClick}>Save</button>;
+      return (
+        <div className="menu saving">
+          <button title="Cancel" onClick={this.toggleEditingBookState} className="close icon"></button>
+          <button title="Save" onClick={this.onSaveBookClick} className="save icon"></button>
+        </div>
+      );
     } else {
-       return <button onClick={this.onEditBookClick}>Edit</button>;
+      return (
+        <div className="menu">
+          <span className="more icon"></span>
+          <button title="Edit" onClick={this.toggleEditingBookState} className="edit icon"></button>
+          <button title="Delete" onClick={this.onDeleteBookClick} className="trash icon"></button>
+        </div>
+      );
     }
-  } ,
+  },
 
   renderTitle: function() {
      if (this.state.isEditingBook) {
-      return <input name="title" className="title new isEditing" onChange={this.onInputChange} placeholder={this.state.book.title} />;
+      return <input name="title" className="title new isEditing" onChange={this.onInputChange} value={this.state.book.title} />;
     } else {
        return <h1>{this.state.book.title}</h1>;
     }
@@ -103,7 +112,7 @@ Book = React.createClass( {
 
   renderDescription: function() {
      if (this.state.isEditingBook) {
-      return <textarea rows="4" className="description new isEditing" name="description" onChange={this.onInputChange} placeholder={this.state.book.description} />;
+      return <textarea rows="4" className="description new isEditing" name="description" onChange={this.onInputChange} value={this.state.book.description} />;
     } else {
        return <p>{this.state.book.description}</p>;
     }
@@ -111,7 +120,7 @@ Book = React.createClass( {
 
    renderSourceLanguage: function() {
      if (this.state.isEditingBook) {
-      return <input className="new isEditing" name="source_language" onChange={this.onInputChange} placeholder={this.state.book.source_language} />;
+      return <input className="new isEditing" name="source_language" onChange={this.onInputChange} value={this.state.book.source_language} />;
     } else {
        return <h1 className="language source" title={this.state.book.source_language}>{this.state.book.source_language}</h1>;
     }
@@ -119,7 +128,7 @@ Book = React.createClass( {
 
    renderTargetLanguage: function() {
      if (this.state.isEditingBook) {
-      return <input className="new isEditing" name="target_language" onChange={this.onInputChange} placeholder={this.state.book.target_language} />;
+      return <input className="new isEditing" name="target_language" onChange={this.onInputChange} value={this.state.book.target_language} />;
     } else {
        return <h1 className="language target" title={this.state.book.target_language}>{this.state.book.target_language}</h1>;
     }
@@ -136,9 +145,8 @@ Book = React.createClass( {
             <div className="wrapper">
               { this.renderTitle() }
               { this.renderDescription() }
+              { this.renderBookMenu() }
             </div>
-            {this.renderEditOrSaveButton()}
-            <button onClick={this.onDeleteBookClick}>Delete</button>
           </div>
           <div className="NObannerWrapper"></div>
           <div className="cardinality">
