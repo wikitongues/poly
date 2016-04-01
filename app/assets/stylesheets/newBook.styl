@@ -4,19 +4,20 @@
   form
     margin 0
 
-  input, textarea
-    border none
-    width 100%
-    border-bottom 2px solid transparent
-    float left
+  .info, .cardinality
+    input, textarea
+      border none
+      width 100%
+      border-bottom 2px solid transparent
+      float left
 
-    &.missing
-      ::placeholder
-        color red
+      &.missing
+        ::placeholder
+          color red
 
-    &:focus
-      outline none
-      border-color $hover
+      &:focus
+        outline none
+        border-color $hover
 
   .info
     .new
