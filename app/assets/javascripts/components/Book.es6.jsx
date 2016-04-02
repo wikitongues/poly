@@ -83,22 +83,30 @@ Book = React.createClass( {
     this.setState(newState);
   },
 
+  shouldShowAddPhraseButton: function() {
+    if (this.props.currentUser) {
+      return this.props.initialBook.user_id == this.props.currentUser.id
+    }
+  },
+
   renderBookMenu: function() {
-    if (this.state.isEditingBook) {
-      return (
-        <div className="menu saving">
-          <button title="Cancel" onClick={this.toggleEditingBookState} className="close icon"></button>
-          <button title="Save" onClick={this.onSaveBookClick} className="save icon"></button>
-        </div>
-      );
-    } else {
-      return (
-        <div className="menu">
-          <span className="more icon"></span>
-          <button title="Edit" onClick={this.toggleEditingBookState} className="edit icon"></button>
-          <button title="Delete" onClick={this.onDeleteBookClick} className="trash icon"></button>
-        </div>
-      );
+    if (this.props.currentUser) {
+      if (this.state.isEditingBook) {
+        return (
+          <div className="menu saving">
+            <button title="Cancel" onClick={this.toggleEditingBookState} className="close icon"></button>
+            <button title="Save" onClick={this.onSaveBookClick} className="save icon"></button>
+          </div>
+        );
+      } else {
+        return (
+          <div className="menu">
+            <span className="more icon"></span>
+            <button title="Edit" onClick={this.toggleEditingBookState} className="edit icon"></button>
+            <button title="Delete" onClick={this.onDeleteBookClick} className="trash icon"></button>
+          </div>
+        );
+      }
     }
   },
 
@@ -137,7 +145,7 @@ Book = React.createClass( {
   render: function() {
     return (
       <div className="container">
-        <NavBar/>
+        <NavBar currentUser={this.props.currentUser} />
         <div className="book">
           <div className="info">
             <div className="wrapper">
@@ -155,6 +163,8 @@ Book = React.createClass( {
             </section>
           </div>
           <Dictionary
+          showAddPhraseButton={this.shouldShowAddPhraseButton()}
+          current_user={this.props.currentUser}
           initialPhrasePairs={this.state.phrasePairs}
           onSourcePhraseSubmit={this.onSourcePhraseSubmit}
           onTargetPhraseSubmit={this.onTargetPhraseSubmit} />

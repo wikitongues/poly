@@ -35,7 +35,7 @@ NewBook = React.createClass( {
   render: function() {
     return(
       <div className="container">
-        <NavBar/>
+        <NavBar currentUser={this.props.currentUser}/>
         <div className="book">
           <form onSubmit={this.onSubmit}>
             <fieldset className="info">
