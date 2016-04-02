@@ -9,7 +9,7 @@ HomeIndex = React.createClass ( {
   render: function() {
     return (
       <div className="container">
-        <NavBar/>
+        <NavBar currentUser={this.props.currentUser}/>
         <div className="dashboard">
           <section>
             <ul className="content">{this.renderBooks()}</ul>

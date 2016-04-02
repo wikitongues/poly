@@ -50,21 +50,23 @@ PhrasePair = React.createClass( {
   },
 
   renderPhraseMenu: function() {
-    if (this.state.isEditingPhrase) {
-      return (
-        <li className="menu saving">
-          <button title="Cancel" onClick={this.toggleEditingPhraseState} className="close icon"></button>
-          <button title="Save" onClick={this.onSavePhraseClick} className="save icon"></button>
-        </li>
-      );
-    } else {
-      return (
-        <li className="menu">
-          <span className="more icon"></span>
-          <button title="Edit" onClick={this.onEditPhraseClick} className="edit icon"></button>
-          <button title="Delete" onClick={this.onDeletePhraseClick} className="trash icon"></button>
-        </li>
-      );
+    if (this.props.currentUser) {
+      if (this.state.isEditingPhrase) {
+        return (
+          <li className="menu saving">
+            <button title="Cancel" onClick={this.toggleEditingPhraseState} className="close icon"></button>
+            <button title="Save" onClick={this.onSavePhraseClick} className="save icon"></button>
+          </li>
+        );
+      } else {
+        return (
+          <li className="menu">
+            <span className="more icon"></span>
+            <button title="Edit" onClick={this.onEditPhraseClick} className="edit icon"></button>
+            <button title="Delete" onClick={this.onDeletePhraseClick} className="trash icon"></button>
+          </li>
+        );
+      }
     }
   },
 

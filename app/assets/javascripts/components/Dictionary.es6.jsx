@@ -12,18 +12,20 @@ Dictionary = React.createClass( {
   },
 
   renderPhraseInputButton: function() {
-    if (this.state.isPhraseInputInactive) {
-      return (
-        <div className="addPhrase">
-          <button onClick={this.onPhraseInputButtonClick}>+</button>
-        </div>
-      )
-    } else {
-      return (
-        <div>
-          {this.renderPhraseInputField()}
-        </div>
-      )
+    if (this.props.currentUser) {
+      if (this.state.isPhraseInputInactive && this.props.showAddPhraseButton) {
+        return (
+          <div className="addPhrase">
+            <button onClick={this.onPhraseInputButtonClick}>+</button>
+          </div>
+        )
+      } else {
+        return (
+          <div>
+            {this.renderPhraseInputField()}
+          </div>
+        )
+      }
     }
   },
 
@@ -185,6 +187,7 @@ Dictionary = React.createClass( {
       return (
           <PhrasePair
             id={phrasePair.id}
+            currentUser={this.props.currentUser}
             initialSourcePhrase={phrasePair.source_phrase}
             initialTargetPhrase={phrasePair.target_phrase}
             key={index}
