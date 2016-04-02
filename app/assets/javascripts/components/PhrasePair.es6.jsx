@@ -34,6 +34,10 @@ PhrasePair = React.createClass( {
     }
   },
 
+  onDeletePhraseClick: function() {
+    this.props.onDeletePhrasePair(this.props.phrasePair.id)
+  },
+
   onSavePhraseClick:function(){
     this.toggleEditingPhraseState();
   },
@@ -76,12 +80,6 @@ PhrasePair = React.createClass( {
         </ul>
       )
     }
-  },
-
-  onDeletePhraseClick: function() {
-    var book = this.props.phrasePair.book_id
-    var phrasePairToDelete = this.props.phrasePair.id
-    console.log('delete phrase #' + phrasePairToDelete)
   },
 
   render: function() {

@@ -4,7 +4,8 @@ Dictionary = React.createClass( {
     return {
       isPhraseInputInactive: true,
       isTargetInputActive: false,
-      isContinuousInputActive: false
+      isContinuousInputActive: false,
+      phrasePairs: this.props.initialPhrasePairs
     }
   },
 
@@ -123,6 +124,28 @@ Dictionary = React.createClass( {
     });
   },
 
+  onDeletePhrasePair: function(phrasePairId) {
+    if(window.confirm("Are you sure you want to delete this phrase?")) {
+      $.ajax({
+        url: '/phrase_pairs/' + phrasePairId,
+        type: 'DELETE',
+        success: function(response) {
+          var phrasePairs = this.state.phrasePairs;
+          var indexToRemove = _.findIndex(phrasePairs, function(phrasePair) {
+            return phrasePair.id == response.id;
+          });
+          phrasePairs.splice(indexToRemove, 1);
+          this.setState({
+            phrasePairs: phrasePairs
+          })
+        }.bind(this),
+        error: function() {
+          console.log('oops')
+        }
+      })
+    };
+  },
+
   toggleComposePhrasePairState: function() {
     this.setState({
       isPhraseInputInactive: !this.state.isPhraseInputInactive
@@ -130,8 +153,13 @@ Dictionary = React.createClass( {
   },
 
   renderPhrasePairs: function() {
-    return this.props.phrasePairs.map((phrasePair, index) => {
-      return <PhrasePair phrasePair={phrasePair} key={index}/>
+    return this.state.phrasePairs.map((phrasePair, index) => {
+      return (
+          <PhrasePair
+            phrasePair={phrasePair}
+            key={index}
+            onDeletePhrasePair={this.onDeletePhrasePair} />
+      );
     })
   },
 

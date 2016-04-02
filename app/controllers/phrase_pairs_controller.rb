@@ -9,6 +9,16 @@ class PhrasePairsController < ApplicationController
     end
   end
 
+  def destroy
+    phrase_pair = PhrasePair.find(params[:id])
+
+    if phrase_pair.destroy!
+      render json: { id: params[:id] }, status: :ok
+    else
+      render json: {}, status: 422
+    end
+  end
+
   private
 
   def create_params
