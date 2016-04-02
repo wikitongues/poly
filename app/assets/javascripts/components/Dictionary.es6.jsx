@@ -5,7 +5,9 @@ Dictionary = React.createClass( {
       isPhraseInputInactive: true,
       isTargetInputActive: false,
       isContinuousInputActive: false,
-      phrasePairs: this.props.initialPhrasePairs
+      phrasePairs: this.props.initialPhrasePairs,
+      sourcePhrase: "",
+      targetPhrase: ""
     }
   },
 
@@ -38,7 +40,12 @@ Dictionary = React.createClass( {
         <div>
           { this.renderInputMethod() }
           <div className="newPhrase">
-            <input ref="sourceInput" className="sourcePhrase input" type="text" placeholder="Source"/>
+            <input
+              value={this.state.sourcePhrase}
+              onChange={this.onSourcePhraseChange}
+              className="sourcePhrase input"
+              type="text"
+              placeholder="Source"/>
             <button className="savePhrase" onClick={this.onSourcePhraseSubmit}>Save</button>
           </div>
         </div>
@@ -76,18 +83,36 @@ Dictionary = React.createClass( {
     if (this.state.isContinuousInputActive) {
       return (
         <div className="newPhrase">
-          <input ref="targetInput" className="targetPhrase input" type="text" placeholder="Target"/>
+          <input
+            value={this.state.targetPhrase}
+            onChange={this.onTargetPhraseChange}
+            className="targetPhrase input"
+            type="text"
+            placeholder="Target"/>
           <button className="savePhrase" onClick={this.onTargetPhraseMultipleSubmit}>Save</button>
         </div>
       )
     } else {
       return (
         <div className="newPhrase">
-          <input ref="targetInput" className="targetPhrase input" type="text" placeholder="Target"/>
+          <input
+          value={this.state.targetPhrase}
+          onChange={this.onTargetPhraseChange}
+          className="targetPhrase input"
+          type="text"
+          placeholder="Target"/>
           <button className="savePhrase" onClick={this.onTargetPhraseSubmit}>Save</button>
         </div>
       )
     }
+  },
+
+  onSourcePhraseChange: function(e) {
+    this.setState({sourcePhrase: e.target.value });
+  },
+
+  onTargetPhraseChange: function(e) {
+    this.setState({targetPhrase: e.target.value });
   },
 
   onContinuousInputClick: function() {
@@ -103,24 +128,27 @@ Dictionary = React.createClass( {
   },
 
   onSourcePhraseSubmit: function() {
-    this.props.onSourcePhraseSubmit(this.refs.sourceInput.value),
+    this.props.onSourcePhraseSubmit(this.state.sourcePhrase),
     this.setState({
-        isTargetInputActive: !this.state.isTargetInputActive
+        isTargetInputActive: !this.state.isTargetInputActive,
+        sourcePhrase: ""
     });
   },
 
   onTargetPhraseSubmit: function() {
-    this.props.onTargetPhraseSubmit(this.refs.targetInput.value),
+    this.props.onTargetPhraseSubmit(this.state.targetPhrase),
     this.setState({
       isPhraseInputInactive: !this.state.isPhraseInputInactive,
-      isTargetInputActive: !this.state.isTargetInputActive
+      isTargetInputActive: !this.state.isTargetInputActive,
+      targetPhrase: ""
     });
   },
 
   onTargetPhraseMultipleSubmit: function() {
-    this.props.onTargetPhraseSubmit(this.refs.targetInput.value),
+    this.props.onTargetPhraseSubmit(this.state.targetPhrase),
     this.setState({
-      isTargetInputActive: !this.state.isTargetInputActive
+      isTargetInputActive: !this.state.isTargetInputActive,
+      targetPhrase: ""
     });
   },
 
