@@ -2,7 +2,6 @@ PhrasePair = React.createClass( {
 
   getInitialState: function() {
     return {
-      phrasePair: this.props.initialPhrasePair,
       isEditingPhrase: false,
       sourcePhrase: this.props.initialSourcePhrase,
       targetPhrase: this.props.initialTargetPhrase
@@ -13,6 +12,41 @@ PhrasePair = React.createClass( {
       this.setState({
         isEditingPhrase: !this.state.isEditingPhrase
     });
+  },
+
+  onDeletePhraseClick: function() {
+    this.props.onDeletePhrasePair(this.props.id)
+  },
+
+  onSavePhraseClick:function(){
+    $.ajax({
+      url: '/phrase_pairs/' + this.props.id,
+      type: 'PUT',
+      data: {
+        phrase_pair: {
+          source_phrase: this.state.sourcePhrase,
+          target_phrase: this.state.targetPhrase
+        }
+      },
+      success: function() {
+        this.toggleEditingPhraseState();
+      }.bind(this),
+      error: function() {
+        console.log("oopsies")
+      }
+    })
+  },
+
+  onEditPhraseClick: function() {
+    this.toggleEditingPhraseState();
+  },
+
+  onSourceChange: function(e) {
+    this.setState({ sourcePhrase: e.target.value })
+  },
+
+  onTargetChange: function(e) {
+    this.setState({ targetPhrase: e.target.value })
   },
 
   renderPhraseMenu: function() {
@@ -34,35 +68,21 @@ PhrasePair = React.createClass( {
     }
   },
 
-  onDeletePhraseClick: function() {
-    this.props.onDeletePhrasePair(this.props.phrasePair.id)
-  },
-
-  onSavePhraseClick:function(){
-    this.toggleEditingPhraseState();
-  },
-
-  onEditPhraseClick: function() {
-    this.toggleEditingPhraseState();
-  },
-
-  onInputChange: function(e) {
-    var newPhrasePair = this.state.phrasePair;
-    var newState = this.state;
-    newBook[e.target.name] = e.target.value;
-    newState.book = newBook;
-    this.setState(newState);
-  },
-
   renderPhrasePair: function() {
      if (this.state.isEditingPhrase) {
       return (
         <ul>
           <li className="source text">
-            <input name="sourcePhrase" placeholder={this.props.phrasePair.source_phrase}/>
+            <input
+              value={this.state.sourcePhrase}
+              onChange={this.onSourceChange}
+              name="sourcePhrase" />
           </li>
           <li className="target text">
-            <input name="targetPhrase" placeholder={this.props.phrasePair.target_phrase}/>
+            <input
+              value={this.state.targetPhrase}
+              onChange={this.onTargetChange}
+              name="targetPhrase" />
           </li>
           { this.renderPhraseMenu() }
         </ul>
@@ -71,10 +91,10 @@ PhrasePair = React.createClass( {
       return (
         <ul>
           <li className="source text">
-            <p>{this.props.phrasePair.source_phrase}</p>
+            <p>{this.state.sourcePhrase}</p>
           </li>
           <li className="target text">
-            <p>{this.props.phrasePair.target_phrase}</p>
+            <p>{this.state.targetPhrase}</p>
           </li>
           { this.renderPhraseMenu() }
         </ul>

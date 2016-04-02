@@ -184,7 +184,9 @@ Dictionary = React.createClass( {
     return this.state.phrasePairs.map((phrasePair, index) => {
       return (
           <PhrasePair
-            phrasePair={phrasePair}
+            id={phrasePair.id}
+            initialSourcePhrase={phrasePair.source_phrase}
+            initialTargetPhrase={phrasePair.target_phrase}
             key={index}
             onDeletePhrasePair={this.onDeletePhrasePair} />
       );

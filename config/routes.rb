@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   resources :books, only: [:show, :new, :create, :destroy, :update]
 
-  resources :phrase_pairs, only: [:create, :destroy]
+  resources :phrase_pairs, only: [:create, :destroy, :update]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
