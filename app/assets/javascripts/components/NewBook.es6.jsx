@@ -35,9 +35,7 @@ NewBook = React.createClass( {
   render: function() {
     return(
       <div className="container">
-        <nav>
-          <a className="icon home" href="/"></a>
-        </nav>
+        <NavBar/>
         <div className="book">
           <form onSubmit={this.onSubmit}>
             <fieldset className="info">
