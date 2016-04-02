@@ -28,6 +28,7 @@ gem 'react-rails', '~> 1.5.0'
 gem 'lodash-rails'
 
 gem 'devise'
+gem 'pundit'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
