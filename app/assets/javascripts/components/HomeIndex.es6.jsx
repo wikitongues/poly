@@ -9,10 +9,7 @@ HomeIndex = React.createClass ( {
   render: function() {
     return (
       <div className="container">
-        <nav>
-          <a className="icon home" href="/"></a>
-          <a className="signInButton" href="/sign_in">Sign in</a>
-        </nav>
+        <NavBar/>
         <div className="dashboard">
           <section>
             <ul className="content">{this.renderBooks()}</ul>

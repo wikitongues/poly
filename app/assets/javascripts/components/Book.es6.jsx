@@ -137,9 +137,7 @@ Book = React.createClass( {
   render: function() {
     return (
       <div className="container">
-        <nav>
-          <a className="icon home" href="/"></a>
-        </nav>
+        <NavBar/>
         <div className="book">
           <div className="info">
             <div className="wrapper">
@@ -153,12 +151,11 @@ Book = React.createClass( {
             <section>
               { this.renderSourceLanguage() }
               <div className="icon cardinality book" alt=""/>
-              {/*<img className="icon cardinality" src={this.props.cardinality} alt=""/>*/}
               { this.renderTargetLanguage() }
             </section>
           </div>
           <Dictionary
-          phrasePairs={this.state.phrasePairs}
+          initialPhrasePairs={this.state.phrasePairs}
           onSourcePhraseSubmit={this.onSourcePhraseSubmit}
           onTargetPhraseSubmit={this.onTargetPhraseSubmit} />
         </div>
