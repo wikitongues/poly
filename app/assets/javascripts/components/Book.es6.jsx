@@ -118,6 +118,10 @@ Book = React.createClass( {
     }
   },
 
+  renderAuthor: function() {
+    return <p>{this.state.book.user_id}</p>
+  },
+
   renderDescription: function() {
      if (this.state.isEditingBook) {
       return <textarea rows="4" className="description new isEditing" name="description" onChange={this.onInputChange} value={this.state.book.description} />;
@@ -150,6 +154,7 @@ Book = React.createClass( {
           <div className="info">
             <div className="wrapper">
               { this.renderTitle() }
+              { this.renderAuthor() }
               { this.renderDescription() }
               { this.renderBookMenu() }
             </div>
