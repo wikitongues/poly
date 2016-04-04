@@ -12,8 +12,8 @@ Dictionary = React.createClass( {
   },
 
   renderPhraseInputButton: function() {
-    if (this.props.currentUser) {
-      if (this.state.isPhraseInputInactive && this.props.showAddPhraseButton) {
+    if (this.props.isOwnedByCurrentUser) {
+      if (this.state.isPhraseInputInactive) {
         return (
           <div className="addPhrase">
             <button onClick={this.onPhraseInputButtonClick}>+</button>
@@ -187,7 +187,7 @@ Dictionary = React.createClass( {
       return (
           <PhrasePair
             id={phrasePair.id}
-            currentUser={this.props.currentUser}
+            isOwnedByCurrentUser={this.props.isOwnedByCurrentUser}
             initialSourcePhrase={phrasePair.source_phrase}
             initialTargetPhrase={phrasePair.target_phrase}
             key={index}
