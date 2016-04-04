@@ -1,5 +1,13 @@
 HomeIndex = React.createClass ( {
 
+  ifUserIsLoggedIn: function() {
+    if (this.props.currentUser) {
+      return (
+        <a href="/books/new" className="newBook">+</a>
+      )
+    }
+  },
+
   renderBooks() {
     return this.props.books.map((book) => {
       return <BookEntry book={book} key={book.id}></BookEntry>
@@ -14,7 +22,7 @@ HomeIndex = React.createClass ( {
           <section>
             <ul className="content">{this.renderBooks()}</ul>
           </section>
-          <a href="/books/new" className="newBook">+</a>
+          {this.ifUserIsLoggedIn()}
         </div>
       </div>
       )

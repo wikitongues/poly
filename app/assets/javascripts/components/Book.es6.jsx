@@ -83,14 +83,14 @@ Book = React.createClass( {
     this.setState(newState);
   },
 
-  shouldShowAddPhraseButton: function() {
+  bookIsOwnedByCurrentUser: function() {
     if (this.props.currentUser) {
       return this.props.initialBook.user_id == this.props.currentUser.id
     }
   },
 
   renderBookMenu: function() {
-    if (this.props.currentUser) {
+    if (this.bookIsOwnedByCurrentUser()) {
       if (this.state.isEditingBook) {
         return (
           <div className="menu saving">
@@ -116,6 +116,10 @@ Book = React.createClass( {
     } else {
        return <h1>{this.state.book.title}</h1>;
     }
+  },
+
+  renderAuthor: function() {
+    return <p>{this.state.book.user_id}</p>
   },
 
   renderDescription: function() {
@@ -150,6 +154,7 @@ Book = React.createClass( {
           <div className="info">
             <div className="wrapper">
               { this.renderTitle() }
+              { this.renderAuthor() }
               { this.renderDescription() }
               { this.renderBookMenu() }
             </div>
@@ -163,8 +168,7 @@ Book = React.createClass( {
             </section>
           </div>
           <Dictionary
-          showAddPhraseButton={this.shouldShowAddPhraseButton()}
-          current_user={this.props.currentUser}
+          isOwnedByCurrentUser={this.bookIsOwnedByCurrentUser()}
           initialPhrasePairs={this.state.phrasePairs}
           onSourcePhraseSubmit={this.onSourcePhraseSubmit}
           onTargetPhraseSubmit={this.onTargetPhraseSubmit} />

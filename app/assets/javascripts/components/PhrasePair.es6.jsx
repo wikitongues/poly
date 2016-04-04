@@ -50,7 +50,7 @@ PhrasePair = React.createClass( {
   },
 
   renderPhraseMenu: function() {
-    if (this.props.currentUser) {
+    if (this.props.isOwnedByCurrentUser) {
       if (this.state.isEditingPhrase) {
         return (
           <li className="menu saving">
