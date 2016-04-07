@@ -60,10 +60,8 @@ Currently, there are around 7000 classified languages, with an unknowable number
 
 
 ### Community
-  + [Slack](https://wikitongues.slack.com)
-  + [Gitter](https://gitter.im/wikitongues)
-  + [IRC](http://www.irchelp.org/)
-
+  + [Slack](https://slack.wikitongues.org)
+  
 
 ## Prerequisites
 
@@ -81,16 +79,6 @@ You will need the following things properly installed on your computer.
 
 * `rails s`
 * Visit the app at [http://localhost:3000](http://localhost:3000).
-
-### Code Generators
-
-Make use of the many generators for code, try `ember help generate` for more details
-
-### Running Tests
-
-
-### Building
-
 
 ### Contributing
 
