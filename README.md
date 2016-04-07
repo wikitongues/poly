@@ -9,8 +9,6 @@ Getting started? Start [here](#prerequisites)
 ###Current Features
 * Compose translation dictionaries between two languages using text
 * Browse available dictionaries
-* Favorite dictionaries
-* Immediately publish content to the Poly community
 
 #Feature Map
 Planned features for future releases. Releases are mapped below. We use [semantic versioning](http://semver.org/).
@@ -19,27 +17,24 @@ Planned features for future releases. Releases are mapped below. We use [semanti
 
 - [x] ~~Create new phrasebook~~
 - [x] ~~Input and save new phrase~~
-- [x] ~~Audio and video phrase interface~~
-- [x] ~~Tag a book as Favorite~~
 - [x] ~~Refactor new phrase controller~~
+- [x] ~~Book title, description, L1, L2 editing~~
+- [x] ~~Phrase editing~~
+- [x] ~~Continuous text phrase input (hit enter to save)~~
+- [x] ~~Book authorship~~
+- [x] ~~Sign in upon account creation~~
 
 ###Version 0.2
 - [ ] Profile page
-  - [ ] User object
   - [ ] User name
   - [ ] User photo
-- [ ] Book authorship
-- [ ] Sign in upon account creation
+  - [ ] User books
+  - [ ] Tag a book as Favorite
 - [ ] Handle error messages on login page
-- [ ] Properly remove all phrases on book destroy (BUG)
-- [ ] Fix double input (BUG)
 
 ###Version  0.3
-
-- [ ] Book title, description, L1, L2 editing
-- [ ] Phrase editing
-- [ ] Continuous text phrase input (hit enter to save)
-- [ ] Input and upload sound and video phrases
+- [ ] Audio and video phrase interface
+- [ ] Input and upload video phrases
 - [ ] Input and upload book banner images
 - [ ] Only save new book if all inputs are complete
 - [ ] Input area blur action behavior
@@ -47,7 +42,6 @@ Planned features for future releases. Releases are mapped below. We use [semanti
 - [ ] Fixed book languages sub-header
 
 ###Version 0.4
-
 - [ ] Add tags to books
 - [ ] Search
 
