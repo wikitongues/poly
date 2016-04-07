@@ -68,20 +68,17 @@ Join us on our open [Slack](http://wikitongues-slack.herokuapp.com/) channel.
   
 
 ## Prerequisites
-
 You will need the following things properly installed on your computer.
 
 * [Git](http://git-scm.com/)
 
 ## Installation
-
 * `git clone https://github.com/wikitongues/poly.git` this repository
 * change into the new directory
 * `bundle install`
 
 
 ## Running / Development
-
 * `rails s`
 * Visit the app at [http://localhost:3000](http://localhost:3000).
 
