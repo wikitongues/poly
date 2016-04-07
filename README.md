@@ -25,6 +25,10 @@ Planned features for future releases. Releases are mapped below. We use [semanti
 - [x] ~~Sign in upon account creation~~
 
 ###Version 0.2
+- [ ] Testing
+- [ ] Book search
+- [ ] Deployment
+- [ ] Handle media uploads
 - [ ] Profile page
   - [ ] User name
   - [ ] User photo
