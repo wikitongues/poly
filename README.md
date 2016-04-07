@@ -71,6 +71,8 @@ Join us on our open [Slack](http://wikitongues-slack.herokuapp.com/) channel.
 You will need the following things properly installed on your computer.
 
 * [Git](http://git-scm.com/)
+* Ruby 2.3.0 (check what version of ruby you have by running `ruby -v`)
+* Bundler (`gem install bundler`)
 
 ## Installation
 * `git clone https://github.com/wikitongues/poly.git` this repository
