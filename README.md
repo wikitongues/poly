@@ -79,6 +79,7 @@ You will need the following things properly installed on your computer.
 * change into the new directory
 * `bundle install`
 
+
 ## Running / Development
 
 * `rails s`
