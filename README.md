@@ -60,7 +60,7 @@ Currently, there are around 7000 classified languages, with an unknowable number
 
 
 ### Community
-  + [Slack](https://slack.wikitongues.org)
+Join us on our open [Slack](https://slack.wikitongues.org) channel.
   
 
 ## Prerequisites
