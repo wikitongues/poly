@@ -2,7 +2,7 @@ BookEntry = React.createClass ( {
 
   render: function() {
     return (
-       <li className="content">
+       <li className="bookEntry">
         <a href={"/books/"+this.props.book.id}>
           <section className="info">
             <span className="banner"><img src=""/></span>
@@ -24,5 +24,4 @@ BookEntry = React.createClass ( {
        </li>
     )
   }
-
 } )
