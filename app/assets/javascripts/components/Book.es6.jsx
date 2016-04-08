@@ -154,7 +154,7 @@ Book = React.createClass( {
           <div className="info">
             <div className="wrapper">
               { this.renderTitle() }
-              { this.renderAuthor() }
+              {/* this.renderAuthor() */}
               { this.renderDescription() }
               { this.renderBookMenu() }
             </div>

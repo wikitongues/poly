@@ -9,6 +9,7 @@ BookEntry = React.createClass ( {
             <section>
               <p className="title">{this.props.book.title}</p>
             </section>
+            <p className="author">Author ID:{this.props.book.user_id}</p>
             <section className="details">
               <span className="source language" title="Source Language">
                 <p>{this.props.book.source_language}</p>
