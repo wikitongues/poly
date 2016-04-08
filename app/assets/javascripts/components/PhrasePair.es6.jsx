@@ -54,14 +54,14 @@ PhrasePair = React.createClass( {
       if (this.state.isEditingPhrase) {
         return (
           <li className="menu saving">
-            <button title="Cancel" onClick={this.toggleEditingPhraseState} className="close icon"></button>
             <button title="Save" onClick={this.onSavePhraseClick} className="save icon"></button>
+            <button title="Cancel" onClick={this.toggleEditingPhraseState} className="close icon"></button>
           </li>
         );
       } else {
         return (
           <li className="menu">
-            <span className="more icon"></span>
+            <button className="more icon"></button>
             <button title="Edit" onClick={this.onEditPhraseClick} className="edit icon"></button>
             <button title="Delete" onClick={this.onDeletePhraseClick} className="trash icon"></button>
           </li>

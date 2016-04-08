@@ -94,14 +94,14 @@ Book = React.createClass( {
       if (this.state.isEditingBook) {
         return (
           <div className="menu saving">
-            <button title="Cancel" onClick={this.toggleEditingBookState} className="close icon"></button>
             <button title="Save" onClick={this.onSaveBookClick} className="save icon"></button>
+            <button title="Cancel" onClick={this.toggleEditingBookState} className="close icon"></button>
           </div>
         );
       } else {
         return (
           <div className="menu">
-            <span className="more icon"></span>
+            <button className="more icon"></button>
             <button title="Edit" onClick={this.toggleEditingBookState} className="edit icon"></button>
             <button title="Delete" onClick={this.onDeleteBookClick} className="trash icon"></button>
           </div>
