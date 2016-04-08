@@ -1,6 +1,6 @@
 HomeIndex = React.createClass ( {
 
-  ifUserIsLoggedIn: function() {
+  renderCreateBookButton: function() {
     if (this.props.currentUser) {
       return (
         <a href="/books/new" className="newBook">+</a>
@@ -18,13 +18,11 @@ HomeIndex = React.createClass ( {
     return (
       <div className="container">
         <NavBar currentUser={this.props.currentUser}/>
-        <div className="dashboard">
-          <section>
-            <ul className="content">{this.renderBooks()}</ul>
-          </section>
-          {this.ifUserIsLoggedIn()}
-        </div>
+      <div className="dashboard">
+        <ul className="content">{this.renderBooks()}</ul>
+        {this.renderCreateBookButton()}
       </div>
-      )
+    </div>
+    )
   }
 } )

@@ -51,6 +51,10 @@
           ul li.menu .more
             opacity 1
 
+        ul li.menu .more
+          &:focus
+            opacity 1
+
         &:last-of-type
           border-bottom none
 
@@ -80,7 +84,7 @@
               font-size 1.2em
               max-width 90%
               overflow hidden
-
+              text-overflow ellipsis
 
               video
                 width 102%

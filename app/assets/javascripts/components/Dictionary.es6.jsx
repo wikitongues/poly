@@ -2,7 +2,7 @@ Dictionary = React.createClass( {
 
   getInitialState: function() {
     return {
-      isPhraseInputInactive: true,
+      isPhraseInputActive: false,
       isTargetInputActive: false,
       isContinuousInputActive: false,
       phrasePairs: this.props.initialPhrasePairs,
@@ -11,30 +11,118 @@ Dictionary = React.createClass( {
     }
   },
 
-  renderPhraseInputButton: function() {
+  onAddNewPhraseButtonClick: function() {
+    this.setState({
+        isPhraseInputActive: !this.state.isPhraseInputActive
+    });
+  },
+
+  onSourcePhraseChange: function(e) {
+    this.setState({sourcePhrase: e.target.value });
+  },
+
+  onSourcePhraseSubmit: function() {
+    this.props.onSourcePhraseSubmit(this.state.sourcePhrase),
+    this.setState({
+        isTargetInputActive: !this.state.isTargetInputActive,
+        sourcePhrase: ""
+    });
+  },
+
+  onTargetPhraseChange: function(e) {
+    this.setState({targetPhrase: e.target.value });
+  },
+
+  onTargetPhraseSubmit: function() {
+    this.props.onTargetPhraseSubmit(this.state.targetPhrase),
+    this.setState({
+      isPhraseInputActive: !this.state.isPhraseInputActive,
+      isTargetInputActive: !this.state.isTargetInputActive,
+      targetPhrase: ""
+    });
+  },
+
+  onTargetPhraseMultipleSubmit: function() {
+    this.props.onTargetPhraseSubmit(this.state.targetPhrase),
+    this.setState({
+      isTargetInputActive: !this.state.isTargetInputActive,
+      targetPhrase: ""
+    });
+  },
+
+  onContinuousInputClick: function() {
+    this.setState({
+        isContinuousInputActive: !this.state.isContinuousInputActive
+    });
+  },
+
+  onDeletePhrasePair: function(phrasePairId) {
+    if(window.confirm("Are you sure you want to delete this phrase?")) {
+      $.ajax({
+        url: '/phrase_pairs/' + phrasePairId,
+        type: 'DELETE',
+        success: function(response) {
+          var phrasePairs = this.state.phrasePairs;
+          var indexToRemove = _.findIndex(phrasePairs, function(phrasePair) {
+            return phrasePair.id == response.id;
+          });
+          phrasePairs.splice(indexToRemove, 1);
+          this.setState({
+            phrasePairs: phrasePairs
+          })
+        }.bind(this),
+        error: function() {
+          console.log('Error: Could not delete phrase pair')
+        }
+      })
+    };
+  },
+
+  onCancelEditPhrase: function() {
+    this.setState({
+      isPhraseInputActive: !this.state.isPhraseInputActive
+    });
+  },
+
+  renderPhrasePairs: function() {
+    return this.state.phrasePairs.map((phrasePair, index) => {
+      return (
+          <PhrasePair
+            id={phrasePair.id}
+            isOwnedByCurrentUser={this.props.isOwnedByCurrentUser}
+            initialSourcePhrase={phrasePair.source_phrase}
+            initialTargetPhrase={phrasePair.target_phrase}
+            key={index}
+            onDeletePhrasePair={this.onDeletePhrasePair} />
+      );
+    })
+    this.forceUpdate()
+  },
+
+  renderCreateNewPhraseButton: function() {
     if (this.props.isOwnedByCurrentUser) {
-      if (this.state.isPhraseInputInactive) {
+      if (this.state.isPhraseInputActive) {
         return (
-          <div className="addPhrase">
-            <button onClick={this.onPhraseInputButtonClick}>+</button>
+          <div>
+            {this.renderPhraseInputFields()}
           </div>
         )
       } else {
         return (
-          <div>
-            {this.renderPhraseInputField()}
+          <div className="addPhrase">
+            <button onClick={this.onAddNewPhraseButtonClick}>+</button>
           </div>
         )
       }
     }
   },
 
-  renderPhraseInputField: function() {
+  renderPhraseInputFields: function() {
     if (this.state.isTargetInputActive) {
       return (
         <div>
           { this.renderInputMethod() }
-          { this.renderContinuousInputField() }
+          { this.renderTargetContinuousInputField() }
         </div>
       )
     } else {
@@ -55,33 +143,8 @@ Dictionary = React.createClass( {
     }
   },
 
-  // TODO: Consider the flow of canceling a phrase in progress.
-  renderInputMethod: function() {
-    if (this.state.isContinuousInputActive) {
-      return (
-        <div className="inputMethod">
-          <label>
-            <input type="checkbox" checked onChange={this.onContinuousInputClick}/>
-            Continuous entry
-          </label>
-          <button title="Cancel" onClick={this.toggleComposePhrasePairState} className="close icon"></button>
-        </div>
-      )
-    } else {
-      return (
-        <div className="inputMethod">
-          <label>
-            <input type="checkbox" onChange={this.onContinuousInputClick}/>
-            Continuous entry
-          </label>
-          <button title="Cancel" onClick={this.toggleComposePhrasePairState} className="close icon"></button>
-        </div>
-      )
-    }
-  },
-
   // NB If in continuous input state, show source input field following successful phrase pair completion.
-  renderContinuousInputField: function() {
+  renderTargetContinuousInputField: function() {
     if (this.state.isContinuousInputActive) {
       return (
         <div className="newPhrase">
@@ -109,91 +172,29 @@ Dictionary = React.createClass( {
     }
   },
 
-  onSourcePhraseChange: function(e) {
-    this.setState({sourcePhrase: e.target.value });
-  },
-
-  onTargetPhraseChange: function(e) {
-    this.setState({targetPhrase: e.target.value });
-  },
-
-  onContinuousInputClick: function() {
-    this.setState({
-        isContinuousInputActive: !this.state.isContinuousInputActive
-    });
-  },
-
-  onPhraseInputButtonClick: function() {
-    this.setState({
-        isPhraseInputInactive: !this.state.isPhraseInputInactive
-    });
-  },
-
-  onSourcePhraseSubmit: function() {
-    this.props.onSourcePhraseSubmit(this.state.sourcePhrase),
-    this.setState({
-        isTargetInputActive: !this.state.isTargetInputActive,
-        sourcePhrase: ""
-    });
-  },
-
-  onTargetPhraseSubmit: function() {
-    this.props.onTargetPhraseSubmit(this.state.targetPhrase),
-    this.setState({
-      isPhraseInputInactive: !this.state.isPhraseInputInactive,
-      isTargetInputActive: !this.state.isTargetInputActive,
-      targetPhrase: ""
-    });
-  },
-
-  onTargetPhraseMultipleSubmit: function() {
-    this.props.onTargetPhraseSubmit(this.state.targetPhrase),
-    this.setState({
-      isTargetInputActive: !this.state.isTargetInputActive,
-      targetPhrase: ""
-    });
-  },
-
-  onDeletePhrasePair: function(phrasePairId) {
-    if(window.confirm("Are you sure you want to delete this phrase?")) {
-      $.ajax({
-        url: '/phrase_pairs/' + phrasePairId,
-        type: 'DELETE',
-        success: function(response) {
-          var phrasePairs = this.state.phrasePairs;
-          var indexToRemove = _.findIndex(phrasePairs, function(phrasePair) {
-            return phrasePair.id == response.id;
-          });
-          phrasePairs.splice(indexToRemove, 1);
-          this.setState({
-            phrasePairs: phrasePairs
-          })
-        }.bind(this),
-        error: function() {
-          console.log('oops')
-        }
-      })
-    };
-  },
-
-  toggleComposePhrasePairState: function() {
-    this.setState({
-      isPhraseInputInactive: !this.state.isPhraseInputInactive
-    });
-  },
-
-  renderPhrasePairs: function() {
-    return this.state.phrasePairs.map((phrasePair, index) => {
+  // TODO: Consider the flow of canceling a phrase in progress.
+  renderInputMethod: function() {
+    if (this.state.isContinuousInputActive) {
       return (
-          <PhrasePair
-            id={phrasePair.id}
-            isOwnedByCurrentUser={this.props.isOwnedByCurrentUser}
-            initialSourcePhrase={phrasePair.source_phrase}
-            initialTargetPhrase={phrasePair.target_phrase}
-            key={index}
-            onDeletePhrasePair={this.onDeletePhrasePair} />
-      );
-    })
+        <div className="inputMethod">
+          <label>
+            <input type="checkbox" checked onChange={this.onContinuousInputClick}/>
+            Continuous entry
+          </label>
+          <button title="Cancel" onClick={this.onCancelEditPhrase} className="close icon"></button>
+        </div>
+      )
+    } else {
+      return (
+        <div className="inputMethod">
+          <label>
+            <input type="checkbox" onChange={this.onContinuousInputClick}/>
+            Continuous entry
+          </label>
+          <button title="Cancel" onClick={this.onCancelEditPhrase} className="close icon"></button>
+        </div>
+      )
+    }
   },
 
   render: function() {
@@ -201,7 +202,7 @@ Dictionary = React.createClass( {
        <div className="dictionary">
         <section className="content-wrapper">
           <ul className="content">{this.renderPhrasePairs()}</ul>
-          {this.renderPhraseInputButton()}
+          {this.renderCreateNewPhraseButton()}
         </section>
        </div>
     )
