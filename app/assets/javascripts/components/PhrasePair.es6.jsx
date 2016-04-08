@@ -32,7 +32,7 @@ PhrasePair = React.createClass( {
         this.toggleEditingPhraseState();
       }.bind(this),
       error: function() {
-        console.log("oopsies")
+        console.log("Error: Could not save phrase")
       }
     })
   },

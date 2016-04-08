@@ -38,7 +38,7 @@ Book = React.createClass( {
         phrase_pair: phrasePair
       },
       error: function() {
-        console.log('Save action failed')
+        console.log('Error: Save action failed')
       }
     })
   },

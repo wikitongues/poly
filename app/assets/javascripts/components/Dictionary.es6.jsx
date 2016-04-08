@@ -170,7 +170,7 @@ Dictionary = React.createClass( {
           })
         }.bind(this),
         error: function() {
-          console.log('oops')
+          console.log('Error: Could not delete phrase pair')
         }
       })
     };
