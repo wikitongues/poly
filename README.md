@@ -78,7 +78,7 @@ You will need the following things properly installed on your computer.
 * `git clone https://github.com/wikitongues/poly.git` this repository
 * change into the new directory
 * `bundle install`
-
+* `rake db:create`
 
 ## Running / Development
 * `rails s`
