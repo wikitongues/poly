@@ -5,6 +5,7 @@
 This README outlines the details of collaborating on this Rails/React application.
 
 Getting started? Start [here](#prerequisites)
+[Brief intro](https://youtu.be/TgTn8HlUVZo)
 
 ###Current Features
 * Compose translation dictionaries between two languages using text
@@ -12,6 +13,10 @@ Getting started? Start [here](#prerequisites)
 
 #Recurse Center Hackathon
 We are honored to join the Recurse Center for a day of hacking!
+
+You can find the language database project repo at https://github.com/wikitongues/language-api.
+
+You can find the Oral Histories project on Youtube
 
 #Feature Map
 Planned features for future releases. Releases are mapped below. We use [semantic versioning](http://semver.org/).
