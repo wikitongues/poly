@@ -1,20 +1,12 @@
 Dictionary = React.createClass( {
-  testingPhraseSubmit: function(){
-    this.props.testingPhraseSubmit(this.state.sourcePhrase, this.state.targetPhrase)
-    console.log("DICTIONARY TESTING PHRASE SUBMIT", this.state.sourcePhrase, this.state.targetPhrase)
-
-    this.setState({
-      sourcePhrase: "",
-      targetPhrase: ""
-    })
-  },
+ 
 
   getInitialState: function() {
     return {
+      phrasePairs: this.props.phrasePairs,
       isPhraseInputActive: false,
       isTargetInputActive: false,
       isContinuousInputActive: false,
-      phrasePairs: this.props.initialPhrasePairs,
       sourcePhrase: "",
       targetPhrase: ""
     }
@@ -31,10 +23,8 @@ Dictionary = React.createClass( {
   },
 
   onSourcePhraseSubmit: function() {
-    //this.props.onSourcePhraseSubmit(this.state.sourcePhrase),
     this.setState({
         isTargetInputActive: !this.state.isTargetInputActive
-        //sourcePhrase: ""
     });
   },
 
@@ -43,8 +33,7 @@ Dictionary = React.createClass( {
   },
 
   onTargetPhraseSubmit: function() {
-    //this.props.onTargetPhraseSubmit(this.state.targetPhrase),
-    this.testingPhraseSubmit()
+    this.submitPhrase()
     this.setState({
       isPhraseInputActive: !this.state.isPhraseInputActive,
       isTargetInputActive: !this.state.isTargetInputActive
@@ -52,11 +41,18 @@ Dictionary = React.createClass( {
   },
 
   onTargetPhraseMultipleSubmit: function() {
-    //this.props.onTargetPhraseSubmit(this.state.targetPhrase)
-    this.testingPhraseSubmit()
+    this.submitPhrase()
     this.setState({
       isTargetInputActive: !this.state.isTargetInputActive
     });
+  },
+
+  submitPhrase: function(){
+    this.props.submitPhrase(this.state.sourcePhrase, this.state.targetPhrase)
+    this.setState({
+      sourcePhrase: "",
+      targetPhrase: ""
+    })
   },
 
   onContinuousInputClick: function() {
@@ -66,6 +62,7 @@ Dictionary = React.createClass( {
   },
 
   onDeletePhrasePair: function(phrasePairId) {
+    //REPLACE DELETE PHRASE WILL CALL TO TOP LEVEL (BOOK)
     if(window.confirm("Are you sure you want to delete this phrase?")) {
       $.ajax({
         url: '/phrase_pairs/' + phrasePairId,
@@ -94,7 +91,7 @@ Dictionary = React.createClass( {
   },
 
   renderPhrasePairs: function() {
-    return this.props.initialPhrasePairs.map((phrasePair, index) => {
+    return this.props.phrasePairs.map((phrasePair, index) => {
       return (
           <PhrasePair
             id={phrasePair.id}
@@ -127,6 +124,8 @@ Dictionary = React.createClass( {
   },
 
   renderPhraseInputFields: function() {
+    //SUGGESTION: the phrase input fields should be their own React Component.
+    //Then, move all of the input-type state (sourcePhrase and targetPhrase) to that component rather than Dictionary.
     if (this.state.isTargetInputActive) {
       return (
         <div>
