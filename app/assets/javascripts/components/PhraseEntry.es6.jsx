@@ -13,11 +13,13 @@ PhraseEntry = React.createClass ( {
   },
 
   onPhraseSubmit: function() {
-    this.props.submitPhrase(this.state.sourcePhrase, this.state.targetPhrase)
-    this.setState({
-      sourcePhrase: "",
-      targetPhrase: ""
-    })
+    if (this.state.sourcePhrase.length > 0 && this.state.targetPhrase.length > 0){
+      this.props.submitPhrase(this.state.sourcePhrase, this.state.targetPhrase)
+      this.setState({
+        sourcePhrase: "",
+        targetPhrase: ""
+      })
+    } 
   },
 
 
