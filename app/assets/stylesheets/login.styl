@@ -1,29 +1,9 @@
 #login
-  width 600px
-  background white
-  boxShadow()
-  padding 40px 0
-  display block
-  border-radius $radius
-  margin auto
-  overflow auto
-
-  h2
-    width 100%
-    text-align center
-    font-size 3em
-    font-weight 100
-
-  p
-    width 60%
-    margin auto
+  entryPage()
 
   .field
-    width 350px
-    margin 0 auto 20px
-    overflow hidden
-
     label
+      margin-top 6px
       width 25%
       float left
       text-align right
@@ -34,48 +14,30 @@
       float right
 
   .field.checkbox
-    input:not([type="hidden"])
-      width 2%
-      margin-left 32%
-      float none
-
     label
       width 61%
       margin-left 3%
       float right
       text-align left
 
-  .actions
-    input
-      border none
-      margin auto
-      display block
-      font-size 13px
-      text-transform uppercase
-      textButton()
+    input[type="checkbox"]
+      width 2%
+      height 20px
+      margin-left 32%
+      float none
 
   span
     width 49.5%
     display inline-block
-    text-align center
 
-    a
-      cursor pointer
-      color lighten($blue, 35%)
-      text-decoration none
+#signup
+  entryPage()
 
-      &:hover
-        text-decoration underline
+  .field
+    label
+    input
+      width 100%
 
-  .container
-    position relative
-    transition margin-left $time*2 ease-in-out
-
-    form
-      float left
-      width 600px
-      padding 0 40px
-
-      &.resetPassword
-        button
-          margin-top 140px
+  span
+    width 100%
+    display inline-block
