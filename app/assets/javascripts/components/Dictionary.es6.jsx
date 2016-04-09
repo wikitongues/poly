@@ -1,63 +1,14 @@
 Dictionary = React.createClass( {
- 
-
   getInitialState: function() {
     return {
       phrasePairs: this.props.phrasePairs,
-      isPhraseInputActive: false,
-      isTargetInputActive: false,
-      isContinuousInputActive: false,
-      sourcePhrase: "",
-      targetPhrase: ""
+      isPhraseEntryActive: false
     }
   },
 
   onAddNewPhraseButtonClick: function() {
     this.setState({
-        isPhraseInputActive: !this.state.isPhraseInputActive
-    });
-  },
-
-  onSourcePhraseChange: function(e) {
-    this.setState({sourcePhrase: e.target.value });
-  },
-
-  onSourcePhraseSubmit: function() {
-    this.setState({
-        isTargetInputActive: !this.state.isTargetInputActive
-    });
-  },
-
-  onTargetPhraseChange: function(e) {
-    this.setState({targetPhrase: e.target.value });
-  },
-
-  onTargetPhraseSubmit: function() {
-    this.submitPhrase()
-    this.setState({
-      isPhraseInputActive: !this.state.isPhraseInputActive,
-      isTargetInputActive: !this.state.isTargetInputActive
-    });
-  },
-
-  onTargetPhraseMultipleSubmit: function() {
-    this.submitPhrase()
-    this.setState({
-      isTargetInputActive: !this.state.isTargetInputActive
-    });
-  },
-
-  submitPhrase: function(){
-    this.props.submitPhrase(this.state.sourcePhrase, this.state.targetPhrase)
-    this.setState({
-      sourcePhrase: "",
-      targetPhrase: ""
-    })
-  },
-
-  onContinuousInputClick: function() {
-    this.setState({
-        isContinuousInputActive: !this.state.isContinuousInputActive
+        isPhraseEntryActive: true
     });
   },
 
@@ -84,11 +35,6 @@ Dictionary = React.createClass( {
     };
   },
 
-  onCancelEditPhrase: function() {
-    this.setState({
-      isPhraseInputActive: !this.state.isPhraseInputActive
-    });
-  },
 
   renderPhrasePairs: function() {
     return this.props.phrasePairs.map((phrasePair, index) => {
@@ -102,106 +48,23 @@ Dictionary = React.createClass( {
             onDeletePhrasePair={this.onDeletePhrasePair} />
       );
     })
-    //this.forceUpdate()
   },
 
   renderCreateNewPhraseButton: function() {
     if (this.props.isOwnedByCurrentUser) {
-      if (this.state.isPhraseInputActive) {
-        return (
-          <div>
-            {this.renderPhraseInputFields()}
-          </div>
-        )
-      } else {
+      if (!this.state.isPhraseEntryActive) {
         return (
           <div className="addPhrase">
             <button onClick={this.onAddNewPhraseButtonClick}>+</button>
           </div>
         )
-      }
-    }
-  },
-
-  renderPhraseInputFields: function() {
-    //SUGGESTION: the phrase input fields should be their own React Component.
-    //Then, move all of the input-type state (sourcePhrase and targetPhrase) to that component rather than Dictionary.
-    if (this.state.isTargetInputActive) {
-      return (
-        <div>
-          { this.renderInputMethod() }
-          { this.renderTargetContinuousInputField() }
-        </div>
-      )
-    } else {
-      return (
-        <div>
-          { this.renderInputMethod() }
-          <div className="newPhrase">
-            <input
-              value={this.state.sourcePhrase}
-              onChange={this.onSourcePhraseChange}
-              className="sourcePhrase input"
-              type="text"
-              placeholder="Source"/>
-            <button className="savePhrase" onClick={this.onSourcePhraseSubmit}>Save</button>
+      } else {
+        return (
+          <div>
+              <PhraseEntry submitPhrase={this.props.submitPhrase}/>
           </div>
-        </div>
-      )
-    }
-  },
-
-  // NB If in continuous input state, show source input field following successful phrase pair completion.
-  renderTargetContinuousInputField: function() {
-    if (this.state.isContinuousInputActive) {
-      return (
-        <div className="newPhrase">
-          <input
-            value={this.state.targetPhrase}
-            onChange={this.onTargetPhraseChange}
-            className="targetPhrase input"
-            type="text"
-            placeholder="Target"/>
-          <button className="savePhrase" onClick={this.onTargetPhraseMultipleSubmit}>Save</button>
-        </div>
-      )
-    } else {
-      return (
-        <div className="newPhrase">
-          <input
-          value={this.state.targetPhrase}
-          onChange={this.onTargetPhraseChange}
-          className="targetPhrase input"
-          type="text"
-          placeholder="Target"/>
-          <button className="savePhrase" onClick={this.onTargetPhraseSubmit}>Save</button>
-        </div>
-      )
-    }
-  },
-
-  // TODO: Consider the flow of canceling a phrase in progress.
-  renderInputMethod: function() {
-    if (this.state.isContinuousInputActive) {
-      return (
-        <div className="inputMethod">
-          <label>
-            <input type="checkbox" checked onChange={this.onContinuousInputClick}/>
-            Continuous entry
-          </label>
-          <button title="Cancel" onClick={this.onCancelEditPhrase} className="close icon"></button>
-        </div>
-      )
-    } else {
-      return (
-        <div className="inputMethod">
-          <label>
-            <input type="checkbox" onChange={this.onContinuousInputClick}/>
-            Continuous entry
-          </label>
-          <button title="Cancel" onClick={this.onCancelEditPhrase} className="close icon"></button>
-        </div>
-      )
+        )
+      }
     }
   },
 

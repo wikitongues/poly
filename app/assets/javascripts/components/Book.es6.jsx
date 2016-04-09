@@ -25,6 +25,7 @@ Book = React.createClass( {
       data: {book_id: this.props.book.id},
       success: function(result){
         self.setState({phrasePairs: result.phrasePairs})
+        console.log("called set state on phrasePairs")
       },
       error: function() {
         console.log('Error: getUpdatedPhraseList failed')
@@ -173,7 +174,7 @@ Book = React.createClass( {
           </div>
           <Dictionary
           isOwnedByCurrentUser={this.bookIsOwnedByCurrentUser()}
-          phrasePairs={this.props.phrasePairs}
+          phrasePairs={this.state.phrasePairs}
           submitPhrase={this.submitPhrase}/>
         </div>
       </div>
