@@ -21,7 +21,8 @@ Dictionary = React.createClass( {
     this.setState({sourcePhrase: e.target.value });
   },
 
-  onSourcePhraseSubmit: function() {
+  onSourcePhraseSubmit: function(e) {
+    e.preventDefault()
     this.props.onSourcePhraseSubmit(this.state.sourcePhrase),
     this.setState({
         isTargetInputActive: !this.state.isTargetInputActive,
@@ -33,7 +34,8 @@ Dictionary = React.createClass( {
     this.setState({targetPhrase: e.target.value });
   },
 
-  onTargetPhraseSubmit: function() {
+  onTargetPhraseSubmit: function(e) {
+    e.preventDefault()
     this.props.onTargetPhraseSubmit(this.state.targetPhrase),
     this.setState({
       isPhraseInputActive: !this.state.isPhraseInputActive,
@@ -42,7 +44,8 @@ Dictionary = React.createClass( {
     });
   },
 
-  onTargetPhraseMultipleSubmit: function() {
+  onTargetPhraseMultipleSubmit: function(e) {
+    e.preventDefault()
     this.props.onTargetPhraseSubmit(this.state.targetPhrase),
     this.setState({
       isTargetInputActive: !this.state.isTargetInputActive,
@@ -130,13 +133,15 @@ Dictionary = React.createClass( {
         <div>
           { this.renderInputMethod() }
           <div className="newPhrase">
-            <input
-              value={this.state.sourcePhrase}
-              onChange={this.onSourcePhraseChange}
-              className="sourcePhrase input"
-              type="text"
-              placeholder="Source"/>
-            <button className="savePhrase" onClick={this.onSourcePhraseSubmit}>Save</button>
+            <form onSubmit={this.onSourcePhraseSubmit}>
+              <input
+                value={this.state.sourcePhrase}
+                onChange={this.onSourcePhraseChange}
+                className="sourcePhrase input"
+                type="text"
+                placeholder="Source"/>
+              <button className="savePhrase">Save</button>
+            </form>
           </div>
         </div>
       )
@@ -145,31 +150,20 @@ Dictionary = React.createClass( {
 
   // NB If in continuous input state, show source input field following successful phrase pair completion.
   renderTargetContinuousInputField: function() {
-    if (this.state.isContinuousInputActive) {
-      return (
-        <div className="newPhrase">
+    const continuousInput = this.state.isContinuousInputActive
+    return (
+      <div className="newPhrase">
+        <form onSubmit={continuousInput ? this.onTargetPhraseMultipleSubmit : this.onTargetPhraseSubmit}>
           <input
             value={this.state.targetPhrase}
             onChange={this.onTargetPhraseChange}
             className="targetPhrase input"
             type="text"
             placeholder="Target"/>
-          <button className="savePhrase" onClick={this.onTargetPhraseMultipleSubmit}>Save</button>
-        </div>
-      )
-    } else {
-      return (
-        <div className="newPhrase">
-          <input
-          value={this.state.targetPhrase}
-          onChange={this.onTargetPhraseChange}
-          className="targetPhrase input"
-          type="text"
-          placeholder="Target"/>
-          <button className="savePhrase" onClick={this.onTargetPhraseSubmit}>Save</button>
-        </div>
-      )
-    }
+          <button className="savePhrase"> Save </button>
+        </form>
+      </div>
+    );
   },
 
   // TODO: Consider the flow of canceling a phrase in progress.
