@@ -27,7 +27,6 @@ HomeIndex = React.createClass ( {
   },
 
   render: function() {
-    console.log(this);
     return (
       <div className="container">
         <NavBar currentUser={this.props.currentUser}/>
