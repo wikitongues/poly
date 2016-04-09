@@ -22,6 +22,10 @@ PhraseEntry = React.createClass ( {
     } 
   },
 
+  onCancelEditPhrase: function(){
+    this.props.togglePhraseEntry()
+  },
+
 
   render: function(){
 
@@ -40,6 +44,7 @@ PhraseEntry = React.createClass ( {
               type="text"
               placeholder="Target"/>
             <button className="savePhrase" onClick={this.onPhraseSubmit}>Save</button>
+            <button title="Cancel" onClick={this.onCancelEditPhrase} className="close icon"></button>
           </div>  
       )
   }

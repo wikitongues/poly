@@ -6,7 +6,7 @@ Dictionary = React.createClass( {
     }
   },
 
-  onAddNewPhraseButtonClick: function() {
+  togglePhraseEntry: function() {
     this.setState({
         isPhraseEntryActive: !this.state.isPhraseEntryActive
     });
@@ -40,21 +40,20 @@ Dictionary = React.createClass( {
       if (!this.state.isPhraseEntryActive) {
         return (
           <div className="addPhrase">
-            <button onClick={this.onAddNewPhraseButtonClick}>+</button>
+            <button onClick={this.togglePhraseEntry}>+</button>
           </div>
         )
       } else {
         return (
-          <div>
-            <div className="addPhrase">
-              <button onClick={this.onAddNewPhraseButtonClick}>-</button>
-            </div>
-          <PhraseEntry submitPhrase={this.props.submitPhrase}/>
-          </div>
+          
+          <PhraseEntry submitPhrase={this.props.submitPhrase} togglePhraseEntry={this.togglePhraseEntry}/>
+          
         )
       }
     }
   },
+
+
 
   renderPhrasePairs: function() {
     return this.props.phrasePairs.map((phrasePair, index) => {
@@ -81,5 +80,5 @@ Dictionary = React.createClass( {
        </div>
     )
   }
-  
+
 })
