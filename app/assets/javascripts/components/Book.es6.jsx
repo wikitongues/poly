@@ -1,4 +1,20 @@
 Book = React.createClass( {
+  testingPhraseSubmit: function(sourcePhrase, targetPhrase){
+    var newPhrasePair = {
+      source_phrase: sourcePhrase,
+      target_phrase: targetPhrase
+    };
+
+    var newPhrasePairs = this.state.phrasePairs;
+    newPhrasePairs.push(newPhrasePair);
+    this.setState({
+      phrasePairs: newPhrasePairs
+    })
+
+    this.saveNewPhrasePair(newPhrasePair);
+    console.log("new phrase pair", newPhrasePair)
+    console.log("BOOK TESTING PHRASE SUBMIT", sourcePhrase, targetPhrase)
+  },
 
   getInitialState: function() {
     return {
@@ -10,7 +26,7 @@ Book = React.createClass( {
 
   onSourcePhraseSubmit: function(sourcePhrase) {
     var newPhrasePair = {
-      source_phrase: sourcePhrase,
+      source_phrase: sourcePhrase
     };
     var newPhrasePairs = this.state.phrasePairs;
     newPhrasePairs.push(newPhrasePair);
@@ -171,7 +187,8 @@ Book = React.createClass( {
           isOwnedByCurrentUser={this.bookIsOwnedByCurrentUser()}
           initialPhrasePairs={this.state.phrasePairs}
           onSourcePhraseSubmit={this.onSourcePhraseSubmit}
-          onTargetPhraseSubmit={this.onTargetPhraseSubmit} />
+          onTargetPhraseSubmit={this.onTargetPhraseSubmit} 
+          testingPhraseSubmit={this.testingPhraseSubmit}/>
         </div>
       </div>
     )

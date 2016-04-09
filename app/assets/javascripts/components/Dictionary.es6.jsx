@@ -1,4 +1,13 @@
 Dictionary = React.createClass( {
+  testingPhraseSubmit: function(){
+    this.props.testingPhraseSubmit(this.state.sourcePhrase, this.state.targetPhrase)
+    console.log("DICTIONARY TESTING PHRASE SUBMIT", this.state.sourcePhrase, this.state.targetPhrase)
+
+    this.setState({
+      sourcePhrase: "",
+      targetPhrase: ""
+    })
+  },
 
   getInitialState: function() {
     return {
@@ -22,10 +31,10 @@ Dictionary = React.createClass( {
   },
 
   onSourcePhraseSubmit: function() {
-    this.props.onSourcePhraseSubmit(this.state.sourcePhrase),
+    //this.props.onSourcePhraseSubmit(this.state.sourcePhrase),
     this.setState({
-        isTargetInputActive: !this.state.isTargetInputActive,
-        sourcePhrase: ""
+        isTargetInputActive: !this.state.isTargetInputActive
+        //sourcePhrase: ""
     });
   },
 
@@ -34,19 +43,19 @@ Dictionary = React.createClass( {
   },
 
   onTargetPhraseSubmit: function() {
-    this.props.onTargetPhraseSubmit(this.state.targetPhrase),
+    //this.props.onTargetPhraseSubmit(this.state.targetPhrase),
+    this.testingPhraseSubmit()
     this.setState({
       isPhraseInputActive: !this.state.isPhraseInputActive,
-      isTargetInputActive: !this.state.isTargetInputActive,
-      targetPhrase: ""
+      isTargetInputActive: !this.state.isTargetInputActive
     });
   },
 
   onTargetPhraseMultipleSubmit: function() {
-    this.props.onTargetPhraseSubmit(this.state.targetPhrase),
+    //this.props.onTargetPhraseSubmit(this.state.targetPhrase)
+    this.testingPhraseSubmit()
     this.setState({
-      isTargetInputActive: !this.state.isTargetInputActive,
-      targetPhrase: ""
+      isTargetInputActive: !this.state.isTargetInputActive
     });
   },
 
@@ -85,7 +94,7 @@ Dictionary = React.createClass( {
   },
 
   renderPhrasePairs: function() {
-    return this.state.phrasePairs.map((phrasePair, index) => {
+    return this.props.initialPhrasePairs.map((phrasePair, index) => {
       return (
           <PhrasePair
             id={phrasePair.id}
@@ -96,7 +105,7 @@ Dictionary = React.createClass( {
             onDeletePhrasePair={this.onDeletePhrasePair} />
       );
     })
-    this.forceUpdate()
+    //this.forceUpdate()
   },
 
   renderCreateNewPhraseButton: function() {

@@ -76,13 +76,13 @@ PhrasePair = React.createClass( {
         <ul>
           <li className="source text">
             <input
-              value={this.state.sourcePhrase}
+              value={this.props.initialSourcePhrase}
               onChange={this.onSourceChange}
               name="sourcePhrase" />
           </li>
           <li className="target text">
             <input
-              value={this.state.targetPhrase}
+              value={this.props.initialTargetPhrase}
               onChange={this.onTargetChange}
               name="targetPhrase" />
           </li>
