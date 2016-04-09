@@ -19,4 +19,8 @@ class BookPolicy < ApplicationPolicy
   def update?
     record.user_id == user.id
   end
+
+  def index?
+    record.user_id == user.id
+  end
 end

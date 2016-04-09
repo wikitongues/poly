@@ -5,15 +5,33 @@ Book = React.createClass( {
       target_phrase: targetPhrase
     };
 
-    var newPhrasePairs = this.state.phrasePairs;
-    newPhrasePairs.push(newPhrasePair);
-    this.setState({
-      phrasePairs: newPhrasePairs
-    })
+    // var newPhrasePairs = this.state.phrasePairs;
+    // newPhrasePairs.push(newPhrasePair);
+    // this.setState({
+    //   phrasePairs: newPhrasePairs
+    // })
 
     this.saveNewPhrasePair(newPhrasePair);
+    this.getUpdatedPhraseList()
+
+
     console.log("new phrase pair", newPhrasePair)
     console.log("BOOK TESTING PHRASE SUBMIT", sourcePhrase, targetPhrase)
+  },
+
+  getUpdatedPhraseList: function(){
+    var self = this
+    $.ajax({
+      url: "/phrase_pairs/",
+      type: "GET",
+      data: {book_id: this.props.initialBook.id},
+      success: function(result){
+        self.setState({phrasePairs: result.phrasePairs})
+      },
+      error: function() {
+        console.log('Error: getUpdatedPhraseList failed')
+      }
+    })
   },
 
   getInitialState: function() {
