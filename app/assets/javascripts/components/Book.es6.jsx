@@ -1,4 +1,11 @@
 Book = React.createClass( {
+  displayLanguageName: function(language_name) {
+    if(language_name) {
+      return language_name.name
+    } else {
+      return ""
+    }
+  },
 
   getInitialState: function() {
     return {
@@ -132,17 +139,17 @@ Book = React.createClass( {
 
    renderSourceLanguage: function() {
      if (this.state.isEditingBook) {
-      return <input className="new isEditing" name="source_language" onChange={this.onInputChange} value={this.state.book.source_language} />;
+      return <input className="new isEditing" name="source_language" onChange={this.onInputChange} value={this.displayLanguageName(this.props.sourceLanguageName)} />;
     } else {
-       return <h1 className="language source" title={this.state.book.source_language}>{this.state.book.source_language}</h1>;
+       return <h1 className="language source" title={this.displayLanguageName(this.props.sourceLanguageName)}>{this.displayLanguageName(this.props.sourceLanguageName)} ({this.props.sourceLanguageIso})</h1>;
     }
   },
 
    renderTargetLanguage: function() {
      if (this.state.isEditingBook) {
-      return <input className="new isEditing" name="target_language" onChange={this.onInputChange} value={this.state.book.target_language} />;
+      return <input className="new isEditing" name="target_language" onChange={this.onInputChange} value={this.displayLanguageName(this.props.targetLanguageName)} />;
     } else {
-       return <h1 className="language target" title={this.state.book.target_language}>{this.state.book.target_language}</h1>;
+       return <h1 className="language target" title={this.displayLanguageName(this.props.targetLanguageName)}>{this.displayLanguageName(this.props.targetLanguageName)} ({this.props.targetLanguageIso})</h1>;
     }
   },
 

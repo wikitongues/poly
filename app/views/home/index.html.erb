@@ -1,4 +1,5 @@
-<%= react_component('
+<%=
+react_component('
 HomeIndex',
-books: @books,
+books: @books.map {|book| book_props(book)},
 currentUser: current_user) %>

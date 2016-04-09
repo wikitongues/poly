@@ -2,4 +2,9 @@
   'Book',
   initialBook: @book,
   initialPhrasePairs: @phrase_pairs,
-  currentUser: @current_user) %>
+  sourceLanguageName: @book.source_language_name,
+  targetLanguageName: @book.target_language_name,
+  sourceLanguageIso: iso_code_or_unknown(@source_language_name),
+  targetLanguageIso: iso_code_or_unknown(@target_language_name),
+  currentUser: @current_user)
+%>
