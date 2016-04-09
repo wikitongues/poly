@@ -87,7 +87,7 @@ You will need the following things properly installed on your computer.
 * Clone or fork this repository with `git clone https://github.com/wikitongues/poly.git`
 * Change into the new directory
 * Install all dependencies with `bundle install`
-* Create a Postgres database with `rake db:create`
+* Create a Postgres database with `rake db:setup`
 
 ## Running / Development
 * `rails s`
