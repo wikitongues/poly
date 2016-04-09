@@ -93,6 +93,18 @@
     transition background $time*2 ease-in-out, opacity $time*2 ease-in-out
     border-radius 0 0 2*$radius 2*$radius
 
+    .welcome
+      text-align center
+      padding 20px
+      margin-top 30px
+
+      h1
+        text-transform uppercase
+        margin-bottom 30px
+
+      .action
+        textButton()
+
     &:hover
       background lighten(#E7EFF2, 80%)
 
