@@ -5,6 +5,7 @@
 This README outlines the details of collaborating on this Rails/React application.
 
 Getting started? Start [here](#prerequisites)
+
 [Brief intro](https://youtu.be/TgTn8HlUVZo)
 
 ###Current Features
