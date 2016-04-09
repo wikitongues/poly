@@ -8,7 +8,7 @@ Dictionary = React.createClass( {
 
   onAddNewPhraseButtonClick: function() {
     this.setState({
-        isPhraseEntryActive: true
+        isPhraseEntryActive: !this.state.isPhraseEntryActive
     });
   },
 
@@ -35,6 +35,26 @@ Dictionary = React.createClass( {
     };
   },
 
+  renderCreateNewPhraseButton: function() {
+    if (this.props.isOwnedByCurrentUser) {
+      if (!this.state.isPhraseEntryActive) {
+        return (
+          <div className="addPhrase">
+            <button onClick={this.onAddNewPhraseButtonClick}>+</button>
+          </div>
+        )
+      } else {
+        return (
+          <div>
+            <div className="addPhrase">
+              <button onClick={this.onAddNewPhraseButtonClick}>-</button>
+            </div>
+          <PhraseEntry submitPhrase={this.props.submitPhrase}/>
+          </div>
+        )
+      }
+    }
+  },
 
   renderPhrasePairs: function() {
     return this.props.phrasePairs.map((phrasePair, index) => {
@@ -50,23 +70,6 @@ Dictionary = React.createClass( {
     })
   },
 
-  renderCreateNewPhraseButton: function() {
-    if (this.props.isOwnedByCurrentUser) {
-      if (!this.state.isPhraseEntryActive) {
-        return (
-          <div className="addPhrase">
-            <button onClick={this.onAddNewPhraseButtonClick}>+</button>
-          </div>
-        )
-      } else {
-        return (
-          <div>
-              <PhraseEntry submitPhrase={this.props.submitPhrase}/>
-          </div>
-        )
-      }
-    }
-  },
 
   render: function() {
     return (
@@ -78,4 +81,5 @@ Dictionary = React.createClass( {
        </div>
     )
   }
-} )
+  
+})
