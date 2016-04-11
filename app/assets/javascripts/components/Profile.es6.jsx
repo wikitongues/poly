@@ -1,6 +1,7 @@
 Profile = React.createClass( {
 
   getInitialState: function () {
+    //mockup data
     return {
       languages: ['swiss', 'german', 'french', 'english'],
       books: [
@@ -15,18 +16,6 @@ Profile = React.createClass( {
       ]
     }
   },
-
-  componentDidMount: function() {
-    console.log(this.props);
-    //fetch userdata
-      // this.serverRequest = $.get(this.props.id, function (result) {
-      //   var lastGist = result[0];
-      //   this.setState({
-      //     username: lastGist.owner.login,
-      //     lastGistUrl: lastGist.html_url
-      //   });
-      // }.bind(this));
-    },
 
   render: function() {
     let langs = []
@@ -45,7 +34,7 @@ Profile = React.createClass( {
     createdYear = createdDate.getUTCFullYear(),
     months = ["January","February","March","April","May","June","July","August","September","October","November","December"],
     createdMonth = months[createdDate.getMonth()]
-    
+
     return(
       <div className="container">
         <div className="profile">
