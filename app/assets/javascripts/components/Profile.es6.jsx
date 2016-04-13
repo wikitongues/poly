@@ -3,7 +3,7 @@ Profile = React.createClass( {
   getInitialState: function () {
     //mockup data
     return {
-      languages: ['swiss', 'german', 'french', 'english'],
+      languages: ['swiss', 'german', 'french', 'english', 'portuguese'],
       books: [
         {
           title: 'useful phrases in swiss german',
