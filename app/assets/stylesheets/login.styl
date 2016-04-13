@@ -20,6 +20,17 @@
       float right
 
   .field.checkbox
+    width auto
+    display table
+    opacity 0.4
+    transition opacity ease-in-out $time
+
+    input:not([type="hidden"])
+      width auto
+      margin 2px 6px 0 0
+      float left
+      cursor pointer
+
     label
       width 61%
       margin-left 3%
