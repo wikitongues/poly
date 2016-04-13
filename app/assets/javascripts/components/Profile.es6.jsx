@@ -37,6 +37,7 @@ Profile = React.createClass( {
 
     return(
       <div className="container">
+        <NavBar currentUser={this.props.currentUser}/>
         <div className="profile">
           <h3>{this.props.userData.email}</h3>
           <img src={`http://www.gravatar.com/avatar/${this.props.hashedEmail}?s=200`} />
