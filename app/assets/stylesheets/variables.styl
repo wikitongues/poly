@@ -5,7 +5,7 @@ $hover = #FFC328
 $border = #f4f4f4
 $time = 0.1s
 $radius = 2px
-$sans = 'Roboto', sans-serif
+$sans = 'Open Sans', sans-serif
 $serif = 'Lora', serif
 $source = #E7EFF2
 $target = #C6E7FF
@@ -42,10 +42,14 @@ textButton()
   border-radius 2px
   padding 8px 16px
   background $buttonBlue
+  // text-shadow 0 2px 0 #558FCE
   color white
   font-weight normal
   font-size small
   border 1px solid rgba(71,153,252,0.1)
+
+  // &:hover
+  //   box-shadow 0 1px 0 #336FB0, 0 2px 4px rgba(34,84,137,0.5)
 
 boxShadow()
   box-shadow 0 1px 2px rgba(0,0,0,0.1)
