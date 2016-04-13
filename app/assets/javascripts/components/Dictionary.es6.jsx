@@ -125,7 +125,7 @@ Dictionary = React.createClass( {
       return (
         <div>
           { this.renderInputMethod() }
-          { this.renderTargetContinuousInputField() }
+          { this.renderTargetInput() }
         </div>
       )
     } else {
@@ -149,7 +149,7 @@ Dictionary = React.createClass( {
   },
 
   // NB If in continuous input state, show source input field following successful phrase pair completion.
-  renderTargetContinuousInputField: function() {
+  renderTargetInput: function() {
     const continuousInput = this.state.isContinuousInputActive
     return (
       <div className="newPhrase">
