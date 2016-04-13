@@ -5,6 +5,8 @@ class BooksController < AuthenticatedController
     @book = Book.find(params[:id])
     if @book.present?
       @phrase_pairs = @book.phrase_pairs
+      @source_language_name = @book.source_language_name
+      @target_language_name = @book.target_language_name
       authorize @book
     else
       skip_authorization
@@ -17,8 +19,15 @@ class BooksController < AuthenticatedController
     authorize book
   end
 
+
   def create
-    book = current_user.books.create(create_or_update_params)
+    params = create_or_update_params
+    source, target = find_or_create_language_names_from_params!(params)
+
+    book = current_user.books.create(params)
+    book.source_language_name = source
+    book.target_language_name = target
+    book.save
     if book.present?
       authorize book
       render json: { id: book.id }, status: :ok
@@ -44,8 +53,14 @@ class BooksController < AuthenticatedController
     book = Book.find(params[:id])
     authorize book
     if book.present?
-     authorize book
-     book.update_attributes(create_or_update_params)
+      authorize book
+      params  = create_or_update_params
+      source, target = find_or_create_language_names_from_params!(params)
+
+      book.source_language_name = source
+      book.target_language_name = target
+      book.update_attributes(params)
+      book.save
       render json: {}, status: :ok
     else
       skip_authorization
@@ -62,5 +77,14 @@ class BooksController < AuthenticatedController
       :source_language,
       :target_language
     )
+  end
+
+  #mutates params
+  def find_or_create_language_names_from_params!(params)
+    source = LanguageName.find_or_create!(params[:source_language])
+    target = LanguageName.find_or_create!(params[:target_language])
+    params.delete(:source_language)
+    params.delete(:target_language)
+    [source, target]
   end
 end
