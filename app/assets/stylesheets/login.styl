@@ -9,7 +9,7 @@
   overflow auto
 
   h2
-    width 100%
+    // width 100%
     text-align center
     font-size 3em
     font-weight 100
@@ -47,6 +47,10 @@
 
       &:focus
         border-bottom-color $hover
+
+    .field_with_errors
+      input
+        border-bottom-color red
 
   .field.checkbox
     width auto
@@ -122,3 +126,20 @@
       &.resetPassword
         button
           margin-top 140px
+
+  #error_explanation
+    background #FFE9E9
+    padding 3em 0
+    margin 3em auto
+    width 90%
+
+    h2
+      margin 0 auto
+      font-size 2em
+      width 370px
+
+    ul
+      list-style-type none
+      padding 0
+      margin 3em 0 0
+      text-align center
