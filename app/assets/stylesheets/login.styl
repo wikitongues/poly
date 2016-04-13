@@ -1,4 +1,4 @@
-.login
+#login
   width 600px
   background white
   boxShadow()
@@ -8,7 +8,7 @@
   margin auto
   overflow auto
 
-  h1
+  h2
     width 100%
     text-align center
     font-size 3em
@@ -18,12 +18,54 @@
     width 60%
     margin auto
 
-  a
-    cursor pointer
-    color lighten($blue, 35%)
-    width 100%
+  .field
+    width 350px
+    margin 0 auto 20px
+    overflow hidden
+
+    label
+      width 25%
+      float left
+      text-align right
+
+    input:not([type="hidden"])
+      width 72%
+      margin-left 3%
+      float right
+
+  .field.checkbox
+    input:not([type="hidden"])
+      width 2%
+      margin-left 32%
+      float none
+
+    label
+      width 61%
+      margin-left 3%
+      float right
+      text-align left
+
+  .actions
+    input
+      border none
+      margin auto
+      display block
+      font-size 13px
+      text-transform uppercase
+      textButton()
+
+  span
+    width 49.5%
     display inline-block
     text-align center
+
+    a
+      cursor pointer
+      color lighten($blue, 35%)
+      text-decoration none
+
+      &:hover
+        text-decoration underline
 
   .container
     position relative
