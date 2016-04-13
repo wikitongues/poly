@@ -5,7 +5,7 @@ $hover = #FFC328
 $border = #f4f4f4
 $time = 0.1s
 $radius = 2px
-$sans = 'Roboto', sans-serif
+$sans = 'Open Sans', sans-serif
 $serif = 'Lora', serif
 $source = #E7EFF2
 $target = #C6E7FF
@@ -42,10 +42,14 @@ textButton()
   border-radius 2px
   padding 8px 16px
   background $buttonBlue
+  // text-shadow 0 2px 0 #558FCE
   color white
   font-weight normal
   font-size small
   border 1px solid rgba(71,153,252,0.1)
+
+  // &:hover
+  //   box-shadow 0 1px 0 #336FB0, 0 2px 4px rgba(34,84,137,0.5)
 
 boxShadow()
   box-shadow 0 1px 2px rgba(0,0,0,0.1)
@@ -74,3 +78,51 @@ placeholder-color(color)
      color color !important
   &:-ms-input-placeholder
      color color !important
+
+entryPage()
+  width 600px
+  background white
+  boxShadow()
+  padding 40px 0
+  display block
+  border-radius $radius
+  margin auto
+  overflow auto
+
+  h2
+    width 100%
+    text-align center
+    font-size 3em
+    font-weight 100
+
+  p
+    width 60%
+    margin auto
+
+  .field
+    width 350px
+    margin 0 auto 20px
+    overflow hidden
+
+    input
+      height 30px
+
+  .actions
+    input
+      border none
+      margin auto
+      display block
+      font-size 13px
+      text-transform uppercase
+      textButton()
+
+  span
+    text-align center
+
+    a
+      cursor pointer
+      color lighten($blue, 35%)
+      text-decoration none
+
+      &:hover
+        text-decoration underline
