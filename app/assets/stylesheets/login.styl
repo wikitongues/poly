@@ -1,5 +1,22 @@
 #login
-  entryPage()
+  width 600px
+  background white
+  boxShadow()
+  padding 40px
+  display block
+  border-radius $radius
+  margin auto
+  overflow auto
+
+  h2
+    width 100%
+    text-align center
+    font-size 3em
+    font-weight 100
+
+  p
+    width 60%
+    margin auto
 
   .field
     width 350px
@@ -9,16 +26,14 @@
     position relative
 
     label
-      margin-top 6px
-      width 25%
       float left
       text-align right
+      margin-right 5px
 
     input:not([type="hidden"])
-      width 72%
-      margin-left 3%
+      width 100%
+      margin 30px 0 0
       float right
-
       font-size 18px
       padding 15px
       background #fafafa
@@ -46,10 +61,14 @@
       cursor pointer
 
     label
-      width 61%
-      margin-left 3%
-      float right
+      position initial
+      width auto
       text-align left
+      cursor pointer
+
+    &:hover
+      cursor pointer
+      opacity 1
 
   .actions
     margin 20px
@@ -65,14 +84,30 @@
     width 49.5%
     display inline-block
 
-#signup
-  entryPage()
-
-  .field
-    label
-    input
+    &:nth-of-type(2)
+      text-align right
+    &:last-of-type
       width 100%
+      margin-top 15px
+      text-align center
 
-  span
-    width 100%
-    display inline-block
+    a
+      cursor pointer
+      color lighten($blue, 35%)
+      text-decoration none
+
+      &:hover
+        text-decoration underline
+
+  .container
+    position relative
+    transition margin-left $time*2 ease-in-out
+
+    form
+      float left
+      width 600px
+      padding 0 40px
+
+      &.resetPassword
+        button
+          margin-top 140px

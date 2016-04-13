@@ -5,9 +5,9 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <link href='https://fonts.googleapis.com/css?family=Roboto:900,300' rel='stylesheet' type='text/css'>
 </head>
 <body>
-<!-- TODO: pull these into a styled react component -->
 <% flash.each do |name, msg| %>
   <% if msg.is_a?(String) %>
     <%= content_tag :div, msg, :class => "flash_#{name}" %>
