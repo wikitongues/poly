@@ -23,6 +23,7 @@
 
   .action
     textButton()
+    color white
 
   a
     textButton()
@@ -30,10 +31,22 @@
     text-decoration none
     border 1px solid $buttonBlue
 
-.logIn
+.logIn, .loggedIn
   float right
-  padding 11px
+  margin 15px
 
+.loggedIn
+  a
+    textButton()
+    background transparent
+    color $blue
+
+    &:hover
+      background lighten($buttonBlue,90%)
+    &:visited
+      background transparent
+
+.logIn
   p
     padding 9px
     margin 0
