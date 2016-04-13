@@ -3,7 +3,7 @@ HomeIndex = React.createClass ( {
   renderCreateBookButton: function() {
     if (this.props.currentUser) {
       return (
-        <a href="/books/new" className="newBook">+</a>
+        <a href="/books/new" className="newBook" title="Create a new book">+</a>
       )
     }
   },
@@ -19,7 +19,12 @@ HomeIndex = React.createClass ( {
       return (
         <div className="welcome">
           <h1>Welcome to Poly</h1>
-          <p>Please <a href="/sign_in" className="action">sign in</a> or <a href="/sign_up" className="action">sign up</a></p>
+          <span className="logIn">
+            <p>Please </p>
+            <a href="/sign_in" className="action">Log in</a>
+            <p> or </p>
+             <a href="/sign_up" className="">Sign up</a>
+           </span>
         </div>
       )
     }
@@ -30,12 +35,12 @@ HomeIndex = React.createClass ( {
     return (
       <div className="container">
         <NavBar currentUser={this.props.currentUser}/>
-      <div className="dashboard">
-        <ul className="content">
-          {this.renderWelcome()}
-          {this.renderBooks()}
-        </ul>
-        {this.renderCreateBookButton()}
+        {this.renderWelcome()}
+        <div className="dashboard">
+          <ul className="content">
+            {this.renderBooks()}
+          </ul>
+          {this.renderCreateBookButton()}
       </div>
     </div>
     )
