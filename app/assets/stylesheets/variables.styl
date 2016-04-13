@@ -78,3 +78,51 @@ placeholder-color(color)
      color color !important
   &:-ms-input-placeholder
      color color !important
+
+entryPage()
+  width 600px
+  background white
+  boxShadow()
+  padding 40px 0
+  display block
+  border-radius $radius
+  margin auto
+  overflow auto
+
+  h2
+    width 100%
+    text-align center
+    font-size 3em
+    font-weight 100
+
+  p
+    width 60%
+    margin auto
+
+  .field
+    width 350px
+    margin 0 auto 20px
+    overflow hidden
+
+    input
+      height 30px
+
+  .actions
+    input
+      border none
+      margin auto
+      display block
+      font-size 13px
+      text-transform uppercase
+      textButton()
+
+  span
+    text-align center
+
+    a
+      cursor pointer
+      color lighten($blue, 35%)
+      text-decoration none
+
+      &:hover
+        text-decoration underline
