@@ -51,24 +51,35 @@
   .field.checkbox
     width auto
     display table
-    opacity 0.4
-    transition opacity ease-in-out $time
+
+    input:not([type="hidden"]), label
+      transition opacity ease-in-out $time
 
     input:not([type="hidden"])
       width auto
       margin 2px 6px 0 0
       float left
       cursor pointer
+      opacity 0.4
+
+      &:checked
+        opacity 1
+
+        ~ label
+          opacity 1
 
     label
       position initial
       width auto
       text-align left
       cursor pointer
+      opacity 0.4
 
     &:hover
       cursor pointer
-      opacity 1
+
+      input:not([type="hidden"]), label
+        opacity 1
 
   .actions
     margin 20px
