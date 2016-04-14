@@ -144,7 +144,7 @@ Profile = React.createClass( {
             <ul className="content">
               {books}
             </ul>
-            <h2>Favorits</h2>
+            <h2>Favorites</h2>
             <ul className="content">
               {books}
             </ul>
