@@ -3,7 +3,7 @@ Profile = React.createClass( {
   getInitialState: function () {
     //mockup data
     return {
-      languages: ['swiss', 'german', 'french', 'english', 'portuguese'],
+      languages: ['Swiss german', 'German', 'French', 'English', 'Portuguese'],
       books: [
         {
           title: 'Useful phrases in Swiss German',
@@ -110,15 +110,45 @@ Profile = React.createClass( {
         <NavBar currentUser={this.props.currentUser}/>
         <div id="profile">
           <div className="info">
-            <h3>{this.props.userData.email}</h3>
+            <h2>{this.props.userData.email}</h2>
             <img src={`http://www.gravatar.com/avatar/${this.props.hashedEmail}?s=200`} />
             <div className="languages">
               {langs}
             </div>
-            <p>member since {createdMonth} {createdYear}</p>
-            <a>follow</a>
+            <p>Member since {createdMonth} {createdYear}</p>
+            {/*If not current user, show follow button*/}
+            {/*<a className="follow">follow</a>*/}
+            <div className="followedBy">
+            Followers (5)
+              <ul>
+                <li>
+                  <p>user 1</p>
+                </li>
+                <li>
+                  <p>user 2</p>
+                </li>
+                <li>
+                  <p>user 3</p>
+                </li>
+                <li>
+                  <p>user 4</p>
+                </li>
+                <li>
+                  <p>user 5</p>
+                </li>
+              </ul>
+            </div>
           </div>
           <div className="dashboard">
+            <h2>Your books</h2>
+            <ul className="content">
+              {books}
+            </ul>
+            <h2>Favorits</h2>
+            <ul className="content">
+              {books}
+            </ul>
+            <h2>Collaborations</h2>
             <ul className="content">
               {books}
             </ul>
