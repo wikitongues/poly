@@ -1,5 +1,6 @@
-BookEntry = React.createClass ( {
+var author = function() {
 
+BookEntry = React.createClass ( {
   render: function() {
     return (
        <li className="bookEntry">

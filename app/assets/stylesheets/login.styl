@@ -1,15 +1,14 @@
-.login
+#login
   width 600px
   background white
   boxShadow()
-  padding 40px 0
+  padding 40px
   display block
   border-radius $radius
   margin auto
   overflow auto
 
-  h1
-    width 100%
+  h2
     text-align center
     font-size 3em
     font-weight 100
@@ -18,12 +17,102 @@
     width 60%
     margin auto
 
-  a
-    cursor pointer
-    color lighten($blue, 35%)
-    width 100%
+  .field
+    width 350px
+    margin 0 auto 30px
+    overflow hidden
+    position relative
+    position relative
+
+    label
+      float left
+      text-align right
+      margin-right 5px
+
+    input:not([type="hidden"])
+      width 100%
+      margin 30px 0 0
+      float right
+      font-size 18px
+      padding 15px
+      background #fafafa
+      border 3px solid transparent
+      border-radius $radius
+      outline none
+      transition all ease-in-out $time
+
+      &:hover
+        border-bottom-color #f7f7f7
+
+      &:focus
+        border-bottom-color $hover
+
+    .field_with_errors
+      input
+        border-bottom-color red
+
+  .field.checkbox
+    width auto
+    display table
+
+    input:not([type="hidden"]), label
+      transition opacity ease-in-out $time
+
+    input:not([type="hidden"])
+      width auto
+      margin 2px 6px 0 0
+      float left
+      cursor pointer
+      opacity 0.4
+
+      &:checked
+        opacity 1
+
+        ~ label
+          opacity 1
+
+    label
+      position initial
+      width auto
+      text-align left
+      cursor pointer
+      opacity 0.4
+
+    &:hover
+      cursor pointer
+
+      input:not([type="hidden"]), label
+        opacity 1
+
+  .actions
+    margin 20px
+
+    input
+      margin auto
+      display block
+      cursor pointer
+      textButton()
+      color white
+      font-size 16px
+
+  span
+    width 49.5%
     display inline-block
-    text-align center
+
+    &:nth-of-type(2)
+      text-align right
+    &:last-of-type
+      width 100%
+      margin-top 15px
+      text-align center
+
+    a
+      cursor pointer
+      color lighten($blue, 35%)
+      text-decoration none
+
+      &:hover
+        text-decoration underline
 
   .container
     position relative
@@ -37,3 +126,20 @@
       &.resetPassword
         button
           margin-top 140px
+
+  #error_explanation
+    background #FFE9E9
+    padding 3em 0
+    margin 3em auto
+    width 90%
+
+    h2
+      margin 0 auto
+      font-size 2em
+      width 370px
+
+    ul
+      list-style-type none
+      padding 0
+      margin 3em 0 0
+      text-align center

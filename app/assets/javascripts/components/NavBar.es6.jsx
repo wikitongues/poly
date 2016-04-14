@@ -3,13 +3,19 @@ NavBar = React.createClass( {
   renderSignIn: function() {
     if (this.props.currentUser) {
       return (
-          <span>
-            <a className="signInButton" href="/sign_out">Sign out</a>
-            <p className="currentUser">{this.props.currentUser.email}</p>
+          <span className="loggedIn">
+            <a href="/sign_out">Sign out</a>
+            <a className="currentUser" href={"/accounts/" + this.props.currentUser.id}>{this.props.currentUser.email}</a>
           </span>
       )
     } else {
-      return <a className="signInButton" href="/sign_in">Sign in</a>;
+      return (
+        <span className="logIn">
+          <a className="signInButton" href="/sign_in">Log in</a>
+          <p> or </p>
+          <a href="/sign_up">Sign up</a>
+        </span>
+      )
     }
   },
 
