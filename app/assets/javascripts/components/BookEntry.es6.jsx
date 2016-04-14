@@ -1,5 +1,3 @@
-var author = function() {
-
 BookEntry = React.createClass ( {
   render: function() {
     return (
