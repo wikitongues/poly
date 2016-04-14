@@ -12,13 +12,6 @@ Getting started? Start [here](#prerequisites)
 * Compose translation dictionaries between two languages using text
 * Browse available dictionaries
 
-#Recurse Center Hackathon
-We are honored to join the Recurse Center for a day of hacking!
-
-You can find the language database project repo at [https://github.com/wikitongues/language-api](https://github.com/wikitongues/language-api).
-
-You can find the [Oral Histories](https://youtube.com/wikitongues) project on [Youtube](https://youtube.com/wikitongues)
-
 #Feature Map
 Planned features for future releases. Releases are mapped below. We use [semantic versioning](http://semver.org/).
 
@@ -72,8 +65,16 @@ Together with speakers and signers of every langauge in the world, we're buildin
 Currently, there are around 7000 classified languages, with an unknowable number of unclassified languages.
 
 
-### Community
-Join us on our open [Slack](http://wikitongues-slack.herokuapp.com/) channel.
+<!-- ### Community -->
+<!-- Join us on our open [Slack](http://wikitongues-slack.herokuapp.com/) channel. -->
+
+###Directory
+
+
+You can find the language database project repo at [https://github.com/wikitongues/language-api](https://github.com/wikitongues/language-api).
+
+You can find the [Oral Histories](https://youtube.com/wikitongues) project on [Youtube](https://youtube.com/wikitongues)
+
 
 
 ## Prerequisites
