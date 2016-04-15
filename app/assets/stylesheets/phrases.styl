@@ -1,276 +1,300 @@
-.content-wrapper
-    min-height 46vh
-    display block
-    position relative
-    overflow hidden
-    margin auto
-    font-size 1.2em
-    padding 0
-    background #fff
-    width 600px
-    box-shadow 0 2px 2px rgba(0,0,0,0.2)
+.dictionary
+  min-height 46vh
+  display block
+  position relative
+  overflow hidden
+  margin auto
+  font-size 1.2em
+  padding 0
+  background #fff
+  width 600px
+  box-shadow 0 2px 2px rgba(0,0,0,0.2)
 
-    ul.content
-      clear both
+  .tools
+    width 600px
+    display table
+    background white
+    box-shadow 0 1px 1px rgba(0,0,0,0.1)
+    margin auto
+
+    .more
+      float right
+      margin 16px
+
+    .progressBar
+      height 4px
       width 100%
-      padding 0
-      margin 0
-      display inline-block
+      background #eee
       float left
+
+      .bar
+        height 100%
+        width 18px
+        float left
+        background $buttonBlue
+
+  ul.content
+    clear both
+    width 100%
+    padding 0
+    margin 0
+    display inline-block
+    float left
+    transition background $time*2 ease-in-out
+
+    &:hover
+      background lighten(#E7EFF2, 80%)
+
+    p.empty
+      text-align center
+      color $secondary-blue
+      width ((2/3)*100)%
+      margin 0
+      position absolute
+      top 50%
+      left 50%
+      transform translateX(-50%) translateY(-50%)
+      font-size 1.4em
+
+    li.entry
+      float left
+      width 100%
+      display inline-block
+      padding 1em
+      border-top 1px solid
+      border-bottom 1px solid
+      border-color transparent
       transition background $time*2 ease-in-out
 
       &:hover
-        background lighten(#E7EFF2, 80%)
-
-      p.empty
-        text-align center
-        color $secondary-blue
-        width ((2/3)*100)%
-        margin 0
-        position absolute
-        top 50%
-        left 50%
-        transform translateX(-50%) translateY(-50%)
-        font-size 1.4em
-
-      li.entry
-        float left
-        width 100%
-        display inline-block
-        padding 1em
-        border-top 1px solid
-        border-bottom 1px solid
-        border-color transparent
-        transition background $time*2 ease-in-out
-
-        &:hover
-          background white
-          border-top-color lighten(#E7EFF2, 55%)
-          border-bottom-color lighten(#E7EFF2, 55%)
-
-          ul li.menu .more
-            opacity 1
+        background white
+        border-top-color lighten(#E7EFF2, 55%)
+        border-bottom-color lighten(#E7EFF2, 55%)
 
         ul li.menu .more
-          &:focus
-            opacity 1
+          opacity 1
 
-        &:last-of-type
-          border-bottom none
+      ul li.menu .more
+        &:focus
+          opacity 1
 
-        ul
+      &:last-of-type
+        border-bottom none
+
+      ul
+        display inline-block
+        width 100%
+        padding 0
+        float left
+        position relative
+
+        li
           display inline-block
           width 100%
-          padding 0
           float left
-          position relative
 
-          li
+          &:hover
+            .options-wrapper
+                width 123px
+
+          p, input
+            width initial
             display inline-block
-            width 100%
-            float left
+            margin 0
+            padding .7em 1em
+            position relative
+            z-index 1
+            font-size 1.2em
+            max-width 90%
+            overflow hidden
+            text-overflow ellipsis
+
+            video
+              width 102%
+              float left
+              margin -3px 0 0 -3px
+
+            .progress
+              display inline-block
+              width 18px
+              padding-top 1em
+
+              @keyframes loading
+                0%
+                  transform translateY(0px)
+                50%
+                  transform translateY(-6px)
+                100%
+                  transform translateY(0px)
+
+              span
+                background #4F6387
+                border-radius 100%
+                margin 0 3px 0 0
+                height 4px
+                width 4px
+                float left
+
+                &:nth-of-type(1)
+                  -webkit-animation loading 1s 0s infinite cubic-bezier(.60,0,.40,1)
+
+                &:nth-of-type(2)
+                  -webkit-animation loading 1s .1s infinite cubic-bezier(.60,0,.40,1)
+
+                &:nth-of-type(3)
+                  margin 0
+                  -webkit-animation loading 1s .2s infinite cubic-bezier(.60,0,.40,1)
+
+          &.video
+            p
+              border none !important
+              padding 0
+
+              &::after
+                content url("../assets/images/icons/i_playVideo.svg")
+                position absolute
+                z-index 2
+                color white
+                left 50%
+                transform translateX(-50%) translateY(-50%)
+                top 50%
+                width 40px
+
+          &.source
+            p, input
+              margin-bottom 4px
+              border-radius 31px 31px 31px 0
+              float left
+              background $source
+              border 1px solid darken($source, 2%)
+
+            .options-wrapper
+              margin-left -20px
+              float left
+
+              .options
+                border-radius 0 26px 26px 0
+                margin-left -220px
+                padding-left 40px
+                float left
 
             &:hover
               .options-wrapper
-                  width 123px
-
-            p, input
-              width initial
-              display inline-block
-              margin 0
-              padding .7em 1em
-              position relative
-              z-index 1
-              font-size 1.2em
-              max-width 90%
-              overflow hidden
-              text-overflow ellipsis
-
-              video
-                width 102%
-                float left
-                margin -3px 0 0 -3px
-
-              .progress
-                display inline-block
-                width 18px
-                padding-top 1em
-
-                @keyframes loading
-                  0%
-                    transform translateY(0px)
-                  50%
-                    transform translateY(-6px)
-                  100%
-                    transform translateY(0px)
-
-                span
-                  background #4F6387
-                  border-radius 100%
-                  margin 0 3px 0 0
-                  height 4px
-                  width 4px
-                  float left
-
-                  &:nth-of-type(1)
-                    -webkit-animation loading 1s 0s infinite cubic-bezier(.60,0,.40,1)
-
-                  &:nth-of-type(2)
-                    -webkit-animation loading 1s .1s infinite cubic-bezier(.60,0,.40,1)
-
-                  &:nth-of-type(3)
-                    margin 0
-                    -webkit-animation loading 1s .2s infinite cubic-bezier(.60,0,.40,1)
-
-            &.video
-              p
-                border none !important
-                padding 0
-
-                &::after
-                  content url("../assets/images/icons/i_playVideo.svg")
-                  position absolute
-                  z-index 2
-                  color white
-                  left 50%
-                  transform translateX(-50%) translateY(-50%)
-                  top 50%
-                  width 40px
-
-            &.source
-              p, input
-                margin-bottom 4px
-                border-radius 31px 31px 31px 0
-                float left
-                background $source
-                border 1px solid darken($source, 2%)
-
-              .options-wrapper
-                margin-left -20px
-                float left
-
                 .options
-                  border-radius 0 26px 26px 0
-                  margin-left -220px
-                  padding-left 40px
-                  float left
-
-              &:hover
-                .options-wrapper
-                  .options
-                    margin-left -20px
-
-              span.circle
-                float left
-                margin-right 0
-
-            &.target
-              p, input
-                border-radius 31px 31px 0 31px
-                float right
-                background $target
-                border 1px solid darken($target, 2%)
-
-              .options-wrapper
-                margin-right -20px
-                float right
-
-                .options
-                  border-radius 26px 0 0 26px
-                  margin-right -220px
-                  padding-right 40px
-                  float right
-
-              &:hover
-                .options-wrapper
-                  .options
-                    margin-right -20px
-
-              span.circle
-                float right
-                margin-left 0
-
-            &.menu
-              width 40px
-              top -10px
-              right -10px
-
-              &:hover
-                width 120px
-
-                .icon
-                  margin 0
-                  opacity 1
-
-              .icon
-                opacity 0
-
-              &.saving
-                width 80px
-                .icon
-                  opacity 1
+                  margin-left -20px
 
             span.circle
-              margin 1.2em .5em
-              border-radius 100%
-              width 10px
-              height 10px
               float left
-              border 1px solid #C5C9CB
-              display block
+              margin-right 0
 
-              &:hover
-                cursor pointer
-                background #C5C9CB
+          &.target
+            p, input
+              border-radius 31px 31px 0 31px
+              float right
+              background $target
+              border 1px solid darken($target, 2%)
 
             .options-wrapper
-              width 0
-              overflow hidden
-              display inline-block
-              height 52px
+              margin-right -20px
+              float right
 
               .options
-                width 142px
-                display inline-block
-                background #fff
-                border 1px solid darken(#f9f9f9, 2%)
-                position relative
-                z-index 0
+                border-radius 26px 0 0 26px
+                margin-right -220px
+                padding-right 40px
+                float right
 
-                a
-                  cursor pointer
-                  display inline-block
-                  float left
-                  border-radius 100%
-                  padding 5px
-                  border 1px solid transparent
+            &:hover
+              .options-wrapper
+                .options
+                  margin-right -20px
 
-                  img
-                    float left
-                    height 38px
-                    width 38px
-
-                  &:hover
-                    background #F8F8F8
-
-      li.entry.entering
-        border none
-        padding 0 .7em
-        display none
-
-        &:hover
-          background transparent
-          border-color transparent
-
-        ul
-          li
-            width 100%
-            &.source
-              padding-top .7em
-              float left
-              margin-bottom 4px
-
-            &.target
-              padding-bottom .7em
-              display none
+            span.circle
               float right
+              margin-left 0
+
+          &.menu
+            width 40px
+            top -10px
+            right -10px
+
+            &:hover
+              width 120px
+
+              .icon
+                margin 0
+                opacity 1
+
+            .icon
+              opacity 0
+
+            &.saving
+              width 80px
+              .icon
+                opacity 1
+
+          span.circle
+            margin 1.2em .5em
+            border-radius 100%
+            width 10px
+            height 10px
+            float left
+            border 1px solid #C5C9CB
+            display block
+
+            &:hover
+              cursor pointer
+              background #C5C9CB
+
+          .options-wrapper
+            width 0
+            overflow hidden
+            display inline-block
+            height 52px
+
+            .options
+              width 142px
+              display inline-block
+              background #fff
+              border 1px solid darken(#f9f9f9, 2%)
+              position relative
+              z-index 0
+
+              a
+                cursor pointer
+                display inline-block
+                float left
+                border-radius 100%
+                padding 5px
+                border 1px solid transparent
+
+                img
+                  float left
+                  height 38px
+                  width 38px
+
+                &:hover
+                  background #F8F8F8
+
+    li.entry.entering
+      border none
+      padding 0 .7em
+      display none
+
+      &:hover
+        background transparent
+        border-color transparent
+
+      ul
+        li
+          width 100%
+          &.source
+            padding-top .7em
+            float left
+            margin-bottom 4px
+
+          &.target
+            padding-bottom .7em
+            display none
+            float right
+
