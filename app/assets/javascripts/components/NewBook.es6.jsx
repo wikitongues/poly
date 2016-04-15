@@ -51,7 +51,7 @@ NewBook = React.createClass( {
                 <input className="new languageTarget" type="text" name="target_language" placeholder="Target Language" value={this.state.targetLanguager} onChange={this.onInputChange}/>
               </section>
             </fieldset>
-            <section className="content-wrapper">
+            <section className="dictionary">
               <ul className="dummy content">
                 <li className="entry">
                   <ul>
