@@ -10,6 +10,9 @@ Getting started? Start [here](#prerequisites)
 * Compose translation dictionaries between two languages using text
 * Browse available dictionaries
 
+#Recurse Center Hackathon
+We are honored to join the Recurse Center for a day of hacking!
+
 #Feature Map
 Planned features for future releases. Releases are mapped below. We use [semantic versioning](http://semver.org/).
 
@@ -65,7 +68,7 @@ Currently, there are around 7000 classified languages, with an unknowable number
 
 ### Community
 Join us on our open [Slack](http://wikitongues-slack.herokuapp.com/) channel.
-  
+
 
 ## Prerequisites
 You will need the following things properly installed on your computer.

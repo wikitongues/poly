@@ -36,6 +36,19 @@ class PhrasePairsController < AuthenticatedController
     end
   end
 
+  def index
+    book = Book.find(params[:book_id])
+    
+    if book.present?
+      authorize book
+      phrase_pairs = book.phrase_pairs.all
+      render json: {phrasePairs: phrase_pairs}, status: :ok
+    else
+      skip_authorization
+      render json: {}, status: 422
+    end
+  end
+
   private
 
   def create_or_update_params

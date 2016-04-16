@@ -1,33 +1,38 @@
 Book = React.createClass( {
-
   getInitialState: function() {
     return {
-      phrasePairs: this.props.initialPhrasePairs,
+      phrasePairs: this.props.phrasePairs,
       isEditingBook: false,
-      book: this.props.initialBook
+      book: this.props.book
     }
   },
 
-  onSourcePhraseSubmit: function(sourcePhrase) {
+  submitPhrase: function(sourcePhrase, targetPhrase){
     var newPhrasePair = {
       source_phrase: sourcePhrase,
+      target_phrase: targetPhrase
     };
-    var newPhrasePairs = this.state.phrasePairs;
-    newPhrasePairs.push(newPhrasePair);
-    this.setState({
-      phrasePairs: newPhrasePairs
+
+    this.saveNewPhrasePair(newPhrasePair);
+    this.getUpdatedPhraseList()
+  },
+
+  getUpdatedPhraseList: function(){
+    var self = this
+    $.ajax({
+      url: "/phrase_pairs/",
+      type: "GET",
+      data: {book_id: this.props.book.id},
+      success: function(result){
+        self.setState({phrasePairs: result.phrasePairs})
+        console.log("called set state on phrasePairs")
+      },
+      error: function() {
+        console.log('Error: getUpdatedPhraseList failed')
+      }
     })
   },
 
-  onTargetPhraseSubmit: function(targetPhrase) {
-    var newPhrasePairs = this.state.phrasePairs;
-    var newPhrasePair = newPhrasePairs[newPhrasePairs.length - 1]
-    newPhrasePair.target_phrase = targetPhrase;
-    this.setState({
-      phrasePairs: newPhrasePairs
-    })
-    this.saveNewPhrasePair(newPhrasePair);
-  },
 
   saveNewPhrasePair: function(phrasePair) {
     $.ajax({
@@ -64,7 +69,7 @@ Book = React.createClass( {
         this.toggleEditingBookState();
       }.bind(this),
       error: function() {
-        alert('something went wrong')
+        alert('something went wrong saving the book')
       }
     })
   },
@@ -85,7 +90,7 @@ Book = React.createClass( {
 
   bookIsOwnedByCurrentUser: function() {
     if (this.props.currentUser) {
-      return this.props.initialBook.user_id == this.props.currentUser.id
+      return this.props.book.user_id == this.props.currentUser.id
     }
   },
 
@@ -169,9 +174,8 @@ Book = React.createClass( {
           </div>
           <Dictionary
           isOwnedByCurrentUser={this.bookIsOwnedByCurrentUser()}
-          initialPhrasePairs={this.state.phrasePairs}
-          onSourcePhraseSubmit={this.onSourcePhraseSubmit}
-          onTargetPhraseSubmit={this.onTargetPhraseSubmit} />
+          phrasePairs={this.state.phrasePairs}
+          submitPhrase={this.submitPhrase}/>
         </div>
       </div>
     )
