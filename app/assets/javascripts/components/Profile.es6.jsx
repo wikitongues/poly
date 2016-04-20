@@ -110,6 +110,7 @@ Profile = React.createClass( {
         <NavBar currentUser={this.props.currentUser}/>
         <div id="profile">
           <div className="info">
+            <h2>{this.props.userData.username}</h2>
             <h2>{this.props.userData.email}</h2>
             <img src={`http://www.gravatar.com/avatar/${this.props.hashedEmail}?s=200`} />
             <div className="languages">
