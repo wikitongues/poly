@@ -15,6 +15,7 @@ Dictionary = React.createClass( {
     this.setState({
         isPhraseInputActive: !this.state.isPhraseInputActive
     });
+    $(document).scrollTop($(document).height());
   },
 
   onSourcePhraseChange: function(e) {
