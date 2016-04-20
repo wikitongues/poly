@@ -195,12 +195,10 @@ Dictionary = React.createClass( {
     return (
        <div className="dictionary">
          <div className="tools">
-          <span className="progressBar">
-            <span className="bar"></span>
-          </span>
-          <span className="icon search"></span>
-          <span className="icon more"></span>
-          <span className="icon star"></span>
+          <ProgressBar />
+          {/*<span className="icon search"></span>*/}
+          <input type="text" placeholder="Search for a phrase"/>
+          <span className="icon star starred"></span>
         </div>
         <ul className="content">{this.renderPhrasePairs()}</ul>
         {this.renderCreateNewPhraseButton()}
