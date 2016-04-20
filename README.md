@@ -36,7 +36,7 @@ Planned features for future releases. Releases are mapped below. We use [semanti
   - [ ] User photo
   - [ ] User books
   - [ ] Tag a book as Favorite
-- [ ] Handle error messages on login page
+- [x] Handle error messages on login page
 
 ###Version  0.3
 - [ ] Audio and video phrase interface
