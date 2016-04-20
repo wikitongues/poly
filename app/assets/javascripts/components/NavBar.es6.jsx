@@ -5,7 +5,7 @@ NavBar = React.createClass( {
       return (
           <span className="loggedIn">
             <a href="/sign_out">Sign out</a>
-            <a className="currentUser" href={"/accounts/" + this.props.currentUser.id}>{this.props.currentUser.email}</a>
+            <a className="currentUser" href={"/accounts/" + this.props.currentUser.id}>Profile</a>
           </span>
       )
     } else {
