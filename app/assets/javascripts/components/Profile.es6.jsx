@@ -14,6 +14,12 @@ Profile = React.createClass( {
     })
   },
 
+  currentUserProfile: function() {
+    if (this.props.currentUser) {
+      return this.props.userData.id != this.props.currentUser.id
+    }
+  },
+
   renderCreateBookButton: function() {
     if(!this.currentUserProfile()) {
       if (this.props.currentUser) {
@@ -24,9 +30,11 @@ Profile = React.createClass( {
     }
   },
 
-  currentUserProfile: function() {
-    if (this.props.currentUser) {
-      return this.props.userData.id != this.props.currentUser.id
+  renderDashboardHeader: function() {
+    if(!this.currentUserProfile()) {
+      return <h2>Your books</h2>
+    } else {
+      return <h2>Books by {this.props.userData.username}</h2>
     }
   },
 
@@ -75,7 +83,7 @@ Profile = React.createClass( {
             </div>
           </div>
           <div className="dashboard">
-            <h2>Your books</h2>
+            {this.renderDashboardHeader()}
             <ul className="content">
               {this.renderAuthoredBooks()}
             </ul>
