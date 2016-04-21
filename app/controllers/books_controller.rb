@@ -2,6 +2,7 @@ class BooksController < AuthenticatedController
   skip_before_action :redirect_unless_user_signed_in, only: [:show]
 
   def show
+    @users=User.all
     @book = Book.find(params[:id])
     if @book.present?
       @phrase_pairs = @book.phrase_pairs

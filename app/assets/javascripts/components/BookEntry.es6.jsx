@@ -19,6 +19,7 @@ BookEntry = React.createClass ( {
     createdYear = createdDate.getUTCFullYear(),
     months = ["January","February","March","April","May","June","July","August","September","October","November","December"],
     createdMonth = months[createdDate.getMonth()]
+    createdDay = createdDate.getDay()
 
     return (
        <li className="bookEntry">
@@ -28,7 +29,7 @@ BookEntry = React.createClass ( {
             <section>
               <p className="title">{this.props.book.title}</p>
             </section>
-            <p className="author">{createdMonth} {createdYear}</p><br/>
+            <p className="author">{createdDay} {createdMonth} {createdYear}</p><br/>
             <p className="author">{this.renderAuthor()}</p>
             <section className="details">
               <span className="source language" title="Source Language">
