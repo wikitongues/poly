@@ -10,7 +10,7 @@ HomeIndex = React.createClass ( {
 
   renderBooks: function() {
     return this.props.books.map((book) => {
-      return <BookEntry book={book} key={book.id}></BookEntry>
+      return <BookEntry users={this.props.users} book={book} key={book.id}></BookEntry>
     })
   },
 
