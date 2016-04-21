@@ -1,9 +1,19 @@
 #profile
+  width 100%
+  min-width 1060px
+  display inline-block
+
   > .info
     float left
-    width 400px
-    background #fff
-    padding 3em
+    width (100/3)%
+    padding 3em 0 3em 3em
+
+    .wrapper
+      background #fff
+      padding 3em
+      width 100%
+      max-width 400px
+      boxShadow()
 
   h2
     margin 0 0 2em 0
@@ -33,5 +43,20 @@
     font-size 16px
 
   .dashboard
-    float right
-    width auto
+    width ((100/3)*2)%
+    float left
+    display inline-block
+    position relative
+
+    h2
+      width 55%
+      min-width 700px
+      margin 2em auto 0
+      padding 20px
+      background $buttonBlue
+      color white
+
+    .newBook
+      position absolute
+      bottom -2em
+      margin 0 0 0 -30px
