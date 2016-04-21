@@ -1,0 +1,89 @@
+li.entry
+  float left
+  width 100%
+  display inline-block
+  padding 1em
+  border-top 1px solid
+  border-bottom 1px solid
+  border-color transparent
+  transition background $time*2 ease-in-out
+
+  &:hover
+    background white
+    border-top-color lighten(#E7EFF2, 55%)
+    border-bottom-color lighten(#E7EFF2, 55%)
+
+    ul li.menu .more
+      opacity 1
+
+  ul li.menu .more
+    &:focus
+      opacity 1
+
+  &:last-of-type
+    border-bottom none
+
+  ul
+    display inline-block
+    width 100%
+    padding 0
+    float left
+    position relative
+
+    li
+      display inline-block
+      width 100%
+      float left
+
+      &:hover
+        .options-wrapper
+            width 123px
+
+      p, input
+        width initial
+        display inline-block
+        margin 0
+        padding .7em 1em
+        position relative
+        z-index 1
+        font-size 1.2em
+        max-width 90%
+        overflow hidden
+        text-overflow ellipsis
+
+      &.source
+        p, input
+          margin-bottom 4px
+          border-radius 31px 31px 31px 0
+          float left
+          background $source
+          border 1px solid darken($source, 2%)
+
+      &.target
+        p, input
+          border-radius 31px 31px 0 31px
+          float right
+          background $target
+          border 1px solid darken($target, 2%)
+
+      &.menu
+        width 40px
+        top -10px
+        right -10px
+
+        &:hover
+          width 120px
+
+          .icon
+            margin 0
+            opacity 1
+
+        .icon
+          opacity 0
+
+        &.saving
+          width 80px
+
+          .icon
+            opacity 1
+

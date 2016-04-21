@@ -112,9 +112,7 @@ Dictionary = React.createClass( {
         )
       } else {
         return (
-          <div className="addPhrase">
-            <button onClick={this.onAddNewPhraseButtonClick}>+</button>
-          </div>
+          <button className="addPhrase" onClick={this.onAddNewPhraseButtonClick}>+</button>
         )
       }
     }
@@ -132,17 +130,15 @@ Dictionary = React.createClass( {
       return (
         <div>
           { this.renderInputMethod() }
-          <div className="newPhrase">
-            <form onSubmit={this.onSourcePhraseSubmit}>
-              <input
-                value={this.state.sourcePhrase}
-                onChange={this.onSourcePhraseChange}
-                className="sourcePhrase input"
-                type="text"
-                placeholder="Source"/>
-              <button className="savePhrase">Save</button>
-            </form>
-          </div>
+          <form className="newPhrase" onSubmit={this.onSourcePhraseSubmit}>
+            <input
+              value={this.state.sourcePhrase}
+              onChange={this.onSourcePhraseChange}
+              className="sourcePhrase input"
+              type="text"
+              placeholder="Source"/>
+            <button className="savePhrase">Save</button>
+          </form>
         </div>
       )
     }
@@ -152,17 +148,15 @@ Dictionary = React.createClass( {
   renderTargetInput: function() {
     const continuousInput = this.state.isContinuousInputActive
     return (
-      <div className="newPhrase">
-        <form onSubmit={continuousInput ? this.onTargetPhraseMultipleSubmit : this.onTargetPhraseSubmit}>
-          <input
-            value={this.state.targetPhrase}
-            onChange={this.onTargetPhraseChange}
-            className="targetPhrase input"
-            type="text"
-            placeholder="Target"/>
-          <button className="savePhrase"> Save </button>
-        </form>
-      </div>
+      <form className="newPhrase" onSubmit={continuousInput ? this.onTargetPhraseMultipleSubmit : this.onTargetPhraseSubmit}>
+        <input
+          value={this.state.targetPhrase}
+          onChange={this.onTargetPhraseChange}
+          className="targetPhrase input"
+          type="text"
+          placeholder="Target"/>
+        <button className="savePhrase"> Save </button>
+      </form>
     );
   },
 
