@@ -84,7 +84,7 @@ Profile = React.createClass( {
           </div>
           <div className="dashboard">
             {this.renderDashboardHeader()}
-            <ul className="content">
+            <ul className="bookEntryList">
               {this.renderAuthoredBooks()}
             </ul>
             {this.renderCreateBookButton()}
