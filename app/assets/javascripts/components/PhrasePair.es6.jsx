@@ -8,6 +8,13 @@ PhrasePair = React.createClass( {
     }
   },
 
+  componentWillReceiveProps: function(nextProps) {
+    this.setState({
+      sourcePhrase: nextProps.initialSourcePhrase,
+      targetPhrase: nextProps.initialTargetPhrase
+    })
+  },
+
   toggleEditingPhraseState: function() {
       this.setState({
         isEditingPhrase: !this.state.isEditingPhrase
