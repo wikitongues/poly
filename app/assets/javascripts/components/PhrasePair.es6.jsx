@@ -68,7 +68,7 @@ PhrasePair = React.createClass( {
       } else {
         return (
           <li className="menu">
-            <button className="more icon"></button>
+            <button title="Menu" className="more icon"></button>
             <button title="Edit" onClick={this.onEditPhraseClick} className="edit icon"></button>
             <button title="Delete" onClick={this.onDeletePhraseClick} className="trash icon"></button>
           </li>
