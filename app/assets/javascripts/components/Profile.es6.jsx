@@ -32,9 +32,9 @@ Profile = React.createClass( {
 
   renderDashboardHeader: function() {
     if(!this.currentUserProfile()) {
-      return <h2>Your books</h2>
+      return <h1>Your books</h1>
     } else {
-      return <h2>Books by {this.props.userData.username}</h2>
+      return <h1>Books by {this.props.userData.username}</h1>
     }
   },
 
@@ -66,9 +66,10 @@ Profile = React.createClass( {
         <div id="profile">
           <div className="info">
             <div className="wrapper">
+              <img src={`http://www.gravatar.com/avatar/${this.props.hashedEmail}?s=200`} />
               <h2>{this.props.userData.username}</h2>
               <p>{this.props.userData.email}</p>
-              <img src={`http://www.gravatar.com/avatar/${this.props.hashedEmail}?s=200`} />
+
               {/*<div className="languages">
                 {langs}
               </div>*/}
