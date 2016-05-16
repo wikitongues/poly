@@ -19,7 +19,7 @@ BookEntry = React.createClass ( {
     createdYear = createdDate.getUTCFullYear(),
     months = ["January","February","March","April","May","June","July","August","September","October","November","December"],
     createdMonth = months[createdDate.getMonth()]
-    createdDay = createdDate.getDay()
+    createdDay = createdDate.getDate()
 
     return (
        <li className="bookEntry">
