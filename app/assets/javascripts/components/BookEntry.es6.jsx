@@ -35,7 +35,7 @@ BookEntry = React.createClass ( {
               <span className="source language" title="Source Language">
                 <p>{this.props.book.source_language}</p>
               </span>
-              <div className="icon cardinality bookEntry" alt=""/>
+              <img className="bookEntry icon cardinality" src={this.props.cardinality} alt=""/>
               <span className="target language" title="Target Language">
                 <p>{this.props.book.target_language}</p>
               </span>
