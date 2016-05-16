@@ -94,16 +94,24 @@ Book = React.createClass( {
       if (this.state.isEditingBook) {
         return (
           <div className="menu saving">
-            <button title="Save" onClick={this.onSaveBookClick} className="save icon"></button>
-            <button title="Cancel" onClick={this.toggleEditingBookState} className="close icon"></button>
+            <button title="Save" onClick={this.onSaveBookClick} className="icon">
+              <img src={this.props.save}/>
+            </button>
+            <button title="Cancel" onClick={this.toggleEditingBookState} className="close icon">
+              <img src={this.props.close}/>
+            </button>
           </div>
         );
       } else {
         return (
           <div className="menu">
-            <button title="Menu" className="more icon"></button>
-            <button title="Edit" onClick={this.toggleEditingBookState} className="edit icon"></button>
-            <button title="Delete" onClick={this.onDeleteBookClick} className="trash icon"></button>
+            <img src={this.props.menu} title="Menu" className="more icon" alt=""/>
+            <button title="Edit" onClick={this.toggleEditingBookState} className="icon">
+              <img src={this.props.edit}/>
+            </button>
+            <button title="Delete" onClick={this.onDeleteBookClick} className="icon">
+              <img src={this.props.delete}/>
+            </button>
           </div>
         );
       }
@@ -158,7 +166,7 @@ Book = React.createClass( {
   render: function() {
     return (
       <div className="container">
-        <NavBar currentUser={this.props.currentUser} />
+        <NavBar currentUser={this.props.currentUser} logo={this.props.logo}/>
         <div className="book">
           <div className="info">
             <div className="wrapper">
@@ -172,7 +180,7 @@ Book = React.createClass( {
           <div className="cardinality">
             <section>
               { this.renderSourceLanguage() }
-              <div className="icon cardinality book" alt=""/>
+              <img src={this.props.cardinality} alt=""/>
               { this.renderTargetLanguage() }
             </section>
           </div>
@@ -180,7 +188,12 @@ Book = React.createClass( {
           isOwnedByCurrentUser={this.bookIsOwnedByCurrentUser()}
           initialPhrasePairs={this.state.phrasePairs}
           onSourcePhraseSubmit={this.onSourcePhraseSubmit}
-          onTargetPhraseSubmit={this.onTargetPhraseSubmit} />
+          onTargetPhraseSubmit={this.onTargetPhraseSubmit}
+          menu={this.props.menu}
+          save={this.props.save}
+          delete={this.props.delete}
+          edit={this.props.edit}
+          close={this.props.close} />
         </div>
       </div>
     )

@@ -96,7 +96,12 @@ Dictionary = React.createClass( {
             initialSourcePhrase={phrasePair.source_phrase}
             initialTargetPhrase={phrasePair.target_phrase}
             key={index}
-            onDeletePhrasePair={this.onDeletePhrasePair} />
+            onDeletePhrasePair={this.onDeletePhrasePair}
+            menu={this.props.menu}
+            save={this.props.save}
+            delete={this.props.delete}
+            edit={this.props.edit}
+            close={this.props.close} />
       );
     })
     this.forceUpdate()

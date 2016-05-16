@@ -22,7 +22,9 @@ NavBar = React.createClass( {
   render: function() {
     return(
       <nav>
-        <a className="icon home" href="/"></a>
+        <a className="icon home" href="/">
+          <img src={this.props.logo} alt=""/>
+        </a>
         {this.renderSignIn()}
       </nav>
     )
