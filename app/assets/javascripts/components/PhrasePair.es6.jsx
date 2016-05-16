@@ -72,7 +72,9 @@ PhrasePair = React.createClass( {
       } else {
         return (
           <li className="menu">
-            <img src={this.props.menu} title="Menu" className="more icon" alt=""/>
+            <button title="Menu" className="more icon">
+              <img src={this.props.menu}/>
+            </button>
             <button title="Edit" onClick={this.onEditPhraseClick} className="icon">
               <img src={this.props.edit}/>
             </button>
