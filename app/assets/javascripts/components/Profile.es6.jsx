@@ -10,7 +10,7 @@ Profile = React.createClass( {
 
   renderAuthoredBooks: function() {
     return this.props.books.map((book) => {
-      return <BookEntry users={this.props.userData} book={book} key={book.id}></BookEntry>
+      return <BookEntry users={this.props.userData} book={book} key={book.id} cardinality={this.props.cardinality}></BookEntry>
     })
   },
 
@@ -62,24 +62,24 @@ Profile = React.createClass( {
 
     return(
       <div className="container">
-        <NavBar currentUser={this.props.currentUser}/>
+        <NavBar currentUser={this.props.currentUser} logo={this.props.logo}/>
         <div id="profile">
           <div className="info">
             <div className="wrapper">
               <h2>{this.props.userData.username}</h2>
               <p>{this.props.userData.email}</p>
               <img src={`http://www.gravatar.com/avatar/${this.props.hashedEmail}?s=200`} />
-              <div className="languages">
+              {/*<div className="languages">
                 {langs}
-              </div>
+              </div>*/}
               <p>Member since {createdMonth} {createdYear}</p>
-              {this.renderFollowButton()}
+              {/*{this.renderFollowButton()}
               <div className="followedBy">
               Followers ({followers.length})
                 <ul>
                   {followers}
                 </ul>
-              </div>
+              </div>*/}
             </div>
           </div>
           <div className="dashboard">
