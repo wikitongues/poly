@@ -27,16 +27,16 @@ BookEntry = React.createClass ( {
           <section className="info">
             <span className="banner"><img src=""/></span>
             <section>
-              <p className="title">{this.props.book.title}</p>
+              <p className="title" title={this.props.book.title}>{this.props.book.title}</p>
             </section>
             <p className="author">{createdDay} {createdMonth} {createdYear}</p><br/>
             <p className="author">{this.renderAuthor()}</p>
             <section className="details">
-              <span className="source language" title="Source Language">
+              <span className="source language" title={this.props.book.source_language}>
                 <p>{this.props.book.source_language}</p>
               </span>
               <img className="bookEntry icon cardinality" src={this.props.cardinality} alt=""/>
-              <span className="target language" title="Target Language">
+              <span className="target language" title={this.props.book.target_language}>
                 <p>{this.props.book.target_language}</p>
               </span>
             </section>
