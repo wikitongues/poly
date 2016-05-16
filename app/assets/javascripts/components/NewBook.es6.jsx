@@ -46,9 +46,9 @@ NewBook = React.createClass( {
             </fieldset>
             <fieldset className="cardinality">
               <section>
-                <input className="new languageSource" type="text" name="source_language" placeholder="Source Language" value={this.state.sourceLanguage} onChange={this.onInputChange}/>
+                <input className="new language source" type="text" name="source_language" placeholder="Source" value={this.state.sourceLanguage} onChange={this.onInputChange}/>
                 <img src={this.props.cardinality} alt=""/>
-                <input className="new languageTarget" type="text" name="target_language" placeholder="Target Language" value={this.state.targetLanguager} onChange={this.onInputChange}/>
+                <input className="new language target" type="text" name="target_language" placeholder="Target" value={this.state.targetLanguager} onChange={this.onInputChange}/>
               </section>
             </fieldset>
             <section className="dictionary">

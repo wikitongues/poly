@@ -174,7 +174,7 @@ Dictionary = React.createClass( {
             <input type="checkbox" checked onChange={this.onContinuousInputClick}/>
             Continuous entry
           </label>
-          <button title="Cancel" onClick={this.onCancelEditPhrase} className="close icon"></button>
+          <button title="Cancel" onClick={this.onCancelEditPhrase} className="close icon"><img src={this.props.close} alt="close"/></button>
         </div>
       )
     } else {
@@ -184,7 +184,7 @@ Dictionary = React.createClass( {
             <input type="checkbox" onChange={this.onContinuousInputClick}/>
             Continuous entry
           </label>
-          <button title="Cancel" onClick={this.onCancelEditPhrase} className="close icon"></button>
+          <button title="Cancel" onClick={this.onCancelEditPhrase} className="close icon"><img src={this.props.close} alt="close"/></button>
         </div>
       )
     }

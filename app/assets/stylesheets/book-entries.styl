@@ -8,6 +8,9 @@ ul.bookEntryList
   box-shadow 0 1px 2px rgba(0,0,0,0.1)
   transition background $time*2 ease-in-out, opacity $time*2 ease-in-out
   border-radius 0 0 2*$radius 2*$radius
+  border-left 1px solid rgba(0,0,0,0.15)
+  border-right 1px solid rgba(0,0,0,0.15)
+  border-bottom 1px solid rgba(0,0,0,0.15)
 
   &:hover
     background lighten(#E7EFF2, 80%)
@@ -16,7 +19,6 @@ ul.bookEntryList
       opacity .6
 
   li.bookEntry
-    font-size 1.5em
     overflow hidden
     display table
     border-bottom 1px solid lighten(#E7EFF2, 35%)
@@ -50,82 +52,48 @@ ul.bookEntryList
 
       section
         display inline-block
-        width 70%
 
         &.info
-          height 100px
           width 100%
           float left
-          display inline-block
 
-          .banner
+          .clear
+            width 70%
             float left
-            margin 0
-            height 100px
-            width 100px
-            display inline-block
-            display none
-            overflow hidden
-            background #62eaba
-            background -moz-linear-gradient(-45deg, #62eaba 0%, #24c9b3 100%)
-            background -webkit-linear-gradient(-45deg, #62eaba 0%,#24c9b3 100%)
-            background linear-gradient(135deg, #62eaba 0%,#24c9b3 100%)
-            position relative
 
-            img
-              margin 0
-              position absolute
-              left 50%
-              transform translateX(-50%)
-              min-width 100px
-              height 100px
+            .title
+              margin 15px 20px 10px
+              font-weight 100
 
-          .author
-            float right
-            font-size .5em
-            color #aaa
-            font-weight 100
-            padding 0 15px
+            .details
+              display inline-block
+              clear left
+              margin 0 20px 15px
 
-          section
-            margin-left 18px
-
-          button
-            &.favorite
-              float right
-              padding 4px 0 0 0
-              margin 14px 20px 30px 20px
-              border none
-              cursor pointer
-              background transparent
-              border-radius 100%
-              outline none
-
-              &:active
-                padding-top 9px
-
-              img.star
-                height 25px
+              .language
                 float left
-                margin 0
+                font-weight 100
+                text-align center
                 padding 0
+                margin 0
 
-        &.details
-          width 70%
-          float left
+              img
+                float left
+                margin 0 10px
+                padding 0 4px
 
-          .language
-            float left
-            font-weight 100
+          .meta
+            width 30%
+            float right
+            margin 0
 
             p
-              text-align center
-              padding 0
-              font-size .7em
-              line-height 1.9
-              margin 0
+              float right
+              clear right
+              font-size .8em
+              color #aaa
+              font-weight 100
+              padding 0 15px
 
-          img
-            float left
-            margin 6px 10px
-            padding 4px
+              &.date
+                margin-bottom 10px
