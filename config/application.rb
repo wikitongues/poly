@@ -31,7 +31,7 @@ module Poly
     config.react.addons = true
 
     #Rails 4 asset pipeline on Heroku: https://devcenter.heroku.com/articles/rails-4-asset-pipeline
-    config.serve_static_assets = true
+    config.serve_static_files = true
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
