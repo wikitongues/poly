@@ -14,5 +14,32 @@ nav
     display inline-block
     text-decoration none
 
+  .loggedIn
+    height 33px
+    width 138px
+    overflow hidden
+
+    &:hover
+      height 62px
+      box-shadow 0 1px 2px 1px rgba(0,0,0,0.15)
+
+      a
+        // border-color rgba(0,0,0,0.1)
+        &:first-of-type
+          border-radius $radius $radius 0 0
+        &:last-of-type
+          border-top none
+          border-radius 0 0 $radius $radius
+
+        &:hover
+          background $buttonBlue
+          color white
+
+    a
+      width 100%
+      background white
+      // border 1px solid transparent
+
+
   .currentUser
     float left
