@@ -137,7 +137,7 @@ Book = React.createClass( {
       }
     }
     return (
-      <p className="author">{authorName}</p>
+      <a href={"/accounts/" + this.state.book.user_id} className="author">{authorName}</a>
     )
   },
 
