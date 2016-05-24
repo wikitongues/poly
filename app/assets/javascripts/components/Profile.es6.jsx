@@ -31,10 +31,14 @@ Profile = React.createClass( {
   },
 
   renderDashboardHeader: function() {
-    if(!this.currentUserProfile()) {
-      return <h1>Your books</h1>
+    if (this.props.currentUser) {
+      if(this.currentUserProfile()) {
+        return <h1>Books by {this.props.userData.username}</h1>
+      } else {
+        return <h1>Your books</h1>
+      }
     } else {
-      return <h1>Books by {this.props.userData.username}</h1>
+     return <h1>Books by {this.props.userData.username}</h1>
     }
   },
 
