@@ -95,18 +95,27 @@
         margin-bottom 0
         float right
 
-      p
-        width 100%
+      .description,
+      .author
         float left
 
-        &.author
+      .description
+        width 100%
+        min-height 44px
+        margin 2em 0
+        padding 2px 2px 4px
+
+      .author
+          padding 8px 11px
+          margin -8px -11px
           font-size 12px
           color #aaa
+          text-decoration none
+          border-radius $radius
 
-        &.description
-          min-height 44px
-          margin 2em 0
-          padding 2px 2px 4px
+          &:hover
+            background $buttonBlue
+            color white
 
   .cardinality
     position relative
