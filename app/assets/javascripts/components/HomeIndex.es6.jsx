@@ -14,7 +14,7 @@ HomeIndex = React.createClass ( {
     })
   },
 
-  renderWelcome: function() {
+  /*renderWelcome: function() {
     if (this.props.currentUser === null) {
       return (
         <div className="welcomeBar">
@@ -29,13 +29,13 @@ HomeIndex = React.createClass ( {
       )
     }
     return null
-  },
+  },*/
 
   render: function() {
     return (
       <div className="container">
         <NavBar currentUser={this.props.currentUser} logo={this.props.logo}/>
-        {this.renderWelcome()}
+        {/*this.renderWelcome()*/}
         <div className="dashboard">
           <ul className="bookEntryList">
             {this.renderBooks()}
