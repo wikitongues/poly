@@ -1,0 +1,63 @@
+.videoComponent
+  display inline-block
+  width 100%
+  position relative
+
+  video
+    background black
+    margin auto
+    display block
+    border-radius 4*$radius
+
+  .videoButtonContainer
+    border solid 4px white
+    position absolute
+    bottom 30px
+    right 21px
+    width 65px
+    height 65px
+    padding 0
+    border-radius 100%
+    cursor pointer
+    outline none
+    background none
+
+    .videoButton
+      border none
+      margin 19%
+      width 62%
+      height 62%
+      border-radius 10%
+      background #ff2200
+      transition all ease-in-out $time
+
+      &.startRecording
+        border none
+        margin 4%
+        width 92%
+        height 92%
+        border-radius 100%
+        background #ff2200
+
+  button.close, button.text
+    position absolute
+    bottom 40px
+
+    width 45px
+    height 45px
+    padding 0
+    border-radius 100%
+    cursor pointer
+    outline none
+    background #5d5d5d
+
+    &.close
+      left 31px
+
+    &.text
+      right 101px
+
+    img
+      margin 12px
+      width 21px
+      height 21px

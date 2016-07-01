@@ -199,7 +199,8 @@ Book = React.createClass( {
           textAlt={this.props.textAlt}
           video={this.props.video}
           videoAlt={this.props.videoAlt}
-          close={this.props.close} />
+          close={this.props.close}
+          closeAlt={this.props.closeAlt} />
         </div>
       </div>
     )

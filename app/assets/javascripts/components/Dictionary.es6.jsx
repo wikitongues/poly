@@ -6,6 +6,7 @@ Dictionary = React.createClass( {
       isTargetInputActive: false,
       isContinuousInputActive: false,
       isInputVideo: false,
+      isVideoRecording: false,
       phrasePairs: this.props.initialPhrasePairs,
       sourcePhrase: "",
       targetPhrase: ""
@@ -84,15 +85,43 @@ Dictionary = React.createClass( {
 
   onCancelEditPhrase: function() {
     this.setState({
-      isPhraseInputActive: !this.state.isPhraseInputActive
+      isPhraseInputActive: false,
+      isInputVideo: false,
+      isVideoRecording: false,
+      sourcePhrase: "",
+      targetPhrase: ""
     });
   },
+
+
+// Video Zone
 
   onToggleInputType: function() {
     this.setState({
       isInputVideo: !this.state.isInputVideo
     })
   },
+
+  onCloseVideoComponent: function() {
+    this.setState({
+      isVideoRecording: false,
+      isInputVideo: false
+    })
+  },
+
+  onStopRecordingClick: function() {
+    this.setState({
+      isVideoRecording: !this.state.isVideoRecording
+    })
+  },
+
+  onStartRecordingClick: function() {
+    this.setState({
+      isVideoRecording: !this.state.isVideoRecording
+    })
+  },
+
+// Render Zone
 
   renderPhrasePairs: function() {
     return this.state.phrasePairs.map((phrasePair, index) => {
@@ -117,11 +146,13 @@ Dictionary = React.createClass( {
   renderCreateNewPhraseButton: function() {
     if (this.props.isOwnedByCurrentUser) {
       if (this.state.isPhraseInputActive) {
-        return (
-          <div>
-            {this.renderPhraseInputFields()}
-          </div>
-        )
+        if (this.state.isInputVideo) {} else {
+          return (
+            <div>
+              {this.renderPhraseInputFields()}
+            </div>
+          )
+        }
       } else {
         return (
           <button className="addPhrase" onClick={this.onAddNewPhraseButtonClick}>+</button>
@@ -192,6 +223,43 @@ Dictionary = React.createClass( {
     }
   },
 
+  renderVideoInput: function() {
+    if (this.state.isInputVideo) {
+      return (
+        <div className="videoComponent">
+          <video id="camera-stream" width="570" autoPlay muted  ></video>
+          {this.renderRecordButton()}
+          <button title="Cancel" onClick={this.onCancelEditPhrase} className="close icon">
+            <img src={this.props.closeAlt} alt="close"/>
+          </button>
+
+          <button title="Text" onClick={this.onCloseVideoComponent} className="text icon">
+            <img src={this.props.textAlt} alt="close"/>
+          </button>
+
+          <button className="extra" ref= "button-download" id="button-download">Download</button>
+          <button className="extra" onClick={this.handleUploadClick} id="button-upload">Upload Video</button>
+        </div>
+      );
+    }
+  },
+
+  renderRecordButton: function() {
+    if (this.state.isVideoRecording) {
+      return (
+        <button className="videoButtonContainer" onClick={this.onStopRecordingClick}>
+          <div className="videoButton"></div>
+        </button>
+      )
+    } else {
+      return (
+        <button className="videoButtonContainer" onClick={this.onStartRecordingClick}>
+          <div className="videoButton startRecording"></div>
+        </button>
+      )
+    }
+  },
+
   // TODO: Consider the flow of canceling a phrase in progress.
   renderInputMethod: function() {
     if (this.state.isContinuousInputActive) {
@@ -222,6 +290,7 @@ Dictionary = React.createClass( {
        <div className="dictionary">
         <section className="content-wrapper">
           <ul className="content">{this.renderPhrasePairs()}</ul>
+          {this.renderVideoInput()}
           {this.renderCreateNewPhraseButton()}
         </section>
        </div>
