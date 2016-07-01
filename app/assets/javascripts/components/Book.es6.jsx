@@ -195,6 +195,10 @@ Book = React.createClass( {
           save={this.props.save}
           delete={this.props.delete}
           edit={this.props.edit}
+          text={this.props.text}
+          textAlt={this.props.textAlt}
+          video={this.props.video}
+          videoAlt={this.props.videoAlt}
           close={this.props.close} />
         </div>
       </div>

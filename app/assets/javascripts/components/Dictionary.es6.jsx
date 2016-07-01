@@ -5,6 +5,7 @@ Dictionary = React.createClass( {
       isPhraseInputActive: false,
       isTargetInputActive: false,
       isContinuousInputActive: false,
+      isInputVideo: false,
       phrasePairs: this.props.initialPhrasePairs,
       sourcePhrase: "",
       targetPhrase: ""
@@ -87,6 +88,12 @@ Dictionary = React.createClass( {
     });
   },
 
+  onToggleInputType: function() {
+    this.setState({
+      isInputVideo: !this.state.isInputVideo
+    })
+  },
+
   renderPhrasePairs: function() {
     return this.state.phrasePairs.map((phrasePair, index) => {
       return (
@@ -165,6 +172,26 @@ Dictionary = React.createClass( {
     );
   },
 
+  renderInputOptions: function() {
+    if (this.state.isInputVideo) {
+      return (
+        <span className="inputOptions">
+          <button title="Text" onClick={this.onToggleInputType} className="text icon"><img src={this.props.text} alt="text"/></button>
+          <button title="Video" onClick={this.onToggleInputType} className="video icon selectedInput"><img src={this.props.videoAlt} alt="video"/></button>
+          <button title="Cancel" onClick={this.onCancelEditPhrase} className="close icon"><img src={this.props.close} alt="close"/></button>
+        </span>
+      );
+    } else {
+      return (
+        <span className="inputOptions">
+          <button title="Text" onClick={this.onToggleInputType} className="text icon selectedInput"><img src={this.props.textAlt} alt="text"/></button>
+          <button title="Video" onClick={this.onToggleInputType} className="video icon"><img src={this.props.video} alt="video"/></button>
+          <button title="Cancel" onClick={this.onCancelEditPhrase} className="close icon"><img src={this.props.close} alt="close"/></button>
+        </span>
+      );
+    }
+  },
+
   // TODO: Consider the flow of canceling a phrase in progress.
   renderInputMethod: function() {
     if (this.state.isContinuousInputActive) {
@@ -174,7 +201,7 @@ Dictionary = React.createClass( {
             <input type="checkbox" checked onChange={this.onContinuousInputClick}/>
             Continuous entry
           </label>
-          <button title="Cancel" onClick={this.onCancelEditPhrase} className="close icon"><img src={this.props.close} alt="close"/></button>
+          {this.renderInputOptions()}
         </div>
       )
     } else {
@@ -184,7 +211,7 @@ Dictionary = React.createClass( {
             <input type="checkbox" onChange={this.onContinuousInputClick}/>
             Continuous entry
           </label>
-          <button title="Cancel" onClick={this.onCancelEditPhrase} className="close icon"><img src={this.props.close} alt="close"/></button>
+          {this.renderInputOptions()}
         </div>
       )
     }
