@@ -56,15 +56,45 @@ li.entry
           margin-bottom 4px
           border-radius 31px 31px 31px 0
           float left
+
+        p
           background $source
           border 1px solid darken($source, 2%)
+          margin 2px 2px 6px 2px
+
+        input
+          margin 2px 2px 6px 2px
+          background $source
+          border 1px solid darken($source, 2%)
+
+          &:focus, &:active
+            margin 0 2px 4px 2px
+            border-color $source
 
       &.target
         p, input
           border-radius 31px 31px 0 31px
           float right
+
+        p
           background $target
           border 1px solid darken($target, 2%)
+          margin 2px
+
+        input
+          margin 2px
+          background $target
+          border 1px solid darken($target, 2%)
+
+          &:focus, &:active
+            margin-top 0
+            border-color $target
+
+      input:focus, input:active
+        border-width 3px
+        border-style solid
+        background white
+        outline none
 
       &.menu
         width 40px
