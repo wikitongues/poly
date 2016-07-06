@@ -97,7 +97,12 @@ Dictionary = React.createClass( {
             initialSourcePhrase={phrasePair.source_phrase}
             initialTargetPhrase={phrasePair.target_phrase}
             key={index}
-            onDeletePhrasePair={this.onDeletePhrasePair} />
+            onDeletePhrasePair={this.onDeletePhrasePair}
+            menu={this.props.menu}
+            save={this.props.save}
+            delete={this.props.delete}
+            edit={this.props.edit}
+            close={this.props.close} />
       );
     })
     this.forceUpdate()
@@ -113,9 +118,7 @@ Dictionary = React.createClass( {
         )
       } else {
         return (
-          <div className="addPhrase">
-            <button onClick={this.onAddNewPhraseButtonClick}>+</button>
-          </div>
+          <button className="addPhrase" onClick={this.onAddNewPhraseButtonClick}>+</button>
         )
       }
     }
@@ -133,17 +136,15 @@ Dictionary = React.createClass( {
       return (
         <div>
           { this.renderInputMethod() }
-          <div className="newPhrase">
-            <form onSubmit={this.onSourcePhraseSubmit}>
-              <input
-                value={this.state.sourcePhrase}
-                onChange={this.onSourcePhraseChange}
-                className="sourcePhrase input"
-                type="text"
-                placeholder="Source"/>
-              <button className="savePhrase">Save</button>
-            </form>
-          </div>
+          <form className="newPhrase" onSubmit={this.onSourcePhraseSubmit}>
+            <input
+              value={this.state.sourcePhrase}
+              onChange={this.onSourcePhraseChange}
+              className="sourcePhrase input"
+              type="text"
+              placeholder="Source"/>
+            <button className="savePhrase">Save</button>
+          </form>
         </div>
       )
     }
@@ -153,17 +154,15 @@ Dictionary = React.createClass( {
   renderTargetInput: function() {
     const continuousInput = this.state.isContinuousInputActive
     return (
-      <div className="newPhrase">
-        <form onSubmit={continuousInput ? this.onTargetPhraseMultipleSubmit : this.onTargetPhraseSubmit}>
-          <input
-            value={this.state.targetPhrase}
-            onChange={this.onTargetPhraseChange}
-            className="targetPhrase input"
-            type="text"
-            placeholder="Target"/>
-          <button className="savePhrase"> Save </button>
-        </form>
-      </div>
+      <form className="newPhrase" onSubmit={continuousInput ? this.onTargetPhraseMultipleSubmit : this.onTargetPhraseSubmit}>
+        <input
+          value={this.state.targetPhrase}
+          onChange={this.onTargetPhraseChange}
+          className="targetPhrase input"
+          type="text"
+          placeholder="Target"/>
+        <button className="savePhrase"> Save </button>
+      </form>
     );
   },
 
@@ -176,7 +175,7 @@ Dictionary = React.createClass( {
             <input type="checkbox" checked onChange={this.onContinuousInputClick}/>
             Continuous entry
           </label>
-          <button title="Cancel" onClick={this.onCancelEditPhrase} className="close icon"></button>
+          <button title="Cancel" onClick={this.onCancelEditPhrase} className="close icon"><img src={this.props.close} alt="close"/></button>
         </div>
       )
     } else {
@@ -186,7 +185,7 @@ Dictionary = React.createClass( {
             <input type="checkbox" onChange={this.onContinuousInputClick}/>
             Continuous entry
           </label>
-          <button title="Cancel" onClick={this.onCancelEditPhrase} className="close icon"></button>
+          <button title="Cancel" onClick={this.onCancelEditPhrase} className="close icon"><img src={this.props.close} alt="close"/></button>
         </div>
       )
     }

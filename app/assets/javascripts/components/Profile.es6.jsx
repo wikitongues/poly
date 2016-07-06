@@ -4,62 +4,47 @@ Profile = React.createClass( {
     //mockup data
     return {
       languages: ['Swiss german', 'German', 'French', 'English', 'Portuguese'],
-      books: [
-        {
-          title: 'Useful phrases in Swiss German',
-          id: 1,
-          source_language:'English',
-          target_language:'Swiss German',
-          phrases:17,
-          favorites:4,
-          shares:4
-        },
-        {
-          title: 'Intro to Swiss German Sign Language',
-          id: 2,
-          source_language:'English',
-          target_language:'Swiss German Sign Language',
-          phrases:22,
-          favorites:19,
-          shares:0
-        },
-        {
-          title: 'Welcome to Switzerland!',
-          id: 3,
-          source_language:'English',
-          target_language:'Swiss German',
-          phrases:43,
-          favorites:2,
-          shares:1
-        },
-        {
-          title: 'Afrikaans workbook',
-          id: 4,
-          source_language:'English',
-          target_language:'Afrikaans',
-          phrases:9,
-          favorites:0,
-          shares:2
-        },
-        {
-          title: 'Useful Afrikaans phrases',
-          id: 5,
-          source_language:'English',
-          target_language:'Afrikaans',
-          phrases:24,
-          favorites:3,
-          shares:0
-        },
-        {
-          title: 'Bem vindos à Suíssa',
-          id: 5,
-          source_language:'Português',
-          target_language:'Suíço-alemão',
-          phrases:30,
-          favorites:0,
-          shares:64
-        },
-      ]
+      followers: [{username:'Daniel Udell', user_id:3},{username:'Charles Darwin', user_id:9},{username:'Marie Curie', user_id:1},{username:'Johannes Kepler', user_id:3},{username:'Louis Pasteur', user_id:3}]
+    }
+  },
+
+  renderAuthoredBooks: function() {
+    return this.props.books.map((book) => {
+      return <BookEntry users={this.props.userData} book={book} key={book.id} cardinality={this.props.cardinality}></BookEntry>
+    })
+  },
+
+  currentUserProfile: function() {
+    if (this.props.currentUser) {
+      return this.props.userData.id != this.props.currentUser.id
+    }
+  },
+
+  renderCreateBookButton: function() {
+    if(!this.currentUserProfile()) {
+      if (this.props.currentUser) {
+        return (
+          <a href="/books/new" className="newBook" title="Create a new book">+</a>
+        )
+      }
+    }
+  },
+
+  renderDashboardHeader: function() {
+    if (this.props.currentUser) {
+      if(this.currentUserProfile()) {
+        return <h1>Books by {this.props.userData.username}</h1>
+      } else {
+        return <h1>Your books</h1>
+      }
+    } else {
+     return <h1>Books by {this.props.userData.username}</h1>
+    }
+  },
+
+  renderFollowButton: function() {
+    if(this.currentUserProfile()) {
+      return  <a className="follow">follow</a>
     }
   },
 
@@ -69,35 +54,9 @@ Profile = React.createClass( {
       langs.push(<span className="language">{lang}</span>)
     })
 
-    let books = []
-    this.state.books.forEach(function (book) {
-      books.push(
-        <li className="bookEntry">
-          <a href={'/books/'+book.id}>
-          <section className="info">
-            <span className="banner"><img src=""/></span>
-            <section>
-              <p className="title">{book.title}</p>
-            </section>
-            {/*<p className="author">{this.props.userData.email}</p>*/}
-            <section className="details">
-              <span className="source language" title="Source Language">
-                <p>{book.source_language}</p>
-              </span>
-              <div className="icon cardinality bookEntry" alt=""/>
-              <span className="target language" title="Target Language">
-                <p>{book.target_language}</p>
-              </span>
-            </section>
-            {/*<section className="meta">
-              <p>{book.phrases} phrases</p>
-              <p>{book.favorites} favories</p>
-              <p>{book.shares} shares</p>
-            </section>*/}
-          </section>
-         </a>
-        </li>
-      )
+    let followers = []
+    this.state.followers.forEach(function (follower) {
+      followers.push(<li><a href={follower.user_id}>{follower.username}</a></li>)
     })
 
     let createdDate = new Date(this.props.userData.created_at),
@@ -107,52 +66,33 @@ Profile = React.createClass( {
 
     return(
       <div className="container">
-        <NavBar currentUser={this.props.currentUser}/>
+        <NavBar currentUser={this.props.currentUser} logo={this.props.logo}/>
         <div id="profile">
           <div className="info">
-            <h2>{this.props.userData.username}</h2>
-            <h2>{this.props.userData.email}</h2>
-            <img src={`http://www.gravatar.com/avatar/${this.props.hashedEmail}?s=200`} />
-            <div className="languages">
-              {langs}
-            </div>
-            <p>Member since {createdMonth} {createdYear}</p>
-            {/*If not current user, show follow button*/}
-            {/*<a className="follow">follow</a>*/}
-            <div className="followedBy">
-            Followers (5)
-              <ul>
-                <li>
-                  <p>user 1</p>
-                </li>
-                <li>
-                  <p>user 2</p>
-                </li>
-                <li>
-                  <p>user 3</p>
-                </li>
-                <li>
-                  <p>user 4</p>
-                </li>
-                <li>
-                  <p>user 5</p>
-                </li>
-              </ul>
+            <div className="wrapper">
+              <img src={`http://www.gravatar.com/avatar/${this.props.hashedEmail}?s=200`} />
+              <h2>{this.props.userData.username}</h2>
+              <p>{this.props.userData.email}</p>
+
+              {/*<div className="languages">
+                {langs}
+              </div>*/}
+              <p>Member since {createdMonth} {createdYear}</p>
+              {/*{this.renderFollowButton()}
+              <div className="followedBy">
+              Followers ({followers.length})
+                <ul>
+                  {followers}
+                </ul>
+              </div>*/}
             </div>
           </div>
           <div className="dashboard">
-            <h2>Your books</h2>
-            <ul className="content">
-              {books}
+            {this.renderDashboardHeader()}
+            <ul className="bookEntryList">
+              {this.renderAuthoredBooks()}
             </ul>
-            <h2>Favorites</h2>
-            <ul className="content">
-              {books}
-            </ul>
-            <h2>Collaborations</h2>
-            <ul className="content">
-              {books}
-            </ul>
+            {this.renderCreateBookButton()}
           </div>
         </div>
       </div>

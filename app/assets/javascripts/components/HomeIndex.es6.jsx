@@ -8,16 +8,16 @@ HomeIndex = React.createClass ( {
     }
   },
 
-  renderBooks() {
+  renderBooks: function() {
     return this.props.books.map((book) => {
-      return <BookEntry book={book} key={book.id}></BookEntry>
+      return <BookEntry users={this.props.users} book={book} key={book.id} cardinality={this.props.cardinality}></BookEntry>
     })
   },
 
-  renderWelcome() {
+  renderWelcome: function() {
     if (this.props.currentUser === null) {
       return (
-        <div className="welcome">
+        <div className="welcomeBar">
           <h1>Welcome to Poly</h1>
           <span className="logIn">
             <p>Please </p>
@@ -34,10 +34,10 @@ HomeIndex = React.createClass ( {
   render: function() {
     return (
       <div className="container">
-        <NavBar currentUser={this.props.currentUser}/>
+        <NavBar currentUser={this.props.currentUser} logo={this.props.logo}/>
         {this.renderWelcome()}
         <div className="dashboard">
-          <ul className="content">
+          <ul className="bookEntryList">
             {this.renderBooks()}
           </ul>
           {this.renderCreateBookButton()}

@@ -29,14 +29,14 @@ Planned features for future releases. Releases are mapped below. We use [semanti
 ###Version 0.2
 - [ ] Testing
 - [ ] Book search
-- [ ] Deployment
+- [x] ~~Deployment~~
 - [ ] Handle media uploads
-- [ ] Profile page
-  - [ ] User name
+- [x] ~~Profile page~~
+  - [x] ~~User name~~
   - [ ] User photo
-  - [ ] User books
+  - [x] ~~User books~~
   - [ ] Tag a book as Favorite
-- [x] Handle error messages on login page
+- [x] ~~Handle error messages on login page~~
 
 ###Version  0.3
 - [ ] Audio and video phrase interface
