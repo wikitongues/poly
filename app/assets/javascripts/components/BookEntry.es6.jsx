@@ -19,26 +19,28 @@ BookEntry = React.createClass ( {
     createdYear = createdDate.getUTCFullYear(),
     months = ["January","February","March","April","May","June","July","August","September","October","November","December"],
     createdMonth = months[createdDate.getMonth()]
-    createdDay = createdDate.getDay()
+    createdDay = createdDate.getDate()
 
     return (
        <li className="bookEntry">
         <a href={"/books/"+this.props.book.id}>
           <section className="info">
-            <span className="banner"><img src=""/></span>
-            <section>
-              <p className="title">{this.props.book.title}</p>
+            {/*<span className="banner"><img src=""/></span>*/}
+            <section className="clear">
+                <h2 className="title"title={this.props.book.title}>{this.props.book.title}</h2>
+              <section className="details">
+                <p className="source language" title={this.props.book.source_language}>
+                  {this.props.book.source_language}
+                </p>
+                <img className="bookEntry icon cardinality" src={this.props.cardinality} alt=""/>
+                <p className="target language" title={this.props.book.target_language}>
+                  {this.props.book.target_language}
+                </p>
+              </section>
             </section>
-            <p className="author">{createdDay} {createdMonth} {createdYear}</p><br/>
-            <p className="author">{this.renderAuthor()}</p>
-            <section className="details">
-              <span className="source language" title="Source Language">
-                <p>{this.props.book.source_language}</p>
-              </span>
-              <div className="icon cardinality bookEntry" alt=""/>
-              <span className="target language" title="Target Language">
-                <p>{this.props.book.target_language}</p>
-              </span>
+            <section className="meta">
+              <p className="date">{createdDay} {createdMonth} {createdYear}</p>
+              <p className="author">{this.renderAuthor()}</p>
             </section>
           </section>
          </a>

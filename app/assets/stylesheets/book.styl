@@ -95,18 +95,28 @@
         margin-bottom 0
         float right
 
-      p
-        width 100%
+      .description,
+      .author
         float left
 
-        &.author
-          font-size 12px
-          color #aaa
+      .description
+        width 100%
+        min-height 44px
+        margin 2em 0
+        padding 2px 2px 4px
 
-        &.description
-          min-height 44px
-          margin 2em 0
-          padding 2px 2px 4px
+      .author
+        clear both
+        padding 8px 11px
+        margin -8px -11px
+        font-size 12px
+        color #aaa
+        text-decoration none
+        border-radius $radius
+
+        &:hover
+          background $buttonBlue
+          color white
 
   .cardinality
     position relative
@@ -120,7 +130,7 @@
       margin auto
 
     h1
-      width 50%
+      width 48%
       float left
       text-align center
 

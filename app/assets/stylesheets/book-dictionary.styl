@@ -1,0 +1,114 @@
+.dictionary
+  min-height 46vh
+  display block
+  position relative
+  overflow hidden
+  margin auto
+  font-size 1.2em
+  padding 0
+  background #fff
+  max-width 600px
+  min-width 450px
+  width 55%
+  box-shadow 0 2px 2px rgba(0,0,0,0.2)
+
+  ul.content
+    clear both
+    width 100%
+    padding 0
+    margin 0
+    display inline-block
+    float left
+    transition background $time*2 ease-in-out
+
+    &:hover
+      background lighten(#E7EFF2, 80%)
+
+    p.empty
+      text-align center
+      color $secondary-blue
+      width ((2/3)*100)%
+      margin 0
+      position absolute
+      top 50%
+      left 50%
+      transform translateX(-50%) translateY(-50%)
+      font-size 1.4em
+
+  .addPhrase
+    position fixed
+    z-index 10
+    left 50%
+    transform translateX(-50%)
+    bottom 0
+    materialButton()
+    display block
+    margin 0 auto .5em
+    font-size 2em
+    line-height 1em
+    border none
+    outline none
+    cursor pointer
+
+  .inputMethod
+    width 100%
+    float left
+    background #fafcfc
+    box-shadow 0 -1px 2px rgba(0,0,0,0.1)
+
+    label
+      float left
+      background transparent
+      border none
+      color $buttonBlue
+      font-weight 500
+      font-size 1em
+      padding 1em
+
+      input
+        display block
+        float left
+        margin 6px 6px 0 0
+
+    button
+      float right
+      margin 12px
+      width 40px
+      height 40px
+      border-radius 100%
+      outline none
+
+      &:hover
+        background-color #f5f5f5
+
+  .newPhrase
+    float left
+    width 100%
+    border-top 1px solid #f0F3F5
+    overflow hidden
+    transition height $time ease-in-out margin-top $time ease-in-out margin-bottom $time ease-in-out
+
+    input
+      border none
+      font-size 1em
+      padding 1em 2em
+      outline none
+      height 80px
+      width 500px
+      float left
+      background #FFF
+
+    button.savePhrase
+      background transparent
+      border none
+      color $buttonBlue
+      width 100px
+      text-align center
+      font-weight 400
+      padding 16px 0
+      margin 10px 0
+      border-left 2px solid #eee
+      display inline-block
+      cursor pointer
+      font-size 1em
+      outline none

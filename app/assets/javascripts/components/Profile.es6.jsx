@@ -10,7 +10,7 @@ Profile = React.createClass( {
 
   renderAuthoredBooks: function() {
     return this.props.books.map((book) => {
-      return <BookEntry users={this.props.userData} book={book} key={book.id}></BookEntry>
+      return <BookEntry users={this.props.userData} book={book} key={book.id} cardinality={this.props.cardinality}></BookEntry>
     })
   },
 
@@ -31,10 +31,14 @@ Profile = React.createClass( {
   },
 
   renderDashboardHeader: function() {
-    if(!this.currentUserProfile()) {
-      return <h2>Your books</h2>
+    if (this.props.currentUser) {
+      if(this.currentUserProfile()) {
+        return <h1>Books by {this.props.userData.username}</h1>
+      } else {
+        return <h1>Your books</h1>
+      }
     } else {
-      return <h2>Books by {this.props.userData.username}</h2>
+     return <h1>Books by {this.props.userData.username}</h1>
     }
   },
 
@@ -62,29 +66,30 @@ Profile = React.createClass( {
 
     return(
       <div className="container">
-        <NavBar currentUser={this.props.currentUser}/>
+        <NavBar currentUser={this.props.currentUser} logo={this.props.logo}/>
         <div id="profile">
           <div className="info">
             <div className="wrapper">
+              <img src={`http://www.gravatar.com/avatar/${this.props.hashedEmail}?s=200`} />
               <h2>{this.props.userData.username}</h2>
               <p>{this.props.userData.email}</p>
-              <img src={`http://www.gravatar.com/avatar/${this.props.hashedEmail}?s=200`} />
-              <div className="languages">
+
+              {/*<div className="languages">
                 {langs}
-              </div>
+              </div>*/}
               <p>Member since {createdMonth} {createdYear}</p>
-              {this.renderFollowButton()}
+              {/*{this.renderFollowButton()}
               <div className="followedBy">
               Followers ({followers.length})
                 <ul>
                   {followers}
                 </ul>
-              </div>
+              </div>*/}
             </div>
           </div>
           <div className="dashboard">
             {this.renderDashboardHeader()}
-            <ul className="content">
+            <ul className="bookEntryList">
               {this.renderAuthoredBooks()}
             </ul>
             {this.renderCreateBookButton()}
