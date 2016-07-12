@@ -89,7 +89,8 @@
     position relative
     z-index 1
     width 55%
-    min-width 700px
+    max-width 600px
+    min-width 450px
     margin 20px auto 0
 
     .controlPannel
@@ -97,7 +98,7 @@
       height 60px
       border-radius 2*$radius 2*$radius 0 0
 
-      button
+      button, a
         border none
         background #ADBCCA
         transition background $time ease-in-out
@@ -106,27 +107,32 @@
         float left
         font-size 1em
         font-weight 100
-        cursor pointer
         position relative
 
+      button
+        cursor initial
         &:first-of-type
           float left
           z-index 2
-
-        &:nth-of-type(2)
-          position absolute
-          width 100%
-          display table
-          padding 21px 20px 20px 20px
 
         &:last-of-type
           float right
           z-index 2
 
-        &:hover
-          background lighten(#ADBCCA, 30%)
-
         img
           float left
           height 30px
           width 30px
+          opacity .3
+
+      a
+        position absolute
+        z-index 1
+        text-align center
+        width 100%
+        display table
+        padding 21px 20px 20px 20px
+        text-decoration none
+
+        &:hover
+          background lighten(#ADBCCA, 30%)
