@@ -11,7 +11,11 @@ HomeIndex = React.createClass ( {
   renderCreateBookPannel: function() {
     if (this.props.currentUser) {
       return (
-        <a href="/books/new" title="Create a new book">New Book</a>
+        <a href="/books/new" title="Create a new book">New book</a>
+      )
+    } else {
+      return (
+        <a href="/sign_in" title="Create a new book">Log in to create new books</a>
       )
     }
   },
