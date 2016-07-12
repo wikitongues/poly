@@ -37,9 +37,21 @@ HomeIndex = React.createClass ( {
         <NavBar currentUser={this.props.currentUser} logo={this.props.logo}/>
         {this.renderWelcome()}
         <div className="dashboard">
-          <ul className="bookEntryList">
-            {this.renderBooks()}
-          </ul>
+          <span className="backgroundElement"></span>
+          <div className="indexContent">
+            <div className="controlPannel">
+              <button title="Search" onClick={this.onSearchStoreClick} className="icon">
+                <img src={this.props.search}/>
+              </button>
+              <button>New Book</button>
+              <button title="Sort by Favorites" onClick={this.onFavoriteSortClick} className="icon">
+                <img src={this.props.unstarred}/>
+              </button>
+            </div>
+            <ul className="bookEntryList">
+              {this.renderBooks()}
+            </ul>
+          </div>
           {this.renderCreateBookButton()}
       </div>
     </div>
