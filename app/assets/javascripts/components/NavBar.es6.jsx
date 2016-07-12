@@ -12,8 +12,8 @@ NavBar = React.createClass( {
       return (
         <span className="logIn">
           <a className="signInButton" href="/sign_in">Log in</a>
-          <p> or </p>
-          <a href="/sign_up">Sign up</a>
+          {/*<p> or </p>
+          <a href="/sign_up">Sign up</a>*/}
         </span>
       )
     }
