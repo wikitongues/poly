@@ -1,9 +1,11 @@
   .tools
     width 600px
     display table
-    background white
-    box-shadow 0 1px 1px rgba(0,0,0,0.1)
+    background #ADBCCA
     margin auto
+    boxShadow()
+    position relative
+    z-index 2
 
     // .more
     //   float right
@@ -34,7 +36,57 @@
       background-size 28px
       background-position 10px
       width 2.5em
+      left 0
+      z-index 4
+      position absolute
 
       &:hover, &:focus
         width 538px
         background-color #fafafa
+
+    .icon
+      background transparent
+      // float right
+      margin 6px
+      outline none
+      border-radius 100%
+
+      &:first-of-type
+        float left
+
+      &:last-of-type
+        float right
+
+      img
+        width 30px
+        float left
+        height 30px
+
+      &:hover
+        background-color lighten(#ADBCCA, 15%)
+
+    .cardinality
+      float left
+      z-index 5
+      width 488px
+      color white
+
+      h1
+        width 48%
+        float left
+        text-align center
+        font-size 1.3em
+        font-weight 100
+        margin 17px 0
+
+      img
+        box-shadow none
+        border-bottom none
+        float left
+        margin .5em -20px 0
+        width 40px
+        height 40px
+        padding 10px
+        // background #fff
+        position relative
+        z-index 10

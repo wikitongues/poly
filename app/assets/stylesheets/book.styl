@@ -1,6 +1,11 @@
 .book
   width 100%
+  max-width 600px
+  min-width 450px
   margin-bottom 115px
+  box-shadow 0 2px 2px rgba(0,0,0,0.2)
+  display table
+  margin 20px auto 0
 
   *
     font-weight 100
@@ -11,10 +16,10 @@
   .info, .cardinality, img.banner
     display inline-block
     width 100%
-    background #fff
-
-  .info, .cardinality, img.banner
     float left
+
+  .info, img.banner
+    background #fff
 
   .bannerWrapper
     height 400px
@@ -26,10 +31,10 @@
 
   .info
     position relative
-    padding 0 65px
+    padding 0 10px 0 35px
 
     .wrapper
-      width 600px
+      width 100%
       margin auto
       position relative
       display table
@@ -117,31 +122,3 @@
         &:hover
           background $buttonBlue
           color white
-
-  .cardinality
-    position relative
-    z-index 5
-    boxShadow()
-
-    section
-      width 600px
-      display table
-      float none
-      margin auto
-
-    h1
-      width 48%
-      float left
-      text-align center
-
-    img
-      box-shadow none
-      border-bottom none
-      float left
-      margin 1.1em -20px
-      width 40px
-      height 40px
-      padding 10px
-      background #fff
-      position relative
-      z-index 10

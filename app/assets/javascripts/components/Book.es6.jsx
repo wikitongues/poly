@@ -83,6 +83,15 @@ Book = React.createClass( {
     this.setState(newState);
   },
 
+  onSearchBook: function() {
+    alert("Searching is coming soon!")
+  },
+
+  onFavoriteBook: function() {
+    alert("Favoriting is coming soon!")
+  },
+
+
   bookIsOwnedByCurrentUser: function() {
     if (this.props.currentUser) {
       return this.props.initialBook.user_id == this.props.currentUser.id
@@ -169,7 +178,22 @@ Book = React.createClass( {
     return (
       <div className="container">
         <NavBar currentUser={this.props.currentUser} logo={this.props.logo}/>
+        <span className="backgroundElement"></span>
         <div className="book">
+          <div className="tools">
+            <button title="Search" onClick={this.onSearchBook} className="icon">
+              <img src={this.props.search} alt="Favorite"/>
+            </button>
+            <div className="cardinality">
+                { this.renderSourceLanguage() }
+                <img src={this.props.cardinality} alt=""/>
+                { this.renderTargetLanguage() }
+            </div>
+            <button title="Favorite" onClick={this.onFavoriteBook} className="icon">
+              <img src={this.props.unstar} alt="Favorite"/>
+            </button>
+            <ProgressBar />
+          </div>
           <div className="info">
             <div className="wrapper">
               { this.renderTitle() }
@@ -179,13 +203,7 @@ Book = React.createClass( {
             </div>
           </div>
           <div className="NObannerWrapper"></div>
-          <div className="cardinality">
-            <section>
-              { this.renderSourceLanguage() }
-              <img src={this.props.cardinality} alt=""/>
-              { this.renderTargetLanguage() }
-            </section>
-          </div>
+
           <Dictionary
           isOwnedByCurrentUser={this.bookIsOwnedByCurrentUser()}
           initialPhrasePairs={this.state.phrasePairs}
