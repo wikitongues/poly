@@ -1,7 +1,6 @@
 Profile = React.createClass( {
 
   getInitialState: function () {
-    //mockup data
     return {
       languages: ['Swiss german', 'German', 'French', 'English', 'Portuguese'],
       followers: [{username:'Daniel Udell', user_id:3},{username:'Charles Darwin', user_id:9},{username:'Marie Curie', user_id:1},{username:'Johannes Kepler', user_id:3},{username:'Louis Pasteur', user_id:3}]
@@ -30,15 +29,59 @@ Profile = React.createClass( {
     }
   },
 
+  onSearchStoreClick: function() {
+    alert("Searching is coming soon!")
+  },
+
+  onFavoriteSortClick: function() {
+    alert("Favoriting is coming soon!")
+  },
+
   renderDashboardHeader: function() {
     if (this.props.currentUser) {
       if(this.currentUserProfile()) {
-        return <h1>Books by {this.props.userData.username}</h1>
+        return (
+          <div className="indexContent">
+            <div className="controlPannel">
+              <button title="Search their books" onClick={this.onSearchStoreClick} className="icon">
+                <img src={this.props.search}/>
+              </button>
+              <p className="header">Books by {this.props.userData.username}</p>
+              <button title="Sort by Favorites" onClick={this.onFavoriteSortClick} className="icon">
+                <img src={this.props.unstarred}/>
+              </button>
+            </div>
+          </div>
+        )
       } else {
-        return <h1>Your books</h1>
+        return (
+        <div className="indexContent">
+          <div className="controlPannel">
+            <button title="Search your books" onClick={this.onSearchStoreClick} className="icon">
+              <img src={this.props.search}/>
+            </button>
+            <a className="header" href="/books/new" title="Create a new book">New book</a>
+            <button title="Sort by Favorites" onClick={this.onFavoriteSortClick} className="icon">
+              <img src={this.props.unstarred}/>
+            </button>
+          </div>
+        </div>
+        )
       }
     } else {
-     return <h1>Books by {this.props.userData.username}</h1>
+     return (
+        <div className="indexContent">
+          <div className="controlPannel">
+            <button title="Search their books" onClick={this.onSearchStoreClick} className="icon">
+              <img src={this.props.search}/>
+            </button>
+            <p className="header">Books by {this.props.userData.username}</p>
+            <button title="Sort by Favorites" onClick={this.onFavoriteSortClick} className="icon">
+              <img src={this.props.unstarred}/>
+            </button>
+          </div>
+        </div>
+      )
     }
   },
 
@@ -67,8 +110,9 @@ Profile = React.createClass( {
     return(
       <div className="container">
         <NavBar currentUser={this.props.currentUser} logo={this.props.logo}/>
+        <span className="backgroundElement"></span>
         <div id="profile">
-          <div className="info">
+          <div className="userInformation">
             <div className="wrapper">
               <img src={`http://www.gravatar.com/avatar/${this.props.hashedEmail}?s=200`} />
               <h2>{this.props.userData.username}</h2>

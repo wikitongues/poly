@@ -193,10 +193,8 @@ Dictionary = React.createClass( {
   render: function() {
     return (
        <div className="dictionary">
-        <section className="content-wrapper">
-          <ul className="content">{this.renderPhrasePairs()}</ul>
-          {this.renderCreateNewPhraseButton()}
-        </section>
+        <ul className="content">{this.renderPhrasePairs()}</ul>
+        {this.renderCreateNewPhraseButton()}
        </div>
     )
   }
