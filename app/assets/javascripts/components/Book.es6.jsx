@@ -4,7 +4,8 @@ Book = React.createClass( {
     return {
       phrasePairs: this.props.initialPhrasePairs,
       isEditingBook: false,
-      book: this.props.initialBook
+      book: this.props.initialBook,
+      originalTitle:this.props.initialBook.title
     }
   },
 
@@ -70,8 +71,8 @@ Book = React.createClass( {
   },
 
   toggleEditingBookState: function() {
-      this.setState({
-        isEditingBook: !this.state.isEditingBook
+    this.setState({
+      isEditingBook: !this.state.isEditingBook
     });
   },
 
@@ -138,6 +139,7 @@ Book = React.createClass( {
   },
 
   renderAuthor: function() {
+
     let users = this.props.users
     let authorName = ""
     for (var i = users.length - 1; i >= 0; i--) {
@@ -145,9 +147,15 @@ Book = React.createClass( {
         authorName = users[i].username
       }
     }
-    return (
-      <a href={"/accounts/" + this.state.book.user_id} className="author">{authorName}</a>
-    )
+    if (this.state.isEditingBook) {
+      return (
+        <p className="author">{authorName}</p>
+      )
+    } else {
+      return (
+        <a href={"/accounts/" + this.state.book.user_id} className="author">{authorName}</a>
+      )
+    }
   },
 
   renderDescription: function() {
@@ -185,14 +193,16 @@ Book = React.createClass( {
               <img src={this.props.search} alt="Favorite"/>
             </button>
             <div className="cardinality">
+              <section>
                 { this.renderSourceLanguage() }
                 <img src={this.props.cardinality} alt=""/>
                 { this.renderTargetLanguage() }
+              </section>
             </div>
             <button title="Favorite" onClick={this.onFavoriteBook} className="icon">
               <img src={this.props.unstar} alt="Favorite"/>
             </button>
-            <ProgressBar />
+            {/*<ProgressBar />*/}
           </div>
           <div className="info">
             <div className="wrapper">

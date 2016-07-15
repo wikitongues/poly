@@ -7,10 +7,6 @@
     position relative
     z-index 2
 
-    // .more
-    //   float right
-    //   margin 16px
-
     .progressBar
       height 4px
       width 100%
@@ -31,23 +27,14 @@
       border none
       margin 4px 0 5px 4px
       transition all 0.1s ease-in-out
-      background-image url("/assets/icons/i_search")
-      background-repeat no-repeat
-      background-size 28px
-      background-position 10px
+      background transparent
       width 2.5em
       left 0
       z-index 4
       position absolute
 
-      &:hover, &:focus
-        width 538px
-        background-color #fafafa
-
     .icon
       background transparent
-      // float right
-      // margin 6px
       padding 15px
       outline none
       border-radius 100%
@@ -65,9 +52,6 @@
         float left
         height 30px
 
-      // &:hover
-      //   background-color lighten(#ADBCCA, 15%)
-
     .cardinality
       float left
       z-index 5
@@ -75,12 +59,18 @@
       color white
 
       h1
-        width 48%
+        width 47%
         float left
         text-align center
         font-size 1.3em
         font-weight 100
         margin 17px 0
+
+        &:first-of-type
+          margin-right 3%
+
+        &:last-of-type
+          margin-left 3%
 
       img
         box-shadow none
@@ -90,6 +80,5 @@
         width 40px
         height 40px
         padding 10px
-        // background #fff
         position relative
         z-index 10
