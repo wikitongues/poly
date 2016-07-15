@@ -41,36 +41,6 @@ Profile = React.createClass( {
     if (this.props.currentUser) {
       if(this.currentUserProfile()) {
         return (
-          <div className="indexContent">
-            <div className="controlPannel">
-              <button title="Search their books" onClick={this.onSearchStoreClick} className="icon">
-                <img src={this.props.search}/>
-              </button>
-              <p className="header">Books by {this.props.userData.username}</p>
-              <button title="Sort by Favorites" onClick={this.onFavoriteSortClick} className="icon">
-                <img src={this.props.unstarred}/>
-              </button>
-            </div>
-          </div>
-        )
-      } else {
-        return (
-        <div className="indexContent">
-          <div className="controlPannel">
-            <button title="Search your books" onClick={this.onSearchStoreClick} className="icon">
-              <img src={this.props.search}/>
-            </button>
-            <a className="header" href="/books/new" title="Create a new book">New book</a>
-            <button title="Sort by Favorites" onClick={this.onFavoriteSortClick} className="icon">
-              <img src={this.props.unstarred}/>
-            </button>
-          </div>
-        </div>
-        )
-      }
-    } else {
-     return (
-        <div className="indexContent">
           <div className="controlPannel">
             <button title="Search their books" onClick={this.onSearchStoreClick} className="icon">
               <img src={this.props.search}/>
@@ -80,6 +50,30 @@ Profile = React.createClass( {
               <img src={this.props.unstarred}/>
             </button>
           </div>
+        )
+      } else {
+        return (
+          <div className="controlPannel">
+            <button title="Search your books" onClick={this.onSearchStoreClick} className="icon">
+              <img src={this.props.search}/>
+            </button>
+            <a className="header" href="/books/new" title="Create a new book">New book</a>
+            <button title="Sort by Favorites" onClick={this.onFavoriteSortClick} className="icon">
+              <img src={this.props.unstarred}/>
+            </button>
+          </div>
+        )
+      }
+    } else {
+     return (
+        <div className="controlPannel">
+          <button title="Search their books" onClick={this.onSearchStoreClick} className="icon">
+            <img src={this.props.search}/>
+          </button>
+          <p className="header">Books by {this.props.userData.username}</p>
+          <button title="Sort by Favorites" onClick={this.onFavoriteSortClick} className="icon">
+            <img src={this.props.unstarred}/>
+          </button>
         </div>
       )
     }
@@ -132,11 +126,13 @@ Profile = React.createClass( {
             </div>
           </div>
           <div className="dashboard">
-            {this.renderDashboardHeader()}
-            <ul className="bookEntryList">
-              {this.renderAuthoredBooks()}
-            </ul>
-            {this.renderCreateBookButton()}
+            <div className="indexContent">
+              {this.renderDashboardHeader()}
+              <ul className="bookEntryList">
+                {this.renderAuthoredBooks()}
+              </ul>
+              {this.renderCreateBookButton()}
+            </div>
           </div>
         </div>
       </div>
