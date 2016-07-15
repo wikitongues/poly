@@ -1,6 +1,11 @@
 .book
   width 100%
+  max-width 600px
+  min-width 450px
   margin-bottom 115px
+  box-shadow 0 2px 2px rgba(0,0,0,0.2)
+  display table
+  margin 20px auto 0
 
   *
     font-weight 100
@@ -11,10 +16,10 @@
   .info, .cardinality, img.banner
     display inline-block
     width 100%
-    background #fff
-
-  .info, .cardinality, img.banner
     float left
+
+  .info, img.banner
+    background #fff
 
   .bannerWrapper
     height 400px
@@ -26,17 +31,17 @@
 
   .info
     position relative
-    padding 0 65px
+    padding 0 30px 0 35px
 
     .wrapper
-      width 600px
+      width 100%
       margin auto
       position relative
       display table
 
       .menu
         top 20px
-        right 10px
+        right -20px
 
       section
         button
@@ -80,15 +85,13 @@
             box-shadow inset 0 1px 1px rgba(0,0,0,0.1)
             transition all $time ease-in-out
 
-        h1
-          float left
-          margin 12px 0
-          padding 1px 1px 3px
-          font-size 2em
-          width 78%
-          white-space nowrap
-          text-overflow ellipsis
-          overflow hidden
+      h1
+        float left
+        max-width 415px
+        width 100%
+        white-space nowrap
+        text-overflow ellipsis
+        overflow hidden
 
       h3
         line-height 2.4em
@@ -105,7 +108,7 @@
         margin 2em 0
         padding 2px 2px 4px
 
-      .author
+      a.author, p.author
         clear both
         padding 8px 11px
         margin -8px -11px
@@ -114,40 +117,6 @@
         text-decoration none
         border-radius $radius
 
-        &:hover
-          background $buttonBlue
-          color white
-
-  .cardinality
-    position relative
-    z-index 5
-    boxShadow()
-
-    section
-      width 600px
-      display table
-      float none
-      margin auto
-
-    h1
-      width 48%
-      float left
-      text-align center
-
-    img
-      box-shadow none
-      border-bottom none
-      float left
-      margin 1.1em -20px
-      width 40px
-      height 40px
-      padding 10px
-      background #fff
-      position relative
-      z-index 10
-
-  .progressBar
-    height 4px
-    width 100%
-    background #eee
-    margin-top 75px
+      a.author:hover
+        background $buttonBlue
+        color white

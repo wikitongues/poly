@@ -13,7 +13,19 @@
     padding 0
 
   &.search
-    height 30px
+    height 28px
+    width 28px
+    display block
+    float left
+    background-image url("/assets/icons/i_search")
+    background-size cover
+    background-position center
+    margin 15px
+    opacity .4
+    transition opacity $time ease-in-out
+
+    &:hover
+      opacity 1
 
   &.more
     padding 9px
@@ -25,7 +37,22 @@
     padding 10px
 
   &.star
-    height 35px
+    height 28px
+    width 28px
+    display block
+    float right
+    background-image url("/assets/icons/i_unstarred")
+    background-size cover
+    background-position center
+    margin 13px 15px 15px
+    opacity .6
+    transition opacity $time ease-in-out
+
+    &:hover
+      opacity 1
+
+    &.starred, &:active
+      background-image url("/assets/icons/i_starred")
 
   &.cardinality
     height 20px

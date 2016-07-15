@@ -1,0 +1,84 @@
+  .tools
+    width 600px
+    display table
+    background #ADBCCA
+    margin auto
+    boxShadow()
+    position relative
+    z-index 2
+
+    .progressBar
+      height 4px
+      width 100%
+      background #eee
+      float left
+
+      .bar
+        height 100%
+        min-width 3px
+        float left
+        background $buttonBlue
+
+    input
+      padding 0.7em 1em 0.7em 2.5em
+      font-size 1em
+      font-weight 100
+      outline none
+      border none
+      margin 4px 0 5px 4px
+      transition all 0.1s ease-in-out
+      background transparent
+      width 2.5em
+      left 0
+      z-index 4
+      position absolute
+
+    .icon
+      background transparent
+      padding 15px
+      outline none
+      border-radius 100%
+      opacity .3
+      cursor initial
+
+      &:first-of-type
+        float left
+
+      &:last-of-type
+        float right
+
+      img
+        width 30px
+        float left
+        height 30px
+
+    .cardinality
+      float left
+      z-index 5
+      width 480px
+      color white
+
+      h1
+        width 47%
+        float left
+        text-align center
+        font-size 1.3em
+        font-weight 100
+        margin 17px 0
+
+        &:first-of-type
+          margin-right 3%
+
+        &:last-of-type
+          margin-left 3%
+
+      img
+        box-shadow none
+        border-bottom none
+        float left
+        margin .5em -20px 0
+        width 40px
+        height 40px
+        padding 10px
+        position relative
+        z-index 10
