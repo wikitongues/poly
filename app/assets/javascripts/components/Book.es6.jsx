@@ -38,6 +38,13 @@ Book = React.createClass( {
         book_id: this.state.book.id,
         phrase_pair: phrasePair
       },
+      success: function(phrasePair) {
+        var newPhrasePairs = this.state.phrasePairs;
+        newPhrasePairs.splice(this.state.phrasePairs.length -1, 1, phrasePair.phrase_pair)
+        this.setState({
+          phrasePairs: newPhrasePairs
+        })
+      }.bind(this),
       error: function() {
         console.log('Error: Save action failed')
       }

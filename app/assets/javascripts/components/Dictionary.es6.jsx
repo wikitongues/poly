@@ -11,6 +11,12 @@ Dictionary = React.createClass( {
     }
   },
 
+  componentWillReceiveProps: function(newProps) {
+    this.setState({
+      phrasePairs: newProps.initialPhrasePairs
+    })
+  },
+
   onAddNewPhraseButtonClick: function() {
     this.setState({
         isPhraseInputActive: !this.state.isPhraseInputActive
