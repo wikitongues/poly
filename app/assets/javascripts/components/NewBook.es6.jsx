@@ -5,7 +5,8 @@ NewBook = React.createClass( {
       title: '',
       description: '',
       source_language: '',
-      target_language: ''
+      target_language: '',
+      errors:[]
     }
   },
 
@@ -17,19 +18,23 @@ NewBook = React.createClass( {
 
   onSubmit: function(e) {
     e.preventDefault();
-    $.ajax({
-      url: '/books',
-      type: 'POST',
-      data: {
-        book: this.state
-      },
-      success: function(book) {
-        window.location.href = '/books/' + book.id;
-      },
-      error: function(error) {
-        console.log(error)
-      }
-    })
+    if(this.state.title && this.state.source_language && this.state.target_language) {
+      $.ajax({
+        url: '/books',
+        type: 'POST',
+        data: {
+          book: this.state
+        },
+        success: function(book) {
+          window.location.href = '/books/' + book.id;
+        },
+        error: function(error) {
+          console.log(error)
+        }
+      })
+    } else {
+      alert("Please make sure you have a book title, source and target language to continue.")
+    }
   },
 
   render: function() {
