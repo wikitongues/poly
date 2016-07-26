@@ -1,6 +1,6 @@
 Book = React.createClass( {
 
-  getInitialState: function() {
+  getInitialState() {
     return {
       phrasePairs: this.props.initialPhrasePairs,
       isEditingBook: false,
@@ -8,7 +8,7 @@ Book = React.createClass( {
     }
   },
 
-  onSourcePhraseSubmit: function(sourcePhrase) {
+  onSourcePhraseSubmit(sourcePhrase) {
     var newPhrasePair = {
       source_phrase: sourcePhrase,
     };
@@ -19,7 +19,7 @@ Book = React.createClass( {
     })
   },
 
-  onTargetPhraseSubmit: function(targetPhrase) {
+  onTargetPhraseSubmit(targetPhrase) {
     var newPhrasePairs = this.state.phrasePairs;
     var newPhrasePair = newPhrasePairs[newPhrasePairs.length - 1]
     newPhrasePair.target_phrase = targetPhrase;
@@ -29,7 +29,7 @@ Book = React.createClass( {
     this.saveNewPhrasePair(newPhrasePair);
   },
 
-  saveNewPhrasePair: function(phrasePair) {
+  saveNewPhrasePair(phrasePair) {
     $.ajax({
       url: "/phrase_pairs",
       type: "POST",
@@ -43,7 +43,7 @@ Book = React.createClass( {
     })
   },
 
-  onDeleteBookClick: function() {
+  onDeleteBookClick() {
     if(window.confirm("Are you sure you want to delete this book?")) {
       $.ajax({
         url: '/books/' + this.state.book.id,
@@ -55,7 +55,7 @@ Book = React.createClass( {
     }
   },
 
-  onSaveBookClick: function() {
+  onSaveBookClick() {
     $.ajax({
       url: '/books/' + this.state.book.id,
       type: "PUT",
@@ -69,13 +69,13 @@ Book = React.createClass( {
     })
   },
 
-  toggleEditingBookState: function() {
+  toggleEditingBookState() {
       this.setState({
         isEditingBook: !this.state.isEditingBook
     });
   },
 
-  onInputChange: function(e) {
+  onInputChange(e) {
     var newBook = this.state.book;
     var newState = this.state;
     newBook[e.target.name] = e.target.value;
@@ -83,13 +83,13 @@ Book = React.createClass( {
     this.setState(newState);
   },
 
-  bookIsOwnedByCurrentUser: function() {
+  bookIsOwnedByCurrentUser() {
     if (this.props.currentUser) {
       return this.props.initialBook.user_id == this.props.currentUser.id
     }
   },
 
-  renderBookMenu: function() {
+  renderBookMenu() {
     if (this.bookIsOwnedByCurrentUser()) {
       if (this.state.isEditingBook) {
         return (
@@ -120,7 +120,7 @@ Book = React.createClass( {
     }
   },
 
-  renderTitle: function() {
+  renderTitle() {
      if (this.state.isEditingBook) {
       return <input name="title" className="title new isEditing" onChange={this.onInputChange} value={this.state.book.title} />;
     } else {
@@ -128,7 +128,7 @@ Book = React.createClass( {
     }
   },
 
-  renderAuthor: function() {
+  renderAuthor() {
     let users = this.props.users
     let authorName = ""
     for (var i = users.length - 1; i >= 0; i--) {
@@ -141,7 +141,7 @@ Book = React.createClass( {
     )
   },
 
-  renderDescription: function() {
+  renderDescription() {
      if (this.state.isEditingBook) {
       return <textarea rows="4" className="description new isEditing" name="description" onChange={this.onInputChange} value={this.state.book.description} />;
     } else {
@@ -149,7 +149,7 @@ Book = React.createClass( {
     }
   },
 
-   renderSourceLanguage: function() {
+   renderSourceLanguage() {
      if (this.state.isEditingBook) {
       return <input className="new isEditing" name="source_language" onChange={this.onInputChange} value={this.state.book.source_language} />;
     } else {
@@ -157,7 +157,7 @@ Book = React.createClass( {
     }
   },
 
-   renderTargetLanguage: function() {
+   renderTargetLanguage() {
      if (this.state.isEditingBook) {
       return <input className="new isEditing" name="target_language" onChange={this.onInputChange} value={this.state.book.target_language} />;
     } else {
@@ -165,7 +165,7 @@ Book = React.createClass( {
     }
   },
 
-  render: function() {
+  render() {
     return (
       <div className="container">
         <NavBar currentUser={this.props.currentUser} logo={this.props.logo}/>
@@ -205,5 +205,5 @@ Book = React.createClass( {
       </div>
     )
   }
-})
+} );
 

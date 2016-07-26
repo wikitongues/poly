@@ -1,6 +1,6 @@
 Profile = React.createClass( {
 
-  getInitialState: function () {
+  getInitialState() {
     //mockup data
     return {
       languages: ['Swiss german', 'German', 'French', 'English', 'Portuguese'],
@@ -8,19 +8,19 @@ Profile = React.createClass( {
     }
   },
 
-  renderAuthoredBooks: function() {
+  renderAuthoredBooks() {
     return this.props.books.map((book) => {
       return <BookEntry users={this.props.userData} book={book} key={book.id} cardinality={this.props.cardinality}></BookEntry>
     })
   },
 
-  currentUserProfile: function() {
+  currentUserProfile() {
     if (this.props.currentUser) {
       return this.props.userData.id != this.props.currentUser.id
     }
   },
 
-  renderCreateBookButton: function() {
+  renderCreateBookButton() {
     if(!this.currentUserProfile()) {
       if (this.props.currentUser) {
         return (
@@ -30,7 +30,7 @@ Profile = React.createClass( {
     }
   },
 
-  renderDashboardHeader: function() {
+  renderDashboardHeader() {
     if (this.props.currentUser) {
       if(this.currentUserProfile()) {
         return <h1>Books by {this.props.userData.username}</h1>
@@ -42,13 +42,13 @@ Profile = React.createClass( {
     }
   },
 
-  renderFollowButton: function() {
+  renderFollowButton() {
     if(this.currentUserProfile()) {
       return  <a className="follow">follow</a>
     }
   },
 
-  render: function() {
+  render() {
     let langs = []
     this.state.languages.forEach(function (lang) {
       langs.push(<span className="language">{lang}</span>)
@@ -97,4 +97,4 @@ Profile = React.createClass( {
         </div>
       </div>
     )}
-  });
+  } );

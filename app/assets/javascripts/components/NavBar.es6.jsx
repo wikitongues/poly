@@ -1,6 +1,6 @@
 NavBar = React.createClass( {
 
-  renderSignIn: function() {
+  renderSignIn() {
     if (this.props.currentUser) {
       return (
           <span className="loggedIn">
@@ -19,7 +19,7 @@ NavBar = React.createClass( {
     }
   },
 
-  render: function() {
+  render() {
     return(
       <nav>
         <a className="icon home" href="/">
@@ -29,4 +29,4 @@ NavBar = React.createClass( {
       </nav>
     )
   }
-});
+} );

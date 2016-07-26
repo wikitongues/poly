@@ -1,6 +1,6 @@
 PhrasePair = React.createClass( {
 
-  getInitialState: function() {
+  getInitialState() {
     return {
       isEditingPhrase: false,
       sourcePhrase: this.props.initialSourcePhrase,
@@ -8,24 +8,24 @@ PhrasePair = React.createClass( {
     }
   },
 
-  componentWillReceiveProps: function(nextProps) {
+  componentWillReceiveProps(nextProps) {
     this.setState({
       sourcePhrase: nextProps.initialSourcePhrase,
       targetPhrase: nextProps.initialTargetPhrase
     })
   },
 
-  toggleEditingPhraseState: function() {
+  toggleEditingPhraseState() {
       this.setState({
         isEditingPhrase: !this.state.isEditingPhrase
     });
   },
 
-  onDeletePhraseClick: function() {
+  onDeletePhraseClick() {
     this.props.onDeletePhrasePair(this.props.id)
   },
 
-  onSavePhraseClick:function(){
+  onSavePhraseClick(){
     $.ajax({
       url: '/phrase_pairs/' + this.props.id,
       type: 'PUT',
@@ -44,19 +44,19 @@ PhrasePair = React.createClass( {
     })
   },
 
-  onEditPhraseClick: function() {
+  onEditPhraseClick() {
     this.toggleEditingPhraseState();
   },
 
-  onSourceChange: function(e) {
+  onSourceChange(e) {
     this.setState({ sourcePhrase: e.target.value })
   },
 
-  onTargetChange: function(e) {
+  onTargetChange(e) {
     this.setState({ targetPhrase: e.target.value })
   },
 
-  renderPhraseMenu: function() {
+  renderPhraseMenu() {
     if (this.props.isOwnedByCurrentUser) {
       if (this.state.isEditingPhrase) {
         return (
@@ -87,7 +87,7 @@ PhrasePair = React.createClass( {
     }
   },
 
-  renderPhrasePair: function() {
+  renderPhrasePair() {
      if (this.state.isEditingPhrase) {
       return (
         <ul>
@@ -121,11 +121,11 @@ PhrasePair = React.createClass( {
     }
   },
 
-  render: function() {
+  render() {
     return (
        <li className="entry">
         { this.renderPhrasePair() }
       </li>
     )
   }
-} )
+} );

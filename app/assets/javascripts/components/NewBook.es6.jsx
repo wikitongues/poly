@@ -1,6 +1,6 @@
 NewBook = React.createClass( {
 
-  getInitialState: function() {
+  getInitialState() {
     return {
       title: '',
       description: '',
@@ -9,13 +9,13 @@ NewBook = React.createClass( {
     }
   },
 
-  onInputChange: function(e) {
+  onInputChange(e) {
     var newState = this.state;
     newState[e.target.name] = e.target.value;
     this.setState(newState);
   },
 
-  onSubmit: function(e) {
+  onSubmit(e) {
     e.preventDefault();
     $.ajax({
       url: '/books',
@@ -32,7 +32,7 @@ NewBook = React.createClass( {
     })
   },
 
-  render: function() {
+  render() {
     return(
       <div className="container">
         <NavBar currentUser={this.props.currentUser} logo={this.props.logo}/>
@@ -89,5 +89,6 @@ NewBook = React.createClass( {
           </form>
         </div>
       </div>
-    )}
-  });
+    )
+  }
+} );

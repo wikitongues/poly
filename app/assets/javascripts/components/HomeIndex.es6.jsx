@@ -1,6 +1,6 @@
 HomeIndex = React.createClass ( {
 
-  renderCreateBookButton: function() {
+  renderCreateBookButton() {
     if (this.props.currentUser) {
       return (
         <a href="/books/new" className="newBook" title="Create a new book">+</a>
@@ -8,7 +8,7 @@ HomeIndex = React.createClass ( {
     }
   },
 
-  renderBooks: function() {
+  renderBooks() {
     return this.props.books.map((book) => {
       return <BookEntry users={this.props.users} book={book} key={book.id} cardinality={this.props.cardinality}></BookEntry>
     })
@@ -31,7 +31,7 @@ HomeIndex = React.createClass ( {
     return null
   },*/
 
-  render: function() {
+  render() {
     return (
       <div className="container">
         <NavBar currentUser={this.props.currentUser} logo={this.props.logo}/>
@@ -45,4 +45,4 @@ HomeIndex = React.createClass ( {
     </div>
     )
   }
-} )
+} );

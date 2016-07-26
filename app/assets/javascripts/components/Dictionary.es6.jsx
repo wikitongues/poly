@@ -1,6 +1,6 @@
 Dictionary = React.createClass( {
 
-  getInitialState: function() {
+  getInitialState() {
     return {
       isPhraseInputActive: false,
       isTargetInputActive: false,
@@ -13,17 +13,17 @@ Dictionary = React.createClass( {
     }
   },
 
-  onAddNewPhraseButtonClick: function() {
+  onAddNewPhraseButtonClick() {
     this.setState({
         isPhraseInputActive: !this.state.isPhraseInputActive
     });
   },
 
-  onSourcePhraseChange: function(e) {
+  onSourcePhraseChange(e) {
     this.setState({sourcePhrase: e.target.value });
   },
 
-  onSourcePhraseSubmit: function(e) {
+  onSourcePhraseSubmit(e) {
     e.preventDefault()
     this.props.onSourcePhraseSubmit(this.state.sourcePhrase),
     this.setState({
@@ -32,11 +32,11 @@ Dictionary = React.createClass( {
     });
   },
 
-  onTargetPhraseChange: function(e) {
+  onTargetPhraseChange(e) {
     this.setState({targetPhrase: e.target.value });
   },
 
-  onTargetPhraseSubmit: function(e) {
+  onTargetPhraseSubmit(e) {
     e.preventDefault()
     this.props.onTargetPhraseSubmit(this.state.targetPhrase),
     this.setState({
@@ -46,7 +46,7 @@ Dictionary = React.createClass( {
     });
   },
 
-  onTargetPhraseMultipleSubmit: function(e) {
+  onTargetPhraseMultipleSubmit(e) {
     e.preventDefault()
     this.props.onTargetPhraseSubmit(this.state.targetPhrase),
     this.setState({
@@ -55,13 +55,13 @@ Dictionary = React.createClass( {
     });
   },
 
-  onContinuousInputClick: function() {
+  onContinuousInputClick() {
     this.setState({
         isContinuousInputActive: !this.state.isContinuousInputActive
     });
   },
 
-  onDeletePhrasePair: function(phrasePairId) {
+  onDeletePhrasePair(phrasePairId) {
     if(window.confirm("Are you sure you want to delete this phrase?")) {
       $.ajax({
         url: '/phrase_pairs/' + phrasePairId,
@@ -83,7 +83,7 @@ Dictionary = React.createClass( {
     };
   },
 
-  onCancelEditPhrase: function() {
+  onCancelEditPhrase() {
     this.setState({
       isPhraseInputActive: false,
       isInputVideo: false,
@@ -96,26 +96,26 @@ Dictionary = React.createClass( {
 
 // Video Zone
 
-  onToggleInputType: function() {
+  onToggleInputType() {
     this.setState({
       isInputVideo: !this.state.isInputVideo
     })
   },
 
-  onCloseVideoComponent: function() {
+  onCloseVideoComponent() {
     this.setState({
       isVideoRecording: false,
       isInputVideo: false
     })
   },
 
-  onStopRecordingClick: function() {
+  onStopRecordingClick() {
     this.setState({
       isVideoRecording: !this.state.isVideoRecording
     })
   },
 
-  onStartRecordingClick: function() {
+  onStartRecordingClick() {
     this.setState({
       isVideoRecording: !this.state.isVideoRecording
     })
@@ -123,7 +123,7 @@ Dictionary = React.createClass( {
 
 // Render Zone
 
-  renderPhrasePairs: function() {
+  renderPhrasePairs() {
     return this.state.phrasePairs.map((phrasePair, index) => {
       return (
           <PhrasePair
@@ -143,7 +143,7 @@ Dictionary = React.createClass( {
     this.forceUpdate()
   },
 
-  renderCreateNewPhraseButton: function() {
+  renderCreateNewPhraseButton() {
     if (this.props.isOwnedByCurrentUser) {
       if (this.state.isPhraseInputActive) {
         if (this.state.isInputVideo) {} else {
@@ -161,7 +161,7 @@ Dictionary = React.createClass( {
     }
   },
 
-  renderPhraseInputFields: function() {
+  renderPhraseInputFields() {
     if (this.state.isTargetInputActive) {
       return (
         <div>
@@ -188,7 +188,7 @@ Dictionary = React.createClass( {
   },
 
   // NB If in continuous input state, show source input field following successful phrase pair completion.
-  renderTargetInput: function() {
+  renderTargetInput() {
     const continuousInput = this.state.isContinuousInputActive
     return (
       <form className="newPhrase" onSubmit={continuousInput ? this.onTargetPhraseMultipleSubmit : this.onTargetPhraseSubmit}>
@@ -203,7 +203,7 @@ Dictionary = React.createClass( {
     );
   },
 
-  renderInputOptions: function() {
+  renderInputOptions() {
     if (this.state.isInputVideo) {
       return (
         <span className="inputOptions">
@@ -223,7 +223,7 @@ Dictionary = React.createClass( {
     }
   },
 
-  renderVideoInput: function() {
+  renderVideoInput() {
     if (this.state.isInputVideo) {
       return (
         <div className="videoComponent">
@@ -244,7 +244,7 @@ Dictionary = React.createClass( {
     }
   },
 
-  renderRecordButton: function() {
+  renderRecordButton() {
     if (this.state.isVideoRecording) {
       return (
         <button className="videoButtonContainer" onClick={this.onStopRecordingClick}>
@@ -261,7 +261,7 @@ Dictionary = React.createClass( {
   },
 
   // TODO: Consider the flow of canceling a phrase in progress.
-  renderInputMethod: function() {
+  renderInputMethod() {
     if (this.state.isContinuousInputActive) {
       return (
         <div className="inputMethod">
@@ -285,7 +285,7 @@ Dictionary = React.createClass( {
     }
   },
 
-  render: function() {
+  render() {
     return (
        <div className="dictionary">
         <section className="content-wrapper">
@@ -296,4 +296,4 @@ Dictionary = React.createClass( {
        </div>
     )
   }
-} )
+} );

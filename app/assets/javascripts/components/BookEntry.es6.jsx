@@ -1,5 +1,5 @@
 BookEntry = React.createClass ( {
-  renderAuthor: function() {
+  renderAuthor() {
     let users = this.props.users
     let authorName = ""
     for (var i = users.length - 1; i >= 0; i--) {
@@ -14,7 +14,7 @@ BookEntry = React.createClass ( {
     )
   },
 
-  render: function() {
+  render() {
     let createdDate = new Date(this.props.book.created_at),
     createdYear = createdDate.getUTCFullYear(),
     months = ["January","February","March","April","May","June","July","August","September","October","November","December"],
@@ -47,4 +47,4 @@ BookEntry = React.createClass ( {
        </li>
     )
   }
-} )
+} );
