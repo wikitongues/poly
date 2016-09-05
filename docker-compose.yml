@@ -3,8 +3,8 @@ poly:
     ports: 
         - 3000:5000
     links: 
-        - postgres
-postgres:
+        - database
+database:
     image: convox/postgres
     ports: 
         - 5432
