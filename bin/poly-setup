@@ -1,0 +1,4 @@
+#!/bin/bash
+
+echo "Will run db:setup on the poly development db"
+convox start --file docker-compose-setup.yml
