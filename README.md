@@ -15,9 +15,6 @@ Getting started? Start [here](#prerequisites)
 #Feature Map
 Planned features for future releases. Releases are mapped below. We use [semantic versioning](http://semver.org/).
 
-Initialize versioning. 
-v0.1 complete, with select v0.2 features.
-
 ###Version 0.1
 
 - [x] ~~Create new phrasebook~~
