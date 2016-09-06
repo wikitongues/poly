@@ -1,0 +1,26 @@
+LOG:  database system was interrupted; last known up at 2016-07-18 13:53:15 CEST
+LOG:  database system was not properly shut down; automatic recovery in progress
+LOG:  invalid record length at 0/184BD88
+LOG:  redo is not required
+LOG:  MultiXact member wraparound protections are now enabled
+LOG:  database system is ready to accept connections
+LOG:  autovacuum launcher started
+LOG:  received smart shutdown request
+LOG:  autovacuum launcher shutting down
+LOG:  shutting down
+LOG:  database system is shut down
+LOG:  database system was shut down at 2016-08-30 08:32:34 CEST
+LOG:  MultiXact member wraparound protections are now enabled
+LOG:  database system is ready to accept connections
+LOG:  autovacuum launcher started
+FATAL:  database "poly_development" does not exist
+WARNING:  worker took too long to start; canceled
+WARNING:  autovacuum worker started without a worker entry
+LOG:  autovacuum launcher shutting down
+LOG:  received smart shutdown request
+LOG:  shutting down
+LOG:  database system is shut down
+LOG:  database system was shut down at 2016-09-05 09:01:26 CEST
+LOG:  MultiXact member wraparound protections are now enabled
+LOG:  database system is ready to accept connections
+LOG:  autovacuum launcher started

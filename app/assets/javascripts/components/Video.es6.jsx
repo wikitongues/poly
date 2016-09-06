@@ -1,7 +1,7 @@
 Video = React.createClass( {
 	render() {
 		return(
-			<div></div>
+			<div>This is the video component/div>
 		);
 	}
 } );
