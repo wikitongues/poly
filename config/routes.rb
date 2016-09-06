@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
 
-  devise_for :users, path: ""
+  devise_for :users,
+             path: "",
+             path_names: { edit: "/account/edit"}
+
   root to:  "home#index"
 
   resources :books, only: [:show, :new, :create, :destroy, :update]
