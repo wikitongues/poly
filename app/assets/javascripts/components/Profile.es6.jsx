@@ -85,6 +85,14 @@ Profile = React.createClass( {
     }
   },
 
+  renderEditButton: function() {
+    if(this.props.currentUser.id == this.props.userData.id) {
+      return (
+        <a href="account/edit">Edit</a>
+      )
+    }
+  },
+
   render: function() {
     let langs = []
     this.state.languages.forEach(function (lang) {
@@ -115,7 +123,7 @@ Profile = React.createClass( {
                 {langs}
               </div>*/}
               <p>Member since {createdMonth} {createdYear}</p>
-              <a href="account/edit">Edit</a>
+              {this.renderEditButton()}
               {/*{this.renderFollowButton()}
               <div className="followedBy">
               Followers ({followers.length})
