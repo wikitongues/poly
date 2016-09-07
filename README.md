@@ -38,7 +38,7 @@ Planned features for future releases. Releases are mapped below. We use [semanti
 - [ ] Testing
 - [ ] Search
 - [ ] Video phrases
-  - [x] ~~Video phrase interface~~
+  - [ ] Video phrase interface
   - [ ] Input and upload video phrases
 - [ ] Data import / export
 
