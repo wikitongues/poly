@@ -146,7 +146,6 @@ Book = React.createClass( {
   },
 
   renderAuthor: function() {
-
     let users = this.props.users
     let authorName = ""
     for (var i = users.length - 1; i >= 0; i--) {
@@ -154,14 +153,21 @@ Book = React.createClass( {
         authorName = users[i].username
       }
     }
-    if (this.state.isEditingBook) {
-      return (
-        <p className="author">{authorName}</p>
-      )
+
+    if (this.bookIsOwnedByCurrentUser()) {
+      if (this.state.isEditingBook) {
+        return (
+          <p className="author">{authorName}</p>
+        )
+      } else {
+        return (
+          <a href={"/account"} className="author">{authorName}</a>
+        )
+      }
     } else {
       return (
-        <a href={"/users/" + this.state.book.user_id} className="author">{authorName}</a>
-      )
+          <a href={"/users/" + this.state.book.user_id} className="author">{authorName}</a>
+        )
     }
   },
 

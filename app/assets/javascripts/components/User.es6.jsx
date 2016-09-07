@@ -1,4 +1,4 @@
-Profile = React.createClass( {
+User = React.createClass( {
 
   getInitialState: function () {
     return {
@@ -111,11 +111,11 @@ Profile = React.createClass( {
               <img src={`http://www.gravatar.com/avatar/${this.props.hashedEmail}?s=200`} />
               <h2>{this.props.userData.username}</h2>
               <p>{this.props.userData.email}</p>
+
               {/*<div className="languages">
                 {langs}
               </div>*/}
               <p>Member since {createdMonth} {createdYear}</p>
-              <a href="account/edit">Edit</a>
               {/*{this.renderFollowButton()}
               <div className="followedBy">
               Followers ({followers.length})
