@@ -160,7 +160,7 @@ Book = React.createClass( {
       )
     } else {
       return (
-        <a href={"/accounts/" + this.state.book.user_id} className="author">{authorName}</a>
+        <a href={"/account"} className="author">{authorName}</a>
       )
     }
   },

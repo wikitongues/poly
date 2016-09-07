@@ -55,7 +55,7 @@ Planned features for future releases. Releases are mapped below. We use [semanti
 
 ###Version 0.4
 - [ ] Add tags to books
-- [ ] Search
+- [ ] Search 
 
 ###Version 1.0
 
