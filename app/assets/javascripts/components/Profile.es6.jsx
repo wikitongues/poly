@@ -86,10 +86,12 @@ Profile = React.createClass( {
   },
 
   renderEditButton: function() {
-    if(this.props.currentUser.id == this.props.userData.id) {
-      return (
-        <a href="account/edit">Edit</a>
-      )
+    if(this.props.currentUser) {
+      if(this.props.currentUser.id == this.props.userData.id) {
+        return (
+          <a href="account/edit">Edit</a>
+        )
+      }
     }
   },
 
