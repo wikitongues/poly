@@ -205,11 +205,20 @@ Dictionary = React.createClass( {
   },
 
   render: function() {
-    return (
-       <div className="dictionary">
-        <ul className="content">{this.renderPhrasePairs()}</ul>
-        {this.renderCreateNewPhraseButton()}
-       </div>
-    )
+    if(this.state.phrasePairs) {
+      return (
+         <div className="dictionary">
+          <ul className="content">{this.renderPhrasePairs()}</ul>
+          {this.renderCreateNewPhraseButton()}
+         </div>
+      )
+    } else {
+      return (
+         <div className="dictionary">
+          <DummyContent/>
+          {this.renderCreateNewPhraseButton()}
+         </div>
+      )
+    }
   }
 } )
