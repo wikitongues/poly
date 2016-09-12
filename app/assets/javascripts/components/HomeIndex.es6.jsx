@@ -47,7 +47,7 @@ HomeIndex = React.createClass ( {
               </button>
               {this.renderCreateBookPannel()}
               <button title="Sort by Favorites" onClick={this.onFavoriteSortClick} className="icon">
-                <img src={this.props.unstarred}/>
+                <img src={this.props.sort}/>
               </button>
             </div>
             <ul className="bookEntryList">
