@@ -1,12 +1,16 @@
 Rails.application.routes.draw do
 
-  devise_for :users, path: ""
+  devise_for :users,
+             path: "",
+             path_names: { edit: "/account/edit"}
+
   root to:  "home#index"
 
   resources :books, only: [:show, :new, :create, :destroy, :update]
 
   resources :phrase_pairs, only: [:create, :destroy, :update]
-  resources :accounts, only: [:show]
+  resources :users, only: [:show]
+  resources :account, only: [:index]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

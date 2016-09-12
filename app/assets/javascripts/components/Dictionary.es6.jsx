@@ -11,6 +11,12 @@ Dictionary = React.createClass( {
     }
   },
 
+  componentWillReceiveProps: function(newProps) {
+    this.setState({
+      phrasePairs: newProps.initialPhrasePairs
+    })
+  },
+
   onAddNewPhraseButtonClick: function() {
     this.setState({
         isPhraseInputActive: !this.state.isPhraseInputActive
@@ -24,11 +30,15 @@ Dictionary = React.createClass( {
 
   onSourcePhraseSubmit: function(e) {
     e.preventDefault()
-    this.props.onSourcePhraseSubmit(this.state.sourcePhrase),
-    this.setState({
-        isTargetInputActive: !this.state.isTargetInputActive,
-        sourcePhrase: ""
-    });
+    if(this.state.sourcePhrase) {
+      this.props.onSourcePhraseSubmit(this.state.sourcePhrase),
+      this.setState({
+          isTargetInputActive: !this.state.isTargetInputActive,
+          sourcePhrase: ""
+      });
+    } else {
+      alert("Source phrase is empty")
+    }
   },
 
   onTargetPhraseChange: function(e) {
@@ -37,12 +47,16 @@ Dictionary = React.createClass( {
 
   onTargetPhraseSubmit: function(e) {
     e.preventDefault()
-    this.props.onTargetPhraseSubmit(this.state.targetPhrase),
-    this.setState({
-      isPhraseInputActive: !this.state.isPhraseInputActive,
-      isTargetInputActive: !this.state.isTargetInputActive,
-      targetPhrase: ""
-    });
+    if(this.state.targetPhrase) {
+      this.props.onTargetPhraseSubmit(this.state.targetPhrase),
+      this.setState({
+        isPhraseInputActive: !this.state.isPhraseInputActive,
+        isTargetInputActive: !this.state.isTargetInputActive,
+        targetPhrase: ""
+      });
+    } else {
+      alert("Target phrase is empty")
+    }
   },
 
   onTargetPhraseMultipleSubmit: function(e) {

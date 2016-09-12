@@ -5,7 +5,8 @@ Book = React.createClass( {
       phrasePairs: this.props.initialPhrasePairs,
       isEditingBook: false,
       book: this.props.initialBook,
-      originalTitle:this.props.initialBook.title
+      // originalTitle:this.props.initialBook.title,
+      isDescriptionTruncated:true
     }
   },
 
@@ -38,6 +39,13 @@ Book = React.createClass( {
         book_id: this.state.book.id,
         phrase_pair: phrasePair
       },
+      success: function(phrasePair) {
+        var newPhrasePairs = this.state.phrasePairs;
+        newPhrasePairs.splice(this.state.phrasePairs.length -1, 1, phrasePair.phrase_pair)
+        this.setState({
+          phrasePairs: newPhrasePairs
+        })
+      }.bind(this),
       error: function() {
         console.log('Error: Save action failed')
       }
@@ -139,7 +147,6 @@ Book = React.createClass( {
   },
 
   renderAuthor: function() {
-
     let users = this.props.users
     let authorName = ""
     for (var i = users.length - 1; i >= 0; i--) {
@@ -147,14 +154,41 @@ Book = React.createClass( {
         authorName = users[i].username
       }
     }
-    if (this.state.isEditingBook) {
-      return (
-        <p className="author">{authorName}</p>
-      )
+
+    if (this.bookIsOwnedByCurrentUser()) {
+      if (this.state.isEditingBook) {
+        return (
+          <p className="author">{authorName}</p>
+        )
+      } else {
+        return (
+          <a href={"/account"} className="author">{authorName}</a>
+        )
+      }
     } else {
       return (
-        <a href={"/accounts/" + this.state.book.user_id} className="author">{authorName}</a>
-      )
+          <a href={"/users/" + this.state.book.user_id} className="author">{authorName}</a>
+        )
+    }
+  },
+
+  truncateText: function() {
+    this.setState({
+      isDescriptionTruncated: !this.state.isDescriptionTruncated
+    });
+  },
+
+  renderTruncatedDescription: function() {
+    if (this.state.book.description) {
+      if(this.state.book.description.length >= 132) {
+        if (this.state.isDescriptionTruncated) {
+          return <p className="description">{this.state.book.description.substring(0,132)}... <button onClick={this.truncateText}>More</button></p>;
+        } else {
+          return <p className="description">{this.state.book.description} <button onClick={this.truncateText}>Less</button></p>;
+        }
+      } else {
+        return <p className="description">{this.state.book.description}</p>;
+      }
     }
   },
 
@@ -162,7 +196,7 @@ Book = React.createClass( {
      if (this.state.isEditingBook) {
       return <textarea rows="4" className="description new isEditing" name="description" onChange={this.onInputChange} value={this.state.book.description} />;
     } else {
-       return <p className="description">{this.state.book.description}</p>;
+       return <span>{this.renderTruncatedDescription()}</span>
     }
   },
 

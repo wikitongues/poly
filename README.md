@@ -27,29 +27,35 @@ Planned features for future releases. Releases are mapped below. We use [semanti
 - [x] ~~Sign in upon account creation~~
 
 ###Version 0.2
-- [ ] Testing
-- [ ] Book search
-- [x] ~~Deployment~~
-- [ ] Handle media uploads
 - [x] ~~Profile page~~
   - [x] ~~User name~~
-  - [ ] User photo
   - [x] ~~User books~~
-  - [ ] Tag a book as Favorite
+  - [x] ~~Gravatar~~
+  - [ ] User edit profile data
+  - [ ] User upload profile picture
+- [x] ~~Deployment~~
 - [x] ~~Handle error messages on login page~~
+- [ ] Testing
+- [ ] Search
+- [ ] Video phrases
+  - [ ] Video phrase interface
+  - [ ] Input and upload video phrases
+- [ ] Data import / export
 
 ###Version  0.3
-- [ ] Audio and video phrase interface
-- [ ] Input and upload video phrases
+- [ ] Favorite a book
+- [ ] Follow a user
+- [ ] Filter content
 - [ ] Input and upload book banner images
 - [ ] Only save new book if all inputs are complete
 - [ ] Input area blur action behavior
+- [ ] In-progress phrase ellipsis animation
 - [ ] Document scroll position progress marker
 - [ ] Fixed book languages sub-header
 
 ###Version 0.4
 - [ ] Add tags to books
-- [ ] Search
+- [ ] Search 
 
 ###Version 1.0
 
