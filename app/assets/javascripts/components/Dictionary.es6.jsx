@@ -203,11 +203,21 @@ Dictionary = React.createClass( {
   },
 
   render: function() {
-    return (
-       <div className="dictionary">
-        <ul className="content">{this.renderPhrasePairs()}</ul>
-        {this.renderCreateNewPhraseButton()}
-       </div>
-    )
+    if(this.state.phrasePairs.length != 0 ) {
+      return (
+         <div className="dictionary">
+          <ul className="content">{this.renderPhrasePairs()}</ul>
+          {this.renderCreateNewPhraseButton()}
+         </div>
+      )
+    } else {
+      return (
+        <div className="dictionary">
+          <span className="notice">Phrasebook is empty</span>
+          <DummyContent/>
+          {this.renderCreateNewPhraseButton()}
+        </div>
+      )
+    }
   }
 } )
