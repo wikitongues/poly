@@ -179,24 +179,24 @@ Book = React.createClass( {
   },
 
   renderTruncatedDescription: function() {
-    if (this.state.book.description) {
-      if(this.state.book.description.length >= 132) {
-        if (this.state.isDescriptionTruncated) {
-          return <p className="description">{this.state.book.description.substring(0,132)}... <button onClick={this.truncateText}>More</button></p>;
-        } else {
-          return <p className="description">{this.state.book.description} <button onClick={this.truncateText}>Less</button></p>;
-        }
+    if(this.state.book.description.length >= 132) {
+      if (this.state.isDescriptionTruncated) {
+        return <p className="description">{this.state.book.description.substring(0,132)}... <button onClick={this.truncateText}>More</button></p>;
       } else {
-        return <p className="description">{this.state.book.description}</p>;
+        return <p className="description">{this.state.book.description} <button onClick={this.truncateText}>Less</button></p>;
       }
+    } else {
+      return <p className="description">{this.state.book.description}</p>;
     }
   },
 
   renderDescription: function() {
-     if (this.state.isEditingBook) {
-      return <textarea rows="4" className="description new isEditing" name="description" onChange={this.onInputChange} value={this.state.book.description} />;
-    } else {
-       return <span>{this.renderTruncatedDescription()}</span>
+   if (this.state.book.description) {
+      if (this.state.isEditingBook) {
+        return <textarea rows="4" className="description new isEditing" name="description" onChange={this.onInputChange} value={this.state.book.description} />;
+      } else {
+         return <span>{this.renderTruncatedDescription()}</span>
+      }
     }
   },
 
