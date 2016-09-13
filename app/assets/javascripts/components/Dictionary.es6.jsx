@@ -125,9 +125,7 @@ Dictionary = React.createClass( {
     if (this.props.isOwnedByCurrentUser) {
       if (this.state.isPhraseInputActive) {
         return (
-          <div>
-            {this.renderPhraseInputFields()}
-          </div>
+          <div>{this.renderPhraseInputFields()}</div>
         )
       } else {
         return (
@@ -160,7 +158,7 @@ Dictionary = React.createClass( {
           </form>
         </div>
       )
-    }
+    };
   },
 
   // NB If in continuous input state, show source input field following successful phrase pair completion.
