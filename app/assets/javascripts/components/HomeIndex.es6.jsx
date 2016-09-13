@@ -37,14 +37,15 @@ HomeIndex = React.createClass ( {
   render: function() {
     return (
       <div className="container">
-        <NavBar currentUser={this.props.currentUser} logo={this.props.logo}/>
+        <NavBar currentUser={this.props.currentUser} logo={this.props.logo} search={this.props.search}/>
         <div className="dashboard">
           <span className="backgroundElement"></span>
           <div className="indexContent">
             <div className="controlPannel">
-              <button title="Search" onClick={this.onSearchStoreClick} className="icon">
+              {/*<button title="Search" onClick={this.onSearchStoreClick} className="icon">
                 <img src={this.props.search}/>
               </button>
+              */}
               {this.renderCreateBookPannel()}
               <button title="Sort by Favorites" onClick={this.onFavoriteSortClick} className="icon">
                 <img src={this.props.sort}/>
