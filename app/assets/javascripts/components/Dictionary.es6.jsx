@@ -203,7 +203,7 @@ Dictionary = React.createClass( {
   },
 
   render: function() {
-    if(this.state.phrasePairs) {
+    if(this.state.phrasePairs.length != 0 ) {
       return (
          <div className="dictionary">
           <ul className="content">{this.renderPhrasePairs()}</ul>
@@ -212,10 +212,11 @@ Dictionary = React.createClass( {
       )
     } else {
       return (
-         <div className="dictionary">
+        <div className="dictionary">
+          <span className="notice">Phrasebook is empty</span>
           <DummyContent/>
           {this.renderCreateNewPhraseButton()}
-         </div>
+        </div>
       )
     }
   }
