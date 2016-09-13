@@ -6,9 +6,11 @@
 <g id="Layer_3">
 </g>
 <g id="Layer_4">
+	<g>
 
-		<line fill="none" stroke="#C9CDCF" stroke-width="5" stroke-linecap="round" stroke-miterlimit="10" x1="53.6" y1="53.6" x2="6.4" y2="6.4"/>
-
-		<line fill="none" stroke="#C9CDCF" stroke-width="5" stroke-linecap="round" stroke-miterlimit="10" x1="53.6" y1="6.4" x2="6.4" y2="53.6"/>
+			<rect x="25.1" y="2" transform="matrix(0.7071 0.7071 -0.7071 0.7071 29.647 -13.1576)" fill="#fff" width="11.3" height="54.4"/>
+		<path fill="#fff" d="M2.3,56.2l3.3-9.8l8.1,8.1l-9.8,3.3C2.9,58,2,57.1,2.3,56.2z"/>
+		<path fill="#fff" d="M58.3,8.2l-6.5-6.5c-0.4-0.4-1.1-0.4-1.5,0l-2.4,2.4l8,8l2.4-2.4C58.7,9.3,58.7,8.6,58.3,8.2z"/>
+	</g>
 </g>
 </svg>
