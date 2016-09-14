@@ -97,7 +97,11 @@ Book = React.createClass( {
   },
 
   onFavoriteBook: function() {
-    alert("Favoriting is coming soon!")
+    $.ajax({
+      url:'/favorite/',
+      type: "PUT"
+    })
+    console.log('hi')
   },
 
 
