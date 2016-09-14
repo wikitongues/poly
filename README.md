@@ -41,6 +41,7 @@ Planned features for future releases. Releases are mapped below. We use [semanti
   - [ ] Video phrase interface
   - [ ] Input and upload video phrases
 - [ ] Data import / export
+- [ ] Proper user validations
 
 ###Version  0.3
 - [ ] Favorite a book
