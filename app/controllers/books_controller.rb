@@ -54,6 +54,22 @@ class BooksController < AuthenticatedController
     end
   end
 
+  def favorite
+    type = params[:type]
+    if type == "favorite"
+      current_user.favorites << @recipe
+      redirect_to :back, notice: 'You favorited #{@recipe.name}'
+
+    elsif type == "unfavorite"
+      current_user.favorites.delete(@recipe)
+      redirect_to :back, notice: 'Unfavorited #{@recipe.name}'
+
+    else
+      redirect_to :back, notice: 'Nothing happened.'
+    end
+
+  end
+
   private
 
   def create_or_update_params
