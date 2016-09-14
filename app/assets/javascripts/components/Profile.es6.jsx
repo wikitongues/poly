@@ -42,9 +42,6 @@ Profile = React.createClass( {
       if(this.currentUserProfile()) {
         return (
           <div className="controlPannel">
-            <button title="Search their books" onClick={this.onSearchStoreClick} className="icon">
-              <img src={this.props.search}/>
-            </button>
             <p className="header">Books by {this.props.userData.username}</p>
             <button title="Sort by Favorites" onClick={this.onFavoriteSortClick} className="icon">
               <img src={this.props.unstarred}/>
@@ -54,9 +51,6 @@ Profile = React.createClass( {
       } else {
         return (
           <div className="controlPannel">
-            <button title="Search your books" onClick={this.onSearchStoreClick} className="icon">
-              <img src={this.props.search}/>
-            </button>
             <a className="header" href="/books/new" title="Create a new book">New book</a>
             <button title="Sort by Favorites" onClick={this.onFavoriteSortClick} className="icon">
               <img src={this.props.unstarred}/>
@@ -67,9 +61,6 @@ Profile = React.createClass( {
     } else {
      return (
         <div className="controlPannel">
-          <button title="Search their books" onClick={this.onSearchStoreClick} className="icon">
-            <img src={this.props.search}/>
-          </button>
           <p className="header">Books by {this.props.userData.username}</p>
           <button title="Sort by Favorites" onClick={this.onFavoriteSortClick} className="icon">
             <img src={this.props.unstarred}/>
@@ -113,7 +104,7 @@ Profile = React.createClass( {
 
     return(
       <div className="container">
-        <NavBar currentUser={this.props.currentUser} logo={this.props.logo}/>
+        <NavBar currentUser={this.props.currentUser} logo={this.props.logo} search={this.props.search}/>
         <span className="backgroundElement"></span>
         <div id="profile">
           <div className="userInformation">

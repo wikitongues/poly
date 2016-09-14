@@ -40,7 +40,7 @@ NewBook = React.createClass( {
   render: function() {
     return(
       <div className="container">
-        <NavBar currentUser={this.props.currentUser} logo={this.props.logo}/>
+        <NavBar currentUser={this.props.currentUser} logo={this.props.logo} search={this.props.search}/>
         <span className="backgroundElement"></span>
         <div className="book">
           <form onSubmit={this.onSubmit}>
@@ -55,9 +55,12 @@ NewBook = React.createClass( {
                   <input className="new language target" type="text" name="target_language" placeholder="Target" value={this.state.targetLanguager} onChange={this.onInputChange}/>
                 </section>
               </section>
-              <button title="Menu" className="more icon">
+              {/*<button title="Menu" className="more icon">
                 <img src={this.props.menuAlt}/>
-              </button>
+              </button>*/}
+              <span title="Menu" className="icon">
+                <img src={this.props.menuAlt}/>
+              </span>
             </fieldset>
             <fieldset className="info">
               <div className="wrapper">
