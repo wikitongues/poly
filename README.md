@@ -31,7 +31,7 @@ Planned features for future releases. Releases are mapped below. We use [semanti
   - [x] ~~User name~~
   - [x] ~~User books~~
   - [x] ~~Gravatar~~
-  - [ ] User edit profile data
+  - [x] ~~User edit profile data~~
   - [ ] User upload profile picture
 - [x] ~~Deployment~~
 - [x] ~~Handle error messages on login page~~
@@ -41,6 +41,7 @@ Planned features for future releases. Releases are mapped below. We use [semanti
   - [ ] Video phrase interface
   - [ ] Input and upload video phrases
 - [ ] Data import / export
+- [ ] Proper user validations
 
 ###Version  0.3
 - [ ] Favorite a book
@@ -55,7 +56,7 @@ Planned features for future releases. Releases are mapped below. We use [semanti
 
 ###Version 0.4
 - [ ] Add tags to books
-- [ ] Search 
+- [ ] Search
 
 ###Version 1.0
 

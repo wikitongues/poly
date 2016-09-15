@@ -4,8 +4,8 @@ HomeIndex = React.createClass ( {
     alert("Search is coming soon!")
   },
 
-  onFavoriteSortClick: function() {
-    alert("Sorting by favorites is coming soon!")
+  onSortClick: function() {
+    alert("Sorting is coming soon!")
   },
 
   renderCreateBookPannel: function() {
@@ -47,7 +47,7 @@ HomeIndex = React.createClass ( {
               </button>
               */}
               {this.renderCreateBookPannel()}
-              <button title="Sort by Favorites" onClick={this.onFavoriteSortClick} className="icon">
+              <button title="Sort books" onClick={this.onSortClick} className="icon">
                 <img src={this.props.sort}/>
               </button>
             </div>
