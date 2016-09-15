@@ -234,7 +234,6 @@ Book = React.createClass( {
               </section>
             </div>
             { this.renderBookMenu() }
-            {/*<ProgressBar />*/}
           </div>
           <div className="info">
             <div className="wrapper">
@@ -243,6 +242,7 @@ Book = React.createClass( {
               { this.renderDescription() }
             </div>
           </div>
+          {/*<ProgressBar />*/}
           <div className="NObannerWrapper"></div>
 
           <Dictionary
