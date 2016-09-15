@@ -4,10 +4,6 @@ HomeIndex = React.createClass ( {
     alert("Search is coming soon!")
   },
 
-  onSortClick: function() {
-    alert("Sorting is coming soon!")
-  },
-
   renderCreateBookPannel: function() {
     if (this.props.currentUser) {
       return (
@@ -37,18 +33,12 @@ HomeIndex = React.createClass ( {
   render: function() {
     return (
       <div className="container">
-        <NavBar currentUser={this.props.currentUser} logo={this.props.logo}/>
+        <NavBar currentUser={this.props.currentUser} logo={this.props.logo} search={this.props.search}/>
         <div className="dashboard">
           <span className="backgroundElement"></span>
           <div className="indexContent">
             <div className="controlPannel">
-              <button title="Search" onClick={this.onSearchStoreClick} className="icon">
-                <img src={this.props.search}/>
-              </button>
               {this.renderCreateBookPannel()}
-              <button title="Sort books" onClick={this.onSortClick} className="icon">
-                <img src={this.props.sort}/>
-              </button>
             </div>
             <ul className="bookEntryList">
               {this.renderBooks()}

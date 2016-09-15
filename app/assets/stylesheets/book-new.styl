@@ -1,7 +1,13 @@
 .book
-
   form
     margin 0
+
+    .tools
+      .icon[title="Menu"]
+        padding 18px
+
+        img
+          height 22px
 
   .info, .tools
     input, textarea
@@ -22,12 +28,12 @@
     margin 0
     .new
       &.title
-        font-size 2em
-        margin 21px 0 20px
+        font-size 1.7em
+        margin 0.7em 0 0.6em
         padding 0
 
       &.description
-        margin 2em 0
+        margin 0 0 2em
         resize vertical
         font-size 1em
 
@@ -37,6 +43,17 @@
   .tools
     padding 0
 
+    span
+      width 60px
+      float left
+      display inline-block
+      height 60px
+      padding 15px
+
+      img
+        display inline-block
+        height 30px
+
     .cardinality
       section
         input
@@ -44,16 +61,16 @@
           width 47%
           text-align center
           float left
-          background lighten(#ADBCCA,10%)
+          background lighten(#ADBCCA,20%)
           border-radius $radius
           font-size 1.3em
-          padding 8px 0 8px
+          padding 8px 0 9px
           margin 9px 0 8px
           position initial
           color white
 
           &:focus
-            background rgba(255,255,255,.05)
+            background lighten(#ADBCCA,40%)
 
           &:first-of-type
             margin-right 3%

@@ -1,7 +1,6 @@
 DummyContent = React.createClass( {
   randomString: function() {
     let charLength = Math.floor(Math.random() * (36 - 2)) + 2;
-
     return Math.round((Math.pow(36, charLength + 1) - Math.random() * Math.pow(36, charLength))).toString(36).slice(1);
   },
 

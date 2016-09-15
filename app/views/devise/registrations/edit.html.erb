@@ -1,4 +1,6 @@
+<%= render 'layouts/header'%>
 <div id="login">
+  <span><a href="/">Back</a></span>
   <!-- <h2>Edit <%= resource_name.to_s.humanize %></h2> -->
   <h2>Edit your information</h2>
 
@@ -42,6 +44,4 @@
   <div class="actions delete">
     <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %>
   </div>
-
-  <%= link_to "Back", :back %>
 </div>
