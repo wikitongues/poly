@@ -197,6 +197,10 @@ Book = React.createClass( {
       } else {
          return <span>{this.renderTruncatedDescription()}</span>
       }
+    } else {
+      if (this.state.isEditingBook) {
+        return <textarea rows="4" className="description new isEditing" name="description" onChange={this.onInputChange} value={this.state.book.description} placeholder="A collection of useful phrases in Laputa, a Swiftian language spoken in Balnibarbi and a number of other islands..."/>;
+      }
     }
   },
 
