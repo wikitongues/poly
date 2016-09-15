@@ -2,6 +2,13 @@
   form
     margin 0
 
+    .tools
+      .icon[title="Menu"]
+        padding 18px
+
+        img
+          height 22px
+
   .info, .tools
     input, textarea
       border none
@@ -54,7 +61,7 @@
           width 47%
           text-align center
           float left
-          background lighten(#ADBCCA,10%)
+          background lighten(#ADBCCA,20%)
           border-radius $radius
           font-size 1.3em
           padding 8px 0 9px
@@ -63,7 +70,7 @@
           color white
 
           &:focus
-            background rgba(255,255,255,.05)
+            background lighten(#ADBCCA,40%)
 
           &:first-of-type
             margin-right 3%
