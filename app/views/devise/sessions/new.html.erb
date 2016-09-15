@@ -32,7 +32,7 @@
   <% end %>
 
 <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
-  <span class="forgot-password">
+  <span class="center">
     <%= link_to "Forgot your password?", new_password_path(resource_name), {:class => 'forgot-password'} %>
   </span>
 <% end -%>
