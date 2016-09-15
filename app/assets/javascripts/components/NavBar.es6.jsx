@@ -25,7 +25,7 @@ NavBar = React.createClass( {
         <a className="icon home" href="/">
           <img src={this.props.logo} alt=""/>
         </a>
-        {/*<SearchBar search={this.props.search}/>*/}
+        <SearchBar search={this.props.search}/>
         {this.renderSignIn()}
       </nav>
     )
