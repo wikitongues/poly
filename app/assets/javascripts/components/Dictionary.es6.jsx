@@ -93,6 +93,7 @@ Dictionary = React.createClass( {
       sourcePhrase: "",
       targetPhrase: ""
     });
+    this.onStopStream();
   },
 
 
@@ -165,6 +166,12 @@ Dictionary = React.createClass( {
 
   onSaveStream(stream) {
     this.setState({stream: stream});
+  },
+
+  onStopStream() {
+    var tracks = this.state.stream.getTracks();
+    tracks[0].stop();
+    tracks[1].stop();    
   },
 
 // Render Zone
