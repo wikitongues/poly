@@ -121,16 +121,16 @@ Dictionary = React.createClass( {
     })
   },
 
-  onRenderVideoInput() {
-    console.log(this.refs);
-    this.refs.cameraStream.controls = false;
-    this.refs.buttonRecord.style.display= 'initial';
+  onRenderVideoInput(cameraStream) {
+    var video = document.getElementById('camera-stream');
+    video.controls = false;
 
-    this.refs.cameraStream.muted = true;
+    video.muted = true;
     navigator.getUserMedia = (navigator.getUserMedia ||
                               navigator.webkitGetUserMedia ||
                               navigator.mozGetUserMedia || 
                               navigator.msGetUserMedia);
+    
     var self = this;
     if (navigator.getUserMedia) {
       // Request the camera.
@@ -145,7 +145,7 @@ Dictionary = React.createClass( {
           //Rendering video on screen part
 
           // Get a reference to the video element on the page.
-          var video = document.getElementById('camera-stream');
+          
 
           // Create an object URL for the video stream and use this 
           // to set the video source.
@@ -163,7 +163,7 @@ Dictionary = React.createClass( {
 
     } else {
       alert('Sorry, your browser does not support getUserMedia');
-      this.refs.video.style.display = "none";
+      video.style.display = "none";
     }
   },
 
