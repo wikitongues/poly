@@ -122,6 +122,7 @@ Dictionary = React.createClass( {
   },
 
   onRenderVideoInput() {
+    console.log(this.refs);
     this.refs.cameraStream.controls = false;
     this.refs.buttonRecord.style.display= 'initial';
 
@@ -271,20 +272,14 @@ Dictionary = React.createClass( {
   renderVideoInput() {
     if (this.state.isInputVideo) {
       return (
-        <div className="videoComponent">
-          <video id="camera-stream" width="570" autoPlay muted  ></video>
-          {this.renderRecordButton()}
-          <button title="Cancel" onClick={this.onCancelEditPhrase} className="close icon">
-            <img src={this.props.closeAlt} alt="close"/>
-          </button>
-
-          <button title="Text" onClick={this.onCloseVideoComponent} className="text icon">
-            <img src={this.props.textAlt} alt="close"/>
-          </button>
-
-          <button hidden className="extra" ref= "button-download" id="button-download">Download</button>
-          <button hidden className="extra" onClick={this.handleUploadClick} id="button-upload">Upload Video</button>
-        </div>
+        <Video 
+        onRenderVideoInput={this.onRenderVideoInput}
+        renderRecordButton={this.renderRecordButton}
+        onCancelEditPhrase={this.onCancelEditPhrase}
+        onCloseVideoComponent={this.onCloseVideoComponent}
+        closeAlt={this.props.closeAlt}
+        textAlt={this.props.textAlt}
+        />
       );
     }
   },
