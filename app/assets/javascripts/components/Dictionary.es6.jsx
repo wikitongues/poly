@@ -121,6 +121,51 @@ Dictionary = React.createClass( {
     })
   },
 
+  onRenderVideoInput() {
+    this.refs.cameraStream.controls = false;
+    this.refs.buttonRecord.style.display= 'initial';
+
+    this.refs.cameraStream.muted = true;
+    navigator.getUserMedia = (navigator.getUserMedia ||
+                              navigator.webkitGetUserMedia ||
+                              navigator.mozGetUserMedia || 
+                              navigator.msGetUserMedia);
+    var self = this;
+    if (navigator.getUserMedia) {
+      // Request the camera.
+      navigator.getUserMedia(
+        // Constraints
+        self.state.mediaConstraints,
+
+        // Success Callback
+        function(stream) {
+          self.saveStreamData(stream);
+
+          //Rendering video on screen part
+
+          // Get a reference to the video element on the page.
+          var video = document.getElementById('camera-stream');
+
+          // Create an object URL for the video stream and use this 
+          // to set the video source.
+          video.src = window.URL.createObjectURL(stream);
+          self.updateStream(stream);
+          
+        },
+
+        // Error Callback
+        function(err) {
+          // Log the error to the console.
+          console.log('The following error occurred when trying to use getUserMedia: ' + err);
+        }
+      );
+
+    } else {
+      alert('Sorry, your browser does not support getUserMedia');
+      this.refs.video.style.display = "none";
+    }
+  },
+
 // Render Zone
 
   renderPhrasePairs() {
