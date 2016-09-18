@@ -9,7 +9,9 @@ Dictionary = React.createClass( {
       isVideoRecording: false,
       phrasePairs: this.props.initialPhrasePairs,
       sourcePhrase: "",
-      targetPhrase: ""
+      targetPhrase: "",
+      mediaConstraints: { video: true, audio: true },
+      stream:""
     }
   },
 
@@ -130,7 +132,7 @@ Dictionary = React.createClass( {
                               navigator.webkitGetUserMedia ||
                               navigator.mozGetUserMedia || 
                               navigator.msGetUserMedia);
-    
+
     var self = this;
     if (navigator.getUserMedia) {
       // Request the camera.
@@ -140,18 +142,12 @@ Dictionary = React.createClass( {
 
         // Success Callback
         function(stream) {
-          self.saveStreamData(stream);
-
-          //Rendering video on screen part
-
-          // Get a reference to the video element on the page.
-          
-
+          //Saves the ID of our stream in order to be able to shut it
+          //later
+          self.onSaveStream(stream);
           // Create an object URL for the video stream and use this 
           // to set the video source.
           video.src = window.URL.createObjectURL(stream);
-          self.updateStream(stream);
-          
         },
 
         // Error Callback
@@ -165,6 +161,10 @@ Dictionary = React.createClass( {
       alert('Sorry, your browser does not support getUserMedia');
       video.style.display = "none";
     }
+  },
+
+  onSaveStream(stream) {
+    this.setState({stream: stream});
   },
 
 // Render Zone
