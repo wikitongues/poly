@@ -237,8 +237,8 @@ Dictionary = React.createClass( {
             <img src={this.props.textAlt} alt="close"/>
           </button>
 
-          <button className="extra" ref= "button-download" id="button-download">Download</button>
-          <button className="extra" onClick={this.handleUploadClick} id="button-upload">Upload Video</button>
+          <button hidden className="extra" ref= "button-download" id="button-download">Download</button>
+          <button hidden className="extra" onClick={this.handleUploadClick} id="button-upload">Upload Video</button>
         </div>
       );
     }
