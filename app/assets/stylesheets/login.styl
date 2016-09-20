@@ -7,10 +7,16 @@
   border-radius $radius
   margin auto
   overflow auto
+  position relative
 
   h2
     text-align center
     font-size 3em
+    font-weight 100
+
+  h3
+    text-align center
+    font-size 2em
     font-weight 100
 
   p
@@ -29,6 +35,11 @@
       text-align right
       margin-right 5px
 
+    i
+      display block
+      float left
+      font-weight 100
+
     input:not([type="hidden"])
       width 100%
       margin 30px 0 0
@@ -36,7 +47,8 @@
       font-size 18px
       padding 15px
       background #fafafa
-      border 3px solid transparent
+      border 1px solid #f6f6f6
+      border-bottom-width 3px
       border-radius $radius
       outline none
       transition all ease-in-out $time
@@ -95,13 +107,18 @@
       color white
       font-size 16px
 
+    &.delete
+      input
+        background #ddd
+
   span
     width 49.5%
     display inline-block
 
     &:nth-of-type(2)
       text-align right
-    &:last-of-type
+
+    &.center
       width 100%
       margin-top 15px
       text-align center

@@ -5,7 +5,7 @@ class BooksController < AuthenticatedController
     @users=User.all
     @book = Book.find(params[:id])
     if @book.present?
-      @phrase_pairs = @book.phrase_pairs
+      @phrase_pairs = @book.phrase_pairs.order("created_at ASC")
       authorize @book
     else
       skip_authorization

@@ -70,8 +70,11 @@
           width 90%
 
       .container
+        padding-bottom 280px
+
         nav
           height initial
+          margin-bottom 0
 
           .icon
             height 120px
@@ -102,46 +105,62 @@
             p
               padding 0 22px
 
-        .welcomeBar
-          display none
-
         .dashboard
-          .bookEntryList
+          .indexContent
             width 100%
+            max-width 100%
 
-            .bookEntry
-              border-bottom-width 3px
+            .controlPannel
+              display inline-block
+              float left
+              width 100%
+              height initial
+
+              button
+                img
+                  width 82px
+                  height 82px
+
               a
-                section
-                  width 100%
+                padding 25px 20px 24px 20px
 
-                  &.info
-                    .clear
-                      .title
-                        font-size 1.1em
-                        margin 40px 0 22px 40px
+            .bookEntryList
+              display inline-block
+              width 100%
 
-                      .details
-                        margin 0 0 0 40px
+              .bookEntry
+                border-bottom-width 3px
+                a
+                  section
+                    width 100%
 
-                        img
-                          height 40px
-                          width 40px
-                          margin 10px 22px
+                    &.info
+                      .clear
+                        .title
+                          font-size 1.1em
+                          margin 40px 0 22px 40px
 
-                        .language
-                          font-size 14px
+                        .details
+                          margin 0 0 0 40px
 
-                    .meta
-                      padding 10px 40px 40px 40px
+                          img
+                            height 40px
+                            width 40px
+                            margin 10px 22px
 
-                      p
-                        margin 0
-                        padding 0
-                        clear initial
+                          .language
+                            font-size 14px
 
-                      .author
-                        float left
+                      .meta
+                        padding 10px 40px 40px 40px
+
+                        p
+                          margin 0
+                          padding 0
+                          clear initial
+
+                        .author
+                          float left
 
           .newBook
             line-height .3
@@ -151,16 +170,48 @@
             transform translateX(-50%)
 
         .book
+          max-width 100%
           margin-bottom 0
+
+          .tools
+            width 100%
+
+            .icon
+              margin 0
+              padding 25px
+
+              img
+                width 82px
+                height 82px
+
+            .cardinality
+              width 73%
+
+              section
+                width 100%
+
+                .language
+                  font-size 1.1em
+                  margin-top 35px
+                  margin-bottom 35px
+
+                input
+                  margin-bottom 0
+
+                img
+                  margin 0.7em -30px
+                  height 60px
+                  width 60px
 
           .info
             .wrapper
               width initial
 
               h1, input
-                width 80%
+                width 100%
                 float left
                 font-size 21px
+                max-width 100%
 
               input.title
                 padding 0
@@ -172,24 +223,6 @@
               .menu
                 top 50px
                 right -20px
-
-          .cardinality
-            border-top 3px solid #eee
-
-            section
-              width 100%
-
-              .language
-                width 50%
-                font-size 16px
-
-              input
-                margin-bottom 0
-
-              img
-                margin 1.1em -30px
-                height 60px
-                width 60px
 
           .dictionary
             width 100%
@@ -278,14 +311,15 @@
               border-bottom-width 3px
 
         #profile
+          width 100%
           min-width initial
 
-          .info,
+          .userInformation,
           .dashboard
             float left
             width 100%
 
-          .info
+          .userInformation
             padding 0
 
             .wrapper
@@ -293,8 +327,24 @@
               padding 1em
 
           .dashboard
-            h1, .bookEntryList
-              width 95%
+            max-width 100%
+            padding-left 0
+
+            .indexContent
+              display inline-block
+              float left
+
+              .controlPannel
+                p.header
+                  width 76%
+
+            .bookEntryList
+              .bookEntry
+                a
+                  .info
+                    section
+                      h2
+                        font-size 1.3em
 
             h1
               margin-top .3em

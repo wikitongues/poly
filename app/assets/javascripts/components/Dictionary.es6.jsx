@@ -15,7 +15,13 @@ Dictionary = React.createClass( {
     }
   },
 
-  onAddNewPhraseButtonClick() {
+  componentWillReceiveProps: function(newProps) {
+    this.setState({
+      phrasePairs: newProps.initialPhrasePairs
+    })
+  },
+
+  onAddNewPhraseButtonClick: function() {
     this.setState({
         isPhraseInputActive: !this.state.isPhraseInputActive
     });
@@ -27,11 +33,15 @@ Dictionary = React.createClass( {
 
   onSourcePhraseSubmit(e) {
     e.preventDefault()
-    this.props.onSourcePhraseSubmit(this.state.sourcePhrase),
-    this.setState({
-        isTargetInputActive: !this.state.isTargetInputActive,
-        sourcePhrase: ""
-    });
+    if(this.state.sourcePhrase) {
+      this.props.onSourcePhraseSubmit(this.state.sourcePhrase),
+      this.setState({
+          isTargetInputActive: !this.state.isTargetInputActive,
+          sourcePhrase: ""
+      });
+    } else {
+      alert("Source phrase is empty")
+    }
   },
 
   onTargetPhraseChange(e) {
@@ -40,12 +50,16 @@ Dictionary = React.createClass( {
 
   onTargetPhraseSubmit(e) {
     e.preventDefault()
-    this.props.onTargetPhraseSubmit(this.state.targetPhrase),
-    this.setState({
-      isPhraseInputActive: !this.state.isPhraseInputActive,
-      isTargetInputActive: !this.state.isTargetInputActive,
-      targetPhrase: ""
-    });
+    if(this.state.targetPhrase) {
+      this.props.onTargetPhraseSubmit(this.state.targetPhrase),
+      this.setState({
+        isPhraseInputActive: !this.state.isPhraseInputActive,
+        isTargetInputActive: !this.state.isTargetInputActive,
+        targetPhrase: ""
+      });
+    } else {
+      alert("Target phrase is empty")
+    }
   },
 
   onTargetPhraseMultipleSubmit(e) {
@@ -131,7 +145,7 @@ Dictionary = React.createClass( {
     video.muted = true;
     navigator.getUserMedia = (navigator.getUserMedia ||
                               navigator.webkitGetUserMedia ||
-                              navigator.mozGetUserMedia || 
+                              navigator.mozGetUserMedia ||
                               navigator.msGetUserMedia);
 
     var self = this;
@@ -146,7 +160,7 @@ Dictionary = React.createClass( {
           //Saves the ID of our stream in order to be able to shut it
           //later
           self.onSaveStream(stream);
-          // Create an object URL for the video stream and use this 
+          // Create an object URL for the video stream and use this
           // to set the video source.
           video.src = window.URL.createObjectURL(stream);
         },
@@ -171,7 +185,7 @@ Dictionary = React.createClass( {
   onStopStream() {
     var tracks = this.state.stream.getTracks();
     tracks[0].stop();
-    tracks[1].stop();    
+    tracks[1].stop();
   },
 
 // Render Zone
@@ -237,7 +251,7 @@ Dictionary = React.createClass( {
           </form>
         </div>
       )
-    }
+    };
   },
 
   // NB If in continuous input state, show source input field following successful phrase pair completion.
@@ -279,7 +293,7 @@ Dictionary = React.createClass( {
   renderVideoInput() {
     if (this.state.isInputVideo) {
       return (
-        <Video 
+        <Video
         onRenderVideoInput={this.onRenderVideoInput}
         renderRecordButton={this.renderRecordButton}
         onCancelEditPhrase={this.onCancelEditPhrase}
@@ -332,15 +346,23 @@ Dictionary = React.createClass( {
     }
   },
 
-  render() {
-    return (
-       <div className="dictionary">
-        <section className="content-wrapper">
+  render: function() {
+    if(this.state.phrasePairs.length != 0 ) {
+      return (
+         <div className="dictionary">
           <ul className="content">{this.renderPhrasePairs()}</ul>
           {this.renderVideoInput()}
           {this.renderCreateNewPhraseButton()}
-        </section>
-       </div>
-    )
+         </div>
+      )
+    } else {
+      return (
+        <div className="dictionary">
+          <span className="notice">Phrasebook is empty</span>
+          <DummyContent/>
+          {this.renderCreateNewPhraseButton()}
+        </div>
+      )
+    }
   }
 } );

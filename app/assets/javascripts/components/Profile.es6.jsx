@@ -1,7 +1,6 @@
 Profile = React.createClass( {
 
-  getInitialState() {
-    //mockup data
+  getInitialState: function () {
     return {
       languages: ['Swiss german', 'German', 'French', 'English', 'Portuguese'],
       followers: [{username:'Daniel Udell', user_id:3},{username:'Charles Darwin', user_id:9},{username:'Marie Curie', user_id:1},{username:'Johannes Kepler', user_id:3},{username:'Louis Pasteur', user_id:3}]
@@ -30,15 +29,44 @@ Profile = React.createClass( {
     }
   },
 
-  renderDashboardHeader() {
+  onSearchStoreClick: function() {
+    alert("Searching is coming soon!")
+  },
+
+  onFavoriteSortClick: function() {
+    alert("Favoriting is coming soon!")
+  },
+
+  renderDashboardHeader: function() {
     if (this.props.currentUser) {
       if(this.currentUserProfile()) {
-        return <h1>Books by {this.props.userData.username}</h1>
+        return (
+          <div className="controlPannel">
+            <p className="header">Books by {this.props.userData.username}</p>
+            <button title="Sort by Favorites" onClick={this.onFavoriteSortClick} className="icon">
+              <img src={this.props.unstarred}/>
+            </button>
+          </div>
+        )
       } else {
-        return <h1>Your books</h1>
+        return (
+          <div className="controlPannel">
+            <a className="header" href="/books/new" title="Create a new book">New book</a>
+            <button title="Sort by Favorites" onClick={this.onFavoriteSortClick} className="icon">
+              <img src={this.props.unstarred}/>
+            </button>
+          </div>
+        )
       }
     } else {
-     return <h1>Books by {this.props.userData.username}</h1>
+     return (
+        <div className="controlPannel">
+          <p className="header">Books by {this.props.userData.username}</p>
+          <button title="Sort by Favorites" onClick={this.onFavoriteSortClick} className="icon">
+            <img src={this.props.unstarred}/>
+          </button>
+        </div>
+      )
     }
   },
 
@@ -48,7 +76,17 @@ Profile = React.createClass( {
     }
   },
 
-  render() {
+  renderEditButton: function() {
+    if(this.props.currentUser) {
+      if(this.props.currentUser.id == this.props.userData.id) {
+        return (
+          <a href="account/edit">Edit</a>
+        )
+      }
+    }
+  },
+
+  render: function() {
     let langs = []
     this.state.languages.forEach(function (lang) {
       langs.push(<span className="language">{lang}</span>)
@@ -66,18 +104,19 @@ Profile = React.createClass( {
 
     return(
       <div className="container">
-        <NavBar currentUser={this.props.currentUser} logo={this.props.logo}/>
+        <NavBar currentUser={this.props.currentUser} logo={this.props.logo} search={this.props.search}/>
+        <span className="backgroundElement"></span>
         <div id="profile">
-          <div className="info">
+          <div className="userInformation">
             <div className="wrapper">
               <img src={`http://www.gravatar.com/avatar/${this.props.hashedEmail}?s=200`} />
               <h2>{this.props.userData.username}</h2>
               <p>{this.props.userData.email}</p>
-
               {/*<div className="languages">
                 {langs}
               </div>*/}
               <p>Member since {createdMonth} {createdYear}</p>
+              {this.renderEditButton()}
               {/*{this.renderFollowButton()}
               <div className="followedBy">
               Followers ({followers.length})
@@ -88,11 +127,13 @@ Profile = React.createClass( {
             </div>
           </div>
           <div className="dashboard">
-            {this.renderDashboardHeader()}
-            <ul className="bookEntryList">
-              {this.renderAuthoredBooks()}
-            </ul>
-            {this.renderCreateBookButton()}
+            <div className="indexContent">
+              {this.renderDashboardHeader()}
+              <ul className="bookEntryList">
+                {this.renderAuthoredBooks()}
+              </ul>
+              {this.renderCreateBookButton()}
+            </div>
           </div>
         </div>
       </div>

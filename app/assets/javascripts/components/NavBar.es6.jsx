@@ -4,7 +4,7 @@ NavBar = React.createClass( {
     if (this.props.currentUser) {
       return (
           <span className="loggedIn">
-            <a className="currentUser" href={"/accounts/" + this.props.currentUser.id}>{this.props.currentUser.username}</a>
+            <a className="currentUser" href="/account">{this.props.currentUser.username}</a>
             <a href="/sign_out">Sign out</a>
           </span>
       )
@@ -25,6 +25,7 @@ NavBar = React.createClass( {
         <a className="icon home" href="/">
           <img src={this.props.logo} alt=""/>
         </a>
+        {/*<SearchBar search={this.props.search}/>*/}
         {this.renderSignIn()}
       </nav>
     )

@@ -9,7 +9,12 @@ html
     width inherit
     margin 0
     display inline-block
-    background #eee
+    background #F2F5F6
+
+    .container
+      display inline-block
+      width 100%
+      padding-bottom 90px
 
 a
   color $blue
@@ -29,12 +34,31 @@ p.version
 
 .flash_notice, .flash_alert
   z-index 10
-  width 100%
+  font-weight 100
   text-align center
-  padding 21px
+  padding 22px 41px
+  border-radius $radius
+  position absolute
+  right 50px
+  bottom 40px
+  boxShadow()
 
 .flash_notice
-  background #E9FFE9
+  border 1px solid #575f6b
+  background #5c6470
+  color #c7e0ff
 
 .flash_alert
+  color #e85e85
+  border 1px solid #ffe5e5
   background #FFE9E9
+
+.backgroundElement
+  position absolute
+  z-index 0
+  width 100%
+  height 180px
+  background #90A2B7
+  border-bottom 3px solid #7e95ae
+  left 0
+  top 60px

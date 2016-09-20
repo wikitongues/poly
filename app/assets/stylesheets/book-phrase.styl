@@ -50,10 +50,16 @@ li.entry
         max-width 90%
         overflow hidden
         text-overflow ellipsis
+        border-style solid
+        outline none
+
+      input
+        width 80%
 
       &.source
-        p, input
-          margin-bottom 4px
+        p
+          border-width 1px
+          margin 2px 2px 4px 2px
           border-radius 31px 31px 31px 0
           float left
 
@@ -65,15 +71,25 @@ li.entry
         input
           margin 2px 2px 6px 2px
           background $source
-          border 1px solid darken($source, 2%)
+          border-color darken($source, 2%)
+
+        input
+          border-width 3px
+          margin-bottom 6px
+          border-radius 31px 31px 31px 0
+          float left
+          background transparent
+          border-color darken($source, 2%)
 
           &:focus, &:active
             margin 0 2px 4px 2px
             border-color $source
 
       &.target
-        p, input
+        p
+          border-width 1px
           border-radius 31px 31px 0 31px
+          margin 2px
           float right
 
         p
@@ -82,9 +98,14 @@ li.entry
           margin 2px
 
         input
+          border-width 3px
+          border-radius 31px 31px 0 31px
+          border-color darken($target, 2%)
+          margin-bottom 1px
+          text-align right
+          float right
+          background transparent
           margin 2px
-          background $target
-          border 1px solid darken($target, 2%)
 
           &:focus, &:active
             margin-top 0

@@ -1,18 +1,20 @@
 #profile
-  width 100%
-  min-width 1060px
-  display inline-block
+  width 840px
+  display table
+  position relative
+  margin auto
 
-  > .info
+  .userInformation
+    width 230px
     float left
-    width (100/3)%
-    padding 3em 0 3em 3em
+    margin 0 10px 0 0
 
     .wrapper
       background #fff
-      padding 3em
-      width 100%
-      max-width 400px
+      border-radius $radius
+      padding 15px
+      color #295671
+      border 1px solid rgba(0,0,0,0.15)
       boxShadow()
 
       img
@@ -21,6 +23,10 @@
       h2
         font-weight 100
         margin 0
+        font-weight 300
+
+      p
+        font-weight 100
 
   .languages
     float left
@@ -41,20 +47,36 @@
     font-size 16px
 
   .dashboard
-    width ((100/3)*2)%
+    width 100%
+    max-width 600px
+    min-width 450px
     float left
     display inline-block
     position relative
 
-    h1
+    .indexContent
+      width 100%
+
+    ul
+      float left
+      width 100%
+
+    .header
+      float left
       font-weight 100
       text-align center
-      width 55%
-      min-width 700px
-      margin 2em auto 0
+      margin 0
       padding 20px
-      background $buttonBlue
+      background #ADBCCA
       color white
+      text-decoration none
+
+    p.header
+      width 480px
+      margin-left 60px
+
+    a.header:hover
+      background lighten(#ADBCCA,10%)
 
     .newBook
       position absolute
