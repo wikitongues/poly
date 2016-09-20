@@ -34,19 +34,23 @@ p.version
 
 .flash_notice, .flash_alert
   z-index 10
-  width 600px
   font-weight 100
   text-align center
-  padding 22px 21px
+  padding 22px 41px
+  border-radius $radius
   position absolute
-  left 50%
-  margin-left -300px
+  right 50px
+  bottom 40px
+  boxShadow()
 
 .flash_notice
-  background transparent
-  color $buttonBlue
+  border 1px solid #575f6b
+  background #5c6470
+  color #c7e0ff
 
 .flash_alert
+  color #e85e85
+  border 1px solid #ffe5e5
   background #FFE9E9
 
 .backgroundElement
