@@ -117,10 +117,10 @@ Book = React.createClass( {
         return (
           <div className="menu saving">
             <button title="Save" onClick={this.onSaveBookClick} className="icon">
-              <img src={this.props.save}/>
+              <img src={this.props.saveAlt}/>
             </button>
             <button title="Cancel" onClick={this.toggleEditingBookState} className="close icon">
-              <img src={this.props.close}/>
+              <img src={this.props.closeAlt}/>
             </button>
           </div>
         );
@@ -128,13 +128,13 @@ Book = React.createClass( {
         return (
           <div className="menu">
             <button title="Menu" className="more icon">
-              <img src={this.props.menu}/>
+              <img src={this.props.menuAlt}/>
             </button>
             <button title="Edit" onClick={this.toggleEditingBookState} className="icon">
-              <img src={this.props.edit}/>
+              <img src={this.props.editAlt}/>
             </button>
             <button title="Delete" onClick={this.onDeleteBookClick} className="icon">
-              <img src={this.props.delete}/>
+              <img src={this.props.deleteAlt}/>
             </button>
           </div>
         );
@@ -201,6 +201,10 @@ Book = React.createClass( {
       } else {
          return <span>{this.renderTruncatedDescription()}</span>
       }
+    } else {
+      if (this.state.isEditingBook) {
+        return <textarea rows="4" className="description new isEditing" name="description" onChange={this.onInputChange} value={this.state.book.description} placeholder="A collection of useful phrases in Laputa, a Swiftian language spoken in Balnibarbi and a number of other islands..."/>;
+      }
     }
   },
 
@@ -223,12 +227,12 @@ Book = React.createClass( {
   render: function() {
     return (
       <div className="container">
-        <NavBar currentUser={this.props.currentUser} logo={this.props.logo}/>
+        <NavBar currentUser={this.props.currentUser} logo={this.props.logo} search={this.props.search}/>
         <span className="backgroundElement"></span>
         <div className="book">
           <div className="tools">
-            <button title="Search" onClick={this.onSearchBook} className="icon">
-              <img src={this.props.search} alt="Favorite"/>
+            <button title="Favorite" onClick={this.onFavoriteBook} className="favorite icon">
+              <img src={this.props.unstar} alt="Favorite"/>
             </button>
             <div className="cardinality">
               <section>
@@ -237,19 +241,16 @@ Book = React.createClass( {
                 { this.renderTargetLanguage() }
               </section>
             </div>
-            <button title="Favorite" onClick={this.onFavoriteBook} className="icon">
-              <img src={this.props.unstar} alt="Favorite"/>
-            </button>
-            {/*<ProgressBar />*/}
+            { this.renderBookMenu() }
           </div>
           <div className="info">
             <div className="wrapper">
               { this.renderTitle() }
               { this.renderAuthor() }
               { this.renderDescription() }
-              { this.renderBookMenu() }
             </div>
           </div>
+          {/*<ProgressBar />*/}
           <div className="NObannerWrapper"></div>
 
           <Dictionary

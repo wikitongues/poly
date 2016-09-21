@@ -40,23 +40,26 @@ NewBook = React.createClass( {
   render: function() {
     return(
       <div className="container">
-        <NavBar currentUser={this.props.currentUser} logo={this.props.logo}/>
+        <NavBar currentUser={this.props.currentUser} logo={this.props.logo} search={this.props.search}/>
         <span className="backgroundElement"></span>
         <div className="book">
           <form onSubmit={this.onSubmit}>
             <fieldset className="tools">
-              <span title="Search" onClick={this.onSearchBook} className="icon">
-                <img src={this.props.search} alt="Search"/>
-              </span>
-              <section className="cardinality">
-                  <section>
-                    <input className="new language source" type="text" name="source_language" placeholder="Source" value={this.state.sourceLanguage} onChange={this.onInputChange}/>
-                    <img src={this.props.cardinality} alt=""/>
-                    <input className="new language target" type="text" name="target_language" placeholder="Target" value={this.state.targetLanguager} onChange={this.onInputChange}/>
-                  </section>
-                </section>
               <span title="Favorite"className="icon">
                 <img src={this.props.unstar} alt="Favorite"/>
+              </span>
+              <section className="cardinality">
+                <section>
+                  <input className="new language source" type="text" name="source_language" placeholder="Source" value={this.state.sourceLanguage} onChange={this.onInputChange}/>
+                  <img src={this.props.cardinality} alt=""/>
+                  <input className="new language target" type="text" name="target_language" placeholder="Target" value={this.state.targetLanguager} onChange={this.onInputChange}/>
+                </section>
+              </section>
+              {/*<button title="Menu" className="more icon">
+                <img src={this.props.menuAlt}/>
+              </button>*/}
+              <span title="Menu" className="icon">
+                <img src={this.props.menuAlt}/>
               </span>
             </fieldset>
             <fieldset className="info">

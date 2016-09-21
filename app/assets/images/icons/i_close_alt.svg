@@ -7,8 +7,8 @@
 </g>
 <g id="Layer_4">
 
-		<line fill="none" stroke="#C9CDCF" stroke-width="5" stroke-linecap="round" stroke-miterlimit="10" x1="53.6" y1="53.6" x2="6.4" y2="6.4"/>
+		<line fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-miterlimit="10" x1="53.6" y1="53.6" x2="6.4" y2="6.4"/>
 
-		<line fill="none" stroke="#C9CDCF" stroke-width="5" stroke-linecap="round" stroke-miterlimit="10" x1="53.6" y1="6.4" x2="6.4" y2="53.6"/>
+		<line fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-miterlimit="10" x1="53.6" y1="6.4" x2="6.4" y2="53.6"/>
 </g>
 </svg>
