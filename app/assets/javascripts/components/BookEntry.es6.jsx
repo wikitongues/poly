@@ -1,17 +1,20 @@
 BookEntry = React.createClass ( {
+  // Render Author is buggy and sad - users.length dont work.
   renderAuthor: function() {
     let users = this.props.users
-    let authorName = ""
-    for (var i = users.length - 1; i >= 0; i--) {
-      if(this.props.book.user_id == users[i].id) {
-        authorName = users[i].username
+    if (users) {
+        let authorName = ""
+        for (var i = users.length - 1; i >= 0; i--) {
+          if(this.props.book.user_id == users[i].id) {
+            authorName = users[i].username
+          }
+        }
+        return (
+          <span>
+          {authorName}
+          </span>
+        )
       }
-    }
-    return (
-      <span>
-      {authorName}
-      </span>
-    )
   },
 
   render: function() {
