@@ -7,6 +7,10 @@ nav
   width 100%
   float left
   padding 0
+  margin-bottom 20px
+
+  a
+    float left
 
   a,
   span.logIn a,
@@ -17,6 +21,7 @@ nav
   .loggedIn
     height 33px
     width 138px
+    float right
     overflow hidden
 
     &:hover
@@ -24,7 +29,6 @@ nav
       box-shadow 0 1px 2px 1px rgba(0,0,0,0.15)
 
       a
-        // border-color rgba(0,0,0,0.1)
         &:first-of-type
           border-radius $radius $radius 0 0
         &:last-of-type
@@ -38,8 +42,43 @@ nav
     a
       width 100%
       background white
-      // border 1px solid transparent
-
 
   .currentUser
     float left
+
+  form
+    max-width 600px
+    min-width 450px
+    margin-top 15px
+    width 100%
+    position absolute
+    left 50%
+    margin-left -300px
+
+    img
+      float left
+      margin 7px -55px 0 18px
+      position relative
+      height 20px
+
+    input
+      border-radius $radius 0 0 $radius
+      width 90%
+      font-size 16px
+      padding 6px 8px 6px 55px
+      float left
+      border 1px solid #eee
+      border-right none
+      font-weight 100
+
+    button
+      height 33px
+      width 10%
+      cursor pointer
+      border 1px solid #eee
+      float left
+      background #fafafa
+      color $buttonBlue
+      font-size 18px
+      font-weight 100
+      border-radius 0 $radius $radius 0

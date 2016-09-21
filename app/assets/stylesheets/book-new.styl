@@ -1,14 +1,21 @@
 .book
-  display inline-block
-
   form
     margin 0
 
-  .info, .cardinality
+    .tools
+      .icon
+        cursor initial
+      .icon[title="Menu"]
+        padding 18px
+
+        img
+          height 22px
+
+  .info, .tools
     input, textarea
       border none
       width 100%
-      border-bottom 2px dashed #e1e1e1
+      border-bottom 2px solid #a9b8c7
       float left
 
       &.missing
@@ -17,40 +24,64 @@
 
       &:focus
         outline none
-        border-color $hover
         border-bottom-style solid
 
   .info
+    margin 0
     .new
       &.title
-        font-size 2em
-        margin 0.65em 0
+        font-size 1.7em
+        margin 0.7em 0 0.6em
+        padding 0
 
       &.description
-        margin 2em 0
+        margin 0 0 2em
         resize vertical
         font-size 1em
 
   .banner
     width 100%
 
-  .cardinality
-    section
-      input
-        width 48%
-        text-align center
-        float left
-        background transparent
-        font-size 1.5em
-        padding .8em 0 .1em
-        margin-top 1px
-        margin-bottom .4em
+  .tools
+    padding 0
+
+    span
+      width 60px
+      float left
+      display inline-block
+      height 60px
+      padding 15px
+
+      img
+        display inline-block
+        height 30px
+
+    .cardinality
+      section
+        input
+          placeholder-color(rgba(255,255,255,.8))
+          width 47%
+          text-align center
+          float left
+          background lighten(#ADBCCA,20%)
+          border-radius $radius
+          font-size 1.3em
+          padding 8px 0 9px
+          margin 9px 0 8px
+          position initial
+          color white
+
+          &:focus
+            background lighten(#ADBCCA,40%)
+
+          &:first-of-type
+            margin-right 3%
+
+          &:last-of-type
+            margin-left 3%
 
   .isEditing
     border-bottom-color #ddd
-
-    &:focus
-      border-bottom-color $hover
 
   .dictionary
     height 27.5%
@@ -59,6 +90,7 @@
 
     .dummy.content
       pointer-events none
+
       .entry
         ul
           li
@@ -68,13 +100,13 @@
 
             &.source
               p
-                background lighten($source, 70%)
-                border-color lighten($source, 68%)
+                background lighten($source, 50%)
+                border-color lighten($source, 48%)
 
             &.target
               p
-                background lighten($target, 70%)
-                border-color lighten($target, 68%)
+                background lighten($target, 65%)
+                border-color lighten($target, 63%)
 
         &:hover
           background transparent

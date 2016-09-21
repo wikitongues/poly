@@ -21,11 +21,28 @@ PhrasePair = React.createClass( {
     });
   },
 
+<<<<<<< HEAD
   onDeletePhraseClick() {
     this.props.onDeletePhrasePair(this.props.id)
   },
 
   onSavePhraseClick(){
+=======
+  cancelEditingPhraseState: function() {
+    this.setState({
+      sourcePhrase: this.props.initialSourcePhrase,
+      targetPhrase: this.props.initialTargetPhrase,
+      isEditingPhrase: false
+    })
+  },
+
+  onDeletePhraseClick: function() {
+    this.props.onDeletePhrasePair(this.props.id)
+  },
+
+  onSavePhraseClick:function(e){
+    e.preventDefault()
+>>>>>>> wikitongues/master
     $.ajax({
       url: '/phrase_pairs/' + this.props.id,
       type: 'PUT',
@@ -64,7 +81,7 @@ PhrasePair = React.createClass( {
             <button title="Save" onClick={this.onSavePhraseClick} className="icon">
               <img src={this.props.save}/>
             </button>
-            <button title="Cancel" onClick={this.toggleEditingPhraseState} className="close icon">
+            <button title="Cancel" onClick={this.cancelEditingPhraseState} className="close icon">
               <img src={this.props.close}/>
             </button>
           </li>
@@ -91,19 +108,21 @@ PhrasePair = React.createClass( {
      if (this.state.isEditingPhrase) {
       return (
         <ul>
-          <li className="source text">
-            <input
-              value={this.state.sourcePhrase}
-              onChange={this.onSourceChange}
-              name="sourcePhrase" />
-          </li>
-          <li className="target text">
-            <input
-              value={this.state.targetPhrase}
-              onChange={this.onTargetChange}
-              name="targetPhrase" />
-          </li>
-          { this.renderPhraseMenu() }
+          <form onSubmit={this.onSavePhraseClick}>
+            <li className="source text">
+              <input
+                value={this.state.sourcePhrase}
+                onChange={this.onSourceChange}
+                name="sourcePhrase" />
+            </li>
+            <li className="target text">
+              <input
+                value={this.state.targetPhrase}
+                onChange={this.onTargetChange}
+                name="targetPhrase" />
+            </li>
+            { this.renderPhraseMenu() }
+          </form>
         </ul>
       )
     } else {

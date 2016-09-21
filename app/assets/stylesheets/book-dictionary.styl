@@ -1,5 +1,5 @@
 .dictionary
-  min-height 46vh
+  min-height 27.5%
   display block
   position relative
   overflow hidden
@@ -7,8 +7,19 @@
   font-size 1.2em
   padding 0
   background #fff
-  width 600px
-  box-shadow 0 2px 2px rgba(0,0,0,0.2)
+  float left
+  width 100%
+  border-top 2px solid #f4f8f9
+
+  &.new
+    min-height 0
+
+  .notice
+    position absolute
+    margin-top 160px
+    width 100%
+    text-align center
+    color $secondaryBlue
 
   ul.content
     clear both
@@ -24,7 +35,7 @@
 
     p.empty
       text-align center
-      color $secondary-blue
+      color $secondaryBlue
       width ((2/3)*100)%
       margin 0
       position absolute
@@ -70,6 +81,15 @@
 
     .inputOptions
       float right
+<<<<<<< HEAD
+=======
+      margin 12px
+      width 40px
+      height 40px
+      border-radius 100%
+      outline none
+      background transparent
+>>>>>>> wikitongues/master
 
       button
         float left

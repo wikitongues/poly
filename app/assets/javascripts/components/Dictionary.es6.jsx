@@ -15,7 +15,17 @@ Dictionary = React.createClass( {
     }
   },
 
+<<<<<<< HEAD
   onAddNewPhraseButtonClick() {
+=======
+  componentWillReceiveProps: function(newProps) {
+    this.setState({
+      phrasePairs: newProps.initialPhrasePairs
+    })
+  },
+
+  onAddNewPhraseButtonClick: function() {
+>>>>>>> wikitongues/master
     this.setState({
         isPhraseInputActive: !this.state.isPhraseInputActive
     });
@@ -27,11 +37,15 @@ Dictionary = React.createClass( {
 
   onSourcePhraseSubmit(e) {
     e.preventDefault()
-    this.props.onSourcePhraseSubmit(this.state.sourcePhrase),
-    this.setState({
-        isTargetInputActive: !this.state.isTargetInputActive,
-        sourcePhrase: ""
-    });
+    if(this.state.sourcePhrase) {
+      this.props.onSourcePhraseSubmit(this.state.sourcePhrase),
+      this.setState({
+          isTargetInputActive: !this.state.isTargetInputActive,
+          sourcePhrase: ""
+      });
+    } else {
+      alert("Source phrase is empty")
+    }
   },
 
   onTargetPhraseChange(e) {
@@ -40,12 +54,16 @@ Dictionary = React.createClass( {
 
   onTargetPhraseSubmit(e) {
     e.preventDefault()
-    this.props.onTargetPhraseSubmit(this.state.targetPhrase),
-    this.setState({
-      isPhraseInputActive: !this.state.isPhraseInputActive,
-      isTargetInputActive: !this.state.isTargetInputActive,
-      targetPhrase: ""
-    });
+    if(this.state.targetPhrase) {
+      this.props.onTargetPhraseSubmit(this.state.targetPhrase),
+      this.setState({
+        isPhraseInputActive: !this.state.isPhraseInputActive,
+        isTargetInputActive: !this.state.isTargetInputActive,
+        targetPhrase: ""
+      });
+    } else {
+      alert("Target phrase is empty")
+    }
   },
 
   onTargetPhraseMultipleSubmit(e) {
@@ -199,6 +217,7 @@ Dictionary = React.createClass( {
   renderCreateNewPhraseButton() {
     if (this.props.isOwnedByCurrentUser) {
       if (this.state.isPhraseInputActive) {
+<<<<<<< HEAD
         if (this.state.isInputVideo) {} else {
           return (
             <div>
@@ -206,6 +225,11 @@ Dictionary = React.createClass( {
             </div>
           )
         }
+=======
+        return (
+          <div>{this.renderPhraseInputFields()}</div>
+        )
+>>>>>>> wikitongues/master
       } else {
         return (
           <button className="addPhrase" onClick={this.onAddNewPhraseButtonClick}>+</button>
@@ -237,7 +261,7 @@ Dictionary = React.createClass( {
           </form>
         </div>
       )
-    }
+    };
   },
 
   // NB If in continuous input state, show source input field following successful phrase pair completion.
@@ -332,15 +356,30 @@ Dictionary = React.createClass( {
     }
   },
 
+<<<<<<< HEAD
   render() {
     return (
        <div className="dictionary">
         <section className="content-wrapper">
+=======
+  render: function() {
+    if(this.state.phrasePairs.length != 0 ) {
+      return (
+         <div className="dictionary">
+>>>>>>> wikitongues/master
           <ul className="content">{this.renderPhrasePairs()}</ul>
           {this.renderVideoInput()}
           {this.renderCreateNewPhraseButton()}
-        </section>
-       </div>
-    )
+         </div>
+      )
+    } else {
+      return (
+        <div className="dictionary">
+          <span className="notice">Phrasebook is empty</span>
+          <DummyContent/>
+          {this.renderCreateNewPhraseButton()}
+        </div>
+      )
+    }
   }
 } );

@@ -1,6 +1,6 @@
 $blue = #11242f
 $buttonBlue = #4799FC
-$secondary-blue = #B7BCBF
+$secondaryBlue = #B7BCBF
 $hover = #FFC328
 $border = #f4f4f4
 $time = 0.1s
@@ -61,8 +61,12 @@ materialButton()
   background #4799FC
   text-shadow 0 2px 0 #558FCE
   color white
-  box-shadow 0 1px 0 #336FB0, 0 2px 4px rgba(34,84,137,0.5)
+  box-shadow 0 1px 0 rgba(51, 111, 176,1), 0 2px 4px rgba(34,84,137,0.5)
   border-top 1px solid #68ABFD !important
+  transition box-shadow $time ease-in-out
+
+  &:hover
+    box-shadow 0 1px 0 rgba(51, 111, 176,1), 0 4px 6px rgba(34,84,137,0.44)
 
 placeholder-color(color)
   &::-webkit-input-placeholder
