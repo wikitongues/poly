@@ -8,4 +8,5 @@ class User < ActiveRecord::Base
 
   has_many :favorite_books
   has_many :favorites, through: :favorite_books, source: :book
+
 end

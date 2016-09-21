@@ -5,7 +5,6 @@ Book = React.createClass( {
       phrasePairs: this.props.initialPhrasePairs,
       isEditingBook: false,
       book: this.props.initialBook,
-      // originalTitle:this.props.initialBook.title,
       isDescriptionTruncated:true
     }
   },
@@ -97,13 +96,8 @@ Book = React.createClass( {
   },
 
   onFavoriteBook: function() {
-    $.ajax({
-      url:'/favorite/',
-      type: "PUT"
-    })
-    console.log('hi')
+    // Serialization Nation
   },
-
 
   bookIsOwnedByCurrentUser: function() {
     if (this.props.currentUser) {
