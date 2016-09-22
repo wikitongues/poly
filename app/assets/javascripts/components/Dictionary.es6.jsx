@@ -275,9 +275,14 @@ Dictionary = React.createClass( {
   },
 
   renderInputOptions() {
+    /*
     if (this.state.isInputVideo) {
-      return (
-        <span className="inputOptions">
+      return;
+        // Not sure whether it is necessary to still have these guys showing up
+        // after the video component is displaying with the exact same buttons inside
+        // of it
+      (
+        <span hidden className="inputOptions">
           <button title="Text" onClick={this.onToggleInputType} className="text icon"><img src={this.props.text} alt="text"/></button>
           <button title="Video" onClick={this.onToggleInputType} className="video icon selectedInput"><img src={this.props.videoAlt} alt="video"/></button>
           <button title="Cancel" onClick={this.onCancelEditPhrase} className="close icon"><img src={this.props.close} alt="close"/></button>
@@ -286,7 +291,16 @@ Dictionary = React.createClass( {
     } else {
       return (
         <span className="inputOptions">
-          <button title="Text" onClick={this.onToggleInputType} className="text icon selectedInput"><img src={this.props.textAlt} alt="text"/></button>
+          <button title="Text" className="text icon selectedInput"><img src={this.props.textAlt} alt="text"/></button>
+          <button title="Video" onClick={this.onToggleInputType} className="video icon"><img src={this.props.video} alt="video"/></button>
+          <button title="Cancel" onClick={this.onCancelEditPhrase} className="close icon"><img src={this.props.close} alt="close"/></button>
+        </span>
+      );
+    }*/
+    if (!this.state.isInputVideo) {
+      return (
+        <span className="inputOptions">
+          <button title="Text" className="text icon selectedInput"><img src={this.props.textAlt} alt="text"/></button>
           <button title="Video" onClick={this.onToggleInputType} className="video icon"><img src={this.props.video} alt="video"/></button>
           <button title="Cancel" onClick={this.onCancelEditPhrase} className="close icon"><img src={this.props.close} alt="close"/></button>
         </span>
