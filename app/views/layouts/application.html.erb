@@ -8,13 +8,18 @@
   <link href='https://fonts.googleapis.com/css?family=Roboto:900,300' rel='stylesheet' type='text/css'>
 </head>
 <body>
-<% flash.each do |name, msg| %>
-  <% if msg.is_a?(String) %>
-    <%= content_tag :div, msg, :class => "flash_#{name}" %>
-  <% end %>
-<% end %>
 
-<%= yield %>
+  <% flash.each do |name, msg| %>
+    <% if msg.is_a?(String) %>
+      <%= content_tag :div, msg, :id =>"notice", :class => "flash_#{name}" %>
+    <% end %>
+  <% end %>
+
+  <%= yield %>
+
+  <script>
+    setTimeout("$('#notice').fadeOut('4000')", 3000)
+  </script>
 
 </body>
 </html>

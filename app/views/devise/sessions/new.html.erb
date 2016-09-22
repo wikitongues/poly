@@ -36,4 +36,11 @@
     <%= link_to "Forgot your password?", new_password_path(resource_name), {:class => 'forgot-password'} %>
   </span>
 <% end -%>
+
+<% flash.each do |name, msg| %>
+  <% if msg.is_a?(String) %>
+    <%= content_tag :div, msg, :class => "flash_#{name}" %>
+  <% end %>
+<% end %>
+
 </div>
