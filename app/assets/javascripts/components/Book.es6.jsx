@@ -5,7 +5,6 @@ Book = React.createClass( {
       phrasePairs: this.props.initialPhrasePairs,
       isEditingBook: false,
       book: this.props.initialBook,
-      // originalTitle:this.props.initialBook.title,
       isDescriptionTruncated:true
     }
   },
@@ -78,15 +77,9 @@ Book = React.createClass( {
     })
   },
 
-<<<<<<< HEAD
-  toggleEditingBookState() {
-      this.setState({
-        isEditingBook: !this.state.isEditingBook
-=======
   toggleEditingBookState: function() {
     this.setState({
       isEditingBook: !this.state.isEditingBook
->>>>>>> wikitongues/master
     });
   },
 
@@ -98,9 +91,6 @@ Book = React.createClass( {
     this.setState(newState);
   },
 
-<<<<<<< HEAD
-  bookIsOwnedByCurrentUser() {
-=======
   onSearchBook: function() {
     alert("Searching is coming soon!")
   },
@@ -109,9 +99,7 @@ Book = React.createClass( {
     alert("Favoriting is coming soon!")
   },
 
-
   bookIsOwnedByCurrentUser: function() {
->>>>>>> wikitongues/master
     if (this.props.currentUser) {
       return this.props.initialBook.user_id == this.props.currentUser.id
     }
@@ -200,11 +188,6 @@ Book = React.createClass( {
     }
   },
 
-<<<<<<< HEAD
-  renderDescription() {
-     if (this.state.isEditingBook) {
-      return <textarea rows="4" className="description new isEditing" name="description" onChange={this.onInputChange} value={this.state.book.description} />;
-=======
   renderDescription: function() {
    if (this.state.book.description) {
       if (this.state.isEditingBook) {
@@ -212,7 +195,6 @@ Book = React.createClass( {
       } else {
          return <span>{this.renderTruncatedDescription()}</span>
       }
->>>>>>> wikitongues/master
     } else {
       if (this.state.isEditingBook) {
         return <textarea rows="4" className="description new isEditing" name="description" onChange={this.onInputChange} value={this.state.book.description} placeholder="A collection of useful phrases in Laputa, a Swiftian language spoken in Balnibarbi and a number of other islands..."/>;

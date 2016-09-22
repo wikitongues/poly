@@ -94,14 +94,18 @@ li.entry
 
         p
           background $target
-<<<<<<< HEAD
           border 1px solid darken($target, 2%)
           margin 2px
 
         input
+          border-width 3px
+          border-radius 31px 31px 0 31px
+          border-color darken($target, 2%)
+          margin-bottom 1px
+          text-align right
+          float right
+          background transparent
           margin 2px
-          background $target
-          border 1px solid darken($target, 2%)
 
           &:focus, &:active
             margin-top 0
@@ -112,8 +116,7 @@ li.entry
         border-style solid
         background white
         outline none
-=======
-          border-color darken($target, 2%)
+        border-color darken($target, 2%)
 
         input
           border-width 3px
@@ -123,7 +126,6 @@ li.entry
           float right
           background transparent
           border-color darken($target, 2%)
->>>>>>> wikitongues/master
 
       &.menu
         width 40px

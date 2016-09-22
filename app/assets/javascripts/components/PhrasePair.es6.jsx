@@ -21,13 +21,6 @@ PhrasePair = React.createClass( {
     });
   },
 
-<<<<<<< HEAD
-  onDeletePhraseClick() {
-    this.props.onDeletePhrasePair(this.props.id)
-  },
-
-  onSavePhraseClick(){
-=======
   cancelEditingPhraseState: function() {
     this.setState({
       sourcePhrase: this.props.initialSourcePhrase,
@@ -41,8 +34,7 @@ PhrasePair = React.createClass( {
   },
 
   onSavePhraseClick:function(e){
-    e.preventDefault()
->>>>>>> wikitongues/master
+    e.preventDefault();
     $.ajax({
       url: '/phrase_pairs/' + this.props.id,
       type: 'PUT',

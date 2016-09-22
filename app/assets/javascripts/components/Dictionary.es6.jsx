@@ -16,8 +16,11 @@ Dictionary = React.createClass( {
   },
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   onAddNewPhraseButtonClick() {
 =======
+=======
+>>>>>>> wikitongues/video-comp-ben
   componentWillReceiveProps: function(newProps) {
     this.setState({
       phrasePairs: newProps.initialPhrasePairs
@@ -25,7 +28,10 @@ Dictionary = React.createClass( {
   },
 
   onAddNewPhraseButtonClick: function() {
+<<<<<<< HEAD
 >>>>>>> wikitongues/master
+=======
+>>>>>>> wikitongues/video-comp-ben
     this.setState({
         isPhraseInputActive: !this.state.isPhraseInputActive
     });
@@ -149,7 +155,7 @@ Dictionary = React.createClass( {
     video.muted = true;
     navigator.getUserMedia = (navigator.getUserMedia ||
                               navigator.webkitGetUserMedia ||
-                              navigator.mozGetUserMedia || 
+                              navigator.mozGetUserMedia ||
                               navigator.msGetUserMedia);
 
     var self = this;
@@ -164,7 +170,7 @@ Dictionary = React.createClass( {
           //Saves the ID of our stream in order to be able to shut it
           //later
           self.onSaveStream(stream);
-          // Create an object URL for the video stream and use this 
+          // Create an object URL for the video stream and use this
           // to set the video source.
           video.src = window.URL.createObjectURL(stream);
         },
@@ -189,7 +195,7 @@ Dictionary = React.createClass( {
   onStopStream() {
     var tracks = this.state.stream.getTracks();
     tracks[0].stop();
-    tracks[1].stop();    
+    tracks[1].stop();
   },
 
 // Render Zone
@@ -218,6 +224,9 @@ Dictionary = React.createClass( {
     if (this.props.isOwnedByCurrentUser) {
       if (this.state.isPhraseInputActive) {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> wikitongues/video-comp-ben
         if (this.state.isInputVideo) {} else {
           return (
             <div>
@@ -225,11 +234,14 @@ Dictionary = React.createClass( {
             </div>
           )
         }
+<<<<<<< HEAD
 =======
         return (
           <div>{this.renderPhraseInputFields()}</div>
         )
 >>>>>>> wikitongues/master
+=======
+>>>>>>> wikitongues/video-comp-ben
       } else {
         return (
           <button className="addPhrase" onClick={this.onAddNewPhraseButtonClick}>+</button>
@@ -303,7 +315,7 @@ Dictionary = React.createClass( {
   renderVideoInput() {
     if (this.state.isInputVideo) {
       return (
-        <Video 
+        <Video
         onRenderVideoInput={this.onRenderVideoInput}
         renderRecordButton={this.renderRecordButton}
         onCancelEditPhrase={this.onCancelEditPhrase}
@@ -357,16 +369,22 @@ Dictionary = React.createClass( {
   },
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   render() {
     return (
        <div className="dictionary">
         <section className="content-wrapper">
 =======
+=======
+>>>>>>> wikitongues/video-comp-ben
   render: function() {
     if(this.state.phrasePairs.length != 0 ) {
       return (
          <div className="dictionary">
+<<<<<<< HEAD
 >>>>>>> wikitongues/master
+=======
+>>>>>>> wikitongues/video-comp-ben
           <ul className="content">{this.renderPhrasePairs()}</ul>
           {this.renderVideoInput()}
           {this.renderCreateNewPhraseButton()}

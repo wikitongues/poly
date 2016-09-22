@@ -1,11 +1,6 @@
 Profile = React.createClass( {
 
-<<<<<<< HEAD
-  getInitialState() {
-    //mockup data
-=======
   getInitialState: function () {
->>>>>>> wikitongues/master
     return {
       languages: ['Swiss german', 'German', 'French', 'English', 'Portuguese'],
       followers: [{username:'Daniel Udell', user_id:3},{username:'Charles Darwin', user_id:9},{username:'Marie Curie', user_id:1},{username:'Johannes Kepler', user_id:3},{username:'Louis Pasteur', user_id:3}]
@@ -34,9 +29,6 @@ Profile = React.createClass( {
     }
   },
 
-<<<<<<< HEAD
-  renderDashboardHeader() {
-=======
   onSearchStoreClick: function() {
     alert("Searching is coming soon!")
   },
@@ -46,7 +38,6 @@ Profile = React.createClass( {
   },
 
   renderDashboardHeader: function() {
->>>>>>> wikitongues/master
     if (this.props.currentUser) {
       if(this.currentUserProfile()) {
         return (
@@ -85,9 +76,6 @@ Profile = React.createClass( {
     }
   },
 
-<<<<<<< HEAD
-  render() {
-=======
   renderEditButton: function() {
     if(this.props.currentUser) {
       if(this.props.currentUser.id == this.props.userData.id) {
@@ -99,7 +87,6 @@ Profile = React.createClass( {
   },
 
   render: function() {
->>>>>>> wikitongues/master
     let langs = []
     this.state.languages.forEach(function (lang) {
       langs.push(<span className="language">{lang}</span>)
