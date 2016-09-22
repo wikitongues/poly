@@ -116,14 +116,15 @@ Dictionary = React.createClass( {
   onToggleInputType() {
     this.setState({
       isInputVideo: !this.state.isInputVideo
-    })
+    });
   },
 
   onCloseVideoComponent() {
     this.setState({
       isVideoRecording: false,
       isInputVideo: false
-    })
+    });
+    this.onStopStream();
   },
 
   onStopRecordingClick() {
