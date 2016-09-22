@@ -15,12 +15,6 @@ Dictionary = React.createClass( {
     }
   },
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-  onAddNewPhraseButtonClick() {
-=======
-=======
->>>>>>> wikitongues/video-comp-ben
   componentWillReceiveProps: function(newProps) {
     this.setState({
       phrasePairs: newProps.initialPhrasePairs
@@ -28,10 +22,6 @@ Dictionary = React.createClass( {
   },
 
   onAddNewPhraseButtonClick: function() {
-<<<<<<< HEAD
->>>>>>> wikitongues/master
-=======
->>>>>>> wikitongues/video-comp-ben
     this.setState({
         isPhraseInputActive: !this.state.isPhraseInputActive
     });
@@ -223,25 +213,16 @@ Dictionary = React.createClass( {
   renderCreateNewPhraseButton() {
     if (this.props.isOwnedByCurrentUser) {
       if (this.state.isPhraseInputActive) {
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> wikitongues/video-comp-ben
         if (this.state.isInputVideo) {} else {
           return (
             <div>
               {this.renderPhraseInputFields()}
             </div>
-          )
+          );
         }
-<<<<<<< HEAD
-=======
         return (
           <div>{this.renderPhraseInputFields()}</div>
         )
->>>>>>> wikitongues/master
-=======
->>>>>>> wikitongues/video-comp-ben
       } else {
         return (
           <button className="addPhrase" onClick={this.onAddNewPhraseButtonClick}>+</button>
@@ -368,23 +349,10 @@ Dictionary = React.createClass( {
     }
   },
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-  render() {
-    return (
-       <div className="dictionary">
-        <section className="content-wrapper">
-=======
-=======
->>>>>>> wikitongues/video-comp-ben
   render: function() {
     if(this.state.phrasePairs.length != 0 ) {
       return (
          <div className="dictionary">
-<<<<<<< HEAD
->>>>>>> wikitongues/master
-=======
->>>>>>> wikitongues/video-comp-ben
           <ul className="content">{this.renderPhrasePairs()}</ul>
           {this.renderVideoInput()}
           {this.renderCreateNewPhraseButton()}
