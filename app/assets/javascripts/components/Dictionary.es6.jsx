@@ -316,28 +316,21 @@ Dictionary = React.createClass( {
         renderRecordButton={this.renderRecordButton}
         onCancelEditPhrase={this.onCancelEditPhrase}
         onCloseVideoComponent={this.onCloseVideoComponent}
+        onStartRecordingClick={this.onStartRecordingClick}
+        onStopRecordingClick={this.onStopRecordingClick}
         closeAlt={this.props.closeAlt}
         textAlt={this.props.textAlt}
+        isVideoRecording={this.state.isVideoRecording}
+        isInputVideo={this.state.isInputVideo}
+        onSaveStream={this.onSaveStream}
+        onStopStream={this.onStopStream}
+        mediaConstraints={this.state.mediaConstraints}
+        stream={this.state.stream}
         />
       );
     }
   },
 
-  renderRecordButton() {
-    if (this.state.isVideoRecording) {
-      return (
-        <button className="videoButtonContainer" onClick={this.onStopRecordingClick}>
-          <div className="videoButton"></div>
-        </button>
-      )
-    } else {
-      return (
-        <button className="videoButtonContainer" onClick={this.onStartRecordingClick}>
-          <div className="videoButton startRecording"></div>
-        </button>
-      )
-    }
-  },
 
   // TODO: Consider the flow of canceling a phrase in progress.
   renderInputMethod() {
