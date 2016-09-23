@@ -265,7 +265,7 @@ Video = React.createClass( {
 
     // Updates the shape of our button
     this.props.onStartRecordingClick();
-    
+    this.props.onStopStream();
     navigator.getUserMedia(
 
       // Constraints
@@ -289,6 +289,9 @@ Video = React.createClass( {
         self.saveRecordRTC(recordRTC);
         self.state.recordRTC.startRecording();
         self.props.onSaveStream(stream);
+
+        console.log(stream);
+        console.log(self.props.stream);
       },
 
       // Error Callback
@@ -310,7 +313,7 @@ Video = React.createClass( {
     
 
     var self = this;
-
+    this.props.onStopStream();
     navigator.getUserMedia(
       // Constraints
       self.props.mediaConstraints,
@@ -340,8 +343,11 @@ Video = React.createClass( {
           //our App state
           self.updateRecordedBlob(recordedBlob);    
         });
-        self.props.onStopStream();
         self.props.onSaveStream(stream);
+        self.props.onStopStream();
+        console.log(stream);
+        console.log(self.props.stream);
+        
       },
 
       // Error Callback
@@ -374,6 +380,13 @@ Video = React.createClass( {
   handleVideoId(videoId) {
     this.saveVideoId.bind(null, videoId)();
     this.saveYoutubeUrl.bind(null, videoId)();
+    if(this.props.isTargetInputActive) {
+      this.props.onTargetVideoSubmit(this.state.youtubeVideoEmbed);
+      this.props.onToggleInputType();
+    } else {
+      this.props.onSourceVideoSubmit(this.state.youtubeVideoEmbed);
+      this.props.onToggleInputType();
+    }
   },
 
   renderRecordButton() {

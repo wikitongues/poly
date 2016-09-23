@@ -11,8 +11,8 @@ Dictionary = React.createClass( {
       sourcePhrase: "",
       targetPhrase: "",
       mediaConstraints: { video: true, audio: true },
-      stream:""
-    }
+      stream: "",
+    };
   },
 
   componentWillReceiveProps: function(newProps) {
@@ -32,7 +32,7 @@ Dictionary = React.createClass( {
   },
 
   onSourcePhraseSubmit(e) {
-    e.preventDefault()
+    e.preventDefault();
     if(this.state.sourcePhrase) {
       this.props.onSourcePhraseSubmit(this.state.sourcePhrase),
       this.setState({
@@ -43,8 +43,18 @@ Dictionary = React.createClass( {
       alert("Source phrase is empty")
     }
   },
+
   onSourceVideoSubmit(videoId) {
-    this.setState({sourcePhrase: videoId });
+    this.setState({ sourcePhrase: videoId });
+    if(this.state.sourcePhrase) {
+      this.props.onSourcePhraseSubmit(this.state.sourcePhrase),
+      this.setState({
+          isTargetInputActive: !this.state.isTargetInputActive,
+          sourcePhrase: ""
+      });
+    } else {
+      alert("Source phrase is empty")
+    }
   },
 
   onTargetPhraseChange(e) {
@@ -67,6 +77,16 @@ Dictionary = React.createClass( {
 
   onTargetVideoSubmit(videoId) {
     this.setState({targetPhrase: videoId });
+    if(this.state.targetPhrase) {
+      this.props.onTargetPhraseSubmit(this.state.targetPhrase),
+      this.setState({
+        isPhraseInputActive: !this.state.isPhraseInputActive,
+        isTargetInputActive: !this.state.isTargetInputActive,
+        targetPhrase: ""
+      });
+    } else {
+      alert("Target phrase is empty")
+    }
   },
 
   onTargetPhraseMultipleSubmit(e) {
@@ -155,7 +175,6 @@ Dictionary = React.createClass( {
                               navigator.webkitGetUserMedia ||
                               navigator.mozGetUserMedia ||
                               navigator.msGetUserMedia);
-
     var self = this;
     if (navigator.getUserMedia) {
       // Request the camera.
@@ -168,6 +187,8 @@ Dictionary = React.createClass( {
           //Saves the ID of our stream in order to be able to shut it
           //later
           self.onSaveStream(stream);
+          console.log(stream);
+          console.log(self.state.stream);
           // Create an object URL for the video stream and use this
           // to set the video source.
           video.src = window.URL.createObjectURL(stream);
@@ -194,6 +215,9 @@ Dictionary = React.createClass( {
     var tracks = this.state.stream.getTracks();
     tracks[0].stop();
     tracks[1].stop();
+  },
+  onClearStream() {
+    this.setState({stream: ""});
   },
 
 // Render Zone
@@ -325,6 +349,10 @@ Dictionary = React.createClass( {
         onCloseVideoComponent={this.onCloseVideoComponent}
         onStartRecordingClick={this.onStartRecordingClick}
         onStopRecordingClick={this.onStopRecordingClick}
+        onSourceVideoSubmit={this.onSourceVideoSubmit}
+        onTargetVideoSubmit={this.onTargetVideoSubmit}
+        onToggleInputType={this.onToggleInputType}
+        onClearStream={this.onClearStream}
         closeAlt={this.props.closeAlt}
         textAlt={this.props.textAlt}
         isVideoRecording={this.state.isVideoRecording}
@@ -334,6 +362,7 @@ Dictionary = React.createClass( {
         mediaConstraints={this.state.mediaConstraints}
         stream={this.state.stream}
         isTargetInputActive={this.state.isTargetInputActive}
+
         />
       );
     }
