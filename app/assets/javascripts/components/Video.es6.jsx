@@ -1,3 +1,5 @@
+const RecordRTC = require('recordrtc');
+
 Video = React.createClass( {
   componentDidMount() {
     this.props.onRenderVideoInput();
