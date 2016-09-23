@@ -43,6 +43,9 @@ Dictionary = React.createClass( {
       alert("Source phrase is empty")
     }
   },
+  onSourceVideoSubmit(videoId) {
+    this.setState({sourcePhrase: videoId });
+  },
 
   onTargetPhraseChange(e) {
     this.setState({targetPhrase: e.target.value });
@@ -60,6 +63,10 @@ Dictionary = React.createClass( {
     } else {
       alert("Target phrase is empty")
     }
+  },
+
+  onTargetVideoSubmit(videoId) {
+    this.setState({targetPhrase: videoId });
   },
 
   onTargetPhraseMultipleSubmit(e) {
@@ -326,6 +333,7 @@ Dictionary = React.createClass( {
         onStopStream={this.onStopStream}
         mediaConstraints={this.state.mediaConstraints}
         stream={this.state.stream}
+        isTargetInputActive={this.state.isTargetInputActive}
         />
       );
     }
