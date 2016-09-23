@@ -1,0 +1,15 @@
+{
+  "name": "poly",
+  "version": "1.0.0",
+  "description": "###Poly makes crowdsourcing translation dictionaries in any language easy and familiar.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies" : {
+    "browserify": "~10.2.4",
+    "browserify-incremental": "^3.0.1"
+  }
+}
