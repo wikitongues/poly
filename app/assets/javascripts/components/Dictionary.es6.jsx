@@ -134,7 +134,9 @@ Dictionary = React.createClass( {
       sourcePhrase: "",
       targetPhrase: ""
     });
-    this.onStopStream();
+    if (this.state.stream !== '') {
+      this.onStopStream();
+    }
   },
 
 
@@ -151,7 +153,9 @@ Dictionary = React.createClass( {
       isVideoRecording: false,
       isInputVideo: false
     });
-    this.onStopStream();
+    if (this.state.stream !== '') {
+      this.onStopStream();
+    }
   },
 
   onStopRecordingClick() {
@@ -187,8 +191,6 @@ Dictionary = React.createClass( {
           //Saves the ID of our stream in order to be able to shut it
           //later
           self.onSaveStream(stream);
-          console.log(stream);
-          console.log(self.state.stream);
           // Create an object URL for the video stream and use this
           // to set the video source.
           video.src = window.URL.createObjectURL(stream);
@@ -362,7 +364,6 @@ Dictionary = React.createClass( {
         mediaConstraints={this.state.mediaConstraints}
         stream={this.state.stream}
         isTargetInputActive={this.state.isTargetInputActive}
-
         />
       );
     }

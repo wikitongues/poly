@@ -11,10 +11,10 @@ Video = React.createClass( {
       clientId: '463787160210-89kiojjsupa9u2g2s946g7em5d8t6kdj.apps.googleusercontent.com',
       // <<==
       scopes: [
-        'https://www.googleapis.com/auth/youtube', 
-        'https://www.googleapis.com/auth/plus.login', 
-        'https://www.googleapis.com/auth/userinfo.email'
-      ],  
+        'https://www.googleapis.com/auth/youtube',
+        'https://www.googleapis.com/auth/plus.login',
+        'https://www.googleapis.com/auth/userinfo.email',
+      ],
       titleVideo: 'user_id+access_token',
       descVideo: 'user_id+access_token',
       privacyVideo: 'public',
@@ -23,18 +23,18 @@ Video = React.createClass( {
       uploadVideo: '',
       videoId: '',
       youtubeVideoEmbed: '',
-      youtubeVideoUrl: ''
-    }   
+      youtubeVideoUrl: '',
+    };
   },
   componentDidMount() {
     // This is where the authentication process starts
-    if (gapi.auth) {
+    if (typeof gapi !== 'undefined') {
       this.authorizeApp();
-    } else {
-      this.checkGAPI();
+      this.props.onRenderVideoInput();
+      return;
     }
-
-    this.props.onRenderVideoInput();
+    this.props.onCloseVideoComponent();
+    alert('Could not load Google API, please check your connection.');
   },
 
   /*
@@ -105,14 +105,12 @@ Video = React.createClass( {
       function (stream) {
         const recordRTC = self.state.recordRTC;
         recordRTC.stopRecording(function (audioVideoWebURL) {
-          let recordedBlob;
-
           // Create an object URL for the video stream and use this
           // to set the video source.
           video.src = audioVideoWebURL;
 
           // the conversion is done here
-          recordedBlob = recordRTC.getBlob();
+          const recordedBlob = recordRTC.getBlob();
           recordedBlob.lastModifiedDate = new Date();
           recordedBlob.name = 'VideoTest.webm';
 
@@ -131,9 +129,9 @@ Video = React.createClass( {
         // Log the error to the console.
         console.log(`The following error occurred when trying to use getUserMedia:${err}`);
       }
-    );
-
-    this.handleUploadTimeout();
+    ).then(() => {
+      self.handleUploadTimeout();
+    });
   },
 
   /*
@@ -245,13 +243,17 @@ Video = React.createClass( {
       uploader.upload();
     };
 
-    this.handleUploadClick = function() {
+    this.handleUploadClick = function () {
       if(self.state.recordedBlob) {
+        console.log('success');
         this.uploadFile(self.state.recordedBlob);
       } else {
+        /*
         setTimeout(function() {
           self.handleUploadTimeout();
         }, 300);
+        */
+        console.log('error');
       }
     };
   },
@@ -283,23 +285,14 @@ Video = React.createClass( {
     Authentication with GoogleAPI
   */
 
-  // This function allow us to wait until gapi.auth is loaded
-  // before starting our authentication with authorizeApp
-  checkGAPI() {
-    if (gapi.auth) {
-      this.authorizeApp();
-    } else {
-      setTimeout(this.checkGAPI, 100);
-    }
-  },
-
   // This the first function called in our authentication process
   // it initiates the authentication
   authorizeApp() {
     const clientId = this.state.clientId;
     const scopes = this.state.scopes;
     const checkAuth = this.checkAuth;
-    gapi.auth.init(function () {
+
+    gapi.auth.init(() => {
       window.setTimeout(checkAuth(clientId, scopes), 1);
     });
   },
@@ -312,7 +305,8 @@ Video = React.createClass( {
       client_id: clientId,
       scope: scopes,
       immediate: true,
-    }, this.handleAuthResult);
+    },
+    this.handleAuthResult);
   },
 
   // This checks whether there is any error with our cliendID and
@@ -321,7 +315,8 @@ Video = React.createClass( {
     if (authResult && !authResult.error) {
       this.loadAPIClientInterfaces(authResult);
     } else {
-      console.log(authResult.error);
+      alert('Error while trying to authenticate.');
+      this.props.onCloseVideoComponent();
     }
   },
 
