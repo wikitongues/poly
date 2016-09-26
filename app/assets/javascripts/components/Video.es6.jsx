@@ -73,9 +73,6 @@ Video = React.createClass( {
         self.saveRecordRTC(recordRTC);
         self.state.recordRTC.startRecording();
         self.props.onSaveStream(stream);
-
-        console.log(stream);
-        console.log(self.props.stream);
       },
 
       // Error Callback
@@ -120,18 +117,15 @@ Video = React.createClass( {
         });
         self.props.onSaveStream(stream);
         self.props.onStopStream();
-        console.log(stream);
-        console.log(self.props.stream);
       },
 
       // Error Callback
-      (err) => {
+      function (err) {
         // Log the error to the console.
         console.log(`The following error occurred when trying to use getUserMedia:${err}`);
       }
-    ).then(() => {
-      self.handleUploadTimeout();
-    });
+    );
+    this.handleUploadTimeout();
   },
 
   /*
@@ -248,12 +242,9 @@ Video = React.createClass( {
         console.log('success');
         this.uploadFile(self.state.recordedBlob);
       } else {
-        /*
         setTimeout(function() {
           self.handleUploadTimeout();
         }, 300);
-        */
-        console.log('error');
       }
     };
   },
