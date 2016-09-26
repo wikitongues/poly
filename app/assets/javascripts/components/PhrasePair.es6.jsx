@@ -2,6 +2,8 @@ PhrasePair = React.createClass( {
 
   getInitialState() {
     return {
+      isSourcePhraseVideo: false,
+      isTargetPhraseVideo: false,
       isEditingPhrase: false,
       sourcePhrase: this.props.initialSourcePhrase,
       targetPhrase: this.props.initialTargetPhrase
@@ -9,6 +11,12 @@ PhrasePair = React.createClass( {
   },
 
   componentWillReceiveProps(nextProps) {
+    if(nextProps.initialSourcePhrase.startsWith('https://')) {
+      this.setState({ isSourcePhraseVideo: true });
+    }
+    if(nextProps.initialTargetPhrase.startsWith('https://')) {
+      this.setState({ isTargetPhraseVideo: true });
+    }
     this.setState({
       sourcePhrase: nextProps.initialSourcePhrase,
       targetPhrase: nextProps.initialTargetPhrase
