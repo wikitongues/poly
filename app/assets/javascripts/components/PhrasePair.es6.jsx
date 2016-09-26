@@ -11,16 +11,25 @@ PhrasePair = React.createClass( {
   },
 
   componentWillReceiveProps(nextProps) {
-    if(nextProps.initialSourcePhrase.startsWith('https://')) {
-      this.setState({ isSourcePhraseVideo: true });
-    }
-    if(nextProps.initialTargetPhrase.startsWith('https://')) {
-      this.setState({ isTargetPhraseVideo: true });
-    }
+
+
     this.setState({
       sourcePhrase: nextProps.initialSourcePhrase,
       targetPhrase: nextProps.initialTargetPhrase
     })
+  },
+
+  componentWillMount() {
+    if (this.state.sourcePhrase.startsWith('https://www.youtube')) {
+      this.setState({ isSourcePhraseVideo: true });
+    } else {
+      this.setState({ isSourcePhraseVideo: false });
+    }
+    if (this.state.targetPhrase.startsWith('https://www.youtube')) {
+      this.setState({ isTargetPhraseVideo: true });
+    } else {
+      this.setState({ isTargetPhraseVideo: false });
+    }
   },
 
   toggleEditingPhraseState() {
@@ -126,6 +135,63 @@ PhrasePair = React.createClass( {
         </ul>
       )
     } else {
+      if(this.state.isSourcePhraseVideo === true && this.state.isTargetPhraseVideo === true) {
+        return (
+          <ul>
+            <li className="source text">
+              <iframe
+                width="420"
+                height="315"
+                src={this.state.sourcePhrase}
+                frameBorder="0"
+              />
+            </li>
+            <li className="target text">
+              <iframe
+                width="420"
+                height="315"
+                src={this.state.targetPhrase}
+                frameBorder="0"
+              />
+            </li>
+            { this.renderPhraseMenu() }
+          </ul>
+        );
+      } else if (this.state.isSourcePhraseVideo === true && this.state.isTargetPhraseVideo === false) {
+        return (
+          <ul>
+            <li className="source text">
+              <iframe
+                width="420"
+                height="315"
+                src={this.state.sourcePhrase}
+                frameBorder="0"
+              />
+            </li>
+            <li className="target text">
+              <p>{this.state.targetPhrase}</p>
+            </li>
+            { this.renderPhraseMenu() }
+          </ul>          
+        );    
+      } else if (this.state.isSourcePhraseVideo === false && this.state.isTargetPhraseVideo === true) {
+        return (
+          <ul>
+            <li className="source text">
+              <p>{this.state.sourcePhrase}</p>
+            </li>
+            <li className="target text">
+              <iframe
+                width="420"
+                height="315"
+                src={this.state.targetPhrase}
+                frameBorder="0"
+              />
+            </li>
+            { this.renderPhraseMenu() }
+          </ul>          
+        );
+      }
       return (
         <ul>
           <li className="source text">
