@@ -23,10 +23,12 @@ PhrasePair = React.createClass( {
     } else {
       this.setState({ isSourcePhraseVideo: false });
     }
-    if (this.state.targetPhrase.startsWith('https://www.youtube')) {
-      this.setState({ isTargetPhraseVideo: true });
-    } else {
-      this.setState({ isTargetPhraseVideo: false });
+    if (this.state.targetPhrase) {
+      if (this.state.targetPhrase.startsWith('https://www.youtube')) {
+        this.setState({ isTargetPhraseVideo: true });
+      } else {
+        this.setState({ isTargetPhraseVideo: false });
+      }      
     }
   },
 
@@ -77,7 +79,12 @@ PhrasePair = React.createClass( {
   },
 
   onTargetChange(e) {
-    this.setState({ targetPhrase: e.target.value })
+    this.setState({ targetPhrase: e.target.value });
+    if (this.state.targetPhrase.startsWith('https://www.youtube')) {
+      this.setState({ isTargetPhraseVideo: true });
+    } else {
+      this.setState({ isTargetPhraseVideo: false });
+    }
   },
 
   renderPhraseMenu() {
