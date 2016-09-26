@@ -11,8 +11,6 @@ PhrasePair = React.createClass( {
   },
 
   componentWillReceiveProps(nextProps) {
-
-
     this.setState({
       sourcePhrase: nextProps.initialSourcePhrase,
       targetPhrase: nextProps.initialTargetPhrase
@@ -96,6 +94,21 @@ PhrasePair = React.createClass( {
           </li>
         );
       } else {
+        if(this.state.isSourcePhraseVideo && this.state.isTargetPhraseVideo) {
+          return (
+            <li className="menu">
+              <button title="Menu" className="more icon">
+                <img src={this.props.menu}/>
+              </button>
+              <button disabled title="Edit" onClick={this.onEditPhraseClick} className="icon">
+                <img src={this.props.edit}/>
+              </button>
+              <button title="Delete" onClick={this.onDeletePhraseClick} className="icon">
+                <img src={this.props.delete}/>
+              </button>
+            </li>
+          );          
+        }
         return (
           <li className="menu">
             <button title="Menu" className="more icon">
@@ -115,6 +128,49 @@ PhrasePair = React.createClass( {
 
   renderPhrasePair() {
      if (this.state.isEditingPhrase) {
+      if (this.state.isSourcePhraseVideo) {
+        return (
+          <ul>
+            <form onSubmit={this.onSavePhraseClick}>
+              <li className="source text">
+                <input
+                  disabled
+                  value={this.state.sourcePhrase}
+                  onChange={this.onSourceChange}
+                  name="sourcePhrase" />
+              </li>
+              <li className="target text">
+                <input
+                  value={this.state.targetPhrase}
+                  onChange={this.onTargetChange}
+                  name="targetPhrase" />
+              </li>
+              { this.renderPhraseMenu() }
+            </form>
+          </ul>
+        );
+      } else if (this.state.isTargetPhraseVideo) {
+        return (
+          <ul>
+            <form onSubmit={this.onSavePhraseClick}>
+              <li className="source text">
+                <input
+                  value={this.state.sourcePhrase}
+                  onChange={this.onSourceChange}
+                  name="sourcePhrase" />
+              </li>
+              <li className="target text">
+                <input
+                  disabled
+                  value={this.state.targetPhrase}
+                  onChange={this.onTargetChange}
+                  name="targetPhrase" />
+              </li>
+              { this.renderPhraseMenu() }
+            </form>
+          </ul>
+        );        
+      }
       return (
         <ul>
           <form onSubmit={this.onSavePhraseClick}>
