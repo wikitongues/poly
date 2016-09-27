@@ -2,8 +2,6 @@ PhrasePair = React.createClass( {
 
   getInitialState() {
     return {
-      isSourcePhraseVideo: false,
-      isTargetPhraseVideo: false,
       isEditingPhrase: false,
       sourcePhrase: this.props.initialSourcePhrase,
       targetPhrase: this.props.initialTargetPhrase
@@ -15,21 +13,6 @@ PhrasePair = React.createClass( {
       sourcePhrase: nextProps.initialSourcePhrase,
       targetPhrase: nextProps.initialTargetPhrase
     })
-  },
-
-  componentWillMount() {
-    if (this.state.sourcePhrase.startsWith('https://www.youtube')) {
-      this.setState({ isSourcePhraseVideo: true });
-    } else {
-      this.setState({ isSourcePhraseVideo: false });
-    }
-    if (this.state.targetPhrase) {
-      if (this.state.targetPhrase.startsWith('https://www.youtube')) {
-        this.setState({ isTargetPhraseVideo: true });
-      } else {
-        this.setState({ isTargetPhraseVideo: false });
-      }      
-    }
   },
 
   toggleEditingPhraseState() {
@@ -80,11 +63,29 @@ PhrasePair = React.createClass( {
 
   onTargetChange(e) {
     this.setState({ targetPhrase: e.target.value });
-    if (this.state.targetPhrase.startsWith('https://www.youtube')) {
-      this.setState({ isTargetPhraseVideo: true });
-    } else {
-      this.setState({ isTargetPhraseVideo: false });
-    }
+  },
+
+  renderIframe(src) {
+    return (<iframe width="420" height="315" src={src} frameBorder="0" />);
+  },
+  renderParagraph(text) {
+    return (<p>{text}</p>);
+  },
+  renderSourceInput(status) {
+    return (<input
+      disabled={status}
+      value={this.state.sourcePhrase}
+      onChange={this.onSourceChange}
+      name="sourcePhrase"
+    />);
+  },
+  renderTargetInput(status) {
+    return (<input
+      disabled={status}
+      value={this.state.targetPhrase}
+      onChange={this.onTargetChange}
+      name="targetPhrase"
+    />);
   },
 
   renderPhraseMenu() {
@@ -101,21 +102,6 @@ PhrasePair = React.createClass( {
           </li>
         );
       } else {
-        if(this.state.isSourcePhraseVideo && this.state.isTargetPhraseVideo) {
-          return (
-            <li className="menu">
-              <button title="Menu" className="more icon">
-                <img src={this.props.menu}/>
-              </button>
-              <button disabled title="Edit" onClick={this.onEditPhraseClick} className="icon">
-                <img src={this.props.edit}/>
-              </button>
-              <button title="Delete" onClick={this.onDeletePhraseClick} className="icon">
-                <img src={this.props.delete}/>
-              </button>
-            </li>
-          );          
-        }
         return (
           <li className="menu">
             <button title="Menu" className="more icon">
@@ -134,146 +120,62 @@ PhrasePair = React.createClass( {
   },
 
   renderPhrasePair() {
-     if (this.state.isEditingPhrase) {
-      if (this.state.isSourcePhraseVideo) {
-        return (
-          <ul>
-            <form onSubmit={this.onSavePhraseClick}>
-              <li className="source text">
-                <input
-                  disabled
-                  value={this.state.sourcePhrase}
-                  onChange={this.onSourceChange}
-                  name="sourcePhrase" />
-              </li>
-              <li className="target text">
-                <input
-                  value={this.state.targetPhrase}
-                  onChange={this.onTargetChange}
-                  name="targetPhrase" />
-              </li>
-              { this.renderPhraseMenu() }
-            </form>
-          </ul>
-        );
-      } else if (this.state.isTargetPhraseVideo) {
-        return (
-          <ul>
-            <form onSubmit={this.onSavePhraseClick}>
-              <li className="source text">
-                <input
-                  value={this.state.sourcePhrase}
-                  onChange={this.onSourceChange}
-                  name="sourcePhrase" />
-              </li>
-              <li className="target text">
-                <input
-                  disabled
-                  value={this.state.targetPhrase}
-                  onChange={this.onTargetChange}
-                  name="targetPhrase" />
-              </li>
-              { this.renderPhraseMenu() }
-            </form>
-          </ul>
-        );        
-      }
+    if (this.state.isEditingPhrase) {
       return (
         <ul>
           <form onSubmit={this.onSavePhraseClick}>
             <li className="source text">
-              <input
-                value={this.state.sourcePhrase}
-                onChange={this.onSourceChange}
-                name="sourcePhrase" />
+              {
+                this.state.sourcePhrase.startsWith('https://www.youtube') ?
+                  this.renderSourceInput(true)
+                  :
+                  this.renderSourceInput(false)
+              }                
             </li>
             <li className="target text">
-              <input
-                value={this.state.targetPhrase}
-                onChange={this.onTargetChange}
-                name="targetPhrase" />
+              {
+                this.state.targetPhrase && this.state.targetPhrase.startsWith('https://www.youtube') ?
+                  this.renderTargetInput(true)
+                  :
+                  this.renderTargetInput(false)
+              }
             </li>
             { this.renderPhraseMenu() }
           </form>
         </ul>
-      )
+      );
     } else {
-      if(this.state.isSourcePhraseVideo === true && this.state.isTargetPhraseVideo === true) {
-        return (
-          <ul>
-            <li className="source text">
-              <iframe
-                width="420"
-                height="315"
-                src={this.state.sourcePhrase}
-                frameBorder="0"
-              />
-            </li>
-            <li className="target text">
-              <iframe
-                width="420"
-                height="315"
-                src={this.state.targetPhrase}
-                frameBorder="0"
-              />
-            </li>
-            { this.renderPhraseMenu() }
-          </ul>
-        );
-      } else if (this.state.isSourcePhraseVideo === true && this.state.isTargetPhraseVideo === false) {
-        return (
-          <ul>
-            <li className="source text">
-              <iframe
-                width="420"
-                height="315"
-                src={this.state.sourcePhrase}
-                frameBorder="0"
-              />
-            </li>
-            <li className="target text">
-              <p>{this.state.targetPhrase}</p>
-            </li>
-            { this.renderPhraseMenu() }
-          </ul>          
-        );    
-      } else if (this.state.isSourcePhraseVideo === false && this.state.isTargetPhraseVideo === true) {
-        return (
-          <ul>
-            <li className="source text">
-              <p>{this.state.sourcePhrase}</p>
-            </li>
-            <li className="target text">
-              <iframe
-                width="420"
-                height="315"
-                src={this.state.targetPhrase}
-                frameBorder="0"
-              />
-            </li>
-            { this.renderPhraseMenu() }
-          </ul>          
-        );
-      }
+      // Checks whether the source phrase or the target phrase is a video and renders
+      // an iframe or a paragraph accordingly
       return (
         <ul>
           <li className="source text">
-            <p>{this.state.sourcePhrase}</p>
+            {
+              this.state.sourcePhrase.startsWith('https://www.youtube') ?
+                this.renderIframe(this.state.sourcePhrase)
+                :
+                this.renderParagraph(this.state.sourcePhrase)
+            }
           </li>
           <li className="target text">
-            <p>{this.state.targetPhrase}</p>
+            {
+              this.state.targetPhrase && this.state.targetPhrase.startsWith('https://www.youtube') ?
+                this.renderIframe(this.state.targetPhrase)
+                :
+                this.renderParagraph(this.state.targetPhrase)
+            }
           </li>
           { this.renderPhraseMenu() }
         </ul>
-      )
+      );
     }
   },
 
   render() {
     return (
-       <li className="entry">
+      <li className="entry">
         { this.renderPhrasePair() }
       </li>
-    )
-  }
-} );
+    );
+  },
+});
