@@ -126,7 +126,7 @@ PhrasePair = React.createClass( {
           <form onSubmit={this.onSavePhraseClick}>
             <li className="source text">
               {
-                this.state.sourcePhrase.startsWith('https://www.youtube') ?
+                this.state.sourcePhrase.startsWith('http://www.youtube') ?
                   this.renderSourceInput(true)
                   :
                   this.renderSourceInput(false)
@@ -134,7 +134,7 @@ PhrasePair = React.createClass( {
             </li>
             <li className="target text">
               {
-                this.state.targetPhrase && this.state.targetPhrase.startsWith('https://www.youtube') ?
+                this.state.targetPhrase && this.state.targetPhrase.startsWith('http://www.youtube') ?
                   this.renderTargetInput(true)
                   :
                   this.renderTargetInput(false)
@@ -151,7 +151,7 @@ PhrasePair = React.createClass( {
         <ul>
           <li className="source text">
             {
-              this.state.sourcePhrase.startsWith('https://www.youtube') ?
+              this.state.sourcePhrase.startsWith('http://www.youtube') ?
                 this.renderIframe(this.state.sourcePhrase, 'source')
                 :
                 this.renderParagraph(this.state.sourcePhrase)
@@ -159,7 +159,7 @@ PhrasePair = React.createClass( {
           </li>
           <li className="target text">
             {
-              this.state.targetPhrase && this.state.targetPhrase.startsWith('https://www.youtube') ?
+              this.state.targetPhrase && this.state.targetPhrase.startsWith('http://www.youtube') ?
                 this.renderIframe(this.state.targetPhrase, 'target')
                 :
                 this.renderParagraph(this.state.targetPhrase)

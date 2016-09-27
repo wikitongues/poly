@@ -21,9 +21,7 @@ Video = React.createClass( {
       recordRTC: '',
       recordedBlob: '',
       uploadVideo: '',
-      videoId: '',
       youtubeVideoEmbed: '',
-      youtubeVideoUrl: '',
     };
   },
   componentDidMount() {
@@ -127,8 +125,7 @@ Video = React.createClass( {
   },
   saveYoutubeUrl(videoId) {
     this.setState({
-      youtubeVideoEmbed: `https://www.youtube.com/embed/${videoId}`,
-      youtubeVideoUrl: `https://www.youtube.com/watch?v=${videoId}`,
+      youtubeVideoEmbed: `http://www.youtube.com/embed/${videoId}?showinfo=0&rel=0&color=white&autohide=1&controls=0`,
     });
   },
 
@@ -317,8 +314,7 @@ Video = React.createClass( {
   // checks whether video is available from youtube servers
 
   handleVideoId(videoId) {
-    this.saveVideoId.bind(null, videoId)();
-    this.saveYoutubeUrl.bind(null, videoId)();
+    this.saveYoutubeUrl(videoId);
     if (this.props.isTargetInputActive) {
       this.props.onTargetVideoSubmit(this.state.youtubeVideoEmbed);
       this.props.onToggleInputType();
