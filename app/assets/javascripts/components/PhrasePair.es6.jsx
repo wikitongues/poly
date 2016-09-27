@@ -65,8 +65,8 @@ PhrasePair = React.createClass( {
     this.setState({ targetPhrase: e.target.value });
   },
 
-  renderIframe(src) {
-    return (<iframe width="420" height="315" src={src} frameBorder="0" />);
+  renderIframe(src, name) {
+    return (<iframe className={name} width="420" height="315" src={src} frameBorder="0" />);
   },
   renderParagraph(text) {
     return (<p>{text}</p>);
@@ -152,7 +152,7 @@ PhrasePair = React.createClass( {
           <li className="source text">
             {
               this.state.sourcePhrase.startsWith('https://www.youtube') ?
-                this.renderIframe(this.state.sourcePhrase)
+                this.renderIframe(this.state.sourcePhrase, 'source')
                 :
                 this.renderParagraph(this.state.sourcePhrase)
             }
@@ -160,7 +160,7 @@ PhrasePair = React.createClass( {
           <li className="target text">
             {
               this.state.targetPhrase && this.state.targetPhrase.startsWith('https://www.youtube') ?
-                this.renderIframe(this.state.targetPhrase)
+                this.renderIframe(this.state.targetPhrase, 'target')
                 :
                 this.renderParagraph(this.state.targetPhrase)
             }
