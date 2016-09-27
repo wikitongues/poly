@@ -35,6 +35,9 @@ Video = React.createClass( {
     }
     this.props.onCloseVideoComponent();
     alert('Could not load Google API, please check your connection.');
+
+    const video = document.getElementById('camera-stream');
+    video.muted = true;
   },
 
   /*
@@ -45,42 +48,27 @@ Video = React.createClass( {
   // button: it gets the stream from 'localMediaStream' and
   // stores it in our App state with saveRecordRTC
   onRecordVideo() {
-    const self = this;
-
     // Updates the shape of our button
     this.props.onStartRecordingClick();
-    this.props.onStopStream();
-    navigator.getUserMedia(
 
-      // Constraints
-      self.props.mediaConstraints,
+    const video = document.getElementById('camera-stream');
+    const stream = this.props.stream;
+    video.src = window.URL.createObjectURL(stream);
 
-      // Success Callback
-      function (stream) {
-        // RecordRTC part - recording of the video
-
-        // Get a reference to the video element on the page.
-        const video = document.getElementById('camera-stream');
-        video.src = window.URL.createObjectURL(stream);
-
-        const options = {
-          mimeType: 'video/webm',
-          bitsPerSecond: 1200000,
-          bufferSize: 16384,
-          sampleRate: 96000,
-        };
-        const recordRTC = RecordRTC(stream, options);
-        self.saveRecordRTC(recordRTC);
-        self.state.recordRTC.startRecording();
-        self.props.onSaveStream(stream);
-      },
-
-      // Error Callback
-      (err) => {
-        // Log the error to the console.
-        console.log(`The following error occurred when trying to use getUserMedia:${err}`);
-      }
-    );  
+    const options = {
+      mimeType: 'video/webm',
+      bitsPerSecond: 1200000,
+      bufferSize: 16384,
+      sampleRate: 96000,
+    };
+    const recordRTC = new Promise((resolve) => {
+      resolve(RecordRTC(stream, options));
+    });
+    recordRTC.then((response) => {
+      this.saveRecordRTC(response);
+    }).then(() => {
+      this.state.recordRTC.startRecording();
+    });
   },
 
   // This method stops our recording and update our blob with a
@@ -89,42 +77,27 @@ Video = React.createClass( {
   onStopRecording() {
     this.props.onStopRecordingClick();
 
-    const video = document.getElementById('camera-stream');
+    const video = document.querySelector('#camera-stream');
     video.muted = false;
 
-    const self = this;
+    const recordRTC = this.state.recordRTC;
+    recordRTC.stopRecording((audioVideoWebURL) => {
+      // Create an object URL for the video stream and use this
+      // to set the video source.
+      video.src = audioVideoWebURL;
+
+      // the conversion is done here
+      const recordedBlob = recordRTC.getBlob();
+      recordedBlob.lastModifiedDate = new Date();
+      recordedBlob.name = 'VideoTest.webm';
+
+      // and then we push the newly created file back into
+      // our App state
+      this.updateRecordedBlob(recordedBlob);
+    });
+
     this.props.onStopStream();
-    navigator.getUserMedia(
-      // Constraints
-      self.props.mediaConstraints,
 
-      // Success Callback
-      function (stream) {
-        const recordRTC = self.state.recordRTC;
-        recordRTC.stopRecording(function (audioVideoWebURL) {
-          // Create an object URL for the video stream and use this
-          // to set the video source.
-          video.src = audioVideoWebURL;
-
-          // the conversion is done here
-          const recordedBlob = recordRTC.getBlob();
-          recordedBlob.lastModifiedDate = new Date();
-          recordedBlob.name = 'VideoTest.webm';
-
-          // and then we push the newly created file back into
-          // our App state
-          self.updateRecordedBlob(recordedBlob);
-        });
-        self.props.onSaveStream(stream);
-        self.props.onStopStream();
-      },
-
-      // Error Callback
-      function (err) {
-        // Log the error to the console.
-        console.log(`The following error occurred when trying to use getUserMedia:${err}`);
-      }
-    );
     this.handleUploadTimeout();
   },
 
@@ -374,7 +347,7 @@ Video = React.createClass( {
   render() {
     return (
       <div className="videoComponent">
-        <video id="camera-stream" width="570" autoPlay muted />
+        <video id="camera-stream" width="570" autoPlay />
         {this.renderRecordButton()}
         <button title="Cancel" onClick={this.props.onCancelEditPhrase} className="close icon">
           <img src={this.props.closeAlt} alt="close"/>
