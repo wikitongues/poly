@@ -192,12 +192,13 @@ Video = React.createClass( {
           console.log('Upload complete');
           const uploadResponse = JSON.parse(data);
           this.videoId = uploadResponse.id;
+          console.log(uploadResponse);
 
           // Takes care of calling our saveVideoId method
           // that allows us to stock our video ID in order
           // to display it afterwards
           const videoIdVar = this.videoId;
-          self.handleVideoId.bind(null, videoIdVar)();
+          self.handleVideoId(videoIdVar);
 
           // Hides upload video div and show our
           // fetched youtube video
@@ -315,13 +316,13 @@ Video = React.createClass( {
 
   handleVideoId(videoId) {
     this.saveYoutubeUrl(videoId);
-    if (this.props.isTargetInputActive) {
-      this.props.onTargetVideoSubmit(this.state.youtubeVideoEmbed);
-      this.props.onToggleInputType();
-    } else {
-      this.props.onSourceVideoSubmit(this.state.youtubeVideoEmbed);
-      this.props.onToggleInputType();
-    }
+      if (this.props.isTargetInputActive) {
+        this.props.onTargetVideoSubmit(this.state.youtubeVideoEmbed);
+        this.props.onToggleInputType();
+      } else {
+        this.props.onSourceVideoSubmit(this.state.youtubeVideoEmbed);
+        this.props.onToggleInputType();
+      }      
   },
 
   renderRecordButton() {

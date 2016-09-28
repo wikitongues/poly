@@ -66,7 +66,12 @@ PhrasePair = React.createClass( {
   },
 
   renderIframe(src, name) {
-    return (<iframe className={name} width="420" height="315" src={src} frameBorder="0" />);
+    const stickedClass = `container-iframe-${name}`;
+    return (
+      <div className={stickedClass}>
+        <iframe className="name" width="380" height="275" src={src} frameBorder="0" />
+      </div>
+    );
   },
   renderParagraph(text) {
     return (<p>{text}</p>);
