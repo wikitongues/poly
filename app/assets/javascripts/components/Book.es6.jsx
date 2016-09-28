@@ -261,7 +261,11 @@ Book = React.createClass( {
           video={this.props.video}
           videoAlt={this.props.videoAlt}
           close={this.props.close}
-          closeAlt={this.props.closeAlt} />
+          closeAlt={this.props.closeAlt} 
+          sourceLanguage={this.state.book.source_language}
+          targetLanguage={this.state.book.target_language}
+          author={this.state.book.user_id}
+          />
         </div>
       </div>
     )

@@ -15,9 +15,9 @@ Video = React.createClass( {
         'https://www.googleapis.com/auth/plus.login',
         'https://www.googleapis.com/auth/userinfo.email',
       ],
-      titleVideo: 'user_id+access_token',
-      descVideo: 'user_id+access_token',
-      privacyVideo: 'public',
+      titleVideo: '',
+      descVideo: '',
+      privacyVideo: 'private',
       recordRTC: '',
       recordedBlob: '',
       uploadVideo: '',
@@ -25,17 +25,23 @@ Video = React.createClass( {
     };
   },
   componentDidMount() {
+
+    // Creates our custom title
+    this.saveTitle();
+
+    // Avoids having a nasty larsen effect
+    const video = document.getElementById('camera-stream');
+    video.muted = true;
+
     // This is where the authentication process starts
     if (typeof gapi !== 'undefined') {
       this.authorizeApp();
       this.props.onRenderVideoInput();
       return;
     }
+
     this.props.onCloseVideoComponent();
     alert('Could not load Google API, please check your connection.');
-
-    const video = document.getElementById('camera-stream');
-    video.muted = true;
   },
 
   /*
@@ -102,6 +108,11 @@ Video = React.createClass( {
   /*
     Modify state methods
   */
+  saveTitle() {
+    const title = `${this.props.sourceLanguage}.${this.props.targetLanguage}.${this.props.author}`;
+    console.log(title);
+    this.setState({ titleVideo: title });
+  },
 
   saveStreamData(stream) {
     this.setState({ stream });

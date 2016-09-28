@@ -364,6 +364,9 @@ Dictionary = React.createClass( {
         mediaConstraints={this.state.mediaConstraints}
         stream={this.state.stream}
         isTargetInputActive={this.state.isTargetInputActive}
+        sourceLanguage={this.props.sourceLanguage}
+        targetLanguage={this.props.targetLanguage}
+        author={this.props.author}
         />
       );
     }
