@@ -22,8 +22,20 @@ Video = React.createClass( {
       recordedBlob: '',
       uploadVideo: '',
       youtubeVideoEmbed: '',
+      isHidden: '',
     };
   },
+  componentWillMount() {
+    // This is where the authentication process starts
+    if (typeof gapi !== 'undefined') {
+      this.authorizeApp();
+      return;
+    }
+
+    this.props.onCloseVideoComponent();
+    alert('Could not load Google API, please check your connection.');    
+  },
+
   componentDidMount() {
 
     // Creates our custom title
@@ -32,16 +44,6 @@ Video = React.createClass( {
     // Avoids having a nasty larsen effect
     const video = document.getElementById('camera-stream');
     video.muted = true;
-
-    // This is where the authentication process starts
-    if (typeof gapi !== 'undefined') {
-      this.authorizeApp();
-      this.props.onRenderVideoInput();
-      return;
-    }
-
-    this.props.onCloseVideoComponent();
-    alert('Could not load Google API, please check your connection.');
   },
 
   /*
@@ -304,6 +306,8 @@ Video = React.createClass( {
     console.log('gapi loaded');
     // After authentication is complete, we set up the future
     // upload
+    this.props.onToggleGAPILoaded();
+    this.props.onRenderVideoInput();
     this.createUploadClass();
   },
 
@@ -354,7 +358,7 @@ Video = React.createClass( {
 
   render() {
     return (
-      <div className="videoComponent">
+      <div ref='video' className="videoComponent">
         <video id="camera-stream" width="570" autoPlay />
         {this.renderRecordButton()}
         <button title="Cancel" onClick={this.props.onCancelEditPhrase} className="close icon">
