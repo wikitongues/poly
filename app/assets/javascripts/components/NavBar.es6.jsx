@@ -23,7 +23,10 @@ NavBar = React.createClass( {
     return(
       <nav>
         <a className="icon home" href="/">
-          <img src={this.props.logo} alt=""/>
+          <img src={this.props.logo} alt="Poly Home"/>
+          <span className="detail">
+            <img src={this.props.detail} alt=""/>
+          </span>
         </a>
         <SearchBar search={this.props.search}/>
         {this.renderSignIn()}
