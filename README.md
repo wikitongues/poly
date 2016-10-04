@@ -32,18 +32,19 @@ Planned features for future releases. Releases are mapped below. We use [semanti
   - [x] ~~User books~~
   - [x] ~~Gravatar~~
   - [x] ~~User edit profile data~~
-  - [ ] User upload profile picture
 - [x] ~~Deployment~~
 - [x] ~~Handle error messages on login page~~
 - [ ] Testing
-- [ ] Search
+- [x] ~~Search~~
 - [ ] Video phrases
-  - [ ] Video phrase interface
+  - [x] ~~Video phrase interface~~
   - [ ] Input and upload video phrases
 - [ ] Data import / export
 - [ ] Proper user validations
 
 ###Version  0.3
+- [ ] Rich text descriptions (paragraphs, links)
+- [ ] User upload profile picture
 - [ ] Favorite a book
 - [ ] Follow a user
 - [ ] Filter content

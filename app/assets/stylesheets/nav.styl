@@ -12,6 +12,33 @@ nav
   a
     float left
 
+    &.icon.home
+      height 40px
+      width auto
+
+      img
+        height 40px
+        float left
+
+      > img
+        width 40px
+        transition all $time ease-in-out
+
+      .detail
+        overflow hidden
+        width 0
+        display inline-block
+        margin-left -7px
+        transition all $time ease-in-out
+
+      &:hover
+        > img
+          margin-left -2px
+
+        .detail
+          width 122px
+          margin-left 3px
+
   a,
   span.logIn a,
   span.logIn p
