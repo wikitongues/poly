@@ -5,7 +5,8 @@ Book = React.createClass( {
       phrasePairs: this.props.initialPhrasePairs,
       isEditingBook: false,
       book: this.props.initialBook,
-      isDescriptionTruncated:true
+      isDescriptionTruncated:true,
+      isFavoriteBook: this.isFavoriteBook()
     }
   },
 
@@ -95,8 +96,47 @@ Book = React.createClass( {
     alert("Searching is coming soon!")
   },
 
-  onFavoriteBook: function() {
-    // Serialization Nation
+  onClickFavoriteBook: function() {
+    if (this.state.isFavoriteBook) {
+      this.destroyFavorite();
+    } else {
+      this.createFavorite();
+    }
+  },
+
+  destroyFavorite: function() {
+    $.ajax({
+      url: '/favorites/' + this.state.book.id,
+      type: 'DELETE',
+      success: function(book) {
+        this.toggleFavoriteBook();
+      }.bind(this),
+      error: function(error) {
+        console.log('something went wrong')
+      }
+    })
+  },
+
+  createFavorite: function() {
+    $.ajax({
+      url: '/favorites',
+      type: 'POST',
+      data: {
+        book_id: this.state.book.id
+      },
+      success: function(book) {
+        this.toggleFavoriteBook();
+      }.bind(this),
+      error: function(error) {
+        console.log('something went wrong')
+      }
+    })
+  },
+
+  toggleFavoriteBook: function() {
+    this.setState({
+      isFavoriteBook: !this.state.isFavoriteBook
+    })
   },
 
   bookIsOwnedByCurrentUser: function() {
@@ -218,6 +258,18 @@ Book = React.createClass( {
     }
   },
 
+  favoriteImage: function() {
+    return this.state.isFavoriteBook
+      ? this.props.star
+      : this.props.unstar;
+  },
+
+  isFavoriteBook: function() {
+    return this.props.currentUser.favorite_books.filter(function(favorite) {
+      return favorite.book_id === this.props.initialBook.id
+    }.bind(this)).length > 0;
+  },
+
   render: function() {
     return (
       <div className="container">
@@ -225,8 +277,8 @@ Book = React.createClass( {
         <span className="backgroundElement"></span>
         <div className="book">
           <div className="tools">
-            <button title="Favorite" onClick={this.onFavoriteBook} className="favorite icon">
-              <img src={this.props.unstar} alt="Favorite"/>
+            <button title="Favorite" onClick={this.onClickFavoriteBook} className="favorite icon">
+              <img src={this.favoriteImage()} alt="Favorite"/>
             </button>
             <div className="cardinality">
               <section>
