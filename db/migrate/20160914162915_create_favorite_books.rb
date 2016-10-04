@@ -6,8 +6,5 @@ class CreateFavoriteBooks < ActiveRecord::Migration
 
       t.timestamps null: false
     end
-
-    drop_table :favorites
-    drop_table :favorite_projects
   end
 end
