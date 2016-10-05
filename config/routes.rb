@@ -6,6 +6,8 @@ Rails.application.routes.draw do
 
   root to:  "home#index"
 
+  get "/search" => "searches#search"
+
   resources :books, only: [:show, :new, :create, :destroy, :update]
 
   resources :phrase_pairs, only: [:create, :destroy, :update]
