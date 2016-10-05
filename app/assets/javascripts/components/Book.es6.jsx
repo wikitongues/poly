@@ -265,9 +265,21 @@ Book = React.createClass( {
   },
 
   isFavoriteBook: function() {
-    return this.props.currentUser.favorite_books.filter(function(favorite) {
-      return favorite.book_id === this.props.initialBook.id
-    }.bind(this)).length > 0;
+    if (this.props.currentUser) {
+        return this.props.currentUser.favorite_books.filter(function(favorite) {
+          return favorite.book_id === this.props.initialBook.id
+        }.bind(this)).length > 0;
+    }
+  },
+
+  renderFavoriteButton: function() {
+    if(this.props.currentUser) {
+      return (
+        <button title="Favorite" onClick={this.onClickFavoriteBook} className="favorite icon">
+          <img src={this.favoriteImage()} alt="Favorite"/>
+        </button>
+      )
+    }
   },
 
   render: function() {
@@ -277,9 +289,7 @@ Book = React.createClass( {
         <span className="backgroundElement"></span>
         <div className="book">
           <div className="tools">
-            <button title="Favorite" onClick={this.onClickFavoriteBook} className="favorite icon">
-              <img src={this.favoriteImage()} alt="Favorite"/>
-            </button>
+            {this.renderFavoriteButton()}
             <div className="cardinality">
               <section>
                 { this.renderSourceLanguage() }

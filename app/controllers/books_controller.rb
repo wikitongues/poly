@@ -4,6 +4,9 @@ class BooksController < AuthenticatedController
   def show
     @users=User.all
     @book = Book.find(params[:id])
+    if current_user
+      @serialized_current_user = UserSerializer.new(current_user).as_json
+    end
     if @book.present?
       @phrase_pairs = @book.phrase_pairs.order("created_at ASC")
       authorize @book
