@@ -49,8 +49,4 @@ HomeIndex = React.createClass ( {
     </div>
     )
   }
-<<<<<<< HEAD
-} );
-=======
 } )
->>>>>>> master

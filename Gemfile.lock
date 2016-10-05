@@ -228,11 +228,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-<<<<<<< HEAD
-  browserify-rails
-=======
   active_model_serializers (~> 0.10.0)
->>>>>>> master
+  browserify-rails
   byebug
   capybara
   coffee-rails (~> 4.1.0)

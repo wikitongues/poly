@@ -1,17 +1,5 @@
 Profile = React.createClass( {
-
-<<<<<<< HEAD
-  getInitialState: function () {
-    return {
-      languages: ['Swiss german', 'German', 'French', 'English', 'Portuguese'],
-      followers: [{username:'Daniel Udell', user_id:3},{username:'Charles Darwin', user_id:9},{username:'Marie Curie', user_id:1},{username:'Johannes Kepler', user_id:3},{username:'Louis Pasteur', user_id:3}]
-    }
-  },
-
-  renderAuthoredBooks() {
-=======
   renderAuthoredBooks: function() {
->>>>>>> master
     return this.props.books.map((book) => {
       return <BookEntry users={this.props.userData} book={book} key={book.id} cardinality={this.props.cardinality}></BookEntry>
     })

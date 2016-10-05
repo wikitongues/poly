@@ -5,12 +5,8 @@ Book = React.createClass( {
       phrasePairs: this.props.initialPhrasePairs,
       isEditingBook: false,
       book: this.props.initialBook,
-<<<<<<< HEAD
-      isDescriptionTruncated:true
-=======
       isDescriptionTruncated:true,
       isFavoriteBook: this.isFavoriteBook()
->>>>>>> master
     }
   },
 
@@ -137,15 +133,12 @@ Book = React.createClass( {
     })
   },
 
-<<<<<<< HEAD
-=======
   toggleFavoriteBook: function() {
     this.setState({
       isFavoriteBook: !this.state.isFavoriteBook
     })
   },
 
->>>>>>> master
   bookIsOwnedByCurrentUser: function() {
     if (this.props.currentUser) {
       return this.props.initialBook.user_id == this.props.currentUser.id
@@ -265,9 +258,6 @@ Book = React.createClass( {
     }
   },
 
-<<<<<<< HEAD
-  render() {
-=======
   favoriteImage: function() {
     return this.state.isFavoriteBook
       ? this.props.star
@@ -293,7 +283,6 @@ Book = React.createClass( {
   },
 
   render: function() {
->>>>>>> master
     return (
       <div className="container">
         <NavBar currentUser={this.props.currentUser} logo={this.props.logo} detail={this.props.detail} search={this.props.search}/>
