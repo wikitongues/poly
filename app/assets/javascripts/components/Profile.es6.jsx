@@ -6,6 +6,12 @@ Profile = React.createClass( {
     })
   },
 
+  renderFavoriteBooks: function() {
+    return this.props.favorites.map((book) => {
+      return <BookEntry users={this.props.userData} book={book} key={book.id} cardinality={this.props.cardinality}></BookEntry>
+    })
+  },
+
   currentUserProfile: function() {
     if (this.props.currentUser) {
       return this.props.userData.id != this.props.currentUser.id
@@ -88,6 +94,14 @@ Profile = React.createClass( {
                 {this.renderAuthoredBooks()}
               </ul>
               {this.renderCreateBookButton()}
+            </div>
+            <div className="indexContent favorites">
+              <div className="controlPannel">
+                <p className="header">Faves</p>
+              </div>
+              <ul className="bookEntryList favoriteBookList">
+                {this.renderFavoriteBooks()}
+              </ul>
             </div>
           </div>
         </div>
