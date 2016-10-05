@@ -1,19 +1,4 @@
 BookEntry = React.createClass ( {
-  renderAuthor: function() {
-    let users = this.props.users
-    let authorName = ""
-    for (var i = users.length - 1; i >= 0; i--) {
-      if(this.props.book.user_id == users[i].id) {
-        authorName = users[i].username
-      }
-    }
-    return (
-      <span>
-      {authorName}
-      </span>
-    )
-  },
-
   render: function() {
     let createdDate = new Date(this.props.book.created_at),
     createdYear = createdDate.getUTCFullYear(),
@@ -40,7 +25,7 @@ BookEntry = React.createClass ( {
             </section>
             <section className="meta">
               <p className="date">{createdDay} {createdMonth} {createdYear}</p>
-              <p className="author">{this.renderAuthor()}</p>
+              <p className="author">{this.props.book.user.username}</p>
             </section>
           </section>
          </a>

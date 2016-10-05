@@ -1,12 +1,5 @@
 Profile = React.createClass( {
 
-  getInitialState: function () {
-    return {
-      languages: ['Swiss german', 'German', 'French', 'English', 'Portuguese'],
-      followers: [{username:'Daniel Udell', user_id:3},{username:'Charles Darwin', user_id:9},{username:'Marie Curie', user_id:1},{username:'Johannes Kepler', user_id:3},{username:'Louis Pasteur', user_id:3}]
-    }
-  },
-
   renderAuthoredBooks: function() {
     return this.props.books.map((book) => {
       return <BookEntry users={this.props.userData} book={book} key={book.id} cardinality={this.props.cardinality}></BookEntry>
@@ -29,32 +22,18 @@ Profile = React.createClass( {
     }
   },
 
-  onSearchStoreClick: function() {
-    alert("Searching is coming soon!")
-  },
-
-  onFavoriteSortClick: function() {
-    alert("Favoriting is coming soon!")
-  },
-
   renderDashboardHeader: function() {
     if (this.props.currentUser) {
       if(this.currentUserProfile()) {
         return (
           <div className="controlPannel">
             <p className="header">Books by {this.props.userData.username}</p>
-            <button title="Sort by Favorites" onClick={this.onFavoriteSortClick} className="icon">
-              <img src={this.props.unstarred}/>
-            </button>
           </div>
         )
       } else {
         return (
           <div className="controlPannel">
             <a className="header" href="/books/new" title="Create a new book">New book</a>
-            <button title="Sort by Favorites" onClick={this.onFavoriteSortClick} className="icon">
-              <img src={this.props.unstarred}/>
-            </button>
           </div>
         )
       }
@@ -62,9 +41,6 @@ Profile = React.createClass( {
      return (
         <div className="controlPannel">
           <p className="header">Books by {this.props.userData.username}</p>
-          <button title="Sort by Favorites" onClick={this.onFavoriteSortClick} className="icon">
-            <img src={this.props.unstarred}/>
-          </button>
         </div>
       )
     }
@@ -80,23 +56,13 @@ Profile = React.createClass( {
     if(this.props.currentUser) {
       if(this.props.currentUser.id == this.props.userData.id) {
         return (
-          <a href="account/edit">Edit</a>
+          <a className="editButton" href="account/edit">Edit</a>
         )
       }
     }
   },
 
   render: function() {
-    let langs = []
-    this.state.languages.forEach(function (lang) {
-      langs.push(<span className="language">{lang}</span>)
-    })
-
-    let followers = []
-    this.state.followers.forEach(function (follower) {
-      followers.push(<li><a href={follower.user_id}>{follower.username}</a></li>)
-    })
-
     let createdDate = new Date(this.props.userData.created_at),
     createdYear = createdDate.getUTCFullYear(),
     months = ["January","February","March","April","May","June","July","August","September","October","November","December"],
@@ -111,19 +77,8 @@ Profile = React.createClass( {
             <div className="wrapper">
               <img src={`http://www.gravatar.com/avatar/${this.props.hashedEmail}?s=200`} />
               <h2>{this.props.userData.username}</h2>
-              <p>{this.props.userData.email}</p>
-              {/*<div className="languages">
-                {langs}
-              </div>*/}
               <p>Member since {createdMonth} {createdYear}</p>
               {this.renderEditButton()}
-              {/*{this.renderFollowButton()}
-              <div className="followedBy">
-              Followers ({followers.length})
-                <ul>
-                  {followers}
-                </ul>
-              </div>*/}
             </div>
           </div>
           <div className="dashboard">
