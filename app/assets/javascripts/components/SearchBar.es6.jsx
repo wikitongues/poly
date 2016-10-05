@@ -3,7 +3,7 @@ SearchBar = React.createClass( {
     return(
       <form action="/search">
         <img src={this.props.search}/>
-        <input type="text" name="q" placeholder="Search by language"/>
+        <input type="text" name="q" placeholder="Search"/>
       </form>
     )
   }
