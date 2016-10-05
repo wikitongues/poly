@@ -40,7 +40,7 @@ NewBook = React.createClass( {
   render() {
     return(
       <div className="container">
-        <NavBar currentUser={this.props.currentUser} logo={this.props.logo} search={this.props.search}/>
+        <NavBar currentUser={this.props.currentUser} logo={this.props.logo} detail={this.props.detail} search={this.props.search}/>
         <span className="backgroundElement"></span>
         <div className="book">
           <form onSubmit={this.onSubmit}>

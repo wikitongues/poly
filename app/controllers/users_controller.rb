@@ -3,7 +3,12 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @hashedEmail = Digest::MD5.hexdigest(@user.email)
-    @books = Book.where(user_id: @user).all.order("created_at DESC")
+    @books = Book
+        .where(user_id: @user)
+        .order("created_at DESC")
+        .map do |book|
+            BookSerializer.new(book)
+        end
     # if @user.present?
     #   @phrase_pairs = @user.phrase_pairs
     #   authorize @user

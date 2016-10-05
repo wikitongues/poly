@@ -33,7 +33,7 @@ HomeIndex = React.createClass ( {
   render: function() {
     return (
       <div className="container">
-        <NavBar currentUser={this.props.currentUser} logo={this.props.logo} search={this.props.search}/>
+        <NavBar currentUser={this.props.currentUser} logo={this.props.logo} detail={this.props.detail} search={this.props.search}/>
         <div className="dashboard">
           <span className="backgroundElement"></span>
           <div className="indexContent">
@@ -49,4 +49,8 @@ HomeIndex = React.createClass ( {
     </div>
     )
   }
+<<<<<<< HEAD
 } );
+=======
+} )
+>>>>>>> master
