@@ -2,6 +2,7 @@ class Book < ActiveRecord::Base
   before_validation :clean_language_names
 
   has_many :phrase_pairs, dependent: :destroy
+
   belongs_to :user
 
   validates :user, presence: true
