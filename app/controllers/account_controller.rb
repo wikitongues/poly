@@ -5,19 +5,12 @@ class AccountController < SecureController
   def index
     @user = current_user
     @hashedEmail = Digest::MD5.hexdigest(@user.email)
-        @books = Book
-        .where(user_id: @user)
-        .order("created_at DESC")
-        .map do |book|
-            BookSerializer.new(book)
-        end
-    # if @user.present?
-    #   @phrase_pairs = @user.phrase_pairs
-    #   authorize @user
-    # else
-    #   skip_authorization
-    #   redirect_to root_path
-    # end
+    @books = Book
+      .where(user_id: @user)
+      .order("created_at DESC")
+      .map do |book|
+          BookSerializer.new(book)
+    end
   end
 
 end
