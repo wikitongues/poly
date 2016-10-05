@@ -9,6 +9,6 @@ class SearchesController < ApplicationController
       .map do |book|
         BookSerializer.new(book)
       end
-    render 'home/index'
+    render 'search/index'
   end
 end
