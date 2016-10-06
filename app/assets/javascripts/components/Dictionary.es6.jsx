@@ -179,7 +179,7 @@ Dictionary = React.createClass( {
   },
 
   onRenderVideoInput(cameraStream) {
-    var video = document.getElementById('camera-stream');
+    const video = document.getElementById('camera-stream');
     video.controls = false;
 
     video.muted = true;
@@ -187,7 +187,7 @@ Dictionary = React.createClass( {
                               navigator.webkitGetUserMedia ||
                               navigator.mozGetUserMedia ||
                               navigator.msGetUserMedia);
-    var self = this;
+    const self = this;
     if (navigator.getUserMedia) {
       // Request the camera.
       navigator.getUserMedia(
@@ -354,7 +354,11 @@ Dictionary = React.createClass( {
       return (
         <div>
           <div ref='loading'>
-            <p>Loading...</p>
+            <div className="spinner">
+              <div className="bounce1"></div>
+              <div className="bounce2"></div>
+              <div className="bounce3"></div>
+            </div>
           </div>
           <div hidden ref='video'>
             <Video

@@ -4,12 +4,10 @@ Video = React.createClass( {
   getInitialState() {
     return {
       accessToken: '',
-      // ==>> This is what the user will have to change in order
-      // to upload his video to his own channel:
-      // go to console.developer.google.com and create an OAuth
-      // clientID
-      clientId: '463787160210-89kiojjsupa9u2g2s946g7em5d8t6kdj.apps.googleusercontent.com',
-      // <<==
+      // clientId Ben
+      // clientId: '463787160210-89kiojjsupa9u2g2s946g7em5d8t6kdj.apps.googleusercontent.com',
+      // wikitongues
+      clientId: '20162064407-uf2hnjg83uhaq6v3soa0bm0ngp5gmvjq.apps.googleusercontent.com',
       scopes: [
         'https://www.googleapis.com/auth/youtube',
         'https://www.googleapis.com/auth/plus.login',
@@ -40,8 +38,6 @@ Video = React.createClass( {
 
     // Creates our custom title
     this.saveTitle();
-
-    // Avoids having a nasty larsen effect
     const video = document.getElementById('camera-stream');
     video.muted = true;
   },
@@ -49,12 +45,7 @@ Video = React.createClass( {
   /*
     Recording of our video
   */
-
-  // This method is called when the user clicks on the record
-  // button: it gets the stream from 'localMediaStream' and
-  // stores it in our App state with saveRecordRTC
   onRecordVideo() {
-    // Updates the shape of our button
     this.props.onStartRecordingClick();
 
     const video = document.getElementById('camera-stream');
@@ -77,9 +68,6 @@ Video = React.createClass( {
     });
   },
 
-  // This method stops our recording and update our blob with a
-  // name and a date to convert it into a file that we can upload
-  // on Youtube:
   onStopRecording() {
     this.props.onStopRecordingClick();
 
@@ -88,17 +76,12 @@ Video = React.createClass( {
 
     const recordRTC = this.state.recordRTC;
     recordRTC.stopRecording((audioVideoWebURL) => {
-      // Create an object URL for the video stream and use this
-      // to set the video source.
       video.src = audioVideoWebURL;
 
-      // the conversion is done here
       const recordedBlob = recordRTC.getBlob();
       recordedBlob.lastModifiedDate = new Date();
       recordedBlob.name = 'VideoTest.webm';
 
-      // and then we push the newly created file back into
-      // our App state
       this.updateRecordedBlob(recordedBlob);
     });
 
@@ -204,16 +187,8 @@ Video = React.createClass( {
         onComplete: function(data) {
           console.log('Upload complete');
           const uploadResponse = JSON.parse(data);
-          this.videoId = uploadResponse.id;
-
-          // Takes care of calling our saveVideoId method
-          // that allows us to stock our video ID in order
-          // to display it afterwards
-          const videoIdVar = this.videoId;
-          self.handleVideoId(videoIdVar);
-
-          // Hides upload video div and show our
-          // fetched youtube video
+          const videoId = uploadResponse.id;
+          self.handleVideoId(videoId);
         }.bind(this),
       });
       this.uploadStartTime = Date.now();
@@ -231,21 +206,14 @@ Video = React.createClass( {
       }
     };
   },
-  // This checks whether the access token is fetched and stored
-  // in our App state and calls the UploadVideo constructor
-  // passing it our access token. This sets up our app to be
-  // ready for uploading
+
   createUploadClass() {
-    // This variable avoids having binding issue
-    // regarding 'this' in UploadVideo()
     const self = this;
 
     if (this.state.accessToken !== '') {
       const UploadFunction = this.UploadVideo;
       const accessToken = this.state.accessToken;
 
-      // This created a new session of our UploadVideo
-      // and saves it to our App state
       const uploadVideo = new UploadFunction(self);
       self.saveUploadVideoSession(uploadVideo);
 
@@ -259,8 +227,6 @@ Video = React.createClass( {
     Authentication with GoogleAPI
   */
 
-  // This the first function called in our authentication process
-  // it initiates the authentication
   authorizeApp() {
     const clientId = this.state.clientId;
     const scopes = this.state.scopes;
@@ -271,20 +237,15 @@ Video = React.createClass( {
     });
   },
 
-  // This checks with the API that our clientID and scopes are valid
-  // ====>> this is where the youtube user account is defined
-  // the clientID defines the account associated
   checkAuth(clientId, scopes) {
     gapi.auth.authorize({
       client_id: clientId,
       scope: scopes,
-      immediate: true,
+      immediate: false,
     },
     this.handleAuthResult);
   },
 
-  // This checks whether there is any error with our cliendID and
-  // scopes before pursuing
   handleAuthResult(authResult) {
     if (authResult && !authResult.error) {
       this.loadAPIClientInterfaces(authResult);
@@ -294,18 +255,13 @@ Video = React.createClass( {
     }
   },
 
-  // This is the final step in our authentication:
-  // an access token is fetched and stored in our App state
-  // to be reused at the uploading stage
   loadAPIClientInterfaces(authResult) {
-    // Stores our current token in state variable
     const accessToken = authResult.access_token;
     this.saveToken(accessToken);
 
     gapi.client.load('youtube', 'v3');
     console.log('gapi loaded');
-    // After authentication is complete, we set up the future
-    // upload
+
     this.props.onToggleGAPILoaded();
     this.props.onRenderVideoInput();
     this.createUploadClass();
@@ -315,8 +271,6 @@ Video = React.createClass( {
     Helper functions, for handling events
   */
 
-  // This is called when the user clicks on the upload button
-  // after having recorded a video
   handleUploadTimeout() {
     if (this.state.uploadVideo !== '') {
       this.state.uploadVideo.handleUploadClick();
@@ -324,9 +278,6 @@ Video = React.createClass( {
       setTimeout(this.handleUploadTimeout, 100);
     }
   },
-
-  // Handles calling saveVideoId and
-  // checks whether video is available from youtube servers
 
   handleVideoId(videoId) {
     this.saveYoutubeUrl(videoId);
