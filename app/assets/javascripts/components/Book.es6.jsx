@@ -58,7 +58,7 @@ Book = React.createClass( {
         url: '/books/' + this.state.book.id,
         type: 'DELETE',
         success: function() {
-          window.location.href = '/';
+          window.location.href = '/dashboard';
         }
       })
     }
