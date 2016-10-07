@@ -1,6 +1,6 @@
 SearchResults = React.createClass ( {
 
-  renderCreateBookPannel: function() {
+  renderCreateBookPanel: function() {
     if (this.props.currentUser) {
       return (
         <a href="/books/new" title="Create a new book">New book</a>

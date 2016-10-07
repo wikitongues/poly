@@ -5,7 +5,10 @@ class AccountController < SecureController
   def index
     @user = current_user
     @hashedEmail = Digest::MD5.hexdigest(@user.email)
-    @books = Book
+    @books = Book.all.order("created_at DESC").map do |book|
+      BookSerializer.new(book)
+    end
+    @authoredBooks = Book
       .where(user_id: @user)
       .order("created_at DESC")
       .map do |book|

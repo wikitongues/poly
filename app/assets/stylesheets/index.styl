@@ -1,36 +1,3 @@
-.welcomeBar
-  text-align center
-  padding 20px
-  margin 0 auto 10px
-  background #fff
-  display table
-  list-style-type none
-  width 100%
-  min-width 700px
-  box-shadow 0 1px 2px rgba(0,0,0,0.1)
-  transition background $time*2 ease-in-out, opacity $time*2 ease-in-out
-  border-radius 0 0 2*$radius 2*$radius
-
-  .logIn
-    width 100%
-
-    p, a
-      display inline
-
-  h1
-    text-transform uppercase
-    margin-bottom 30px
-
-  .action
-    textButton()
-    color white
-
-  a
-    textButton()
-    background white
-    text-decoration none
-    border 1px solid $buttonBlue
-
 .logIn, .loggedIn
   float right
   margin 15px
@@ -77,6 +44,10 @@
     margin-left -30px
     materialButton()
 
+    &:focus
+      outline none
+      box-shadow 0 1px 0 #336fb0, 0 2px 4px rgba(34,84,137,0.5), 0px 1px 0px 5px #FEC23D
+
   .indexContent
     display table
     position relative
@@ -86,15 +57,14 @@
     min-width 450px
     margin 0 auto 0
 
-    .controlPannel
-      background #ADBCCA
+    .controlPanel
       boxShadow()
       height 60px
       border-radius 2*$radius 2*$radius 0 0
 
       button, a
         border none
-        background #ADBCCA
+        background $buttonBlue
         transition background $time ease-in-out
         color white
         padding 15px
@@ -127,6 +97,7 @@
         display table
         padding 21px 20px 20px 20px
         text-decoration none
+        border-radius 2*$radius 2*$radius 0 0
 
         &:hover
-          background lighten(#ADBCCA,10%)
+          background lighten($buttonBlue,10%)
