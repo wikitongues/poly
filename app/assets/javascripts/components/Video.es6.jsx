@@ -5,9 +5,9 @@ Video = React.createClass( {
     return {
       accessToken: '',
       // clientId Ben
-      // clientId: '463787160210-89kiojjsupa9u2g2s946g7em5d8t6kdj.apps.googleusercontent.com',
+      clientId: '463787160210-89kiojjsupa9u2g2s946g7em5d8t6kdj.apps.googleusercontent.com',
       // wikitongues
-      clientId: '20162064407-uf2hnjg83uhaq6v3soa0bm0ngp5gmvjq.apps.googleusercontent.com',
+      // clientId: '20162064407-uf2hnjg83uhaq6v3soa0bm0ngp5gmvjq.apps.googleusercontent.com',
       scopes: [
         'https://www.googleapis.com/auth/youtube',
         'https://www.googleapis.com/auth/plus.login',
@@ -24,9 +24,10 @@ Video = React.createClass( {
     };
   },
   componentWillMount() {
+    const authorizeApp = this.authorizeApp;
     // This is where the authentication process starts
     if (typeof gapi !== 'undefined') {
-      this.authorizeApp();
+      gapi.load('client:auth2', authorizeApp);
       return;
     }
 
@@ -230,38 +231,30 @@ Video = React.createClass( {
   authorizeApp() {
     const clientId = this.state.clientId;
     const scopes = this.state.scopes;
-    const checkAuth = this.checkAuth;
+    const updateSigninStatus = this.updateSigninStatus;
 
-    gapi.auth.init(() => {
-      window.setTimeout(checkAuth(clientId, scopes), 1);
+    gapi.auth2.init({
+      client_id: clientId,
+      scopes: scopes,
+    }).then(() => {
+      gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
+      updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
+    }).then(() => {
+      gapi.auth2.getAuthInstance().signIn();
     });
   },
-
-  checkAuth(clientId, scopes) {
-    gapi.auth.authorize({
-      client_id: clientId,
-      scope: scopes,
-      immediate: false,
-    },
-    this.handleAuthResult);
-  },
-
-  handleAuthResult(authResult) {
-    if (authResult && !authResult.error) {
-      this.loadAPIClientInterfaces(authResult);
-    } else {
-      alert('Error while trying to authenticate.');
-      this.props.onCloseVideoComponent();
+  updateSigninStatus(isSignedIn) {
+    if (isSignedIn) {
+      console.log('isSignedIn is:', isSignedIn);
+      const token = gapi.auth2.getAuthInstance().currentUser.get().Zi.access_token;
+      this.saveToken(token);
+      this.makeApiCall();
     }
   },
 
-  loadAPIClientInterfaces(authResult) {
-    const accessToken = authResult.access_token;
-    this.saveToken(accessToken);
-
+  makeApiCall() {
     gapi.client.load('youtube', 'v3');
-    console.log('gapi loaded');
-
+    console.log('youtube api loaded!');
     this.props.onToggleGAPILoaded();
     this.props.onRenderVideoInput();
     this.createUploadClass();
