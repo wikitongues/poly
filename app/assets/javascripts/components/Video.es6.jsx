@@ -15,7 +15,7 @@ Video = React.createClass( {
       ],
       titleVideo: '',
       descVideo: '',
-      privacyVideo: 'private',
+      privacyVideo: 'unlisted',
       recordRTC: '',
       recordedBlob: '',
       uploadVideo: '',
@@ -31,7 +31,7 @@ Video = React.createClass( {
     }
 
     this.props.onCloseVideoComponent();
-    alert('Could not load Google API, please check your connection.');    
+    alert('Could not load Google API, please check your connection.');
   },
 
   componentDidMount() {
