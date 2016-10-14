@@ -21,7 +21,7 @@ SearchResults = React.createClass ( {
   },
 
   renderSearchResults: function() {
-    if (this.props.sourceLanguage.length != 0 || this.props.targetLanguage != 0 || this.props.bookTitle != 0) {
+    if (this.props.sourceLanguage.length != 0 || this.props.targetLanguage != 0) {
       return (
         <div className="indexContent">
           {this.renderSourceResultSection()}
