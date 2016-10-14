@@ -1,3 +1,4 @@
+<%= render 'layouts/header'%>
 <div id="login">
   <span ><a href="/">Back</a></span>
   <!-- <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
@@ -19,7 +20,7 @@
     </div>
   <% end %>
   <%- if controller_name != 'sessions' %>
-    <span>
+    <span class="center">
       <%= link_to "Log in", new_session_path(resource_name), {:class => 'login'} %>
     </span>
   <% end -%>

@@ -9,6 +9,37 @@ nav
   padding 0
   margin-bottom 20px
 
+  a
+    float left
+
+    &.icon.home
+      height 40px
+      width auto
+
+      img
+        height 40px
+        float left
+
+      > img
+        width 40px
+        transition all $time ease-in-out
+
+      .detail
+        overflow hidden
+        width 0
+        display inline-block
+        margin-left -7px
+        transition all $time ease-in-out
+
+      &:hover, &:focus
+        outline none
+        > img
+          margin-left -2px
+
+        .detail
+          width 122px
+          margin-left 3px
+
   a,
   span.logIn a,
   span.logIn p
@@ -18,6 +49,7 @@ nav
   .loggedIn
     height 33px
     width 138px
+    float right
     overflow hidden
 
     &:hover
@@ -41,3 +73,31 @@ nav
 
   .currentUser
     float left
+
+  form
+    max-width 600px
+    min-width 450px
+    margin-top 13px
+    width 100%
+    position absolute
+    left 50%
+    margin-left -300px
+
+    img
+      float left
+      margin 9px -55px 0 18px
+      position relative
+      height 20px
+
+    input
+      border-radius $radius
+      width 100%
+      font-size 16px
+      padding 8px 8px 8px 55px
+      float left
+      border 1px solid #eee
+      // border-right none
+      font-weight 100
+
+      &:focus, &:hover
+        background #fafafa

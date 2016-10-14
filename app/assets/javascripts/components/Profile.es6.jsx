@@ -1,22 +1,74 @@
 Profile = React.createClass( {
 
-  getInitialState: function () {
+  getInitialState: function() {
     return {
-      languages: ['Swiss german', 'German', 'French', 'English', 'Portuguese'],
-      followers: [{username:'Daniel Udell', user_id:3},{username:'Charles Darwin', user_id:9},{username:'Marie Curie', user_id:1},{username:'Johannes Kepler', user_id:3},{username:'Louis Pasteur', user_id:3}]
+      showingFavorites: false,
+      showingBooks: true,
     }
   },
 
-  renderAuthoredBooks: function() {
+  renderAllBooks: function() {
     return this.props.books.map((book) => {
       return <BookEntry users={this.props.userData} book={book} key={book.id} cardinality={this.props.cardinality}></BookEntry>
     })
+  },
+
+  renderAuthoredBooks: function() {
+    if(this.props.authoredBooks.length > 0) {
+      return this.props.authoredBooks.map((book) => {
+        return <BookEntry book={book} key={book.id} cardinality={this.props.cardinality}></BookEntry>
+      })
+    } else {
+      return (
+        <li className="emptyList">
+          <h2>No books</h2>
+        </li>
+      )
+    }
+  },
+
+  renderFavoriteBooks: function() {
+    if(this.props.favorites.length > 0) {
+      return this.props.favorites.map((book) => {
+        return <BookEntry users={this.props.userData} book={book} key={book.id} cardinality={this.props.cardinality}></BookEntry>
+      })
+    } else {
+      return (
+        <li className="emptyList">
+          <h2>No favorites</h2>
+        </li>
+      )
+    }
   },
 
   currentUserProfile: function() {
     if (this.props.currentUser) {
       return this.props.userData.id != this.props.currentUser.id
     }
+  },
+
+  toggleShowFavorites: function() {
+    this.setState({
+      showingAll: false,
+      showingFavorites: true,
+      showingBooks: false
+    });
+  },
+
+  toggleShowBooks: function() {
+    this.setState({
+        showingAll: false,
+        showingFavorites: false,
+        showingBooks: true
+    });
+  },
+
+  toggleShowAll: function() {
+    this.setState({
+        showingAll: true,
+        showingFavorites: false,
+        showingBooks: false
+    });
   },
 
   renderCreateBookButton: function() {
@@ -29,73 +81,69 @@ Profile = React.createClass( {
     }
   },
 
-  onSearchStoreClick: function() {
-    alert("Searching is coming soon!")
-  },
-
-  onFavoriteSortClick: function() {
-    alert("Favoriting is coming soon!")
-  },
-
-  renderDashboardHeader: function() {
+  renderDashboardList: function() {
     if (this.props.currentUser) {
       if(this.currentUserProfile()) {
         return (
-          <div className="controlPannel">
-            <button title="Search their books" onClick={this.onSearchStoreClick} className="icon">
-              <img src={this.props.search}/>
-            </button>
-            <p className="header">Books by {this.props.userData.username}</p>
-            <button title="Sort by Favorites" onClick={this.onFavoriteSortClick} className="icon">
-              <img src={this.props.unstarred}/>
-            </button>
+          <div className="controlPanel">
+            <button id="books" onClick={this.toggleShowBooks}>Books <span className="bookCount">{this.props.authoredBooks.length}</span></button>
+            <button id="favorites" onClick={this.toggleShowFavorites}>Favorites <span className="bookCount">{this.props.favorites.length}</span></button>
           </div>
         )
       } else {
         return (
-          <div className="controlPannel">
-            <button title="Search your books" onClick={this.onSearchStoreClick} className="icon">
-              <img src={this.props.search}/>
-            </button>
-            <a className="header" href="/books/new" title="Create a new book">New book</a>
-            <button title="Sort by Favorites" onClick={this.onFavoriteSortClick} className="icon">
-              <img src={this.props.unstarred}/>
-            </button>
+          <div className="controlPanel">
+            <button id="books" onClick={this.toggleShowBooks}>My Books <span className="bookCount">{this.props.authoredBooks.length}</span></button>
+            <button id="favorites" onClick={this.toggleShowFavorites}>Favorites <span className="bookCount">{this.props.favorites.length}</span></button>
+            <a href="/books/new" title="Create a new book">+</a>
           </div>
         )
       }
     } else {
      return (
-        <div className="controlPannel">
-          <button title="Search their books" onClick={this.onSearchStoreClick} className="icon">
-            <img src={this.props.search}/>
-          </button>
-          <p className="header">Books by {this.props.userData.username}</p>
-          <button title="Sort by Favorites" onClick={this.onFavoriteSortClick} className="icon">
-            <img src={this.props.unstarred}/>
-          </button>
+        <div className="controlPanel">
+          <button id="books" onClick={this.toggleShowBooks}>Books <span className="bookCount">{this.props.authoredBooks.length}</span></button>
+          <button id="favorites" onClick={this.toggleShowFavorites}>Favorites <span className="bookCount">{this.props.favorites.length}</span></button>
         </div>
       )
     }
   },
 
-  renderFollowButton: function() {
-    if(this.currentUserProfile()) {
-      return  <a className="follow">follow</a>
+  renderEditButton: function() {
+    if(this.props.currentUser) {
+      if(this.props.currentUser.id == this.props.userData.id) {
+        return (
+          <a className="editButton" href="account/edit">Edit</a>
+        )
+      }
     }
   },
 
+  renderUserContent: function() {
+    if(this.state.showingFavorites) {
+      return (
+        <div className="indexContent favorites">
+         {this.renderDashboardList()}
+          <ul className="bookEntryList">
+            {this.renderFavoriteBooks()}
+          </ul>
+        </div>
+      )
+    } else {
+      if(this.state.showingBooks) {
+          return (
+          <div className="indexContent books">
+            {this.renderDashboardList()}
+            <ul className="bookEntryList">
+              {this.renderAuthoredBooks()}
+            </ul>
+          </div>
+          )
+        }
+      }
+  },
+
   render: function() {
-    let langs = []
-    this.state.languages.forEach(function (lang) {
-      langs.push(<span className="language">{lang}</span>)
-    })
-
-    let followers = []
-    this.state.followers.forEach(function (follower) {
-      followers.push(<li><a href={follower.user_id}>{follower.username}</a></li>)
-    })
-
     let createdDate = new Date(this.props.userData.created_at),
     createdYear = createdDate.getUTCFullYear(),
     months = ["January","February","March","April","May","June","July","August","September","October","November","December"],
@@ -103,33 +151,30 @@ Profile = React.createClass( {
 
     return(
       <div className="container">
-        <NavBar currentUser={this.props.currentUser} logo={this.props.logo}/>
+        <NavBar currentUser={this.props.currentUser} logo={this.props.logo} detail={this.props.detail} search={this.props.search}/>
         <span className="backgroundElement"></span>
         <div id="profile">
           <div className="userInformation">
             <div className="wrapper">
               <img src={`http://www.gravatar.com/avatar/${this.props.hashedEmail}?s=200`} />
-              <h2>{this.props.userData.username}</h2>
-              <p>{this.props.userData.email}</p>
-
-              {/*<div className="languages">
-                {langs}
-              </div>*/}
-              <p>Member since {createdMonth} {createdYear}</p>
-              {/*{this.renderFollowButton()}
-              <div className="followedBy">
-              Followers ({followers.length})
-                <ul>
-                  {followers}
-                </ul>
-              </div>*/}
+              <span className="tooltip">?</span>
+              <span className="details">
+                <h2>{this.props.userData.username}</h2>
+                <p>Member since {createdMonth} {createdYear}</p>
+                {this.renderEditButton()}
+              </span>
+            </div>
+            <div className="dashboard side">
+              {this.renderUserContent()}
             </div>
           </div>
           <div className="dashboard">
             <div className="indexContent">
-              {this.renderDashboardHeader()}
+              <div className="controlPanel">
+                <p>All Books</p>
+              </div>
               <ul className="bookEntryList">
-                {this.renderAuthoredBooks()}
+                {this.renderAllBooks()}
               </ul>
               {this.renderCreateBookButton()}
             </div>

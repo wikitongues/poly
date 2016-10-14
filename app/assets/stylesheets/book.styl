@@ -29,9 +29,22 @@
     background-size cover
     background-position center
 
+  .progressBar
+    height 4px
+    width 100%
+    background #eee
+    float left
+
+    .bar
+      height 100%
+      min-width 3px
+      float left
+      background $buttonBlue
+
   .info
+    z-index 1
     position relative
-    padding 0 30px 0 35px
+    padding 0 20px
 
     .wrapper
       width 100%
@@ -87,11 +100,11 @@
 
       h1
         float left
-        max-width 415px
         width 100%
         white-space nowrap
         text-overflow ellipsis
         overflow hidden
+        font-size 1.7em
 
       h3
         line-height 2.4em
@@ -105,18 +118,26 @@
       .description
         width 100%
         min-height 44px
-        margin 2em 0
+        margin 0 0 1.5em 0
         padding 2px 2px 4px
+
+        button
+          background none
+          border none
+          color $buttonBlue
+          cursor pointer
+
 
       a.author, p.author
         clear both
         padding 8px 11px
-        margin -8px -11px
+        margin -8px -11px 1em
         font-size 12px
-        color #aaa
         text-decoration none
         border-radius $radius
 
-      a.author:hover
-        background $buttonBlue
-        color white
+      p.author
+        color #aaa
+
+      a.author
+        color $buttonBlue

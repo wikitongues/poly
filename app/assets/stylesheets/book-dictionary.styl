@@ -1,18 +1,28 @@
 .dictionary
-  min-height 46vh
+  min-height 27.5%
+  max-width 600px
   display block
   position relative
-  overflow hidden
+  z-index 1
   margin auto
   font-size 1.2em
   padding 0
   background #fff
   float left
   width 100%
+  max-width 600px
   border-top 2px solid #f4f8f9
 
   &.new
     min-height 0
+
+  .notice
+    position absolute
+    margin-top 160px
+    width 100%
+    text-align center
+    color $secondaryBlue
+    left 0
 
   ul.content
     clear both
@@ -28,7 +38,7 @@
 
     p.empty
       text-align center
-      color $secondary-blue
+      color $secondaryBlue
       width ((2/3)*100)%
       margin 0
       position absolute

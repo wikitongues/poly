@@ -4,6 +4,9 @@ class BooksController < AuthenticatedController
   def show
     @users=User.all
     @book = Book.find(params[:id])
+    if current_user
+      @serialized_current_user = UserSerializer.new(current_user).as_json
+    end
     if @book.present?
       @phrase_pairs = @book.phrase_pairs.order("created_at ASC")
       authorize @book
@@ -52,6 +55,22 @@ class BooksController < AuthenticatedController
       skip_authorization
       render json: { errors: book.errors.messages }, status: 422
     end
+  end
+
+  def favorite
+    type = params[:type]
+    if type == "favorite"
+      current_user.favorites << @recipe
+      redirect_to :back, notice: 'You favorited #{@recipe.name}'
+
+    elsif type == "unfavorite"
+      current_user.favorites.delete(@recipe)
+      redirect_to :back, notice: 'Unfavorited #{@recipe.name}'
+
+    else
+      redirect_to :back, notice: 'Nothing happened.'
+    end
+
   end
 
   private

@@ -32,21 +32,45 @@ p.version
   opacity .3
   float left
 
+.brand
+  $sans
+  opacity .2
+  position fixed
+  right 0
+  bottom 0
+  padding 35px 60px
+  margin 0
+  font-size 16px
+  transition opacity $time ease-in-out
+
+  &:hover
+    opacity .3
+
+  img
+    float left
+    height 30px
+    margin-right 5px
+    margin-top -10px
+
 .flash_notice, .flash_alert
   z-index 10
-  width 300px
   font-weight 100
   text-align center
-  padding 22px 21px
+  padding 22px 41px
+  border-radius $radius
   position absolute
-  left 50%
-  margin-left -150px
+  right 50px
+  bottom 40px
+  boxShadow()
 
 .flash_notice
-  background transparent
-  color $buttonBlue
+  border 1px solid #575f6b
+  background #5c6470
+  color #c7e0ff
 
 .flash_alert
+  color #e85e85
+  border 1px solid #ffe5e5
   background #FFE9E9
 
 .backgroundElement
@@ -58,3 +82,15 @@ p.version
   border-bottom 3px solid #7e95ae
   left 0
   top 60px
+
+.requiredField
+  color #e00038
+
+.emptySearch
+  text-align center
+  background transparent
+  border-bottom none
+  display block
+  margin 60px auto
+  color white
+  font-weight 100

@@ -1,23 +1,12 @@
   .tools
     width 600px
     display table
-    background #ADBCCA
+    background $buttonBlue
     margin auto
     boxShadow()
     position relative
     z-index 2
-
-    .progressBar
-      height 4px
-      width 100%
-      background #eee
-      float left
-
-      .bar
-        height 100%
-        min-width 3px
-        float left
-        background $buttonBlue
+    border-radius 2*$radius 2*$radius 0 0
 
     input
       padding 0.7em 1em 0.7em 2.5em
@@ -35,36 +24,36 @@
 
     .icon
       background transparent
-      padding 15px
       outline none
       border-radius 100%
-      opacity .3
       cursor initial
 
-      &:first-of-type
+      &.favorite
         float left
+        padding 15px
 
-      &:last-of-type
-        float right
-
-      img
-        width 30px
-        float left
-        height 30px
+        img
+          width 30px
+          float left
+          height 30px
 
     .cardinality
-      float left
+      float none
+      margin auto
+      display block
       z-index 5
       width 480px
       color white
 
       h1
-        width 47%
+        text-transform capitalize
+        width 46%
         float left
         text-align center
         font-size 1.3em
         font-weight 100
         margin 17px 0
+        line-height 1.3em
 
         &:first-of-type
           margin-right 3%
@@ -76,9 +65,57 @@
         box-shadow none
         border-bottom none
         float left
-        margin .5em -20px 0
+        margin .6em -20px 0
         width 40px
         height 40px
         padding 10px
         position relative
         z-index 10
+
+    .menu
+      transition height $time ease-in-out, opacity $time ease-in-out
+      height 44px
+      width 44px
+      padding 2px
+      border-radius 22px
+
+      &:hover
+        background #147eff
+        height 124px
+        width 44px
+        boxShadow()
+
+      .icon
+        width 40px
+        height 40px
+        margin 2px
+        border none
+
+        &:focus
+          opacity 1
+          background darken(#147eff, 6%)
+
+          &:hover
+            background #1d6fd2
+
+        &:hover
+          background #1d6fd2
+
+      &.saving
+        background #147eff
+        height 84px
+        width 44px
+        boxShadow()
+
+        .icon
+          float right
+          width 40px
+          height 40px
+          border none
+          margin 0
+
+          &:focus
+            background darken(#147eff, 6%)
+
+            &:hover
+              background #1d6fd2

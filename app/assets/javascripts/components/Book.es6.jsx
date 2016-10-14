@@ -5,7 +5,8 @@ Book = React.createClass( {
       phrasePairs: this.props.initialPhrasePairs,
       isEditingBook: false,
       book: this.props.initialBook,
-      originalTitle:this.props.initialBook.title
+      isDescriptionTruncated:true,
+      isFavoriteBook: this.isFavoriteBook()
     }
   },
 
@@ -57,7 +58,7 @@ Book = React.createClass( {
         url: '/books/' + this.state.book.id,
         type: 'DELETE',
         success: function() {
-          window.location.href = '/';
+          window.location.href = '/dashboard';
         }
       })
     }
@@ -95,10 +96,48 @@ Book = React.createClass( {
     alert("Searching is coming soon!")
   },
 
-  onFavoriteBook: function() {
-    alert("Favoriting is coming soon!")
+  onClickFavoriteBook: function() {
+    if (this.state.isFavoriteBook) {
+      this.destroyFavorite();
+    } else {
+      this.createFavorite();
+    }
   },
 
+  destroyFavorite: function() {
+    $.ajax({
+      url: '/favorites/' + this.state.book.id,
+      type: 'DELETE',
+      success: function(book) {
+        this.toggleFavoriteBook();
+      }.bind(this),
+      error: function(error) {
+        console.log('something went wrong')
+      }
+    })
+  },
+
+  createFavorite: function() {
+    $.ajax({
+      url: '/favorites',
+      type: 'POST',
+      data: {
+        book_id: this.state.book.id
+      },
+      success: function(book) {
+        this.toggleFavoriteBook();
+      }.bind(this),
+      error: function(error) {
+        console.log('something went wrong')
+      }
+    })
+  },
+
+  toggleFavoriteBook: function() {
+    this.setState({
+      isFavoriteBook: !this.state.isFavoriteBook
+    })
+  },
 
   bookIsOwnedByCurrentUser: function() {
     if (this.props.currentUser) {
@@ -112,10 +151,10 @@ Book = React.createClass( {
         return (
           <div className="menu saving">
             <button title="Save" onClick={this.onSaveBookClick} className="icon">
-              <img src={this.props.save}/>
+              <img src={this.props.saveAlt}/>
             </button>
             <button title="Cancel" onClick={this.toggleEditingBookState} className="close icon">
-              <img src={this.props.close}/>
+              <img src={this.props.closeAlt}/>
             </button>
           </div>
         );
@@ -123,13 +162,13 @@ Book = React.createClass( {
         return (
           <div className="menu">
             <button title="Menu" className="more icon">
-              <img src={this.props.menu}/>
+              <img src={this.props.menuAlt}/>
             </button>
             <button title="Edit" onClick={this.toggleEditingBookState} className="icon">
-              <img src={this.props.edit}/>
+              <img src={this.props.editAlt}/>
             </button>
             <button title="Delete" onClick={this.onDeleteBookClick} className="icon">
-              <img src={this.props.delete}/>
+              <img src={this.props.deleteAlt}/>
             </button>
           </div>
         );
@@ -146,7 +185,6 @@ Book = React.createClass( {
   },
 
   renderAuthor: function() {
-
     let users = this.props.users
     let authorName = ""
     for (var i = users.length - 1; i >= 0; i--) {
@@ -154,22 +192,53 @@ Book = React.createClass( {
         authorName = users[i].username
       }
     }
-    if (this.state.isEditingBook) {
-      return (
-        <p className="author">{authorName}</p>
-      )
+
+    if (this.bookIsOwnedByCurrentUser()) {
+      if (this.state.isEditingBook) {
+        return (
+          <p className="author">{authorName}</p>
+        )
+      } else {
+        return (
+          <a href={"/account"} className="author">{authorName}</a>
+        )
+      }
     } else {
       return (
-        <a href={"/accounts/" + this.state.book.user_id} className="author">{authorName}</a>
-      )
+          <a href={"/users/" + this.state.book.user_id} className="author">{authorName}</a>
+        )
+    }
+  },
+
+  truncateText: function() {
+    this.setState({
+      isDescriptionTruncated: !this.state.isDescriptionTruncated
+    });
+  },
+
+  renderTruncatedDescription: function() {
+    if(this.state.book.description.length >= 132) {
+      if (this.state.isDescriptionTruncated) {
+        return <p className="description">{this.state.book.description.substring(0,132)}... <button onClick={this.truncateText}>More</button></p>;
+      } else {
+        return <p className="description">{this.state.book.description} <button onClick={this.truncateText}>Less</button></p>;
+      }
+    } else {
+      return <p className="description">{this.state.book.description}</p>;
     }
   },
 
   renderDescription: function() {
-     if (this.state.isEditingBook) {
-      return <textarea rows="4" className="description new isEditing" name="description" onChange={this.onInputChange} value={this.state.book.description} />;
+   if (this.state.book.description) {
+      if (this.state.isEditingBook) {
+        return <textarea rows="4" className="description new isEditing" name="description" onChange={this.onInputChange} value={this.state.book.description} />;
+      } else {
+         return <span>{this.renderTruncatedDescription()}</span>
+      }
     } else {
-       return <p className="description">{this.state.book.description}</p>;
+      if (this.state.isEditingBook) {
+        return <textarea rows="4" className="description new isEditing" name="description" onChange={this.onInputChange} value={this.state.book.description} placeholder="A collection of useful phrases in Laputa, a Swiftian language spoken in Balnibarbi and a number of other islands..."/>;
+      }
     }
   },
 
@@ -189,16 +258,38 @@ Book = React.createClass( {
     }
   },
 
+  favoriteImage: function() {
+    return this.state.isFavoriteBook
+      ? this.props.star
+      : this.props.unstar;
+  },
+
+  isFavoriteBook: function() {
+    if (this.props.currentUser) {
+        return this.props.currentUser.favorite_books.filter(function(favorite) {
+          return favorite.book_id === this.props.initialBook.id
+        }.bind(this)).length > 0;
+    }
+  },
+
+  renderFavoriteButton: function() {
+    if(this.props.currentUser) {
+      return (
+        <button title="Favorite" onClick={this.onClickFavoriteBook} className="favorite icon">
+          <img src={this.favoriteImage()} alt="Favorite"/>
+        </button>
+      )
+    }
+  },
+
   render: function() {
     return (
       <div className="container">
-        <NavBar currentUser={this.props.currentUser} logo={this.props.logo}/>
+        <NavBar currentUser={this.props.currentUser} logo={this.props.logo} detail={this.props.detail} search={this.props.search}/>
         <span className="backgroundElement"></span>
         <div className="book">
           <div className="tools">
-            <button title="Search" onClick={this.onSearchBook} className="icon">
-              <img src={this.props.search} alt="Favorite"/>
-            </button>
+            {this.renderFavoriteButton()}
             <div className="cardinality">
               <section>
                 { this.renderSourceLanguage() }
@@ -206,19 +297,16 @@ Book = React.createClass( {
                 { this.renderTargetLanguage() }
               </section>
             </div>
-            <button title="Favorite" onClick={this.onFavoriteBook} className="icon">
-              <img src={this.props.unstar} alt="Favorite"/>
-            </button>
-            {/*<ProgressBar />*/}
+            { this.renderBookMenu() }
           </div>
           <div className="info">
             <div className="wrapper">
               { this.renderTitle() }
               { this.renderAuthor() }
               { this.renderDescription() }
-              { this.renderBookMenu() }
             </div>
           </div>
+          {/*<ProgressBar />*/}
           <div className="NObannerWrapper"></div>
 
           <Dictionary

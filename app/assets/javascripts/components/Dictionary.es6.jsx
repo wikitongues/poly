@@ -29,11 +29,15 @@ Dictionary = React.createClass( {
 
   onSourcePhraseSubmit: function(e) {
     e.preventDefault()
-    this.props.onSourcePhraseSubmit(this.state.sourcePhrase),
-    this.setState({
-        isTargetInputActive: !this.state.isTargetInputActive,
-        sourcePhrase: ""
-    });
+    if(this.state.sourcePhrase) {
+      this.props.onSourcePhraseSubmit(this.state.sourcePhrase),
+      this.setState({
+          isTargetInputActive: !this.state.isTargetInputActive,
+          sourcePhrase: ""
+      });
+    } else {
+      alert("Source phrase is empty")
+    }
   },
 
   onTargetPhraseChange: function(e) {
@@ -42,12 +46,16 @@ Dictionary = React.createClass( {
 
   onTargetPhraseSubmit: function(e) {
     e.preventDefault()
-    this.props.onTargetPhraseSubmit(this.state.targetPhrase),
-    this.setState({
-      isPhraseInputActive: !this.state.isPhraseInputActive,
-      isTargetInputActive: !this.state.isTargetInputActive,
-      targetPhrase: ""
-    });
+    if(this.state.targetPhrase) {
+      this.props.onTargetPhraseSubmit(this.state.targetPhrase),
+      this.setState({
+        isPhraseInputActive: !this.state.isPhraseInputActive,
+        isTargetInputActive: !this.state.isTargetInputActive,
+        targetPhrase: ""
+      });
+    } else {
+      alert("Target phrase is empty")
+    }
   },
 
   onTargetPhraseMultipleSubmit: function(e) {
@@ -117,9 +125,7 @@ Dictionary = React.createClass( {
     if (this.props.isOwnedByCurrentUser) {
       if (this.state.isPhraseInputActive) {
         return (
-          <div>
-            {this.renderPhraseInputFields()}
-          </div>
+          <div>{this.renderPhraseInputFields()}</div>
         )
       } else {
         return (
@@ -152,7 +158,7 @@ Dictionary = React.createClass( {
           </form>
         </div>
       )
-    }
+    };
   },
 
   // NB If in continuous input state, show source input field following successful phrase pair completion.
@@ -197,11 +203,21 @@ Dictionary = React.createClass( {
   },
 
   render: function() {
-    return (
-       <div className="dictionary">
-        <ul className="content">{this.renderPhrasePairs()}</ul>
-        {this.renderCreateNewPhraseButton()}
-       </div>
-    )
+    if(this.state.phrasePairs.length != 0 ) {
+      return (
+         <div className="dictionary">
+          <ul className="content">{this.renderPhrasePairs()}</ul>
+          {this.renderCreateNewPhraseButton()}
+         </div>
+      )
+    } else {
+      return (
+        <div className="dictionary">
+          <span className="notice">Phrasebook is empty</span>
+          <DummyContent/>
+          {this.renderCreateNewPhraseButton()}
+        </div>
+      )
+    }
   }
 } )
