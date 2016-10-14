@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
   resources :phrase_pairs, only: [:create, :destroy, :update]
   resources :users, only: [:show]
-  resources :account, only: [:index]
+  resources :dashboard, only: [:index]
   resources :favorites, only: [:create, :destroy]
 
   # The priority is based upon order of creation: first created -> highest priority.

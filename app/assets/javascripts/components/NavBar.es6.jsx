@@ -1,10 +1,18 @@
 NavBar = React.createClass( {
 
+  renderHomeButton: function() {
+    if (this.props.currentUser) {
+      return "/dashboard"
+    } else {
+      return "/"
+    }
+  },
+
   renderSignIn: function() {
     if (this.props.currentUser) {
       return (
           <span className="loggedIn">
-            <a className="currentUser" href="/account">
+            <a className="currentUser" href="/dashboard">
               {this.props.currentUser.username}
             </a>
             <a href="/sign_out">Sign out</a>
@@ -24,7 +32,7 @@ NavBar = React.createClass( {
   render: function() {
     return(
       <nav>
-        <a className="icon home" href="/">
+        <a className="icon home" href={this.renderHomeButton()}>
           <img src={this.props.logo} alt="Poly Home"/>
           <span className="detail">
             <img src={this.props.detail} alt=""/>
