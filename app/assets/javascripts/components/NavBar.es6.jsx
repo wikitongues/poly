@@ -38,7 +38,7 @@ NavBar = React.createClass( {
             <img src={this.props.detail} alt=""/>
           </span>
         </a>
-        <SearchBar search={this.props.search}/>
+        <SearchBar query={this.props.query} search={this.props.search}/>
         {this.renderSignIn()}
       </nav>
     )
