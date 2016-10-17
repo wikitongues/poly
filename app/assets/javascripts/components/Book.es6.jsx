@@ -164,10 +164,10 @@ Book = React.createClass( {
             <button title="Menu" className="more icon">
               <img src={this.props.menuAlt}/>
             </button>
-            <button title="Edit" onClick={this.toggleEditingBookState} className="icon">
+            <button title="Edit" onClick={this.toggleEditingBookState} className="icon" tabIndex="-1">
               <img src={this.props.editAlt}/>
             </button>
-            <button title="Delete" onClick={this.onDeleteBookClick} className="icon">
+            <button title="Delete" onClick={this.onDeleteBookClick} className="icon" tabIndex="-1">
               <img src={this.props.deleteAlt}/>
             </button>
           </div>
@@ -180,7 +180,7 @@ Book = React.createClass( {
      if (this.state.isEditingBook) {
       return <input name="title" className="title new isEditing" onChange={this.onInputChange} value={this.state.book.title} />;
     } else {
-       return <h1>{this.state.book.title}</h1>;
+       return <h1 title={this.state.book.title}>{this.state.book.title}</h1>;
     }
   },
 
@@ -200,7 +200,7 @@ Book = React.createClass( {
         )
       } else {
         return (
-          <a href={"/account"} className="author">{authorName}</a>
+          <a href={"/dashboard"} className="author">{authorName}</a>
         )
       }
     } else {

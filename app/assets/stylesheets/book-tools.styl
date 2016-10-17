@@ -1,3 +1,8 @@
+  verticalAlign()
+    position absolute
+    top 50%
+    transform translateY(-50%)
+
   .tools
     width 600px
     display table
@@ -65,15 +70,15 @@
         box-shadow none
         border-bottom none
         float left
-        margin .6em -20px 0
+        margin .65em -20px 0
         width 40px
         height 40px
         padding 10px
-        position relative
         z-index 10
+        position relative
 
     .menu
-      transition height $time ease-in-out, opacity $time ease-in-out
+      transition all $time ease-in-out
       height 44px
       width 44px
       padding 2px
