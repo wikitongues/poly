@@ -316,17 +316,11 @@ Video = React.createClass( {
           <button title="Cancel" onClick={this.props.onCancelEditPhrase} className="close icon">
             <img src={this.props.closeAlt} alt="close"/>
           </button>
-
           <button title="Text" onClick={this.props.onCloseVideoComponent} className="text icon">
             <img src={this.props.textAlt} alt="close"/>
           </button>
-
-          <button hidden className="extra" ref= "button-download" id="button-download">
-            Download
-          </button>
-          <button hidden className="extra" onClick={this.props.handleUploadClick} id="button-upload">
-            Upload Video
-          </button>
+          <button hidden className="extra" ref= "button-download" id="button-download">Download</button>
+          <button hidden className="extra" onClick={this.props.handleUploadClick} id="button-upload">Upload Video</button>
         </div>
       </div>
     );
