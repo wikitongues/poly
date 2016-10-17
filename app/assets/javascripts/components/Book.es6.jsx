@@ -237,7 +237,7 @@ Book = React.createClass( {
       }
     } else {
       if (this.state.isEditingBook) {
-        return <textarea rows="4" className="description new isEditing" name="description" onChange={this.onInputChange} value={this.state.book.description} placeholder="A collection of useful phrases in Laputa, a Swiftian language spoken in Balnibarbi and a number of other islands..."/>;
+        return <textarea rows="5" className="description new isEditing" name="description" onChange={this.onInputChange} value={this.state.book.description} placeholder="Describe the contents of your book, Ex: A collection of useful phrases in Laputa, a Swiftian language spoken in Balnibarbi and a number of other islands..."/>;
       }
     }
   },

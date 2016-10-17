@@ -87,7 +87,7 @@ SearchResults = React.createClass ( {
     return (
       <div className="container">
         <NavBar currentUser={this.props.currentUser} query={this.props.query} logo={this.props.logo} detail={this.props.detail} search={this.props.search}/>
-        <div className="dashboard">
+        <div className="dashboard search">
           <span className="backgroundElement"></span>
           {this.renderSearchResults()}
           {this.renderCreateBookButton()}
