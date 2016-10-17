@@ -41,6 +41,7 @@ SearchResults = React.createClass ( {
         <span>
           <div className="controlPanel">
             <p>Source Language contains "{this.props.query}"</p>
+            <span className="bookCount search">{this.props.sourceLanguage.length}</span>
           </div>
           <ul className="bookEntryList">
             {this.renderSourceResults()}
@@ -64,6 +65,7 @@ SearchResults = React.createClass ( {
         <span>
           <div className="controlPanel">
             <p>Target Language contains "{this.props.query}"</p>
+            <span className="bookCount search">{this.props.targetLanguage.length}</span>
           </div>
           <ul className="bookEntryList">
             {this.renderTargetResults()}
