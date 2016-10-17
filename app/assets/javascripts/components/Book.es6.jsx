@@ -200,7 +200,7 @@ Book = React.createClass( {
         )
       } else {
         return (
-          <a href={"/account"} className="author">{authorName}</a>
+          <a href={"/dashboard"} className="author">{authorName}</a>
         )
       }
     } else {
