@@ -31,36 +31,38 @@ Planned features for future releases. Releases are mapped below. We use [semanti
   - [x] ~~User name~~
   - [x] ~~User books~~
   - [x] ~~Gravatar~~
-  - [x] ~~User edit profile data~~
+  - [ ] User edit profile data
+- [x] ~~Favorite a book~~
+- [x] ~~Search~~
 - [x] ~~Deployment~~
 - [x] ~~Handle error messages on login page~~
 - [ ] Testing
-- [x] ~~Search~~
+- [ ] Proper user validations
+  - [ ] Unique usernames
+- [ ] Password Reset
+- [ ] Only save new book if all inputs are complete
 - [ ] Video phrases
   - [x] ~~Video phrase interface~~
   - [ ] Input and upload video phrases
 - [ ] Data import / export
-- [ ] Proper user validations
 
 ###Version  0.3
+- [ ] Security audit
+- [ ] Book templates
+- [ ] Monolingual dictionaries
 - [ ] Rich text descriptions (paragraphs, links)
 - [ ] User upload profile picture
-- [ ] Favorite a book
 - [ ] Follow a user
-- [ ] Filter content
 - [ ] Input and upload book banner images
-- [ ] Only save new book if all inputs are complete
 - [ ] Input area blur action behavior
 - [ ] In-progress phrase ellipsis animation
 - [ ] Document scroll position progress marker
-- [ ] Fixed book languages sub-header
+- [ ] Fixed position book languages sub-header
 
 ###Version 0.4
 - [ ] Add tags to books
-- [ ] Search
 
 ###Version 1.0
-
 - [ ] Offline-first architecture
 - [ ] Public API
 - [ ] Language object model
