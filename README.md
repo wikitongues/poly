@@ -63,6 +63,7 @@ Planned features for future releases. Releases are mapped below. We use [semanti
 
 ###Version 0.4
 - [ ] Add tags to books
+- [ ] Search phrases
 
 ###Version 1.0
 - [ ] Offline-first architecture
