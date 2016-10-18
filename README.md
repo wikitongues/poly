@@ -43,7 +43,9 @@ Planned features for future releases. Releases are mapped below. We use [semanti
 - [ ] Only save new book if all inputs are complete
 - [ ] Video phrases
   - [x] ~~Video phrase interface~~
-  - [ ] Input and upload video phrases
+  - [ ] Input video phrases
+  - [ ] Transcribe video phrases
+  - [ ] Upload video phrases
 - [ ] Data import / export
 
 ###Version  0.3
