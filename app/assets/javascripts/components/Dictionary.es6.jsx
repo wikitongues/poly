@@ -13,23 +13,77 @@ Dictionary = React.createClass( {
       targetPhrase: "",
       mediaConstraints: { video: true, audio: true },
       stream: "",
+      // clientId Ben
+      clientId: '463787160210-89kiojjsupa9u2g2s946g7em5d8t6kdj.apps.googleusercontent.com',
+      clientSecret: '',
+      // wikitongues
+      // clientId: '20162064407-uf2hnjg83uhaq6v3soa0bm0ngp5gmvjq.apps.googleusercontent.com',
+      scopes: [
+        'https://www.googleapis.com/auth/youtube',
+        'https://www.googleapis.com/auth/plus.login',
+        'https://www.googleapis.com/auth/userinfo.email',
+      ],
+      refreshToken: '1/E_yN56Kk6X5Y6qv3bnackF7yH2SOfWJ7uaaMMcTtpP-GqAK8dNkv2sl1LRgG-sZl',
+      interval: '',
+      accessToken: 'ya29.Ci-AA4x56i46Nn2NdzF-r_3v4TRAfXu2hRYtzCNYpKJMTnUAfC2gJVf3X3G9okP7vQ',
     };
   },
 
-  componentWillReceiveProps: function(newProps) {
-    this.setState({
-      phrasePairs: newProps.initialPhrasePairs
-    })
+  componentWillMount() {
+    const makeApiCall = this.makeApiCall;
+    if (typeof gapi != 'undefined') {
+      gapi.load('client:auth2', makeApiCall);
+    }
+    this.refreshToken();
+    const int = setInterval(this.refreshToken(), 2700);
+    this.setState({ interval: int });
   },
 
-  onAddNewPhraseButtonClick: function() {
+  componentWillReceiveProps(newProps) {
     this.setState({
-        isPhraseInputActive: !this.state.isPhraseInputActive
+      phrasePairs: newProps.initialPhrasePairs,
+    });
+  },
+
+  makeApiCall() {
+    const clientId = this.state.clientId;
+    const scopes = this.state.scopes;
+
+    gapi.auth2.init({
+      client_id: clientId,
+      scopes,
+    }).then(() => gapi.client.load('youtube', 'v3'));
+    console.log('youtube api loaded!');
+  },
+
+  refreshToken() {
+    const url = 'https://www.googleapis.com/oauth2/v4/token';
+    const method = 'POST';
+    const postData = 'client_secret=31zQmZ0j4_16OXYRh_PLy5tB&grant_type=refresh_token&refresh_token=1%2FE_yN56Kk6X5Y6qv3bnackF7yH2SOfWJ7uaaMMcTtpP-GqAK8dNkv2sl1LRgG-sZl&client_id=463787160210-mcm71qds0opgn9cf661pptqt1hcofh3d.apps.googleusercontent.com';
+    const request = new XMLHttpRequest();
+    const saveToken = this.saveToken;
+    request.onload = () => {
+      const status = request.status;
+      const data = JSON.parse(request.responseText);
+      saveToken(data.access_token);
+    };
+    request.open(method, url);
+    request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    request.send(postData);
+  },
+
+  saveToken(accessToken) {
+    this.setState({ accessToken });
+  },
+
+  onAddNewPhraseButtonClick() {
+    this.setState({
+      isPhraseInputActive: !this.state.isPhraseInputActive,
     });
   },
 
   onSourcePhraseChange(e) {
-    this.setState({sourcePhrase: e.target.value });
+    this.setState({ sourcePhrase: e.target.value });
   },
 
   onSourcePhraseSubmit(e) {
@@ -138,13 +192,6 @@ Dictionary = React.createClass( {
     if (this.state.stream !== '') {
       this.onStopStream();
     }
-  },
-
-// GAPI zone
-
-  onToggleGAPILoaded() {
-    this.refs.video.hidden = false;
-    this.refs.loading.hidden = true;
   },
 
 
@@ -352,41 +399,33 @@ Dictionary = React.createClass( {
   renderVideoInput() {
     if (this.state.isInputVideo) {
       return (
-        <div>
-          <div ref='loading'>
-            <div className="spinner">
-              <div className="bounce1"></div>
-              <div className="bounce2"></div>
-              <div className="bounce3"></div>
-            </div>
-          </div>
-          <div hidden ref='video'>
-            <Video
-            onRenderVideoInput={this.onRenderVideoInput}
-            renderRecordButton={this.renderRecordButton}
-            onCancelEditPhrase={this.onCancelEditPhrase}
-            onCloseVideoComponent={this.onCloseVideoComponent}
-            onStartRecordingClick={this.onStartRecordingClick}
-            onStopRecordingClick={this.onStopRecordingClick}
-            onSourceVideoSubmit={this.onSourceVideoSubmit}
-            onTargetVideoSubmit={this.onTargetVideoSubmit}
-            onToggleInputType={this.onToggleInputType}
-            onClearStream={this.onClearStream}
-            onToggleGAPILoaded={this.onToggleGAPILoaded}
-            closeAlt={this.props.closeAlt}
-            textAlt={this.props.textAlt}
-            isVideoRecording={this.state.isVideoRecording}
-            isInputVideo={this.state.isInputVideo}
-            onSaveStream={this.onSaveStream}
-            onStopStream={this.onStopStream}
-            mediaConstraints={this.state.mediaConstraints}
-            stream={this.state.stream}
-            isTargetInputActive={this.state.isTargetInputActive}
-            sourceLanguage={this.props.sourceLanguage}
-            targetLanguage={this.props.targetLanguage}
-            author={this.props.author}
-            />                
-          </div>
+        <div hidden ref="video">
+          <Video
+          onRenderVideoInput={this.onRenderVideoInput}
+          renderRecordButton={this.renderRecordButton}
+          onCancelEditPhrase={this.onCancelEditPhrase}
+          onCloseVideoComponent={this.onCloseVideoComponent}
+          onStartRecordingClick={this.onStartRecordingClick}
+          onStopRecordingClick={this.onStopRecordingClick}
+          onSourceVideoSubmit={this.onSourceVideoSubmit}
+          onTargetVideoSubmit={this.onTargetVideoSubmit}
+          onToggleInputType={this.onToggleInputType}
+          onClearStream={this.onClearStream}
+          onToggleGAPILoaded={this.onToggleGAPILoaded}
+          closeAlt={this.props.closeAlt}
+          textAlt={this.props.textAlt}
+          isVideoRecording={this.state.isVideoRecording}
+          isInputVideo={this.state.isInputVideo}
+          onSaveStream={this.onSaveStream}
+          onStopStream={this.onStopStream}
+          mediaConstraints={this.state.mediaConstraints}
+          stream={this.state.stream}
+          isTargetInputActive={this.state.isTargetInputActive}
+          sourceLanguage={this.props.sourceLanguage}
+          targetLanguage={this.props.targetLanguage}
+          author={this.props.author}
+          accessToken={this.state.accessToken}
+          />                
         </div>
       );
     }

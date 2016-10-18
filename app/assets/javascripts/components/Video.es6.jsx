@@ -3,16 +3,6 @@ const RecordRTC = require('recordrtc');
 Video = React.createClass( {
   getInitialState() {
     return {
-      accessToken: '',
-      // clientId Ben
-      clientId: '463787160210-89kiojjsupa9u2g2s946g7em5d8t6kdj.apps.googleusercontent.com',
-      // wikitongues
-      // clientId: '20162064407-uf2hnjg83uhaq6v3soa0bm0ngp5gmvjq.apps.googleusercontent.com',
-      scopes: [
-        'https://www.googleapis.com/auth/youtube',
-        'https://www.googleapis.com/auth/plus.login',
-        'https://www.googleapis.com/auth/userinfo.email',
-      ],
       titleVideo: '',
       descVideo: '',
       privacyVideo: 'private',
@@ -23,22 +13,11 @@ Video = React.createClass( {
       isHidden: '',
     };
   },
-  componentWillMount() {
-    const authorizeApp = this.authorizeApp;
-    // This is where the authentication process starts
-    if (typeof gapi !== 'undefined') {
-      gapi.load('client:auth2', authorizeApp);
-      return;
-    }
-
-    this.props.onCloseVideoComponent();
-    alert('Could not load Google API, please check your connection.');    
-  },
 
   componentDidMount() {
-
-    // Creates our custom title
+    this.createUploadClass();
     this.saveTitle();
+    this.props.onRenderVideoInput();
     const video = document.getElementById('camera-stream');
     video.muted = true;
   },
@@ -102,11 +81,6 @@ Video = React.createClass( {
 
   saveStreamData(stream) {
     this.setState({ stream });
-  },
-
-
-  saveToken(accessToken) {
-    this.setState({ accessToken });
   },
   saveUploadVideoSession(uploadVideo) {
     this.setState({ uploadVideo });
@@ -211,9 +185,9 @@ Video = React.createClass( {
   createUploadClass() {
     const self = this;
 
-    if (this.state.accessToken !== '') {
+    if (this.props.accessToken !== '') {
       const UploadFunction = this.UploadVideo;
-      const accessToken = this.state.accessToken;
+      const accessToken = this.props.accessToken;
 
       const uploadVideo = new UploadFunction(self);
       self.saveUploadVideoSession(uploadVideo);
@@ -245,15 +219,22 @@ Video = React.createClass( {
   },
   updateSigninStatus(isSignedIn) {
     if (isSignedIn) {
-      console.log('isSignedIn is:', isSignedIn);
       const token = gapi.auth2.getAuthInstance().currentUser.get().Zi.access_token;
+      console.log(token);
       this.saveToken(token);
       this.makeApiCall();
     }
   },
 
   makeApiCall() {
-    gapi.client.load('youtube', 'v3');
+    const clientId = this.state.clientId;
+    const scopes = this.state.scopes;
+
+    gapi.auth2.init({
+      client_id: clientId,
+      scopes: scopes,
+    }).then(() => gapi.client.load('youtube', 'v3'));
+
     console.log('youtube api loaded!');
     this.props.onToggleGAPILoaded();
     this.props.onRenderVideoInput();
