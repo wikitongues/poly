@@ -2,62 +2,91 @@
   display inline-block
   width 100%
   position relative
+  float left
+  // padding 15px 0
+  background #fafcfc
+  box-shadow 0 -1px 2px rgba(0,0,0,0.1)
+  border-top 1px solid #f0f3f5
 
   video
     background black
     margin auto
     display block
-    border-radius 4*$radius
+    // border-radius 30px
+    min-height 378px
+    transition height $time ease-in-out
 
-  .videoButtonContainer
-    border solid 4px white
+  .videoControls
+    bottom 0
+    left 0
+    right 0
     position absolute
-    bottom 30px
-    right 21px
-    width 65px
-    height 65px
-    padding 0
-    border-radius 100%
-    cursor pointer
-    outline none
-    background none
+    padding 0 30px 30px
 
-    .videoButton
-      border none
-      margin 11px
-      width 35px
-      height 35px
-      border-radius 10%
-      background #ff2200
-      transition all ease-in-out $time
+    .videoButtonContainer
+      border solid 4px white
+      width 65px
+      height 65px
+      padding 0
+      border-radius 100%
+      cursor pointer
+      outline none
+      background none
+      float right
+      margin-left 15px
 
-      &.startRecording
+      .videoButton
         border none
-        margin 2px
-        width 53px
-        height 53px
-        border-radius 100%
+        margin 11px
+        width 35px
+        height 35px
+        border-radius 10%
         background #ff2200
+        transition all ease-in-out $time
+        animation recording 15*$time infinite linear
 
-  button.close, button.text
-    position absolute
-    bottom 40px
+        &.startRecording
+          border none
+          margin 2px
+          width 53px
+          height 53px
+          border-radius 100%
+          background #ff2200
+          animation none
 
-    width 45px
-    height 45px
-    padding 0
-    border-radius 100%
-    cursor pointer
-    outline none
-    background #5d5d5d
+    button.close, button.text
+      width 45px
+      height 45px
+      padding 0
+      border-radius 100%
+      cursor pointer
+      outline none
+      background #5d5d5d
+      margin 10px 0
 
-    &.close
-      left 31px
+      &.close
+        float left
 
-    &.text
-      right 101px
+      &.text
+        float right
 
-    img
-      margin 12px
-      width 21px
-      height 21px
+        .blurry
+          -webkit-filter blur(10px)
+          -moz-filter blur(10px)
+          -o-filter blur(10px)
+          -ms-filter blur(10px)
+          filter blur(10px)
+
+      img
+        margin 12px
+        width 21px
+        height 21px
+
+@keyframes recording {
+  0%,100% {
+    opacity .3
+  }
+  50% {
+    opacity 1
+  }
+}

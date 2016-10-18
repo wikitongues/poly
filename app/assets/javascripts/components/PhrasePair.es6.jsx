@@ -66,7 +66,7 @@ PhrasePair = React.createClass( {
   },
 
   renderIframe(src, name) {
-    const stickedClass = `container-iframe-${name}`;
+    const stickedClass = `container-iframe ${name}`;
     return (
       <div className={stickedClass}>
         <iframe className="name" width="380" height="275" src={src} frameBorder="0" />
@@ -74,7 +74,9 @@ PhrasePair = React.createClass( {
     );
   },
   renderParagraph(text) {
-    return (<p>{text}</p>);
+    return (
+      <p>{text}</p>
+    );
   },
   renderSourceInput(status) {
     return (<input
@@ -129,15 +131,15 @@ PhrasePair = React.createClass( {
       return (
         <ul>
           <form onSubmit={this.onSavePhraseClick}>
-            <li className="source text">
+            <li className="source">
               {
                 this.state.sourcePhrase.startsWith('http://www.youtube') ?
                   this.renderSourceInput(true)
                   :
                   this.renderSourceInput(false)
-              }                
+              }
             </li>
-            <li className="target text">
+            <li className="target">
               {
                 this.state.targetPhrase && this.state.targetPhrase.startsWith('http://www.youtube') ?
                   this.renderTargetInput(true)
@@ -154,7 +156,7 @@ PhrasePair = React.createClass( {
       // an iframe or a paragraph accordingly
       return (
         <ul>
-          <li className="source text">
+          <li className="source">
             {
               this.state.sourcePhrase.startsWith('http://www.youtube') ?
                 this.renderIframe(this.state.sourcePhrase, 'source')
@@ -162,7 +164,7 @@ PhrasePair = React.createClass( {
                 this.renderParagraph(this.state.sourcePhrase)
             }
           </li>
-          <li className="target text">
+          <li className="target">
             {
               this.state.targetPhrase && this.state.targetPhrase.startsWith('http://www.youtube') ?
                 this.renderIframe(this.state.targetPhrase, 'target')
