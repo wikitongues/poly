@@ -23,7 +23,7 @@ SearchResults = React.createClass ( {
   renderSearchResults: function() {
     if (this.props.sourceLanguage.length != 0 || this.props.targetLanguage != 0) {
       return (
-        <div className="indexContent">
+        <div className="search">
           {this.renderSourceResultSection()}
           {this.renderTargetResultSection()}
         </div>
@@ -38,7 +38,7 @@ SearchResults = React.createClass ( {
   renderSourceResultSection: function() {
     if (this.props.sourceLanguage.length != 0) {
       return (
-        <span>
+        <div className="indexContent">
           <div className="controlPanel">
             <p>Source Language contains "{this.props.query}"</p>
             <span className="bookCount search">{this.props.sourceLanguage.length}</span>
@@ -46,7 +46,7 @@ SearchResults = React.createClass ( {
           <ul className="bookEntryList">
             {this.renderSourceResults()}
           </ul>
-        </span>
+        </div>
       )
     }
   },
@@ -62,7 +62,7 @@ SearchResults = React.createClass ( {
   renderTargetResultSection: function() {
     if (this.props.targetLanguage.length != 0) {
       return (
-        <span>
+        <div className="indexContent">
           <div className="controlPanel">
             <p>Target Language contains "{this.props.query}"</p>
             <span className="bookCount search">{this.props.targetLanguage.length}</span>
@@ -70,7 +70,7 @@ SearchResults = React.createClass ( {
           <ul className="bookEntryList">
             {this.renderTargetResults()}
           </ul>
-        </span>
+        </div>
       )
     }
   },
@@ -87,7 +87,7 @@ SearchResults = React.createClass ( {
     return (
       <div className="container">
         <NavBar currentUser={this.props.currentUser} query={this.props.query} logo={this.props.logo} detail={this.props.detail} search={this.props.search}/>
-        <div className="dashboard search">
+        <div className="dashboard">
           <span className="backgroundElement"></span>
           {this.renderSearchResults()}
           {this.renderCreateBookButton()}

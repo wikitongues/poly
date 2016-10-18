@@ -56,11 +56,16 @@
     max-width 600px
     min-width 450px
     margin 0 auto 0
+    border-radius 2*$radius
+    overflow hidden
+    border-left 1px solid rgba(0,0,0,0.15)
+    border-right 1px solid rgba(0,0,0,0.15)
+    border-bottom 1px solid rgba(0,0,0,0.15)
 
     .controlPanel
       boxShadow()
       height 60px
-      border-radius 2*$radius 2*$radius 0 0
+      // border-radius 2*$radius 2*$radius 0 0
 
       button, a
         border none

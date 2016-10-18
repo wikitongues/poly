@@ -176,8 +176,8 @@ Profile = React.createClass( {
               <ul className="bookEntryList">
                 {this.renderAllBooks()}
               </ul>
-              {this.renderCreateBookButton()}
             </div>
+            {this.renderCreateBookButton()}
           </div>
         </div>
       </div>
