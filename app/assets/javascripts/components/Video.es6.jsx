@@ -200,7 +200,7 @@ Video = React.createClass( {
       .then(() => self.state.uploadVideo.ready(accessToken))
       .catch(e => console.log(e));
     } else {
-      setTimeout(this.createUploadClass, 100);
+      alert('Error: no access token, please check your connection.')
     }
   },
 
