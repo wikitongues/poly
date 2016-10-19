@@ -1,0 +1,27 @@
+.search
+  .indexContent
+    margin-bottom 20px
+
+    .controlPanel
+      background #90A2B7
+
+      p
+        float left
+        padding 21px 20px 20px
+        margin 0
+        font-weight 100
+        color white
+        transition color $time ease-in-out
+
+      .bookCount.search
+        float right
+        background lighten(#90A2B7,20%)
+        font-weight 500
+        padding 2px 4px
+        color white
+        margin 18px 20px
+        border-radius $radius
+
+    .bookEntryList
+      max-height 70vh
+      overflow-y scroll

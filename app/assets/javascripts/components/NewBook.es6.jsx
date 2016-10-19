@@ -66,7 +66,7 @@ NewBook = React.createClass( {
               <div className="wrapper">
                 <input className="new title" type="text" name="title" placeholder="Useful phrases in Laputa" autofocus value={this.state.title} onChange={this.onInputChange} />
                 <a className="author">{this.props.currentUser.username}</a>
-                <textarea className="new description" type="text" name="description" placeholder="A collection of useful phrases in Laputa, a Swiftian language spoken in Balnibarbi and a number of other islands." value={this.state.description} onChange={this.onInputChange}/>
+                <textarea className="new description" type="text" name="description" placeholder="Describe the contents of your book, Ex: A collection of useful phrases in Laputa, a Swiftian language spoken in Balnibarbi and a number of other islands." value={this.state.description} onChange={this.onInputChange}/>
               </div>
             </fieldset>
             <section className="new dictionary">

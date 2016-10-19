@@ -1,6 +1,10 @@
 <%= react_component(
-'HomeIndex',
+'SearchResults',
 books: @books,
+query: @query,
+sourceLanguage: @sourceLanguage,
+targetLanguage: @targetLanguage,
+users: @users,
 logo: asset_path('icons/i_home.svg'),
 detail: asset_path('icons/i_home_detail.svg'),
 cardinality: asset_path('icons/i_cardinality.svg'),

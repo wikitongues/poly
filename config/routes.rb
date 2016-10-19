@@ -6,11 +6,13 @@ Rails.application.routes.draw do
 
   root to:  "home#index"
 
+  get "/search" => "searches#search"
+
   resources :books, only: [:show, :new, :create, :destroy, :update]
 
   resources :phrase_pairs, only: [:create, :destroy, :update]
   resources :users, only: [:show]
-  resources :account, only: [:index]
+  resources :dashboard, only: [:index]
   resources :favorites, only: [:create, :destroy]
 
   # The priority is based upon order of creation: first created -> highest priority.
