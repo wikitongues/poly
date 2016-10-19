@@ -15,9 +15,10 @@ Video = React.createClass( {
   },
 
   componentDidMount() {
-    this.createUploadClass();
     this.saveTitle();
+    this.createUploadClass();
     this.props.onRenderVideoInput();
+
     const video = document.getElementById('camera-stream');
     video.muted = true;
   },
@@ -75,7 +76,6 @@ Video = React.createClass( {
   */
   saveTitle() {
     const title = `${this.props.sourceLanguage}.${this.props.targetLanguage}.${this.props.author}`;
-    console.log(title);
     this.setState({ titleVideo: title });
   },
 
@@ -112,7 +112,8 @@ Video = React.createClass( {
     this.videoId = '';
     this.uploadStartTime = 0;
 
-    this.ready = function (accessToken) {
+    this.ready = function(accessToken) {
+      console.log('in ready: ', accessToken);
       this.accessToken = accessToken;
       this.gapi = gapi;
       this.authenticated = true;
@@ -129,7 +130,7 @@ Video = React.createClass( {
         }.bind(this),
       });
     };
-    this.uploadFile = function (file) {
+    this.uploadFile = function(file) {
       const metadata = {
         snippet: {
           title: self.state.titleVideo,
@@ -139,12 +140,12 @@ Video = React.createClass( {
         },
         status: {
           privacyStatus: self.state.privacyVideo,
-        }
+        },
       };
       const uploader = new MediaUploader({
         baseUrl: 'https://www.googleapis.com/upload/youtube/v3/videos',
         file,
-        token: self.state.accessToken,
+        token: self.props.accessToken,
         metadata,
         params: {
           part: Object.keys(metadata).join(','),
@@ -153,6 +154,7 @@ Video = React.createClass( {
           let message = data;
           try {
             const errorResponse = JSON.parse(data);
+            console.log(data);
             message = errorResponse.error.message;
             console.log(message);
           } finally {
@@ -171,11 +173,11 @@ Video = React.createClass( {
     };
 
     this.handleUploadClick = function () {
-      if(self.state.recordedBlob) {
+      if (self.state.recordedBlob) {
         console.log('success');
         this.uploadFile(self.state.recordedBlob);
       } else {
-        setTimeout(function() {
+        setTimeout(() => {
           self.handleUploadTimeout();
         }, 300);
       }
@@ -188,11 +190,15 @@ Video = React.createClass( {
     if (this.props.accessToken !== '') {
       const UploadFunction = this.UploadVideo;
       const accessToken = this.props.accessToken;
+      console.log('in createUploadClass: ', accessToken);
 
       const uploadVideo = new UploadFunction(self);
-      self.saveUploadVideoSession(uploadVideo);
-
-      self.state.uploadVideo.ready(accessToken);
+      const saveSessionPromise = new Promise((resolve) => {
+        resolve(self.saveUploadVideoSession(uploadVideo));
+      });
+      saveSessionPromise
+      .then(() => self.state.uploadVideo.ready(accessToken))
+      .catch(e => console.log(e));
     } else {
       setTimeout(this.createUploadClass, 100);
     }
@@ -200,7 +206,7 @@ Video = React.createClass( {
 
   /*
     Authentication with GoogleAPI
-  */
+
 
   authorizeApp() {
     const clientId = this.state.clientId;
@@ -240,9 +246,10 @@ Video = React.createClass( {
     this.props.onRenderVideoInput();
     this.createUploadClass();
   },
+  */
 
   /*
-    Helper functions, for handling events
+    Helper functions
   */
 
   handleUploadTimeout() {

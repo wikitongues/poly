@@ -14,8 +14,7 @@ Dictionary = React.createClass( {
       mediaConstraints: { video: true, audio: true },
       stream: "",
       // clientId Ben
-      clientId: '463787160210-89kiojjsupa9u2g2s946g7em5d8t6kdj.apps.googleusercontent.com',
-      clientSecret: '',
+      clientId: '463787160210-mcm71qds0opgn9cf661pptqt1hcofh3d.apps.googleusercontent.com',
       // wikitongues
       // clientId: '20162064407-uf2hnjg83uhaq6v3soa0bm0ngp5gmvjq.apps.googleusercontent.com',
       scopes: [
@@ -23,15 +22,15 @@ Dictionary = React.createClass( {
         'https://www.googleapis.com/auth/plus.login',
         'https://www.googleapis.com/auth/userinfo.email',
       ],
-      refreshToken: '1/E_yN56Kk6X5Y6qv3bnackF7yH2SOfWJ7uaaMMcTtpP-GqAK8dNkv2sl1LRgG-sZl',
+      refreshToken: '1/vI-S3g2HImFh7nj2wV_cw8y-28lMva6O1IiTQZ7jKZQ',
       interval: '',
-      accessToken: 'ya29.Ci-AA4x56i46Nn2NdzF-r_3v4TRAfXu2hRYtzCNYpKJMTnUAfC2gJVf3X3G9okP7vQ',
+      accessToken: '',
     };
   },
 
   componentWillMount() {
     const makeApiCall = this.makeApiCall;
-    if (typeof gapi != 'undefined') {
+    if (typeof gapi !== 'undefined') {
       gapi.load('client:auth2', makeApiCall);
     }
     this.refreshToken();
@@ -52,8 +51,10 @@ Dictionary = React.createClass( {
     gapi.auth2.init({
       client_id: clientId,
       scopes,
-    }).then(() => gapi.client.load('youtube', 'v3'));
-    console.log('youtube api loaded!');
+    }).then(() => {
+      gapi.client.load('youtube', 'v3')
+      .then(() => console.log('youtube api loaded!'));
+    });
   },
 
   refreshToken() {
@@ -73,6 +74,7 @@ Dictionary = React.createClass( {
   },
 
   saveToken(accessToken) {
+    console.log(accessToken);
     this.setState({ accessToken });
   },
 
@@ -399,7 +401,7 @@ Dictionary = React.createClass( {
   renderVideoInput() {
     if (this.state.isInputVideo) {
       return (
-        <div hidden ref="video">
+        <div ref="video">
           <Video
           onRenderVideoInput={this.onRenderVideoInput}
           renderRecordButton={this.renderRecordButton}
