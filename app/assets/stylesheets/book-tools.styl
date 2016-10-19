@@ -1,17 +1,11 @@
-  verticalAlign()
-    position absolute
-    top 50%
-    transform translateY(-50%)
-
   .tools
     width 600px
     display table
-    background $buttonBlue
+    background #ADBCCA
     margin auto
     boxShadow()
     position relative
     z-index 2
-    border-radius 2*$radius 2*$radius 0 0
 
     input
       padding 0.7em 1em 0.7em 2.5em
@@ -52,7 +46,7 @@
 
       h1
         text-transform capitalize
-        width 46%
+        width 47%
         float left
         text-align center
         font-size 1.3em
@@ -70,22 +64,22 @@
         box-shadow none
         border-bottom none
         float left
-        margin .65em -20px 0
+        margin .6em -20px 0
         width 40px
         height 40px
         padding 10px
-        z-index 10
         position relative
+        z-index 10
 
     .menu
-      transition all $time ease-in-out
+      transition height $time ease-in-out, opacity $time ease-in-out
       height 44px
       width 44px
       padding 2px
       border-radius 22px
 
       &:hover
-        background #147eff
+        background lighten(#adbcca,30%)
         height 124px
         width 44px
         boxShadow()
@@ -97,17 +91,16 @@
         border none
 
         &:focus
-          opacity 1
-          background darken(#147eff, 6%)
+          background transparent
 
           &:hover
-            background #1d6fd2
+            background lighten(#adbcca,45%)
 
         &:hover
-          background #1d6fd2
+          background lighten(#adbcca,45%)
 
       &.saving
-        background #147eff
+        background lighten(#adbcca,30%)
         height 84px
         width 44px
         boxShadow()
@@ -120,7 +113,7 @@
           margin 0
 
           &:focus
-            background darken(#147eff, 6%)
+            background lighten(#adbcca,30%)
 
             &:hover
-              background #1d6fd2
+              background lighten(#adbcca,45%)

@@ -1,12 +1,10 @@
 .book
-  border-radius 0 0 2*$radius 2*$radius
   form
     margin 0
 
     .tools
       .icon
         cursor initial
-
       .icon[title="Menu"]
         padding 18px
 
@@ -14,30 +12,19 @@
           height 22px
 
   .info, .tools
-    input
-      border none
-      border-bottom 2px solid darken($buttonBlue, 10%)
-
-      &:focus
-        outline none
-        border-bottom-style solid
-
-    textarea
-      border none
-      border-left 3px solid darken($buttonBlue, 10%)
-      height auto
-
-      &:focus
-        outline none
-        border-left-style solid
-
     input, textarea
+      border none
       width 100%
+      border-bottom 2px solid #a9b8c7
       float left
 
       &.missing
         ::placeholder
           color red
+
+      &:focus
+        outline none
+        border-bottom-style solid
 
   .info
     margin 0
@@ -48,10 +35,9 @@
         padding 0
 
       &.description
-        margin 0 0 2em -4px
+        margin 0 0 2em
         resize vertical
         font-size 1em
-        padding-left 4px
 
   .banner
     width 100%
@@ -77,7 +63,7 @@
           width 47%
           text-align center
           float left
-          background lighten($buttonBlue,20%)
+          background lighten(#ADBCCA,20%)
           border-radius $radius
           font-size 1.3em
           padding 8px 0 9px
@@ -86,16 +72,13 @@
           color white
 
           &:focus
-            background lighten($buttonBlue,40%)
+            background lighten(#ADBCCA,40%)
 
           &:first-of-type
             margin-right 3%
 
           &:last-of-type
             margin-left 3%
-
-          &.isEditing
-            width 46%
 
   .isEditing
     border-bottom-color #ddd
@@ -104,7 +87,6 @@
     height 27.5%
     position relative
     background #fff
-    border-radius 0 0 2*$radius 2*$radius
 
     .dummy.content
       pointer-events none
@@ -142,13 +124,13 @@
       color white
       border none
       font-size 1em
-      padding 1em 0
+      padding .9em 1.4em
       font-weight 100
       display block
       cursor pointer
-      width 100%
-      border-radius 0 0 2*$radius 2*$radius
-      margin 0 auto
+      min-width 45%
+      border-radius 3px
+      margin 0 auto 20px
       transition margin-bottom $time ease-in-out
 
       &.disabled

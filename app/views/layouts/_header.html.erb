@@ -5,17 +5,5 @@
       <%= image_tag "icons/i_home_detail.svg"%>
     </span>
   </a>
-
-  <% if @user.username? %>
-
-    <span class="loggedIn">
-      <a class="currentUser" href="/account">
-        <%= @user.username%>
-      </a>
-      <a href="/sign_out">Sign out</a>
-    </span>
-
-  <% end %>
-
 </nav>
 <span class="backgroundElement"></span>

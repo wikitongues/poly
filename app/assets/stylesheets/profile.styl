@@ -1,82 +1,37 @@
 #profile
-  width 1070px
+  width 840px
   display table
   position relative
   margin auto
 
   .userInformation
-    width 450px
+    width 230px
     float left
-    margin 0 20px 0 0
+    margin 0 10px 0 0
 
     .wrapper
       background #fff
-      border-radius 2*$radius
-      padding 0
+      border-radius $radius
+      padding 15px
       color #295671
-      // border 1px solid rgba(0,0,0,0.15)
+      border 1px solid rgba(0,0,0,0.15)
       boxShadow()
-      display inline-block
-      width 100%
-      float left
-      overflow hidden
 
-      img, span.details
-        float left
+      img
+        margin-bottom 20px
 
-      span.tooltip
-        float left
-        position absolute
-        width 33px
-        padding 5px
-        margin 5px
-        text-align center
-        left 155px
-        border 2px solid rgba(255,255,255,.5)
-        color rgba(255,255,255,1)
-        text-shadow 0 1px 2px rgba(0,0,0,0.2)
-        border-radius 100%
-        cursor default
+      h2
+        font-weight 100
+        margin 0
+        font-weight 300
 
-        &::after
-            position absolute
-            background white
-            content "Manage your avatar using Gravatar."
-            padding 10px 0
-            border-radius 2*$radius
-            white-space nowrap
-            font-size .8em
-            color $buttonBlue
-            text-shadow none
-            width 0
-            overflow hidden
-            transition all $time ease-in-out
-            left 10px
-            top -15px
-            boxShadow()
+      p
+        font-weight 100
 
-        &:hover
-          &::after
-            padding 10px
-            width 200px
-
-      span.details
-        width 250px
-        padding 15px 20px
-
-        h2
-          font-size 2em
-          margin 0
-          font-weight 300
-
-        p
-          font-weight 100
-          font-size .8em
-
-        a.editButton
-          text-decoration none
-          color $buttonBlue
-          font-size .8em
+      a.editButton
+        text-decoration none
+        color $buttonBlue
+        font-size .8em
 
   .languages
     float left
@@ -104,115 +59,31 @@
     display inline-block
     position relative
 
-    &.side
-      margin-top 20px
-
-      .indexContent
-        .controlPanel
-          background #90A2B7
-          p
-            &:hover
-              cursor pointer
-              background lighten(#90A2B7, 10%)
-
-        .bookEntryList
-          li.emptyList
-            h2
-              padding-left 20px
-              font-size 1em
-              font-weight 100
-
-          li.bookEntry
-            a
-              section.info
-                .clear
-                  .title
-                    font-size 1em
-
-                .meta
-                  .date
-                    margin-bottom 0
-
     .indexContent
       width 100%
-
-      .controlPanel
-        overflow hidden
-        background $buttonBlue
-
-        p
-          float left
-          padding 21px 20px 20px
-          margin 0
-          font-weight 100
-          color white
-          transition color $time ease-in-out
-
-          span.bookCount
-            background transparent
-            font-weight 500
-            padding 2px 4px
-            border-radius $radius
-
-        button
-          background transparent
-          float left
-          padding 21px 20px 20px
-          margin 0
-          font-weight 100
-          color white
-          transition color $time ease-in-out
-          cursor pointer
-
-          span.bookCount
-            background transparent
-            font-weight 500
-            padding 2px 4px
-            border-radius $radius
-
-        button,a
-          &:hover
-            background lighten(#90A2B7, 15%)
-
-          &:focus
-            background lighten(#90A2B7, 10%)
-            outline none
-            span
-              color white
-
-        a
-          background transparent
-          float right
-          position initial
-          width auto
-          padding 20px
-          font-weight 900
-          font-size 2em
-          line-height .6
-
-      &.books
-        .controlPanel
-          #books
-            color white
-
-            span.bookCount
-              background lighten(#90A2B7,20%)
-
-          #favorites
-            color lighten(#90A2B7, 50%)
-
-
-      &.favorites
-        .controlPanel
-          #books
-            color lighten(#90A2B7, 50%)
-
-          #favorites
-            color white
-
-            span.bookCount
-              background lighten(#90A2B7,20%)
 
     ul
       float left
       width 100%
+
+    .header
+      float left
+      font-weight 100
+      text-align center
+      margin 0
+      padding 20px
+      background #ADBCCA
+      color white
+      text-decoration none
+
+    p.header
+      width 480px
+      margin-left 60px
+
+    a.header:hover
+      background lighten(#ADBCCA,10%)
+
+    .newBook
+      position absolute
+      bottom -2em
+      margin 0 0 0 -30px

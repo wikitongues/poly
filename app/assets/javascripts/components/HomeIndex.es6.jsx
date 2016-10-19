@@ -4,7 +4,7 @@ HomeIndex = React.createClass ( {
     alert("Search is coming soon!")
   },
 
-  renderCreateBookPanel: function() {
+  renderCreateBookPannel: function() {
     if (this.props.currentUser) {
       return (
         <a href="/books/new" title="Create a new book">New book</a>
@@ -37,8 +37,8 @@ HomeIndex = React.createClass ( {
         <div className="dashboard">
           <span className="backgroundElement"></span>
           <div className="indexContent">
-            <div className="controlPanel">
-              {this.renderCreateBookPanel()}
+            <div className="controlPannel">
+              {this.renderCreateBookPannel()}
             </div>
             <ul className="bookEntryList">
               {this.renderBooks()}

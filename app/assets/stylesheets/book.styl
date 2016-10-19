@@ -42,10 +42,8 @@
       background $buttonBlue
 
   .info
-    z-index 1
     position relative
     padding 0 20px
-    max-width 600px
 
     .wrapper
       width 100%
@@ -102,8 +100,8 @@
       h1
         float left
         width 100%
-        max-width 550px
-        white-space normal
+        white-space nowrap
+        text-overflow ellipsis
         overflow hidden
         font-size 1.7em
 
@@ -118,7 +116,7 @@
 
       .description
         width 100%
-        min-height 60px
+        min-height 44px
         margin 0 0 1.5em 0
         padding 2px 2px 4px
 
@@ -134,12 +132,13 @@
         padding 8px 11px
         margin -8px -11px 1em
         font-size 12px
+        color #aaa
         text-decoration none
         border-radius $radius
-  display: none;
-      p.author
-        color #aaa
 
-      a.author
-        color $buttonBlue
-         
+      a.author:hover
+        background $buttonBlue
+        color white
+        
+iframe[src^="https://apis.google.com"] 
+  display: none;
