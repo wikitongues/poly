@@ -1,7 +1,9 @@
-class UsersController < ApplicationController
+class DashboardController < SecureController
+  skip_after_action :verify_authorized, only: [:index]
+  skip_after_action :verify_policy_scoped, only: [:index]
 
-  def show
-    @user = User.find(params[:id])
+  def index
+    @user = current_user
     @hashedEmail = Digest::MD5.hexdigest(@user.email)
     @books = Book.all.order("created_at DESC").map do |book|
       BookSerializer.new(book)
@@ -17,13 +19,6 @@ class UsersController < ApplicationController
       .map do |book|
           BookSerializer.new(book)
     end
-    # if @user.present?
-    #   @phrase_pairs = @user.phrase_pairs
-    #   authorize @user
-    # else
-    #   skip_authorization
-    #   redirect_to root_path
-    # end
   end
 
 end

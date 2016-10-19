@@ -6,6 +6,8 @@
   width 40px
   height 40px
   overflow hidden
+  border-radius 20pc
+  transition background-color $time ease-in-out, opacity $time ease-in-out
 
   .icon
     width 40px
@@ -20,6 +22,16 @@
     outline none
     margin-right -40px
     border 1px solid transparent
+
+    &[title="Menu"], &[title="Cancel"]
+      img
+        height 22px
+        width 22px
+
+    &[title="Edit"], &[title="Delete"], &[title="Save"]
+      img
+        height 26px
+        width 26px
 
     &.more
       margin 0
