@@ -1,195 +1,226 @@
-Book = React.createClass( {
-
-  getInitialState: function() {
-    return {
+class Book extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
       phrasePairs: this.props.initialPhrasePairs,
       isEditingBook: false,
       book: this.props.initialBook,
-      isDescriptionTruncated:true,
-      isFavoriteBook: this.isFavoriteBook()
-    }
-  },
-
-  onSourcePhraseSubmit: function(sourcePhrase) {
-    var newPhrasePair = {
-      source_phrase: sourcePhrase,
+      isDescriptionTruncated: true,
+      isFavoriteBook: this.isFavoriteBook(),
     };
-    var newPhrasePairs = this.state.phrasePairs;
+    this.onSourcePhraseSubmit = this.onSourcePhraseSubmit.bind(this);
+    this.onTargetPhraseSubmit = this.onTargetPhraseSubmit.bind(this);
+    this.saveNewPhrasePair = this.saveNewPhrasePair.bind(this);
+    this.onDeleteBookClick = this.onDeleteBookClick.bind(this);
+    this.onSaveBookClick = this.onSaveBookClick.bind(this);
+    this.toggleEditingBookState = this.toggleEditingBookState.bind(this);
+    this.onInputChange = this.onInputChange.bind(this);
+    this.onSearchBook = this.onSearchBook.bind(this);
+    this.onClickFavoriteBook = this.onClickFavoriteBook.bind(this);
+    this.destroyFavorite = this.destroyFavorite.bind(this);
+    this.createFavorite = this.createFavorite.bind(this);
+    this.toggleFavoriteBook = this.toggleFavoriteBook.bind(this);
+    this.bookIsOwnedByCurrentUser = this.bookIsOwnedByCurrentUser.bind(this);
+    this.renderBookMenu = this.renderBookMenu.bind(this);
+    this.renderTitle = this.renderTitle.bind(this);
+    this.renderAuthor = this.renderAuthor.bind(this);
+    this.truncateText = this.truncateText.bind(this);
+    this.renderTruncatedDescription = this.renderTruncatedDescription.bind(this);
+    this.renderDescription = this.renderDescription.bind(this);
+    this.renderSourceLanguage = this.renderSourceLanguage.bind(this);
+    this.renderTargetLanguage = this.renderTargetLanguage.bind(this);
+    this.favoriteImage = this.favoriteImage.bind(this);
+    this.isFavoriteBook = this.isFavoriteBook.bind(this);
+    this.renderFavoriteButton = this.renderFavoriteButton.bind(this);
+  }
+
+  onSourcePhraseSubmit(sourcePhrase) {
+    const newPhrasePair = { source_phrase: sourcePhrase };
+    const newPhrasePairs = this.state.phrasePairs;
     newPhrasePairs.push(newPhrasePair);
-    this.setState({
-      phrasePairs: newPhrasePairs
-    })
-  },
+    this.setState({ phrasePairs: newPhrasePairs });
+  }
 
-  onTargetPhraseSubmit: function(targetPhrase) {
-    var newPhrasePairs = this.state.phrasePairs;
-    var newPhrasePair = newPhrasePairs[newPhrasePairs.length - 1]
+  onTargetPhraseSubmit(targetPhrase) {
+    const newPhrasePairs = this.state.phrasePairs;
+    const newPhrasePair = newPhrasePairs[newPhrasePairs.length - 1];
     newPhrasePair.target_phrase = targetPhrase;
-    this.setState({
-      phrasePairs: newPhrasePairs
-    })
+    this.setState({ phrasePairs: newPhrasePairs });
     this.saveNewPhrasePair(newPhrasePair);
-  },
+  }
 
-  saveNewPhrasePair: function(phrasePair) {
+  saveNewPhrasePair(phrasePair) {
     $.ajax({
       url: "/phrase_pairs",
       type: "POST",
       data: {
         book_id: this.state.book.id,
-        phrase_pair: phrasePair
+        phrase_pair: phrasePair,
       },
-      success: function(phrasePair) {
-        var newPhrasePairs = this.state.phrasePairs;
-        newPhrasePairs.splice(this.state.phrasePairs.length -1, 1, phrasePair.phrase_pair)
-        this.setState({
-          phrasePairs: newPhrasePairs
-        })
+      success: function (phrasePair) {
+        let newPhrasePairs = this.state.phrasePairs;
+        newPhrasePairs.splice(this.state.phrasePairs.length - 1, 1, phrasePair.phrase_pair);
+        this.setState({ phrasePairs: newPhrasePairs });
       }.bind(this),
-      error: function() {
-        console.log('Error: Save action failed')
-      }
-    })
-  },
+      error: function () {
+        console.log('Error: Save action failed');
+      },
+    });
+  }
 
-  onDeleteBookClick: function() {
-    if(window.confirm("Are you sure you want to delete this book?")) {
+  onDeleteBookClick() {
+    if (window.confirm('Are you sure you want to delete this book?')) {
       $.ajax({
         url: '/books/' + this.state.book.id,
         type: 'DELETE',
-        success: function() {
+        success: function () {
           window.location.href = '/dashboard';
-        }
-      })
+        },
+      });
     }
-  },
+  }
 
-  onSaveBookClick: function() {
+  onSaveBookClick() {
     $.ajax({
       url: '/books/' + this.state.book.id,
-      type: "PUT",
+      type: 'PUT',
       data: { book: this.state.book },
-      success: function() {
+      success: function () {
         this.toggleEditingBookState();
       }.bind(this),
-      error: function() {
-        alert('something went wrong')
-      }
-    })
-  },
-
-  toggleEditingBookState: function() {
-    this.setState({
-      isEditingBook: !this.state.isEditingBook
+      error: function () {
+        alert('something went wrong');
+      },
     });
-  },
+  }
 
-  onInputChange: function(e) {
-    var newBook = this.state.book;
-    var newState = this.state;
+  toggleEditingBookState() {
+    this.setState({ isEditingBook: !this.state.isEditingBook });
+  }
+
+  onInputChange(e) {
+    const newBook = this.state.book;
+    const newState = this.state;
     newBook[e.target.name] = e.target.value;
     newState.book = newBook;
     this.setState(newState);
-  },
+  }
 
-  onSearchBook: function() {
-    alert("Searching is coming soon!")
-  },
+  onSearchBook() {
+    alert('Searching is coming soon!');
+  }
 
-  onClickFavoriteBook: function() {
+  onClickFavoriteBook() {
     if (this.state.isFavoriteBook) {
       this.destroyFavorite();
     } else {
       this.createFavorite();
     }
-  },
+  }
 
-  destroyFavorite: function() {
+  destroyFavorite() {
     $.ajax({
       url: '/favorites/' + this.state.book.id,
       type: 'DELETE',
-      success: function(book) {
+      success: function () {
         this.toggleFavoriteBook();
       }.bind(this),
-      error: function(error) {
-        console.log('something went wrong')
-      }
-    })
-  },
+      error: function () {
+        console.log('something went wrong');
+      },
+    });
+  }
 
-  createFavorite: function() {
+  createFavorite() {
     $.ajax({
       url: '/favorites',
       type: 'POST',
       data: {
         book_id: this.state.book.id
       },
-      success: function(book) {
+      success: function () {
         this.toggleFavoriteBook();
       }.bind(this),
-      error: function(error) {
-        console.log('something went wrong')
-      }
-    })
-  },
+      error: function () {
+        console.log('something went wrong');
+      },
+    });
+  }
 
-  toggleFavoriteBook: function() {
-    this.setState({
-      isFavoriteBook: !this.state.isFavoriteBook
-    })
-  },
+  toggleFavoriteBook() {
+    this.setState({ isFavoriteBook: !this.state.isFavoriteBook });
+  }
 
-  bookIsOwnedByCurrentUser: function() {
+  bookIsOwnedByCurrentUser() {
     if (this.props.currentUser) {
-      return this.props.initialBook.user_id == this.props.currentUser.id
+      return this.props.initialBook.user_id === this.props.currentUser.id;
     }
-  },
+  }
 
-  renderBookMenu: function() {
+  renderBookMenu() {
     if (this.bookIsOwnedByCurrentUser()) {
       if (this.state.isEditingBook) {
         return (
           <div className="menu saving">
             <button title="Save" onClick={this.onSaveBookClick} className="icon">
-              <img src={this.props.saveAlt}/>
+              <img src={this.props.saveAlt} alt="Save" />
             </button>
-            <button title="Cancel" onClick={this.toggleEditingBookState} className="close icon">
-              <img src={this.props.closeAlt}/>
-            </button>
-          </div>
-        );
-      } else {
-        return (
-          <div className="menu">
-            <button title="Menu" className="more icon">
-              <img src={this.props.menuAlt}/>
-            </button>
-            <button title="Edit" onClick={this.toggleEditingBookState} className="icon" tabIndex="-1">
-              <img src={this.props.editAlt}/>
-            </button>
-            <button title="Delete" onClick={this.onDeleteBookClick} className="icon" tabIndex="-1">
-              <img src={this.props.deleteAlt}/>
+            <button
+              title="Cancel"
+              onClick={this.toggleEditingBookState}
+              className="close icon"
+            >
+              <img src={this.props.closeAlt} alt="Close" />
             </button>
           </div>
         );
       }
+      return (
+        <div className="menu">
+          <button title="Menu" className="more icon">
+            <img src={this.props.menuAlt} alt="Menu" />
+          </button>
+          <button 
+            title="Edit"
+            onClick={this.toggleEditingBookState}
+            className="icon"
+            tabIndex="-1"
+          >
+            <img src={this.props.editAlt} alt="Edit" />
+          </button>
+          <button 
+            title="Delete"
+            onClick={this.onDeleteBookClick}
+            className="icon"
+            tabIndex="-1"
+          >
+            <img src={this.props.deleteAlt} alt="Delete" />
+          </button>
+        </div>
+      );
     }
-  },
+  }
 
-  renderTitle: function() {
-     if (this.state.isEditingBook) {
-      return <input name="title" className="title new isEditing" onChange={this.onInputChange} value={this.state.book.title} />;
-    } else {
-       return <h1 title={this.state.book.title}>{this.state.book.title}</h1>;
+  renderTitle() {
+    if (this.state.isEditingBook) {
+      return (
+        <input
+          name="title"
+          className="title new isEditing"
+          onChange={this.onInputChange}
+          value={this.state.book.title}
+        />
+      );
     }
-  },
+    return <h1 title={this.state.book.title}>{this.state.book.title}</h1>;
+  }
 
-  renderAuthor: function() {
-    let users = this.props.users
-    let authorName = ""
+  renderAuthor() {
+    const users = this.props.users;
+    let authorName = '';
     for (var i = users.length - 1; i >= 0; i--) {
-      if(this.props.initialBook.user_id == users[i].id) {
-        authorName = users[i].username
+      if (this.props.initialBook.user_id === users[i].id) {
+        authorName = users[i].username;
       }
     }
 
@@ -197,103 +228,150 @@ Book = React.createClass( {
       if (this.state.isEditingBook) {
         return (
           <p className="author">{authorName}</p>
-        )
-      } else {
-        return (
-          <a href={"/dashboard"} className="author">{authorName}</a>
-        )
+        );
       }
-    } else {
       return (
-          <a href={"/users/" + this.state.book.user_id} className="author">{authorName}</a>
-        )
+        <a href={"/dashboard"} className="author">{authorName}</a>
+      );
     }
-  },
+    return (
+      <a href={"/users/" + this.state.book.user_id} className="author">{authorName}</a>
+    );
+  }
 
-  truncateText: function() {
-    this.setState({
-      isDescriptionTruncated: !this.state.isDescriptionTruncated
-    });
-  },
+  truncateText() {
+    this.setState({ isDescriptionTruncated: !this.state.isDescriptionTruncated });
+  }
 
-  renderTruncatedDescription: function() {
+  renderTruncatedDescription() {
     if(this.state.book.description.length >= 132) {
       if (this.state.isDescriptionTruncated) {
-        return <p className="description">{this.state.book.description.substring(0,132)}... <button onClick={this.truncateText}>More</button></p>;
-      } else {
-        return <p className="description">{this.state.book.description} <button onClick={this.truncateText}>Less</button></p>;
+        return (
+          <p className="description">
+            {this.state.book.description.substring(0, 132)}...
+            <button onClick={this.truncateText}>More</button>
+          </p>
+        );
       }
-    } else {
-      return <p className="description">{this.state.book.description}</p>;
+      return (
+        <p className="description">
+          {this.state.book.description}
+          <button onClick={this.truncateText}>Less</button>
+        </p>
+      );
     }
-  },
+    return <p className="description">{this.state.book.description}</p>;
+  }
 
-  renderDescription: function() {
-   if (this.state.book.description) {
+  renderDescription() {
+    if (this.state.book.description) {
       if (this.state.isEditingBook) {
-        return <textarea rows="4" className="description new isEditing" name="description" onChange={this.onInputChange} value={this.state.book.description} />;
-      } else {
-         return <span>{this.renderTruncatedDescription()}</span>
+        return (
+          <textarea
+            rows="4"
+            className="description new isEditing"
+            name="description"
+            onChange={this.onInputChange}
+            value={this.state.book.description}
+          />
+        );
       }
-    } else {
-      if (this.state.isEditingBook) {
-        return <textarea rows="5" className="description new isEditing" name="description" onChange={this.onInputChange} value={this.state.book.description} placeholder="Describe the contents of your book, Ex: A collection of useful phrases in Laputa, a Swiftian language spoken in Balnibarbi and a number of other islands..."/>;
-      }
+      return <span>{this.renderTruncatedDescription()}</span>;
     }
-  },
-
-   renderSourceLanguage: function() {
-     if (this.state.isEditingBook) {
-      return <input className="new isEditing" name="source_language" onChange={this.onInputChange} value={this.state.book.source_language} />;
-    } else {
-       return <h1 className="language source" title={this.state.book.source_language}>{this.state.book.source_language}</h1>;
+    if (this.state.isEditingBook) {
+      return (
+        <textarea
+          rows="5"
+          className="description new isEditing"
+          name="description"
+          onChange={this.onInputChange}
+          value={this.state.book.description}
+          placeholder="Describe the contents of your book,
+          Ex: A collection of useful phrases in Laputa, a Swiftian
+          language spoken in Balnibarbi and a number of other islands..."
+        />
+      );
     }
-  },
+  }
 
-   renderTargetLanguage: function() {
-     if (this.state.isEditingBook) {
-      return <input className="new isEditing" name="target_language" onChange={this.onInputChange} value={this.state.book.target_language} />;
-    } else {
-       return <h1 className="language target" title={this.state.book.target_language}>{this.state.book.target_language}</h1>;
+  renderSourceLanguage() {
+    if (this.state.isEditingBook) {
+      return (
+        <input
+          className="new isEditing"
+          name="source_language"
+          onChange={this.onInputChange}
+          value={this.state.book.source_language}
+        />
+      );
     }
-  },
+    return (
+      <h1 className="language source" title={this.state.book.source_language}>
+        {this.state.book.source_language}
+      </h1>
+    );
+  }
 
-  favoriteImage: function() {
+  renderTargetLanguage() {
+    if (this.state.isEditingBook) {
+      return (
+        <input
+          className="new isEditing"
+          name="target_language"
+          onChange={this.onInputChange}
+          value={this.state.book.target_language}
+        />
+      );
+    }
+    return (
+      <h1 className="language target" title={this.state.book.target_language}>
+        {this.state.book.target_language}
+      </h1>
+    );
+  }
+
+  favoriteImage() {
     return this.state.isFavoriteBook
       ? this.props.star
       : this.props.unstar;
-  },
+  }
 
-  isFavoriteBook: function() {
+  isFavoriteBook() {
     if (this.props.currentUser) {
-        return this.props.currentUser.favorite_books.filter(function(favorite) {
-          return favorite.book_id === this.props.initialBook.id
-        }.bind(this)).length > 0;
+      return this.props.currentUser.favorite_books.filter(function(favorite) {
+        return favorite.book_id === this.props.initialBook.id
+      }.bind(this)).length > 0;
     }
-  },
+  }
 
-  renderFavoriteButton: function() {
-    if(this.props.currentUser) {
+  renderFavoriteButton() {
+    if (this.props.currentUser) {
       return (
         <button title="Favorite" onClick={this.onClickFavoriteBook} className="favorite icon">
-          <img src={this.favoriteImage()} alt="Favorite"/>
+          <img src={this.favoriteImage()} alt="Favorite" />
         </button>
-      )
+      );
     }
-  },
+    return;
+  }
 
-  render: function() {
+  render() {
     return (
       <div className="container">
-        <NavBar currentUser={this.props.currentUser} logo={this.props.logo} detail={this.props.detail} search={this.props.search}/>
-        <span className="backgroundElement"></span>
+        <NavBar
+          currentUser={this.props.currentUser}
+          logo={this.props.logo}
+          detail={this.props.detail}
+          search={this.props.search}
+        />
+        <span className="backgroundElement" />
         <div className="book">
           <div className="tools">
             {this.renderFavoriteButton()}
             <div className="cardinality">
               <section>
                 { this.renderSourceLanguage() }
-                <img src={this.props.cardinality} alt=""/>
+                <img src={this.props.cardinality} alt="Cardinality" />
                 { this.renderTargetLanguage() }
               </section>
             </div>
@@ -310,18 +388,23 @@ Book = React.createClass( {
           <div className="NObannerWrapper"></div>
 
           <Dictionary
-          isOwnedByCurrentUser={this.bookIsOwnedByCurrentUser()}
-          initialPhrasePairs={this.state.phrasePairs}
-          onSourcePhraseSubmit={this.onSourcePhraseSubmit}
-          onTargetPhraseSubmit={this.onTargetPhraseSubmit}
-          menu={this.props.menu}
-          save={this.props.save}
-          delete={this.props.delete}
-          edit={this.props.edit}
-          close={this.props.close} />
+            isOwnedByCurrentUser={this.bookIsOwnedByCurrentUser()}
+            initialPhrasePairs={this.state.phrasePairs}
+            onSourcePhraseSubmit={this.onSourcePhraseSubmit}
+            onTargetPhraseSubmit={this.onTargetPhraseSubmit}
+            menu={this.props.menu}
+            save={this.props.save}
+            delete={this.props.delete}
+            edit={this.props.edit}
+            close={this.props.close}
+          />
         </div>
       </div>
-    )
+    );
   }
-})
+}
+
+Book.propTypes = {
+
+};
 
