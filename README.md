@@ -106,6 +106,19 @@ You will need the following things properly installed on your computer.
 * `rails s`
 * Visit the app at [http://localhost:3000](http://localhost:3000).
 
+## Alternative Workflow with Convox and Docker
+
+An alternative to running poly that dispenses from installing prerequisites like ruby, Postgres, etc... locally is to use [docker](https://www.docker.com/) to run poly locally, namely via the [convox](https://convox.com/) cli.
+
+* [Install docker](https://www.docker.com/products/docker) for your operating system
+* [Install convox](https://dl.equinox.io/convox/convox/stable) for your operating system
+* Clone or fork this repository with `git clone https://github.com/wikitongues/poly.git`
+* Change into the new directory
+* Run `bin/poly-setup` once to setup poly (will take a while the first time as docker images are downloaded and built)
+* Run `bin/poly-start` to run poly locally (data will be persisted to `~/.convox/volumes/poly/database/var/lib/postgresql/`)
+* Run `bin/poly-migrate` in case poly has some pending migrations
+* Visit the app at [http://localhost:3000](http://localhost:3000).
+
 ### Contributing
 
 Make pull requests to have your contributions reviewed and deployed by the administrator, or contact [us](https://github.com/FredericoAndrade) directly.
