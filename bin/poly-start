@@ -1,0 +1,4 @@
+#!/bin/bash
+
+echo "Will start poly on http://localhost:3000"
+convox start

@@ -1,6 +1,6 @@
 # Wikitongues Poly
 
-###Poly makes crowdsourcing translation dictionaries in any language easy and familiar.
+###Poly is open source, modern software to share and learn every language in the world.
 
 This README outlines the details of collaborating on this Rails/React application.
 
@@ -8,15 +8,10 @@ Getting started? Start [here](#prerequisites)
 
 [Brief intro](https://youtu.be/TgTn8HlUVZo)
 
-###Current Features
-* Compose translation dictionaries between two languages using text
-* Browse available dictionaries
-
 #Feature Map
 Planned features for future releases. Releases are mapped below. We use [semantic versioning](http://semver.org/).
 
-###Version 0.1
-
+##Version 0.1 DEPLOYED
 - [x] ~~Create new phrasebook~~
 - [x] ~~Input and save new phrase~~
 - [x] ~~Refactor new phrase controller~~
@@ -26,7 +21,10 @@ Planned features for future releases. Releases are mapped below. We use [semanti
 - [x] ~~Book authorship~~
 - [x] ~~Sign in upon account creation~~
 
-###Version 0.2
+##Version 0.2
+####Platform
+- [x] ~~Deployment~~
+####Users
 - [x] ~~Profile page~~
   - [x] ~~User name~~
   - [x] ~~User books~~
@@ -34,7 +32,6 @@ Planned features for future releases. Releases are mapped below. We use [semanti
   - [ ] User edit profile data
 - [x] ~~Favorite a book~~
 - [x] ~~Search~~
-- [x] ~~Deployment~~
 - [x] ~~Handle error messages on login page~~
 - [ ] Testing
 - [ ] Proper user validations
@@ -48,7 +45,9 @@ Planned features for future releases. Releases are mapped below. We use [semanti
   - [ ] Upload video phrases
 - [ ] Data import / export
 
-###Version  0.3
+##Version  0.3
+- [ ] Collaborative Books
+- [ ] Book Licenses
 - [ ] Security audit
 - [ ] Book templates
 - [ ] Monolingual dictionaries
@@ -61,11 +60,11 @@ Planned features for future releases. Releases are mapped below. We use [semanti
 - [ ] Document scroll position progress marker
 - [ ] Fixed position book languages sub-header
 
-###Version 0.4
+##Version 0.4
 - [ ] Add tags to books
 - [ ] Search phrases
 
-###Version 1.0
+##Version 1.0
 - [ ] Offline-first architecture
 - [ ] Public API
 - [ ] Language object model
@@ -105,6 +104,19 @@ You will need the following things properly installed on your computer.
 
 ## Running / Development
 * `rails s`
+* Visit the app at [http://localhost:3000](http://localhost:3000).
+
+## Alternative Workflow with Convox and Docker
+
+An alternative to running poly that dispenses from installing prerequisites like ruby, Postgres, etc... locally is to use [docker](https://www.docker.com/) to run poly locally, namely via the [convox](https://convox.com/) cli.
+
+* [Install docker](https://www.docker.com/products/docker) for your operating system
+* [Install convox](https://dl.equinox.io/convox/convox/stable) for your operating system
+* Clone or fork this repository with `git clone https://github.com/wikitongues/poly.git`
+* Change into the new directory
+* Run `bin/poly-setup` once to setup poly (will take a while the first time as docker images are downloaded and built)
+* Run `bin/poly-start` to run poly locally (data will be persisted to `~/.convox/volumes/poly/database/var/lib/postgresql/`)
+* Run `bin/poly-migrate` in case poly has some pending migrations
 * Visit the app at [http://localhost:3000](http://localhost:3000).
 
 ### Contributing
