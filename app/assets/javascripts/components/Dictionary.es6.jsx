@@ -9,10 +9,10 @@ Dictionary = React.createClass( {
       isVideoRecording: false,
       isGAPILoaded: false,
       phrasePairs: this.props.initialPhrasePairs,
-      sourcePhrase: "",
-      targetPhrase: "",
+      sourcePhrase: '',
+      targetPhrase: '',
       mediaConstraints: { video: true, audio: true },
-      stream: "",
+      stream: '',
       // clientId Ben
       clientId: '463787160210-mcm71qds0opgn9cf661pptqt1hcofh3d.apps.googleusercontent.com',
       // wikitongues
@@ -74,7 +74,6 @@ Dictionary = React.createClass( {
   },
 
   saveToken(accessToken) {
-    console.log(accessToken);
     this.setState({ accessToken });
   },
 

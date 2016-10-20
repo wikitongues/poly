@@ -5,7 +5,7 @@ Video = React.createClass( {
     return {
       titleVideo: '',
       descVideo: '',
-      privacyVideo: 'private',
+      privacyVideo: 'unlisted',
       recordRTC: '',
       recordedBlob: '',
       uploadVideo: '',
@@ -113,7 +113,6 @@ Video = React.createClass( {
     this.uploadStartTime = 0;
 
     this.ready = function(accessToken) {
-      console.log('in ready: ', accessToken);
       this.accessToken = accessToken;
       this.gapi = gapi;
       this.authenticated = true;
@@ -190,7 +189,6 @@ Video = React.createClass( {
     if (this.props.accessToken !== '') {
       const UploadFunction = this.UploadVideo;
       const accessToken = this.props.accessToken;
-      console.log('in createUploadClass: ', accessToken);
 
       const uploadVideo = new UploadFunction(self);
       const saveSessionPromise = new Promise((resolve) => {
@@ -263,13 +261,15 @@ Video = React.createClass( {
   handleVideoId(videoId) {
     this.saveYoutubeUrl(videoId);
 
-    if (this.props.isTargetInputActive) {
-      this.props.onTargetVideoSubmit(this.state.youtubeVideoEmbed);
-      this.props.onToggleInputType();
-    } else {
-      this.props.onSourceVideoSubmit(this.state.youtubeVideoEmbed);
-      this.props.onToggleInputType();
-    }
+    setTimeout(() => {
+      if (this.props.isTargetInputActive) {
+        this.props.onTargetVideoSubmit(this.state.youtubeVideoEmbed);
+        this.props.onToggleInputType();
+      } else {
+        this.props.onSourceVideoSubmit(this.state.youtubeVideoEmbed);
+        this.props.onToggleInputType();
+      }
+    }, 5000);
   },
 
   renderRecordButton() {
