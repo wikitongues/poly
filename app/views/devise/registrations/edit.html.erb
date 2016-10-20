@@ -1,6 +1,5 @@
 <%= render 'layouts/header'%>
 <div id="login">
-  <span><a href="/">Back</a></span>
   <!-- <h2>Edit <%= resource_name.to_s.humanize %></h2> -->
   <h2>Edit your information</h2>
 
@@ -20,17 +19,17 @@
     <% end %>
 
     <div class="field">
-      <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+      <%= f.label :current_password %> <b class="requiredField">*</b><br />
       <%= f.password_field :current_password, autocomplete: "off" %>
     </div>
 
     <div class="field">
-      <%= f.label :new_password %> <i>(leave blank if you don't want to change it)</i><br />
+      <%= f.label :new_password %> <b class="requiredField">*</b><br />
       <%= f.password_field :password, autocomplete: "off" %>
     </div>
 
     <div class="field">
-      <%= f.label :confirm_password %><br />
+      <%= f.label :confirm_password %><b class="requiredField">*</b><br />
       <%= f.password_field :password_confirmation, autocomplete: "off" %>
     </div>
 
