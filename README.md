@@ -1,6 +1,6 @@
 # Wikitongues Poly
 
-###Poly makes crowdsourcing translation dictionaries in any language easy and familiar.
+###Poly is open source, modern software to share and learn every language in the world.
 
 This README outlines the details of collaborating on this Rails/React application.
 
@@ -8,15 +8,10 @@ Getting started? Start [here](#prerequisites)
 
 [Brief intro](https://youtu.be/TgTn8HlUVZo)
 
-###Current Features
-* Compose translation dictionaries between two languages using text
-* Browse available dictionaries
-
 #Feature Map
 Planned features for future releases. Releases are mapped below. We use [semantic versioning](http://semver.org/).
 
-###Version 0.1
-
+##Version 0.1 DEPLOYED
 - [x] ~~Create new phrasebook~~
 - [x] ~~Input and save new phrase~~
 - [x] ~~Refactor new phrase controller~~
@@ -26,7 +21,10 @@ Planned features for future releases. Releases are mapped below. We use [semanti
 - [x] ~~Book authorship~~
 - [x] ~~Sign in upon account creation~~
 
-###Version 0.2
+##Version 0.2
+####Platform
+- [x] ~~Deployment~~
+####Users
 - [x] ~~Profile page~~
   - [x] ~~User name~~
   - [x] ~~User books~~
@@ -34,7 +32,6 @@ Planned features for future releases. Releases are mapped below. We use [semanti
   - [ ] User edit profile data
 - [x] ~~Favorite a book~~
 - [x] ~~Search~~
-- [x] ~~Deployment~~
 - [x] ~~Handle error messages on login page~~
 - [ ] Testing
 - [ ] Proper user validations
@@ -43,10 +40,14 @@ Planned features for future releases. Releases are mapped below. We use [semanti
 - [ ] Only save new book if all inputs are complete
 - [ ] Video phrases
   - [x] ~~Video phrase interface~~
-  - [ ] Input and upload video phrases
+  - [ ] Input video phrases
+  - [ ] Transcribe video phrases
+  - [ ] Upload video phrases
 - [ ] Data import / export
 
-###Version  0.3
+##Version  0.3
+- [ ] Collaborative Books
+- [ ] Book Licenses
 - [ ] Security audit
 - [ ] Book templates
 - [ ] Monolingual dictionaries
@@ -59,10 +60,11 @@ Planned features for future releases. Releases are mapped below. We use [semanti
 - [ ] Document scroll position progress marker
 - [ ] Fixed position book languages sub-header
 
-###Version 0.4
+##Version 0.4
 - [ ] Add tags to books
+- [ ] Search phrases
 
-###Version 1.0
+##Version 1.0
 - [ ] Offline-first architecture
 - [ ] Public API
 - [ ] Language object model
