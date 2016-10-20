@@ -147,23 +147,33 @@ li.entry
 
           .icon
             opacity 1
-.container-iframe-source 
-  width 420px
-  height 315px
-  float left
-  border-radius 31px 31px 31px 0 
-  border 20px solid darken($source, 2%);
-  iframe .source 
-    border-radius 0
-  
-.container-iframe-target 
-  width 420px
-  height 315px
-  float right
-  border-radius 31px 31px 0px 31px
-  border 20px solid $target;
-  iframe .target 
-    border-radius 0
 
-  
+.container-iframe
+  max-width 90%
+  width 100%
+  overflow hidden
+  margin-bottom 6px
 
+  &.source
+    float left
+    border-radius 31px 31px 31px 0
+    border 1px solid darken($source, 2%)
+    background darken($source, 2%)
+
+    iframe
+      background inherit
+
+  &.target
+    float right
+    border-radius 31px 31px 0px 31px
+    border 1px solid $target
+    background $target
+
+    iframe
+      background inherit
+
+  iframe
+    width 101%
+    margin-left -.5%
+    height 378px
+    float left

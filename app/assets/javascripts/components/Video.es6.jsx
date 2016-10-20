@@ -234,10 +234,15 @@ Video = React.createClass( {
     const clientId = this.state.clientId;
     const scopes = this.state.scopes;
 
+<<<<<<< HEAD
     gapi.auth2.init({
       client_id: clientId,
       scopes: scopes,
     }).then(() => gapi.client.load('youtube', 'v3'));
+=======
+    gapi.client.load('youtube', 'v3');
+    // console.log('gapi loaded');
+>>>>>>> wikitongues/video-comp-ben
 
     console.log('youtube api loaded!');
     this.props.onToggleGAPILoaded();
@@ -291,22 +296,18 @@ Video = React.createClass( {
   render() {
     return (
       <div ref='video' className="videoComponent">
-        <video id="camera-stream" width="570" autoPlay />
-        {this.renderRecordButton()}
-        <button title="Cancel" onClick={this.props.onCancelEditPhrase} className="close icon">
-          <img src={this.props.closeAlt} alt="close"/>
-        </button>
-
-        <button title="Text" onClick={this.props.onCloseVideoComponent} className="text icon">
-          <img src={this.props.textAlt} alt="close"/>
-        </button>
-
-        <button hidden className="extra" ref= "button-download" id="button-download">
-          Download
-        </button>
-        <button hidden className="extra" onClick={this.props.handleUploadClick} id="button-upload">
-          Upload Video
-        </button>
+        <video id="camera-stream" width="600" autoPlay />
+        <div className="videoControls">
+          {this.renderRecordButton()}
+          <button title="Cancel" onClick={this.props.onCancelEditPhrase} className="close icon">
+            <img src={this.props.closeAlt} alt="close"/>
+          </button>
+          <button title="Text" onClick={this.props.onCloseVideoComponent} className="text icon">
+            <img src={this.props.textAlt} alt="close"/>
+          </button>
+          <button hidden className="extra" ref= "button-download" id="button-download">Download</button>
+          <button hidden className="extra" onClick={this.props.handleUploadClick} id="button-upload">Upload Video</button>
+        </div>
       </div>
     );
   },
