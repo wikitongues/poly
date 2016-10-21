@@ -1,0 +1,12 @@
+poly:
+    build: .
+    ports: 
+        - 3000:5000
+    links: 
+        - database
+database:
+    image: convox/postgres
+    ports: 
+        - 5432
+    volumes: 
+        - /var/lib/postgresql/data
