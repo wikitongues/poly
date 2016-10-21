@@ -477,7 +477,13 @@ Dictionary = React.createClass( {
         <div className="dictionary">
           <span className="notice">Phrasebook is empty</span>
           <DummyContent/>
-          {this.renderCreateNewPhraseButton()}
+          {this.renderVideoInput()}
+          {
+            !this.state.isInputVideo ?
+              this.renderCreateNewPhraseButton()
+              :
+              !this.renderCreateNewPhraseButton()
+          }
         </div>
       )
     }
