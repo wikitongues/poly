@@ -11,6 +11,7 @@ Video = React.createClass( {
       uploadVideo: '',
       youtubeVideoEmbed: '',
       isHidden: '',
+      percent: '',
     };
   },
 
@@ -58,7 +59,11 @@ Video = React.createClass( {
     this.props.onStopRecordingClick();
 
     const video = document.querySelector('#camera-stream');
-    video.muted = false;
+    video.style.display = 'none';
+    const controls = document.querySelector('.videoControls');
+    controls.style.display = 'none';
+    const progress = document.querySelector('.progress-bar');
+    progress.style.display = 'block';
 
     const recordRTC = this.state.recordRTC;
     recordRTC.stopRecording((audioVideoWebURL) => {
@@ -106,6 +111,10 @@ Video = React.createClass( {
     this.setState({
       youtubeVideoEmbed: `http://www.youtube.com/embed/${videoId}?showinfo=0&rel=0&color=white&autohide=1&controls=0`,
     });
+  },
+
+  saveProgress(percent) {
+    this.setState({percent});
   },
 
   /*
@@ -172,6 +181,17 @@ Video = React.createClass( {
           }
         }.bind(this),
 
+        onProgress: function(data) {
+          const currentTime = Date.now();
+          const bytesUploaded = data.loaded;
+          const totalBytes = data.total;
+
+          const bytesPerSecond = bytesUploaded / ((currentTime - this.uploadStartTime) / 1000);
+          const estimatedSecondsRemaining = (totalBytes - bytesUploaded) / bytesPerSecond;
+          const percentageComplete = (bytesUploaded * 100) / totalBytes;
+          self.saveProgress(percentageComplete);
+        },
+
         onComplete: function (data) {
           console.log('Upload complete.');
           const uploadResponse = JSON.parse(data);
@@ -229,12 +249,15 @@ Video = React.createClass( {
 
   handleVideoId(videoId) {
     this.saveYoutubeUrl(videoId);
-    this.props.onToggleInputType();
-    if (this.props.isTargetInputActive) {
-      this.props.onTargetVideoSubmit(this.state.youtubeVideoEmbed);
-    } else {
-      this.props.onSourceVideoSubmit(this.state.youtubeVideoEmbed);
-    }
+    setTimeout(() => {
+      this.props.onToggleInputType();
+      if (this.props.isTargetInputActive) {
+        this.props.onTargetVideoSubmit(this.state.youtubeVideoEmbed);
+      } else {
+        this.props.onSourceVideoSubmit(this.state.youtubeVideoEmbed);
+      }      
+    }, 2000);
+
   },
 
   renderRecordButton() {
@@ -277,6 +300,9 @@ Video = React.createClass( {
             onClick={this.props.handleUploadClick}
             id="button-upload"
           >Upload Video</button>
+        </div>
+        <div className="progress-bar">
+          <div style={{width: this.state.percent +'%'}}></div>
         </div>
       </div>
     );
