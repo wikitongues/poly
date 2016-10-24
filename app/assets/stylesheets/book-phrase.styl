@@ -153,11 +153,12 @@ li.entry
   width 100%
   overflow hidden
   margin-bottom 6px
+  position relative
 
   &.source
     float left
     border-radius 31px 31px 31px 0
-    border 1px solid darken($source, 2%)
+    // border 1px solid darken($source, 2%)
     background darken($source, 2%)
 
     iframe
@@ -166,14 +167,14 @@ li.entry
   &.target
     float right
     border-radius 31px 31px 0px 31px
-    border 1px solid $target
+    // border 1px solid $target
     background $target
 
     iframe
       background inherit
 
   iframe
-    width 101%
-    margin-left -.5%
+    width 100%
+    // margin-left -.5%
     height 378px
     float left
