@@ -53,7 +53,7 @@ Dictionary = React.createClass( {
       scopes,
     }).then(() => {
       gapi.client.load('youtube', 'v3')
-      .then(() => console.log('youtube api loaded!'));
+      .then(() => console.log('youtube api loaded'));
     });
   },
 
@@ -64,7 +64,6 @@ Dictionary = React.createClass( {
     const request = new XMLHttpRequest();
     const saveToken = this.saveToken;
     request.onload = () => {
-      const status = request.status;
       const data = JSON.parse(request.responseText);
       saveToken(data.access_token);
     };

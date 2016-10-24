@@ -15,6 +15,11 @@ Video = React.createClass( {
   },
 
   componentDidMount() {
+    if (this.props.accessToken === '') {
+      this.props.onCloseVideoComponent();
+      return;
+    }
+
     this.saveTitle();
     this.createUploadClass();
     this.props.onRenderVideoInput();
@@ -39,10 +44,10 @@ Video = React.createClass( {
       bufferSize: 16384,
       sampleRate: 96000,
     };
-    const recordRTC = new Promise((resolve) => {
+    const recordRtcPromise = new Promise((resolve) => {
       resolve(RecordRTC(stream, options));
     });
-    recordRTC.then((response) => {
+    recordRtcPromise.then((response) => {
       this.saveRecordRTC(response);
     }).then(() => {
       this.state.recordRTC.startRecording();
@@ -63,12 +68,15 @@ Video = React.createClass( {
       recordedBlob.lastModifiedDate = new Date();
       recordedBlob.name = 'VideoTest.webm';
 
-      this.updateRecordedBlob(recordedBlob);
+      const saveBlobPromise = new Promise((resolve) => {
+        resolve(this.updateRecordedBlob(recordedBlob));
+      });
+      saveBlobPromise.then(() => {
+        console.log(this.state.recordedBlob);
+        this.props.onStopStream();
+        this.handleUploadTimeout();
+      });
     });
-
-    this.props.onStopStream();
-
-    this.handleUploadTimeout();
   },
 
   /*
@@ -105,14 +113,12 @@ Video = React.createClass( {
   */
 
   UploadVideo(self) {
-    const video = document.getElementById('camera-stream');
-
     this.tags = ['youtube-cors-upload'];
     this.categoryId = 22;
     this.videoId = '';
     this.uploadStartTime = 0;
 
-    this.ready = function(accessToken) {
+    this.ready = function (accessToken) {
       this.accessToken = accessToken;
       this.gapi = gapi;
       this.authenticated = true;
@@ -125,6 +131,8 @@ Video = React.createClass( {
         callback: function (response) {
           if (response.error) {
             console.log(response.error.message);
+            self.props.onCloseVideoComponent();
+            alert('There was an issue while authenticating. Please check your connection.');
           }
         }.bind(this),
       });
@@ -149,7 +157,7 @@ Video = React.createClass( {
         params: {
           part: Object.keys(metadata).join(','),
         },
-        onError: function(data) {
+        onError: function (data) {
           let message = data;
           try {
             const errorResponse = JSON.parse(data);
@@ -157,10 +165,10 @@ Video = React.createClass( {
             message = errorResponse.error.message;
             console.log(message);
           } finally {
-            alert(message);
+            alert('There was an issue while uploading. Please check your connection.');
           }
         }.bind(this),
-        onComplete: function(data) {
+        onComplete: function (data) {
           console.log('Upload complete');
           const uploadResponse = JSON.parse(data);
           const videoId = uploadResponse.id;
@@ -172,95 +180,47 @@ Video = React.createClass( {
     };
 
     this.handleUploadClick = function () {
-      if (self.state.recordedBlob) {
+      const blobPromise = new Promise((resolve) => {
+        if (self.state.recordedBlob !== '') {
+          resolve();
+        }
+      });
+      blobPromise.then(() => {
         console.log('success');
         this.uploadFile(self.state.recordedBlob);
-      } else {
-        setTimeout(() => {
-          self.handleUploadTimeout();
-        }, 300);
-      }
+      });
     };
   },
 
   createUploadClass() {
     const self = this;
 
-    if (this.props.accessToken !== '') {
-      const UploadFunction = this.UploadVideo;
-      const accessToken = this.props.accessToken;
+    const UploadFunction = this.UploadVideo;
+    const accessToken = this.props.accessToken;
 
-      const uploadVideo = new UploadFunction(self);
-      const saveSessionPromise = new Promise((resolve) => {
-        resolve(self.saveUploadVideoSession(uploadVideo));
-      });
-      saveSessionPromise
-      .then(() => self.state.uploadVideo.ready(accessToken))
-      .catch(e => console.log(e));
-    } else {
-      alert('Error: no access token, please check your connection.')
-    }
-  },
-
-  /*
-    Authentication with GoogleAPI
-
-
-  authorizeApp() {
-    const clientId = this.state.clientId;
-    const scopes = this.state.scopes;
-    const updateSigninStatus = this.updateSigninStatus;
-
-    gapi.auth2.init({
-      client_id: clientId,
-      scopes: scopes,
-    }).then(() => {
-      gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
-      updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
-    }).then(() => {
-      gapi.auth2.getAuthInstance().signIn();
+    const uploadVideo = new UploadFunction(self);
+    const saveSessionPromise = new Promise((resolve) => {
+      resolve(self.saveUploadVideoSession(uploadVideo));
     });
+    saveSessionPromise
+    .then(() => self.state.uploadVideo.ready(accessToken))
+    .catch(e => console.log(e));
   },
-  updateSigninStatus(isSignedIn) {
-    if (isSignedIn) {
-      const token = gapi.auth2.getAuthInstance().currentUser.get().Zi.access_token;
-      console.log(token);
-      this.saveToken(token);
-      this.makeApiCall();
-    }
-  },
-
-  makeApiCall() {
-    const clientId = this.state.clientId;
-    const scopes = this.state.scopes;
-
-<<<<<<< HEAD
-    gapi.auth2.init({
-      client_id: clientId,
-      scopes: scopes,
-    }).then(() => gapi.client.load('youtube', 'v3'));
-=======
-    gapi.client.load('youtube', 'v3');
-    // console.log('gapi loaded');
->>>>>>> wikitongues/video-comp-ben
-
-    console.log('youtube api loaded!');
-    this.props.onToggleGAPILoaded();
-    this.props.onRenderVideoInput();
-    this.createUploadClass();
-  },
-  */
 
   /*
     Helper functions
   */
 
   handleUploadTimeout() {
-    if (this.state.uploadVideo !== '') {
+    const uploadVideoPromise = new Promise((resolve) => {
+      if (this.state.uploadVideo !== '') {
+        resolve();
+      }
+    });
+    uploadVideoPromise
+    .then(() => {
       this.state.uploadVideo.handleUploadClick();
-    } else {
-      setTimeout(this.handleUploadTimeout, 100);
-    }
+    });
   },
 
   handleVideoId(videoId) {
