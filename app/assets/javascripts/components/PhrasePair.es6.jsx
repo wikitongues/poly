@@ -4,8 +4,14 @@ PhrasePair = React.createClass( {
     return {
       isEditingPhrase: false,
       sourcePhrase: this.props.initialSourcePhrase,
-      targetPhrase: this.props.initialTargetPhrase
+      targetPhrase: this.props.initialTargetPhrase,
+      isloading: true,
     }
+  },
+  componentDidMount() {
+    setTimeout(() => {
+      this.setState({ isloading: false });
+    }, 10000);
   },
 
   componentWillReceiveProps(nextProps) {
@@ -65,14 +71,41 @@ PhrasePair = React.createClass( {
     this.setState({ targetPhrase: e.target.value });
   },
 
-  renderIframe(src, name) {
+  renderVideo(src, name) {
+    setTimeout(() => {
+      this.setState({isloading: false});
+    }, 10000);
+
     const stickedClass = `container-iframe ${name}`;
+
+    if (this.state.isloading) {
+      return (
+        <div className={stickedClass}>
+          {this.renderLoader()}
+        </div>
+      );
+    }
     return (
       <div className={stickedClass}>
-        <iframe className="name" width="380" height="275" src={src} frameBorder="0" />
+        {this.renderIframe(src)}
       </div>
     );
   },
+
+  renderIframe(src) {
+    return <iframe className="iframe" width="380" height="275" src={src} frameBorder="0" />;
+  },
+
+
+  renderLoader() {
+    return (
+      <div className="loader-container">
+        <div className="loader"></div>
+        <div className="loader-message">Processing the video...</div>
+      </div>
+    );
+  },
+
   renderParagraph(text) {
     return (
       <p>{text}</p>
@@ -159,7 +192,7 @@ PhrasePair = React.createClass( {
           <li className="source">
             {
               this.state.sourcePhrase.startsWith('http://www.youtube') ?
-                this.renderIframe(this.state.sourcePhrase, 'source')
+                this.renderVideo(this.state.sourcePhrase, 'source')
                 :
                 this.renderParagraph(this.state.sourcePhrase)
             }
@@ -167,7 +200,7 @@ PhrasePair = React.createClass( {
           <li className="target">
             {
               this.state.targetPhrase && this.state.targetPhrase.startsWith('http://www.youtube') ?
-                this.renderIframe(this.state.targetPhrase, 'target')
+                this.renderVideo(this.state.targetPhrase, 'target')
                 :
                 this.renderParagraph(this.state.targetPhrase)
             }

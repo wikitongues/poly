@@ -177,6 +177,7 @@ Video = React.createClass( {
             message = errorResponse.error.message;
             console.log(message);
           } finally {
+            self.props.onCloseVideoComponent();
             alert('There was an issue while uploading. Please check your connection.');
           }
         }.bind(this),
@@ -197,6 +198,7 @@ Video = React.createClass( {
           const uploadResponse = JSON.parse(data);
           const videoId = uploadResponse.id;
           self.handleVideoId(videoId);
+
         }.bind(this),
       });
       
@@ -249,15 +251,12 @@ Video = React.createClass( {
 
   handleVideoId(videoId) {
     this.saveYoutubeUrl(videoId);
-    setTimeout(() => {
-      this.props.onToggleInputType();
-      if (this.props.isTargetInputActive) {
-        this.props.onTargetVideoSubmit(this.state.youtubeVideoEmbed);
-      } else {
-        this.props.onSourceVideoSubmit(this.state.youtubeVideoEmbed);
-      }      
-    }, 2000);
-
+    this.props.onToggleInputType();
+    if (this.props.isTargetInputActive) {
+      this.props.onTargetVideoSubmit(this.state.youtubeVideoEmbed);
+    } else {
+      this.props.onSourceVideoSubmit(this.state.youtubeVideoEmbed);
+    }
   },
 
   renderRecordButton() {
