@@ -99,8 +99,8 @@ Dictionary = React.createClass( {
     }
   },
 
-  onSourceVideoSubmit(videoId) {
-    this.setState({ sourcePhrase: videoId });
+  onSourceVideoSubmit(video) {
+    this.setState({ sourcePhrase: video });
     if(this.state.sourcePhrase) {
       this.props.onSourcePhraseSubmit(this.state.sourcePhrase),
       this.setState({
@@ -130,8 +130,8 @@ Dictionary = React.createClass( {
     }
   },
 
-  onTargetVideoSubmit(videoId) {
-    this.setState({targetPhrase: videoId });
+  onTargetVideoSubmit(video) {
+    this.setState({targetPhrase: video });
     if(this.state.targetPhrase) {
       this.props.onTargetPhraseSubmit(this.state.targetPhrase),
       this.setState({
@@ -226,41 +226,43 @@ Dictionary = React.createClass( {
   },
 
   onRenderVideoInput(cameraStream) {
-    const video = document.getElementById('camera-stream');
-    video.controls = false;
+    if (this.state.isInputVideo) {
+      const video = document.getElementById('camera-stream');
+      video.controls = false;
 
-    video.muted = true;
-    navigator.getUserMedia = (navigator.getUserMedia ||
-                              navigator.webkitGetUserMedia ||
-                              navigator.mozGetUserMedia ||
-                              navigator.msGetUserMedia);
-    const self = this;
-    if (navigator.getUserMedia) {
-      // Request the camera.
-      navigator.getUserMedia(
-        // Constraints
-        self.state.mediaConstraints,
+      video.muted = true;
+      navigator.getUserMedia = (navigator.getUserMedia ||
+                                navigator.webkitGetUserMedia ||
+                                navigator.mozGetUserMedia ||
+                                navigator.msGetUserMedia);
+      const self = this;
+      if (navigator.getUserMedia) {
+        // Request the camera.
+        navigator.getUserMedia(
+          // Constraints
+          self.state.mediaConstraints,
 
-        // Success Callback
-        function(stream) {
-          //Saves the ID of our stream in order to be able to shut it
-          //later
-          self.onSaveStream(stream);
-          // Create an object URL for the video stream and use this
-          // to set the video source.
-          video.src = window.URL.createObjectURL(stream);
-        },
+          // Success Callback
+          function(stream) {
+            //Saves the ID of our stream in order to be able to shut it
+            //later
+            self.onSaveStream(stream);
+            // Create an object URL for the video stream and use this
+            // to set the video source.
+            video.src = window.URL.createObjectURL(stream);
+          },
 
-        // Error Callback
-        function(err) {
-          // Log the error to the console.
-          console.log('The following error occurred when trying to use getUserMedia: ' + err);
-        }
-      );
+          // Error Callback
+          function(err) {
+            // Log the error to the console.
+            console.log('The following error occurred when trying to use getUserMedia: ' + err);
+          }
+        );
 
-    } else {
-      alert('Sorry, your browser does not support getUserMedia');
-      video.style.display = "none";
+      } else {
+        alert('Sorry, your browser does not support getUserMedia');
+        this.onCloseVideoComponent();
+      }      
     }
   },
 
@@ -269,12 +271,13 @@ Dictionary = React.createClass( {
   },
 
   onStopStream() {
-    var tracks = this.state.stream.getTracks();
+    const tracks = this.state.stream.getTracks();
     tracks[0].stop();
     tracks[1].stop();
+    this.onClearStream();
   },
   onClearStream() {
-    this.setState({stream: ""});
+    this.setState({stream: ''});
   },
 
 // Render Zone

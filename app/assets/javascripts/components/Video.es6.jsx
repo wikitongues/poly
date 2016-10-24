@@ -67,12 +67,12 @@ Video = React.createClass( {
       const recordedBlob = recordRTC.getBlob();
       recordedBlob.lastModifiedDate = new Date();
       recordedBlob.name = 'VideoTest.webm';
-
+      this.props.onStopStream();
       const saveBlobPromise = new Promise((resolve) => {
         resolve(this.updateRecordedBlob(recordedBlob));
       });
+
       saveBlobPromise.then(() => {
-        this.props.onStopStream();
         this.handleUploadTimeout();
       });
     });
@@ -86,21 +86,22 @@ Video = React.createClass( {
     this.setState({ titleVideo: title });
   },
 
-  saveStreamData(stream) {
-    this.setState({ stream });
-  },
   saveUploadVideoSession(uploadVideo) {
     this.setState({ uploadVideo });
   },
+
   saveRecordRTC(recordRTC) {
     this.setState({ recordRTC });
   },
+
   updateRecordedBlob(updatedBlob) {
     this.setState({ recordedBlob: updatedBlob });
   },
+
   saveVideoId(videoId) {
     this.setState({ videoId });
   },
+
   saveYoutubeUrl(videoId) {
     this.setState({
       youtubeVideoEmbed: `http://www.youtube.com/embed/${videoId}?showinfo=0&rel=0&color=white&autohide=1&controls=0`,
@@ -137,6 +138,7 @@ Video = React.createClass( {
       });
     };
     this.uploadFile = function(file) {
+
       const metadata = {
         snippet: {
           title: self.state.titleVideo,
@@ -148,6 +150,7 @@ Video = React.createClass( {
           privacyStatus: self.state.privacyVideo,
         },
       };
+
       const uploader = new MediaUploader({
         baseUrl: 'https://www.googleapis.com/upload/youtube/v3/videos',
         file,
@@ -156,6 +159,7 @@ Video = React.createClass( {
         params: {
           part: Object.keys(metadata).join(','),
         },
+
         onError: function (data) {
           let message = data;
           try {
@@ -167,13 +171,15 @@ Video = React.createClass( {
             alert('There was an issue while uploading. Please check your connection.');
           }
         }.bind(this),
+
         onComplete: function (data) {
-          console.log('Upload complete');
+          console.log('Upload complete.');
           const uploadResponse = JSON.parse(data);
           const videoId = uploadResponse.id;
           self.handleVideoId(videoId);
         }.bind(this),
       });
+      
       this.uploadStartTime = Date.now();
       uploader.upload();
     };
@@ -185,7 +191,6 @@ Video = React.createClass( {
         }
       });
       blobPromise.then(() => {
-        console.log('success');
         this.uploadFile(self.state.recordedBlob);
       });
     };
@@ -224,16 +229,12 @@ Video = React.createClass( {
 
   handleVideoId(videoId) {
     this.saveYoutubeUrl(videoId);
-
-    setTimeout(() => {
-      if (this.props.isTargetInputActive) {
-        this.props.onTargetVideoSubmit(this.state.youtubeVideoEmbed);
-        this.props.onToggleInputType();
-      } else {
-        this.props.onSourceVideoSubmit(this.state.youtubeVideoEmbed);
-        this.props.onToggleInputType();
-      }
-    }, 5000);
+    this.props.onToggleInputType();
+    if (this.props.isTargetInputActive) {
+      this.props.onTargetVideoSubmit(this.state.youtubeVideoEmbed);
+    } else {
+      this.props.onSourceVideoSubmit(this.state.youtubeVideoEmbed);
+    }
   },
 
   renderRecordButton() {
