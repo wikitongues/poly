@@ -12,3 +12,4 @@ Rails.application.config.assets.version = '1.0'
 Rails.application.config.assets.precompile += %w( cors-upload.js )
 Rails.application.config.assets.precompile += %w( client.js )
 Rails.application.config.assets.precompile += %w( es6-promises-polyfill.js )
+Rails.application.config.assets.precompile += %w( es6-shim-polyfill.js )

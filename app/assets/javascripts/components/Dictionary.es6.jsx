@@ -260,7 +260,7 @@ Dictionary = React.createClass( {
         );
 
       } else {
-        alert('Sorry, your browser does not support getUserMedia');
+        alert('Sorry, your browser does not support the video recording.\n(In order to access the video recording, try again with one of these browsers: Chrome, Firefox, Edge, Opera.)');
         this.onCloseVideoComponent();
       }      
     }

@@ -3,10 +3,11 @@
 <head>
   <title>Poly</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'es6-shim-polyfill'%>
+  <%= javascript_include_tag 'es6-promises-polyfill'%>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'client'%>
   <%= javascript_include_tag 'cors-upload'%>
-  <%= javascript_include_tag 'es6-promises-polyfill'%>
   <%= csrf_meta_tags %>
   <link href='https://fonts.googleapis.com/css?family=Roboto:900,300' rel='stylesheet' type='text/css'>
 </head>
