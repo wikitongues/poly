@@ -5,13 +5,9 @@ PhrasePair = React.createClass( {
       isEditingPhrase: false,
       sourcePhrase: this.props.initialSourcePhrase,
       targetPhrase: this.props.initialTargetPhrase,
-      isloading: true,
+      isSourceVideoloading: true,
+      isTargetVideoloading: true,
     }
-  },
-  componentDidMount() {
-    setTimeout(() => {
-      this.setState({ isloading: false });
-    }, 10000);
   },
 
   componentWillReceiveProps(nextProps) {
@@ -71,14 +67,35 @@ PhrasePair = React.createClass( {
     this.setState({ targetPhrase: e.target.value });
   },
 
-  renderVideo(src, name) {
+  renderSourceVideo(src, name) {
     setTimeout(() => {
-      this.setState({isloading: false});
+      this.setState({ isSourceVideoloading: false });
     }, 10000);
 
     const stickedClass = `container-iframe ${name}`;
 
-    if (this.state.isloading) {
+    if (this.state.isSourceVideoloading) {
+      return (
+        <div className={stickedClass}>
+          {this.renderLoader()}
+        </div>
+      );
+    }
+    return (
+      <div className={stickedClass}>
+        {this.renderIframe(src)}
+      </div>
+    );
+  },
+
+  renderTargetVideo(src, name) {
+    setTimeout(() => {
+      this.setState({ isTargetVideoloading: false });
+    }, 10000);
+
+    const stickedClass = `container-iframe ${name}`;
+
+    if (this.state.isTargetVideoloading) {
       return (
         <div className={stickedClass}>
           {this.renderLoader()}
@@ -93,15 +110,14 @@ PhrasePair = React.createClass( {
   },
 
   renderIframe(src) {
-    return <iframe className="iframe" width="380" height="275" src={src} frameBorder="0" />;
+    return <iframe className="iframe" src={src} frameBorder="0" />;
   },
-
 
   renderLoader() {
     return (
       <div className="loader-container">
-        <div className="loader"></div>
         <div className="loader-message">Processing the video...</div>
+        <div className="loader"></div>
       </div>
     );
   },
@@ -192,7 +208,7 @@ PhrasePair = React.createClass( {
           <li className="source">
             {
               this.state.sourcePhrase.startsWith('http://www.youtube') ?
-                this.renderVideo(this.state.sourcePhrase, 'source')
+                this.renderSourceVideo(this.state.sourcePhrase, 'source')
                 :
                 this.renderParagraph(this.state.sourcePhrase)
             }
@@ -200,7 +216,7 @@ PhrasePair = React.createClass( {
           <li className="target">
             {
               this.state.targetPhrase && this.state.targetPhrase.startsWith('http://www.youtube') ?
-                this.renderVideo(this.state.targetPhrase, 'target')
+                this.renderTargetVideo(this.state.targetPhrase, 'target')
                 :
                 this.renderParagraph(this.state.targetPhrase)
             }

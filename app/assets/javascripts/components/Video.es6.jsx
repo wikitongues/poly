@@ -21,16 +21,62 @@ Video = React.createClass( {
       return;
     }
 
-    this.saveTitle();
-    this.createUploadClass();
+    this.onSaveTitle();
+    this.onCreateUploadClass();
     this.props.onRenderVideoInput();
 
     const video = document.getElementById('camera-stream');
     video.muted = true;
   },
 
+  onCreateUploadClass() {
+    const self = this;
+
+    const UploadFunction = this.UploadVideo;
+    const accessToken = this.props.accessToken;
+
+    const uploadVideo = new UploadFunction(self);
+    const saveSessionPromise = new Promise((resolve) => {
+      resolve(self.onSaveUploadVideoSession(uploadVideo));
+    });
+    saveSessionPromise
+    .then(() => self.state.uploadVideo.ready(accessToken))
+    .catch(e => console.log(e));
+  },
+
   /*
-    Recording of our video
+    Modify state methods
+  */
+  onSaveTitle() {
+    const title = `${this.props.sourceLanguage}.${this.props.targetLanguage}.${this.props.author}`;
+    this.setState({ titleVideo: title });
+  },
+
+  onSaveUploadVideoSession(uploadVideo) {
+    this.setState({ uploadVideo });
+  },
+
+  onSaveRecordRTC(recordRTC) {
+    this.setState({ recordRTC });
+  },
+
+  onUpdateRecordedBlob(updatedBlob) {
+    this.setState({ recordedBlob: updatedBlob });
+  },
+
+  onSaveYoutubeUrl(videoId) {
+    this.setState({
+      youtubeVideoEmbed: `http://www.youtube.com/embed/${videoId}?showinfo=0&rel=0&color=white&autohide=1&controls=0`,
+    });
+  },
+
+  onSaveProgress(percent) {
+    console.log(percent);
+    this.setState({ percent });
+  },
+
+  /*
+    Recording zone
   */
   onRecordVideo() {
     this.props.onStartRecordingClick();
@@ -49,7 +95,7 @@ Video = React.createClass( {
       resolve(RecordRTC(stream, options));
     });
     recordRtcPromise.then((response) => {
-      this.saveRecordRTC(response);
+      this.onSaveRecordRTC(response);
     }).then(() => {
       this.state.recordRTC.startRecording();
     });
@@ -74,47 +120,13 @@ Video = React.createClass( {
       recordedBlob.name = 'VideoTest.webm';
       this.props.onStopStream();
       const saveBlobPromise = new Promise((resolve) => {
-        resolve(this.updateRecordedBlob(recordedBlob));
+        resolve(this.onUpdateRecordedBlob(recordedBlob));
       });
 
       saveBlobPromise.then(() => {
-        this.handleUploadTimeout();
+        this.onHandleUploadTimeout();
       });
     });
-  },
-
-  /*
-    Modify state methods
-  */
-  saveTitle() {
-    const title = `${this.props.sourceLanguage}.${this.props.targetLanguage}.${this.props.author}`;
-    this.setState({ titleVideo: title });
-  },
-
-  saveUploadVideoSession(uploadVideo) {
-    this.setState({ uploadVideo });
-  },
-
-  saveRecordRTC(recordRTC) {
-    this.setState({ recordRTC });
-  },
-
-  updateRecordedBlob(updatedBlob) {
-    this.setState({ recordedBlob: updatedBlob });
-  },
-
-  saveVideoId(videoId) {
-    this.setState({ videoId });
-  },
-
-  saveYoutubeUrl(videoId) {
-    this.setState({
-      youtubeVideoEmbed: `http://www.youtube.com/embed/${videoId}?showinfo=0&rel=0&color=white&autohide=1&controls=0`,
-    });
-  },
-
-  saveProgress(percent) {
-    this.setState({percent});
   },
 
   /*
@@ -190,14 +202,14 @@ Video = React.createClass( {
           const bytesPerSecond = bytesUploaded / ((currentTime - this.uploadStartTime) / 1000);
           const estimatedSecondsRemaining = (totalBytes - bytesUploaded) / bytesPerSecond;
           const percentageComplete = (bytesUploaded * 100) / totalBytes;
-          self.saveProgress(percentageComplete);
+          self.onSaveProgress(percentageComplete);
         },
 
         onComplete: function (data) {
           console.log('Upload complete.');
           const uploadResponse = JSON.parse(data);
           const videoId = uploadResponse.id;
-          self.handleVideoId(videoId);
+          self.onHandleVideoId(videoId);
 
         }.bind(this),
       });
@@ -218,26 +230,11 @@ Video = React.createClass( {
     };
   },
 
-  createUploadClass() {
-    const self = this;
-
-    const UploadFunction = this.UploadVideo;
-    const accessToken = this.props.accessToken;
-
-    const uploadVideo = new UploadFunction(self);
-    const saveSessionPromise = new Promise((resolve) => {
-      resolve(self.saveUploadVideoSession(uploadVideo));
-    });
-    saveSessionPromise
-    .then(() => self.state.uploadVideo.ready(accessToken))
-    .catch(e => console.log(e));
-  },
-
   /*
-    Helper functions
+    Helper
   */
 
-  handleUploadTimeout() {
+  onHandleUploadTimeout() {
     const uploadVideoPromise = new Promise((resolve) => {
       if (this.state.uploadVideo !== '') {
         resolve();
@@ -249,8 +246,12 @@ Video = React.createClass( {
     });
   },
 
-  handleVideoId(videoId) {
-    this.saveYoutubeUrl(videoId);
+  /*
+    Saves our youtube urls as Phrase Pairs
+  */
+
+  onHandleVideoId(videoId) {
+    this.onSaveYoutubeUrl(videoId);
     this.props.onToggleInputType();
     if (this.props.isTargetInputActive) {
       this.props.onTargetVideoSubmit(this.state.youtubeVideoEmbed);
