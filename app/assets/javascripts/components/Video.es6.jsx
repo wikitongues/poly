@@ -108,7 +108,7 @@ Video = React.createClass( {
     video.style.display = 'none';
     const controls = document.querySelector('.videoControls');
     controls.style.display = 'none';
-    const progress = document.querySelector('.progress-bar');
+    const progress = document.querySelector('.progress');
     progress.style.display = 'block';
 
     const recordRTC = this.state.recordRTC;
@@ -301,9 +301,13 @@ Video = React.createClass( {
             id="button-upload"
           >Upload Video</button>
         </div>
-        <div className="progress-bar">
-          <div style={{width: this.state.percent +'%'}}></div>
+        <div className="progress">
+          <div className="progress-message">Uploading the video...</div>
+          <div className="progress-bar">
+            <div style={{width: this.state.percent +'%'}}></div>
+          </div>
         </div>
+
       </div>
     );
   },
