@@ -11,7 +11,6 @@ Dictionary = React.createClass( {
       phrasePairs: this.props.initialPhrasePairs,
       sourcePhrase: '',
       targetPhrase: '',
-      mediaConstraints: { video: true, audio: true },
       stream: '',
       // clientId Ben
       clientId: '463787160210-mcm71qds0opgn9cf661pptqt1hcofh3d.apps.googleusercontent.com',
@@ -34,7 +33,7 @@ Dictionary = React.createClass( {
       gapi.load('client:auth2', makeApiCall);
     }
     this.refreshToken();
-    const int = setInterval(this.refreshToken(), 2700);
+    const int = setInterval(this.refreshToken(), 2400000);
     this.setState({ interval: int });
   },
 
@@ -216,29 +215,58 @@ Dictionary = React.createClass( {
   onStopRecordingClick() {
     this.setState({
       isVideoRecording: !this.state.isVideoRecording
-    })
+    });
   },
 
   onStartRecordingClick() {
     this.setState({
       isVideoRecording: !this.state.isVideoRecording
-    })
+    });
   },
 
-  onRenderVideoInput(cameraStream) {
+  onRenderVideoInput() {
     if (this.state.isInputVideo) {
       const video = document.getElementById('camera-stream');
-      video.controls = false;
-
       video.muted = true;
-      navigator.getUserMedia = (navigator.getUserMedia ||
-                                navigator.webkitGetUserMedia ||
-                                navigator.mozGetUserMedia ||
-                                navigator.msGetUserMedia);
       const self = this;
-      if (navigator.getUserMedia) {
+
+      if (navigator.mediaDevices === undefined) {
+        navigator.mediaDevices = {};
+      }
+
+      if (navigator.mediaDevices.getUserMedia === undefined) {
+        navigator.mediaDevices.getUserMedia = (constraints) => {
+          const getUserMedia = (navigator.getUserMedia ||
+            navigator.webkitGetUserMedia ||
+            navigator.mozGetUserMedia);
+
+          if (!getUserMedia) {
+            self.onCloseVideoComponent();
+            alert('Sorry, your browser does not support the video recording.\n(In order to access the video recording, try again with one of these browsers: Chrome, Firefox, Edge, Opera.)');
+            return Promise.reject(new Error('getUserMedia is not implemented in this browser'));
+          }
+          return new Promise((resolve, reject) => {
+            getUserMedia.call(navigator, constraints, resolve, reject);
+          });
+        };
+      }
+      navigator.mediaDevices.getUserMedia({ audio: true, video: true })
+      .then((stream) => {
+        self.onSaveStream(stream);
+        video.controls = false;
+        video.src = window.URL.createObjectURL(stream);
+      })
+      .catch((err) => {
+        console.log(err.name + ": " + err.message);
+      });
+      /*
+      navigator.mediaDevices.getUserMedia = (navigator.getUserMedia ||
+                                navigator.webkitGetUserMedia ||
+                                navigator.mediaDevices.getUserMedia ||
+                                navigator.msGetUserMedia);
+      if (navigator.mediaDevices.getUserMedia) {
         // Request the camera.
-        navigator.getUserMedia(
+        navigator.mediaDevices.getUserMedia(
           // Constraints
           self.state.mediaConstraints,
 
@@ -262,7 +290,8 @@ Dictionary = React.createClass( {
       } else {
         alert('Sorry, your browser does not support the video recording.\n(In order to access the video recording, try again with one of these browsers: Chrome, Firefox, Edge, Opera.)');
         this.onCloseVideoComponent();
-      }      
+      }
+      */
     }
   },
 
@@ -298,8 +327,7 @@ Dictionary = React.createClass( {
             edit={this.props.edit}
             close={this.props.close} />
       );
-    })
-    this.forceUpdate()
+    });
   },
 
   renderCreateNewPhraseButton() {

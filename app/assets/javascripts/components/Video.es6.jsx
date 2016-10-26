@@ -20,28 +20,11 @@ Video = React.createClass( {
       this.props.onCloseVideoComponent();
       return;
     }
-
     this.onSaveTitle();
     this.onCreateUploadClass();
-    this.props.onRenderVideoInput();
 
     const video = document.getElementById('camera-stream');
     video.muted = true;
-  },
-
-  onCreateUploadClass() {
-    const self = this;
-
-    const UploadFunction = this.UploadVideo;
-    const accessToken = this.props.accessToken;
-
-    const uploadVideo = new UploadFunction(self);
-    const saveSessionPromise = new Promise((resolve) => {
-      resolve(self.onSaveUploadVideoSession(uploadVideo));
-    });
-    saveSessionPromise
-    .then(() => self.state.uploadVideo.ready(accessToken))
-    .catch(e => console.log(e));
   },
 
   /*
@@ -130,8 +113,23 @@ Video = React.createClass( {
   },
 
   /*
-    UploadVideo: Constructor method
+    Upload zone
   */
+
+  onCreateUploadClass() {
+    const self = this;
+
+    const UploadFunction = this.UploadVideo;
+    const accessToken = this.props.accessToken;
+
+    const uploadVideo = new UploadFunction(self);
+    const saveSessionPromise = new Promise((resolve) => {
+      resolve(self.onSaveUploadVideoSession(uploadVideo));
+    });
+    saveSessionPromise
+    .then(() => self.state.uploadVideo.ready(accessToken))
+    .catch(e => console.log(e));
+  },
 
   UploadVideo(self) {
     this.tags = ['youtube-cors-upload'];
@@ -149,17 +147,18 @@ Video = React.createClass( {
           part: 'snippet',
           mine: true,
         },
-        callback: function (response) {
+        callback: function (response) {  
           if (response.error) {
             console.log(response.error.message);
             self.props.onCloseVideoComponent();
             alert('There was an issue while authenticating. Please check your connection.');
+            return;
           }
-        }.bind(this),
+          self.props.onRenderVideoInput();
+        },
       });
     };
-    this.uploadFile = function(file) {
-
+    this.uploadFile = function (file) {
       const metadata = {
         snippet: {
           title: self.state.titleVideo,
@@ -192,9 +191,9 @@ Video = React.createClass( {
             self.props.onCloseVideoComponent();
             alert('There was an issue while uploading. Please check your connection.');
           }
-        }.bind(this),
+        },
 
-        onProgress: function(data) {
+        onProgress: function (data) {
           const currentTime = Date.now();
           const bytesUploaded = data.loaded;
           const totalBytes = data.total;
@@ -211,9 +210,9 @@ Video = React.createClass( {
           const videoId = uploadResponse.id;
           self.onHandleVideoId(videoId);
 
-        }.bind(this),
+        },
       });
-      
+
       this.uploadStartTime = Date.now();
       uploader.upload();
     };
