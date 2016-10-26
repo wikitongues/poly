@@ -18,6 +18,7 @@ Video = React.createClass( {
   componentDidMount() {
     if (this.props.accessToken === '') {
       this.props.onCloseVideoComponent();
+      alert('Oups, something went wrong. Please check your connection.');
       return;
     }
     this.onSaveTitle();
@@ -54,7 +55,6 @@ Video = React.createClass( {
   },
 
   onSaveProgress(percent) {
-    console.log(percent);
     this.setState({ percent });
   },
 

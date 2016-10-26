@@ -18,8 +18,6 @@ Dictionary = React.createClass( {
       // clientId: '20162064407-uf2hnjg83uhaq6v3soa0bm0ngp5gmvjq.apps.googleusercontent.com',
       scopes: [
         'https://www.googleapis.com/auth/youtube',
-        'https://www.googleapis.com/auth/plus.login',
-        'https://www.googleapis.com/auth/userinfo.email',
       ],
       refreshToken: '1/vI-S3g2HImFh7nj2wV_cw8y-28lMva6O1IiTQZ7jKZQ',
       interval: '',
