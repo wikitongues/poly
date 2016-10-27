@@ -83,7 +83,9 @@ Book = React.createClass( {
           this.cancelEditingBookState();
         }.bind(this),
         error: function() {
-          alert('something went wrong')
+          bootbox.alert({
+            message: "something went wrong",
+            closeButton:false})
         }
       })
     } else {
