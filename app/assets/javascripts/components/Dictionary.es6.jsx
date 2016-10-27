@@ -257,39 +257,6 @@ Dictionary = React.createClass( {
       .catch((err) => {
         console.log(err.name + ": " + err.message);
       });
-      /*
-      navigator.mediaDevices.getUserMedia = (navigator.getUserMedia ||
-                                navigator.webkitGetUserMedia ||
-                                navigator.mediaDevices.getUserMedia ||
-                                navigator.msGetUserMedia);
-      if (navigator.mediaDevices.getUserMedia) {
-        // Request the camera.
-        navigator.mediaDevices.getUserMedia(
-          // Constraints
-          self.state.mediaConstraints,
-
-          // Success Callback
-          function(stream) {
-            //Saves the ID of our stream in order to be able to shut it
-            //later
-            self.onSaveStream(stream);
-            // Create an object URL for the video stream and use this
-            // to set the video source.
-            video.src = window.URL.createObjectURL(stream);
-          },
-
-          // Error Callback
-          function(err) {
-            // Log the error to the console.
-            console.log('The following error occurred when trying to use getUserMedia: ' + err);
-          }
-        );
-
-      } else {
-        alert('Sorry, your browser does not support the video recording.\n(In order to access the video recording, try again with one of these browsers: Chrome, Firefox, Edge, Opera.)');
-        this.onCloseVideoComponent();
-      }
-      */
     }
   },
 

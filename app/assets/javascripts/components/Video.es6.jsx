@@ -147,6 +147,9 @@ Video = React.createClass( {
           part: 'snippet',
           mine: true,
         },
+        headers: {
+          Authorization: 'Bearer ' + accessToken,
+        },
         callback: function (response) {  
           if (response.error) {
             console.log(response.error.message);
@@ -155,7 +158,7 @@ Video = React.createClass( {
             return;
           }
           self.props.onRenderVideoInput();
-        },
+        }.bind(this),
       });
     };
     this.uploadFile = function (file) {
@@ -191,7 +194,7 @@ Video = React.createClass( {
             self.props.onCloseVideoComponent();
             alert('There was an issue while uploading. Please check your connection.');
           }
-        },
+        }.bind(this),
 
         onProgress: function (data) {
           const currentTime = Date.now();
@@ -202,14 +205,13 @@ Video = React.createClass( {
           const estimatedSecondsRemaining = (totalBytes - bytesUploaded) / bytesPerSecond;
           const percentageComplete = (bytesUploaded * 100) / totalBytes;
           self.onSaveProgress(percentageComplete);
-        },
+        }.bind(this),
 
         onComplete: function (data) {
           console.log('Upload complete.');
           const uploadResponse = JSON.parse(data);
           const videoId = uploadResponse.id;
           self.onHandleVideoId(videoId);
-
         },
       });
 
