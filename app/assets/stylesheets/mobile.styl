@@ -1,399 +1,121 @@
-/* ----------- iPhone 4 and 4S ----------- */
-
-/* Portrait and Landscape */
-// @media only screen
-//   and (min-device-width: 320px)
-//   and (max-device-width: 480px)
-//   and (-webkit-min-device-pixel-ratio: 2) {
-
-// }
-
-/* Portrait */
-// @media only screen
-//   and (min-device-width: 320px)
-//   and (max-device-width: 480px)
-//   and (-webkit-min-device-pixel-ratio: 2)
-//   and (orientation: portrait) {
-// }
-
-/* Landscape */
-// @media only screen
-//   and (min-device-width: 320px)
-//   and (max-device-width: 480px)
-//   and (-webkit-min-device-pixel-ratio: 2)
-//   and (orientation: landscape) {
-
-// }
-
-/* ----------- iPhone 5 and 5S ----------- */
-
-/* Portrait and Landscape */
-// @media only screen
-//   and (min-device-width: 320px)
-//   and (max-device-width: 568px)
-//   and (-webkit-min-device-pixel-ratio: 2) {
-
-// }
-
-/* Portrait */
-// @media only screen
-//   and (min-device-width: 320px)
-//   and (max-device-width: 568px)
-//   and (-webkit-min-device-pixel-ratio: 2)
-//   and (orientation: portrait) {
-// }
-
-/* Landscape */
-// @media only screen
-//   and (min-device-width: 320px)
-//   and (max-device-width: 568px)
-//   and (-webkit-min-device-pixel-ratio: 2)
-//   and (orientation: landscape) {
-
-// }
-
-/* ----------- iPhone 6 ----------- */
-
-/* Portrait and Landscape */
-@media only screen and (min-device-width 375px) and (max-device-width 667px) and (-webkit-min-device-pixel-ratio 2)
+@media only screen and (min-device-width 340px) and (max-device-width 667px) and (-webkit-min-device-pixel-ratio 2)
   html
-    -webkit-text-size-adjust 350%
-
     body
-      #login
-        width 100%
+      .brand
+        position relative
+        color transparent
 
-        span:nth-of-type(2)
-          float right
+        img
+          position absolute
+          left 50%
+          transform translateX(-50%)
+          color transparent
 
-        .field
-          width 90%
+      .backgroundElement
+        display none
 
-      .container
-        padding-bottom 280px
-
-        nav
-          height initial
+      nav
+          min-width auto
           margin-bottom 0
 
-          .icon
-            height 120px
-            width 120px
-            margin 14px 0 12px 25px
-
-          .loggedIn
-            width initial
-            height 100px
-
-            &:hover
-              box-shadow none
-
-            a
+          a
+            &.icon.home
               width initial
 
-              &:hover
-                color initial
-                background transparent
+              .detail
+                display none
 
-          .logIn,
-          .loggedIn
-            margin 22px
-
-            a
-              padding 22px 30px
-
-            p
-              padding 0 22px
-
-        .dashboard
-          .indexContent
-            width 100%
-            max-width 100%
-
-            .controlPanel
-              display inline-block
-              float left
-              width 100%
-              height initial
-
-              button
-                img
-                  width 82px
-                  height 82px
-
-              a
-                padding 25px 20px 24px 20px
-
-            .bookEntryList
-              display inline-block
-              width 100%
-
-              .bookEntry
-                border-bottom-width 3px
-                a
-                  section
-                    width 100%
-
-                    &.info
-                      .clear
-                        .title
-                          font-size 1.1em
-                          margin 40px 0 22px 40px
-
-                        .details
-                          margin 0 0 0 40px
-
-                          img
-                            height 40px
-                            width 40px
-                            margin 10px 22px
-
-                          .language
-                            font-size 14px
-
-                      .meta
-                        padding 10px 40px 40px 40px
-
-                        p
-                          margin 0
-                          padding 0
-                          clear initial
-
-                        .author
-                          float left
-
-          .newBook
-            line-height .3
-            height 180px
-            width 180px
-            margin-left 0
-            transform translateX(-50%)
-
-        .book
-          max-width 100%
-          margin-bottom 0
-
-          .tools
-            width 100%
-
-            .icon
-              margin 0
-              padding 25px
-
-              img
-                width 82px
-                height 82px
-
-            .cardinality
-              width 73%
-
-              section
-                width 100%
-
-                .language
-                  font-size 1.1em
-                  margin-top 35px
-                  margin-bottom 35px
-
-                input
-                  margin-bottom 0
-
-                img
-                  margin 0.7em -30px
-                  height 60px
-                  width 60px
-
-          .info
-            .wrapper
-              width initial
-
-              h1, input
-                width 100%
-                float left
-                font-size 21px
-                max-width 100%
-
-              input.title
-                padding 0
-
-              .description
-                margin 1em 0
-                font-size 13px
-
-              .menu
-                top 50px
-                right -20px
-
-          .dictionary
-            width 100%
-
-            .content
-              .entry
-                padding .6em .6em .3em .6em
-
-                ul
-                  li
-                    p, input
-                      font-size .9em
-
-                    &.source
-                      p, input
-                        margin-bottom 15px
-                        border-radius 120px 120px 120px 0
-
-                    &.target
-                      p, input
-                        border-radius 120px 120px 0 120px
-
-              &.dummy
-                .entry
-                  &:not(:first-of-type)
-                    display none
-
-            .addPhrase
-              line-height initial
-              height 180px
-              width 180px
-              padding 0
-
-            .inputMethod
-              label
-                font-size .7em
-
-                input
-                  width 40px
-                  height 40px
-                  margin 6px 25px 0 0
-
-              button
-                width 80px
-                height 80px
-                margin 35px
-
-            .newPhrase
-              input
-                width 80%
-                padding 1em
-                font-size .8em
-                height initial
-
-              button
-                font-size .7em
-                padding 50px 0
-                width 20%
-
-          .menu
-            width 100px
-            height 100px
-
-            button
-              padding 10px
-              width 80px
-              height 80px
-
-            &.saving
-                width 160px
-
-            &:hover
-              width 240px
-
-              &.saving
-                width 160px
+            &:hover, &:focus
+              > img
+                margin-left 0 !important
 
           form
-            .info
-              .wrapper
-                .new.title
-                  width 100%
+            max-width 55%
+            min-width auto
+            width initial
+            position initial
+            left 0
+            margin-left 0
 
-            .new
-              padding-bottom 10px
-              border-bottom-width 3px
+          span
+            &.loggedIn
+              width 78px
+
+              .currentUser
+                display none
+
+              a
+                padding 8px 15px
+              // span
+              //   display none
+
+              // img.mobile
+              //   float right
+              //   height 21px
+              //   display block
+
+      #login
+        width initial
+
+        h2
+          font-size 2em
+          margin-top 0
+
+        .field
+          width 100%
+
+      .container
+        padding-bottom 0
 
         #profile
           width 100%
-          min-width initial
-
-          .userInformation,
-          .dashboard
-            float left
-            width 100%
+          display inline-block
 
           .userInformation
-            padding 0
+            width 100%
 
             .wrapper
-              max-width initial
-              padding 1em
+              .details
+                max-width 140px
 
           .dashboard
-            max-width 100%
-            padding-left 0
+            margin-top 20px
+            min-width 100%
 
-            .indexContent
-              display inline-block
-              float left
 
-              .controlPanel
-                p.header
-                  width 76%
+        .dashboard
+          width 100%
 
-            .bookEntryList
-              .bookEntry
-                a
-                  .info
-                    section
-                      h2
-                        font-size 1.3em
+          .indexContent
+            min-width initial
+            border-left none
+            border-right none
+            border-radius 0
 
-            h1
-              margin-top .3em
-              font-size 1.2em
-              text-align left
-              padding 40px
+            .controlPanel
+              a
+                border-radius 0
 
-/* Portrait */
-// @media only screen
-//   and (min-device-width: 375px)
-//   and (max-device-width: 667px)
-//   and (-webkit-min-device-pixel-ratio: 2)
-//   and (orientation: portrait) {
+        .book
+          display block
+          float left
+          margin 0
+          min-width initial
 
-// }
+          .tools
+            width 100%
+            border-radius 0
+            display inline-block
+            float left
 
-/* Landscape */
-// @media only screen
-//   and (min-device-width: 375px)
-//   and (max-device-width: 667px)
-//   and (-webkit-min-device-pixel-ratio: 2)
-//   and (orientation: landscape) {
+            .cardinality
+              width 255px
 
-// }
+          .dictionary
+            .content
+              .entry
+                padding .5em
 
-/* ----------- iPhone 6+ ----------- */
-
-/* Portrait and Landscape */
-// @media only screen
-//   and (min-device-width: 414px)
-//   and (max-device-width: 736px)
-//   and (-webkit-min-device-pixel-ratio: 3) {
-
-// }
-
-/* Portrait */
-// @media only screen
-//   and (min-device-width: 414px)
-//   and (max-device-width: 736px)
-//   and (-webkit-min-device-pixel-ratio: 3)
-//   and (orientation: portrait) {
-
-// }
-
-/* Landscape */
-// @media only screen
-//   and (min-device-width: 414px)
-//   and (max-device-width: 736px)
-//   and (-webkit-min-device-pixel-ratio: 3)
-//   and (orientation: landscape) {
-
-// }
+            .newPhrase
+              input
+                width initial
