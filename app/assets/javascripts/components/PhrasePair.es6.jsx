@@ -21,7 +21,8 @@ PhrasePair = React.createClass( {
     });
   },
 
-  cancelEditingPhraseState: function() {
+  cancelEditingPhraseState: function(e) {
+    e.preventDefault()
     this.setState({
       sourcePhrase: this.props.initialSourcePhrase,
       targetPhrase: this.props.initialTargetPhrase,
