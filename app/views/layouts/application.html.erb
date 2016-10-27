@@ -6,7 +6,7 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 
   <%= csrf_meta_tags %>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
   <link href='https://fonts.googleapis.com/css?family=Roboto:900,300' rel='stylesheet' type='text/css'>
 </head>
 <body>
@@ -21,13 +21,9 @@
 
 
   <p class="brand"><%= image_tag 'icons/i_home_1.svg' %> Wikitongues</p>
-  <script
-  src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <%= javascript_include_tag 'bootbox'%>
-  <script>
-    setTimeout("$('#notice').fadeOut('4000')", 3000)
-  </script>
+  <script>setTimeout("$('#notice').fadeOut('4000')", 3000)</script>
 
 </body>
 </html>
