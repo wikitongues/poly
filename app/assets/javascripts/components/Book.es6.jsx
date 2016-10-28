@@ -81,8 +81,13 @@ Book = React.createClass( {
   onInvertLanguagesClick:function(e){
     var newBook = this.state.book;
     var newState = this.state;
-    newBook.source_language = this.state.book.target_language;
-    newBook.target_language = this.state.book.source_language;
+
+    var sourceLanguage = this.state.book.source_language;
+    var targetLanguage = this.state.book.target_language;
+
+    newBook.source_language = targetLanguage
+    newBook.target_language = sourceLanguage
+
     newState.book = newBook;
     this.setState(newState);
   },
