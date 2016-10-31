@@ -98,6 +98,35 @@ Book = React.createClass( {
     });
   },
 
+  toggleBookStatus: function(e) {
+    e.preventDefault()
+    var newBook = this.state.book;
+    var newState = this.state;
+    var status = this.state.book.status;
+    if(this.props.initialBook.status == "public") {
+      status = "private"
+    };
+    if(this.props.initialBook.status == "private") {
+      status = "public"
+    }
+    newBook.status = this.state.book.status = status;
+    newState.book = newBook;
+    this.setState(newState);
+        console.log("toggled to "+this.props.initialBook.status)
+    // $.ajax({
+    //   url: '/books/' + this.state.book.id,
+    //   type: "PUT",
+    //   data: { book: {status: this.state.book.status} },
+    //   success: function() {
+    //     console.log("toggled to "+this.props.initialBook.status)
+    //   }.bind(this),
+    //   error: function() {
+    //     alert('something went wrong')
+    //   }
+    // })
+  },
+
+
   onInputChange: function(e) {
     var newBook = this.state.book;
     var newState = this.state;
@@ -181,6 +210,9 @@ Book = React.createClass( {
             <button title="Menu" className="more icon">
               <img src={this.props.menuAlt}/>
             </button>
+            <button title="Status" onClick={this.toggleBookStatus} className="icon" tabIndex="-1">
+              {this.renderPublicStatus()}
+            </button>
             <button title="Edit" onClick={this.toggleEditingBookState} className="icon" tabIndex="-1">
               <img src={this.props.editAlt}/>
             </button>
@@ -190,6 +222,18 @@ Book = React.createClass( {
           </div>
         );
       }
+    }
+  },
+
+  renderPublicStatus: function() {
+    if(this.state.book.status = "public") {
+      return(
+        <img src={this.props.public}/>
+      )
+    } else {
+      return (
+        <img src={this.props.private}/>
+      )
     }
   },
 

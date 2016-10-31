@@ -80,7 +80,8 @@ class BooksController < AuthenticatedController
       :title,
       :description,
       :source_language,
-      :target_language
+      :target_language,
+      :status
     )
   end
 end

@@ -1,4 +1,10 @@
 BookEntry = React.createClass ( {
+  renderPrivate: function() {
+    if(this.props.book.status == "private") {
+      return( <img className="private" src={this.props.private} alt=""/>)
+    }
+  },
+
   render: function() {
     let createdDate = new Date(this.props.book.created_at),
     createdYear = createdDate.getUTCFullYear(),
@@ -13,6 +19,7 @@ BookEntry = React.createClass ( {
             {/*<span className="banner"><img src=""/></span>*/}
             <section className="clear">
                 <h2 className="title"title={this.props.book.title}>{this.props.book.title}</h2>
+                {this.renderPrivate()}
               <section className="details">
                 <p className="source language" title={this.props.book.source_language}>
                   {this.props.book.source_language}

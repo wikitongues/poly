@@ -3,20 +3,20 @@ Profile = React.createClass( {
   getInitialState: function() {
     return {
       showingFavorites: false,
-      showingBooks: true,
+      showingBooks: true
     }
   },
 
   renderAllBooks: function() {
     return this.props.books.map((book) => {
-      return <BookEntry users={this.props.userData} book={book} key={book.id} cardinality={this.props.cardinality}></BookEntry>
+      return <BookEntry users={this.props.userData} book={book} key={book.id} cardinality={this.props.cardinality} private={this.props.private}></BookEntry>
     })
   },
 
   renderAuthoredBooks: function() {
     if(this.props.authoredBooks.length > 0) {
       return this.props.authoredBooks.map((book) => {
-        return <BookEntry book={book} key={book.id} cardinality={this.props.cardinality}></BookEntry>
+        return <BookEntry book={book} key={book.id} cardinality={this.props.cardinality} private={this.props.private}></BookEntry>
       })
     } else {
       return (
@@ -30,7 +30,7 @@ Profile = React.createClass( {
   renderFavoriteBooks: function() {
     if(this.props.favorites.length > 0) {
       return this.props.favorites.map((book) => {
-        return <BookEntry users={this.props.userData} book={book} key={book.id} cardinality={this.props.cardinality}></BookEntry>
+        return <BookEntry users={this.props.userData} book={book} key={book.id} cardinality={this.props.cardinality} private={this.props.private}></BookEntry>
       })
     } else {
       return (
