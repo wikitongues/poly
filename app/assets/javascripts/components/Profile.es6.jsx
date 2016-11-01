@@ -9,7 +9,7 @@ Profile = React.createClass( {
 
   renderAllBooks: function() {
     return this.props.books.map((book) => {
-      return <BookEntry users={this.props.userData} book={book} key={book.id} cardinality={this.props.cardinality} private={this.props.private}></BookEntry>
+      return <BookEntry users={this.props.userData} book={book} key={book.id} cardinality={this.props.cardinality}></BookEntry>
     })
   },
 

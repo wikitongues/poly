@@ -80,16 +80,11 @@ Book = React.createClass( {
 
   onInvertLanguagesClick:function(e){
     var newBook = this.state.book;
-    var newState = this.state;
-
     var sourceLanguage = this.state.book.source_language;
     var targetLanguage = this.state.book.target_language;
-
     newBook.source_language = targetLanguage
     newBook.target_language = sourceLanguage
-
-    newState.book = newBook;
-    this.setState(newState);
+    this.setState({book: newBook});
   },
 
   toggleEditingBookState: function() {
@@ -98,32 +93,28 @@ Book = React.createClass( {
     });
   },
 
-  toggleBookStatus: function(e) {
-    e.preventDefault()
-    var newBook = this.state.book;
-    var newState = this.state;
-    var status = this.state.book.status;
-    if(this.props.initialBook.status == "public") {
-      status = "private"
-    };
-    if(this.props.initialBook.status == "private") {
-      status = "public"
+  toggleBookStatus: function() {
+    if(window.confirm("Private books are hidden from the general public. Are you sure you want to continue?")) {
+      var newBook = this.state.book;
+      var newStatus;
+      if (newBook.status === 'private') {
+        newStatus = 'public';
+      }  else {
+        newStatus = 'private';
+      }
+      newBook.status = newStatus;
+      $.ajax({
+        url: '/books/' + this.state.book.id,
+        type: "PUT",
+        data: { book: newBook },
+        success: function() {
+          this.setState({book: newBook})
+        }.bind(this),
+        error: function() {
+          alert('something went wrong')
+        }
+      })
     }
-    newBook.status = this.state.book.status = status;
-    newState.book = newBook;
-    this.setState(newState);
-        console.log("toggled to "+this.props.initialBook.status)
-    // $.ajax({
-    //   url: '/books/' + this.state.book.id,
-    //   type: "PUT",
-    //   data: { book: {status: this.state.book.status} },
-    //   success: function() {
-    //     console.log("toggled to "+this.props.initialBook.status)
-    //   }.bind(this),
-    //   error: function() {
-    //     alert('something went wrong')
-    //   }
-    // })
   },
 
 
@@ -133,10 +124,6 @@ Book = React.createClass( {
     newBook[e.target.name] = e.target.value;
     newState.book = newBook;
     this.setState(newState);
-  },
-
-  onSearchBook: function() {
-    alert("Searching is coming soon!")
   },
 
   onClickFavoriteBook: function() {
@@ -210,9 +197,7 @@ Book = React.createClass( {
             <button title="Menu" className="more icon">
               <img src={this.props.menuAlt}/>
             </button>
-            <button title="Status" onClick={this.toggleBookStatus} className="icon" tabIndex="-1">
-              {this.renderPublicStatus()}
-            </button>
+            {this.renderBookStatus()}
             <button title="Edit" onClick={this.toggleEditingBookState} className="icon" tabIndex="-1">
               <img src={this.props.editAlt}/>
             </button>
@@ -225,14 +210,18 @@ Book = React.createClass( {
     }
   },
 
-  renderPublicStatus: function() {
-    if(this.state.book.status = "public") {
+  renderBookStatus: function() {
+    if(this.state.book.status == "public") {
       return(
-        <img src={this.props.public}/>
+        <button title="Make private" onClick={this.toggleBookStatus} className="icon" tabIndex="-1">
+          <img src={this.props.public}/>
+        </button>
       )
     } else {
       return (
-        <img src={this.props.private}/>
+        <button title="Make public" onClick={this.toggleBookStatus} className="icon" tabIndex="-1">
+          <img src={this.props.private}/>
+        </button>
       )
     }
   },
@@ -241,8 +230,14 @@ Book = React.createClass( {
      if (this.state.isEditingBook) {
       return <input name="title" className="title new isEditing" onChange={this.onInputChange} value={this.state.book.title} />;
     } else {
-       return <h1 title={this.state.book.title}>{this.state.book.title}</h1>;
+       return <h1 title={this.state.book.title}>{this.state.book.title} {this.renderStatus()}</h1>;
     }
+  },
+
+  renderStatus: function() {
+    if(this.state.book.status =="private") {
+      return(<span title="This book is closed to the public." className="status">PRIVATE</span>)
+    } else {}
   },
 
   renderAuthor: function() {
@@ -348,7 +343,7 @@ Book = React.createClass( {
       <div className="container">
         <NavBar currentUser={this.props.currentUser} logo={this.props.logo} detail={this.props.detail} search={this.props.search}/>
         <span className="backgroundElement"></span>
-        <div className="book">
+        <div className={"book "+this.state.book.status}>
           <div className="tools">
             {this.renderFavoriteButton()}
             <div className="cardinality">

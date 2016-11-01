@@ -18,8 +18,8 @@ BookEntry = React.createClass ( {
           <section className="info">
             {/*<span className="banner"><img src=""/></span>*/}
             <section className="clear">
-                <h2 className="title"title={this.props.book.title}>{this.props.book.title}</h2>
-                {this.renderPrivate()}
+              {this.renderPrivate()}
+              <h2 className="title"title={this.props.book.title}>{this.props.book.title}</h2>
               <section className="details">
                 <p className="source language" title={this.props.book.source_language}>
                   {this.props.book.source_language}

@@ -1,131 +1,161 @@
-  verticalAlign()
-    position absolute
-    top 50%
-    transform translateY(-50%)
+verticalAlign()
+  position absolute
+  top 50%
+  transform translateY(-50%)
 
+.book.private
   .tools
-    width 600px
-    display table
-    background $buttonBlue
-    margin auto
-    boxShadow()
-    position relative
-    z-index 2
-    border-radius 2*$radius 2*$radius 0 0
-
-    input
-      padding 0.7em 1em 0.7em 2.5em
-      font-size 1em
-      font-weight 100
-      outline none
-      border none
-      margin 4px 0 5px 4px
-      transition all 0.1s ease-in-out
-      background transparent
-      width 2.5em
-      left 0
-      z-index 4
-      position absolute
-
-    .icon
-      background transparent
-      outline none
-      border-radius 100%
-      cursor initial
-
-      &.favorite
-        float left
-        height 44px
-        width 44px
-        margin 8px
-
-        &:focus
-          background darken(#147eff, 6%)
-
-        img
-          width 30px
-          float left
-          height 30px
-
-    .cardinality
-      float none
-      margin auto
-      display block
-      z-index 5
-      width 480px
-      color white
-
-      h1
-        text-transform capitalize
-        width 46%
-        float left
-        text-align center
-        font-size 1.3em
-        font-weight 100
-        margin 17px 0
-        line-height 1.3em
-
-        &:first-of-type
-          margin-right 3%
-
-        &:last-of-type
-          margin-left 3%
-
-      img
-        box-shadow none
-        border-bottom none
-        float left
-        margin .65em -20px 0
-        width 40px
-        height 40px
-        padding 10px
-        z-index 10
-        position relative
+    background lighten($blue, 10%)
 
     .menu
-      transition all $time ease-in-out
+      &:hover, &.saving
+        background lighten($blue, 6%)
+      .icon
+        &:focus
+          background lighten($blue, 10%)
+
+          &:hover
+            background lighten($blue, 14%)
+
+        &:hover
+          background lighten($blue, 14%)
+
+    .cardinality
+      section
+        input
+          background lighten($blue, 14%)
+
+  .tools, .info
+    input, textarea
+      border-color lighten($blue, 24%)
+
+.tools
+  width 600px
+  display table
+  background $buttonBlue
+  margin auto
+  boxShadow()
+  position relative
+  z-index 2
+  border-radius 2*$radius 2*$radius 0 0
+  transition background $time ease-in-out
+
+  input
+    padding 0.7em 1em 0.7em 2.5em
+    font-size 1em
+    font-weight 100
+    outline none
+    border none
+    margin 4px 0 5px 4px
+    transition all 0.1s ease-in-out
+    background transparent
+    width 2.5em
+    left 0
+    z-index 4
+    position absolute
+
+  .icon
+    background transparent
+    outline none
+    border-radius 100%
+    cursor initial
+
+    &.favorite
+      float left
       height 44px
       width 44px
-      padding 2px
-      border-radius 22px
+      margin 8px
+
+      &:focus
+        background darken(#147eff, 6%)
+
+      img
+        width 30px
+        float left
+        height 30px
+
+  .cardinality
+    float none
+    margin auto
+    display block
+    z-index 5
+    width 480px
+    color white
+
+    h1
+      text-transform capitalize
+      width 46%
+      float left
+      text-align center
+      font-size 1.3em
+      font-weight 100
+      margin 17px 0
+      line-height 1.3em
+
+      &:first-of-type
+        margin-right 3%
+
+      &:last-of-type
+        margin-left 3%
+
+    img
+      box-shadow none
+      border-bottom none
+      float left
+      margin .65em -20px 0
+      width 40px
+      height 40px
+      padding 10px
+      z-index 10
+      position relative
+
+  .menu
+    transition all $time ease-in-out
+    height 44px
+    width 44px
+    padding 2px
+    border-radius 22px
+
+    &:hover
+      background #147eff
+      height 164px
+      width 44px
+      boxShadow()
+
+    .icon
+      opacity 0
+      width 40px
+      height 40px
+      margin 2px
+      border none
+      transition background $time ease-in-out
+
+      &:focus
+        opacity 1
+        background darken(#147eff, 6%)
+
+        &:hover
+          opacity 1
+          background #1d6fd2
 
       &:hover
-        background #147eff
-        height 164px
-        width 44px
-        boxShadow()
+        background #1d6fd2
+
+    &.saving
+      background #147eff
+      height 124px
+      width 44px
+      boxShadow()
 
       .icon
+        float right
         width 40px
         height 40px
-        margin 2px
         border none
+        margin 0
 
         &:focus
-          opacity 1
           background darken(#147eff, 6%)
 
           &:hover
             background #1d6fd2
-
-        &:hover
-          background #1d6fd2
-
-      &.saving
-        background #147eff
-        height 124px
-        width 44px
-        boxShadow()
-
-        .icon
-          float right
-          width 40px
-          height 40px
-          border none
-          margin 0
-
-          &:focus
-            background darken(#147eff, 6%)
-
-            &:hover
-              background #1d6fd2
