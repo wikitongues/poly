@@ -94,27 +94,29 @@ Book = React.createClass( {
   },
 
   toggleBookStatus: function() {
-    if(window.confirm("Private books are hidden from the general public. Are you sure you want to continue?")) {
-      var newBook = this.state.book;
-      var newStatus;
-      if (newBook.status === 'private') {
+    var newBook = this.state.book;
+    var newStatus;
+    if (newBook.status === 'private') {
+      if(window.confirm("Caution: You're about to make this book public.")) {
         newStatus = 'public';
-      }  else {
+      } else {newStatus = 'private';}
+    }  else {
+      if(window.confirm("Caution: You're about to make this book private. Private books are hidden from the general public. Are you sure you want to continue?")) {
         newStatus = 'private';
-      }
-      newBook.status = newStatus;
-      $.ajax({
-        url: '/books/' + this.state.book.id,
-        type: "PUT",
-        data: { book: newBook },
-        success: function() {
-          this.setState({book: newBook})
-        }.bind(this),
-        error: function() {
-          alert('something went wrong')
-        }
-      })
+      }  else {newStatus = 'public';}
     }
+    newBook.status = newStatus;
+    $.ajax({
+      url: '/books/' + this.state.book.id,
+      type: "PUT",
+      data: { book: newBook },
+      success: function() {
+        this.setState({book: newBook})
+      }.bind(this),
+      error: function() {
+        alert('something went wrong')
+      }
+    })
   },
 
 
