@@ -1,5 +1,5 @@
 BookEntry = React.createClass ( {
-  renderPrivate: function() {
+  renderStatus: function() {
     if(this.props.book.status == "private") {
       return( <img className="private" src={this.props.private} alt=""/>)
     }
@@ -18,7 +18,7 @@ BookEntry = React.createClass ( {
           <section className="info">
             {/*<span className="banner"><img src=""/></span>*/}
             <section className="clear">
-              {this.renderPrivate()}
+              {this.renderStatus()}
               <h2 className="title"title={this.props.book.title}>{this.props.book.title}</h2>
               <section className="details">
                 <p className="source language" title={this.props.book.source_language}>
