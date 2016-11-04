@@ -51,18 +51,18 @@ class Book extends React.Component {
 
   saveNewPhrasePair(phrasePair) {
     $.ajax({
-      url: "/phrase_pairs",
-      type: "POST",
+      url: '/phrase_pairs',
+      type: 'POST',
       data: {
         book_id: this.state.book.id,
         phrase_pair: phrasePair,
       },
       success: function (phrasePair) {
-        let newPhrasePairs = this.state.phrasePairs;
+        const newPhrasePairs = this.state.phrasePairs;
         newPhrasePairs.splice(this.state.phrasePairs.length - 1, 1, phrasePair.phrase_pair);
         this.setState({ phrasePairs: newPhrasePairs });
       }.bind(this),
-      error: function () {
+      error() {
         console.log('Error: Save action failed');
       },
     });
@@ -73,7 +73,7 @@ class Book extends React.Component {
       $.ajax({
         url: '/books/' + this.state.book.id,
         type: 'DELETE',
-        success: function () {
+        success() {
           window.location.href = '/dashboard';
         },
       });
@@ -88,25 +88,25 @@ class Book extends React.Component {
       success: function () {
         this.toggleEditingBookState();
       }.bind(this),
-      error: function() {
-        alert('something went wrong')
-      }
-    })
-  },
+      error() {
+        alert('something went wrong');
+      },
+    });
+  }
 
-  onInvertLanguagesClick(e){
-    var newBook = this.state.book;
-    var newState = this.state;
+  onInvertLanguagesClick() {
+    const newBook = this.state.book;
+    const newState = this.state;
 
-    var sourceLanguage = this.state.book.source_language;
-    var targetLanguage = this.state.book.target_language;
+    const sourceLanguage = this.state.book.source_language;
+    const targetLanguage = this.state.book.target_language;
 
-    newBook.source_language = targetLanguage
-    newBook.target_language = sourceLanguage
+    newBook.source_language = targetLanguage;
+    newBook.target_language = sourceLanguage;
 
     newState.book = newBook;
     this.setState(newState);
-  },
+  }
 
   toggleEditingBookState() {
     this.setState({ isEditingBook: !this.state.isEditingBook });
@@ -139,7 +139,7 @@ class Book extends React.Component {
       success: function () {
         this.toggleFavoriteBook();
       }.bind(this),
-      error: function () {
+      error() {
         console.log('something went wrong');
       },
     });
@@ -150,12 +150,12 @@ class Book extends React.Component {
       url: '/favorites',
       type: 'POST',
       data: {
-        book_id: this.state.book.id
+        book_id: this.state.book.id,
       },
       success: function () {
         this.toggleFavoriteBook();
       }.bind(this),
-      error: function () {
+      error() {
         console.log('something went wrong');
       },
     });
@@ -177,7 +177,7 @@ class Book extends React.Component {
         return (
           <div className="menu saving">
             <button title="Flip" onClick={this.onInvertLanguagesClick} className="icon">
-              <img src={this.props.flipAlt}/>
+              <img src={this.props.flipAlt} />
             </button>
             <button title="Save" onClick={this.onSaveBookClick} className="icon">
               <img src={this.props.saveAlt} alt="Save" />
@@ -197,7 +197,7 @@ class Book extends React.Component {
           <button title="Menu" className="more icon">
             <img src={this.props.menuAlt} alt="Menu" />
           </button>
-          <button 
+          <button
             title="Edit"
             onClick={this.toggleEditingBookState}
             className="icon"
@@ -205,7 +205,7 @@ class Book extends React.Component {
           >
             <img src={this.props.editAlt} alt="Edit" />
           </button>
-          <button 
+          <button
             title="Delete"
             onClick={this.onDeleteBookClick}
             className="icon"
@@ -261,7 +261,7 @@ class Book extends React.Component {
   }
 
   renderTruncatedDescription() {
-    if(this.state.book.description.length >= 132) {
+    if (this.state.book.description.length >= 132) {
       if (this.state.isDescriptionTruncated) {
         return (
           <p className="description">
@@ -355,8 +355,8 @@ class Book extends React.Component {
 
   isFavoriteBook() {
     if (this.props.currentUser) {
-      return this.props.currentUser.favorite_books.filter(function(favorite) {
-        return favorite.book_id === this.props.initialBook.id
+      return this.props.currentUser.favorite_books.filter(function (favorite) {
+        return favorite.book_id === this.props.initialBook.id;
       }.bind(this)).length > 0;
     }
   }
@@ -369,7 +369,6 @@ class Book extends React.Component {
         </button>
       );
     }
-    return;
   }
 
   render() {
@@ -401,7 +400,7 @@ class Book extends React.Component {
               { this.renderDescription() }
             </div>
           </div>
-          {/*<ProgressBar />*/}
+          {/* <ProgressBar /> */}
           <div className="NObannerWrapper"></div>
 
           <Dictionary
@@ -414,7 +413,7 @@ class Book extends React.Component {
             save={this.props.save}
             delete={this.props.delete}
             edit={this.props.edit}
-            close={this.props.close} 
+            close={this.props.close}
           />
         </div>
       </div>
