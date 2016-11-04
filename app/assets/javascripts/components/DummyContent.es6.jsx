@@ -1,11 +1,11 @@
-DummyContent = React.createClass( {
-  randomString: function() {
-    let charLength = Math.floor(Math.random() * (36 - 2)) + 2;
+class DummyContent extends React.Component {
+  randomString() {
+    const charLength = Math.floor(Math.random() * (36 - 2)) + 2;
     return Math.round((Math.pow(36, charLength + 1) - Math.random() * Math.pow(36, charLength))).toString(36).slice(1);
-  },
+  }
 
-  render: function() {
-    return(
+  render() {
+    return (
       <ul className="dummy content">
         <li className="entry">
           <ul>
@@ -27,7 +27,7 @@ DummyContent = React.createClass( {
             </li>
           </ul>
         </li>
-        {/*<li className="entry">
+        {/* <li className="entry">
               <ul>
                 <li className="source">
                   <p>Reply to 'How are you?'</p>
@@ -36,7 +36,8 @@ DummyContent = React.createClass( {
                   <p>Bem obrigada. E você?</p>
                 </li>
               </ul>
-            </li>*/}
+            </li> */}
       </ul>
-    )}
-  });
+    );
+  }
+}
