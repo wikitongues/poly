@@ -1,126 +1,155 @@
-Profile = React.createClass( {
+class Profile extends React.Component {
 
-  getInitialState: function() {
-    return {
+  constructor(props) {
+    super(props);
+    this.state = {
       showingFavorites: false,
       showingBooks: true,
-    }
-  },
+    };
+  }
 
-  renderAllBooks: function() {
+  renderAllBooks() {
     return this.props.books.map((book) => {
-      return <BookEntry users={this.props.userData} book={book} key={book.id} cardinality={this.props.cardinality}></BookEntry>
-    })
-  },
+      return (
+        <BookEntry
+          users={this.props.userData}
+          book={book}
+          key={book.id}
+          cardinality={this.props.cardinality}
+        />
+      );
+    });
+  }
 
-  renderAuthoredBooks: function() {
-    if(this.props.authoredBooks.length > 0) {
+  renderAuthoredBooks() {
+    if (this.props.authoredBooks.length > 0) {
       return this.props.authoredBooks.map((book) => {
-        return <BookEntry book={book} key={book.id} cardinality={this.props.cardinality}></BookEntry>
-      })
-    } else {
-      return (
-        <li className="emptyList">
-          <h2>No books</h2>
-        </li>
-      )
+        return (
+          <BookEntry
+            book={book}
+            key={book.id}
+            cardinality={this.props.cardinality}
+          />
+        );
+      });
     }
-  },
+    return (
+      <li className="emptyList">
+        <h2>No books</h2>
+      </li>
+    );
+  }
 
-  renderFavoriteBooks: function() {
-    if(this.props.favorites.length > 0) {
+  renderFavoriteBooks() {
+    if (this.props.favorites.length > 0) {
       return this.props.favorites.map((book) => {
-        return <BookEntry users={this.props.userData} book={book} key={book.id} cardinality={this.props.cardinality}></BookEntry>
-      })
-    } else {
-      return (
-        <li className="emptyList">
-          <h2>No favorites</h2>
-        </li>
-      )
+        return (
+          <BookEntry
+            users={this.props.userData}
+            book={book}
+            key={book.id}
+            cardinality={this.props.cardinality}
+          />
+        );
+      });
     }
-  },
+    return (
+      <li className="emptyList">
+        <h2>No favorites</h2>
+      </li>
+    );
+  }
 
-  currentUserProfile: function() {
+  currentUserProfile() {
     if (this.props.currentUser) {
-      return this.props.userData.id != this.props.currentUser.id
+      return this.props.userData.id !== this.props.currentUser.id;
     }
-  },
+  }
 
-  toggleShowFavorites: function() {
+  toggleShowFavorites() {
     this.setState({
       showingAll: false,
       showingFavorites: true,
-      showingBooks: false
+      showingBooks: false,
     });
-  },
+  }
 
-  toggleShowBooks: function() {
+  toggleShowBooks() {
     this.setState({
-        showingAll: false,
-        showingFavorites: false,
-        showingBooks: true
+      showingAll: false,
+      showingFavorites: false,
+      showingBooks: true,
     });
-  },
+  }
 
-  toggleShowAll: function() {
+  toggleShowAll() {
     this.setState({
-        showingAll: true,
-        showingFavorites: false,
-        showingBooks: false
+      showingAll: true,
+      showingFavorites: false,
+      showingBooks: false,
     });
-  },
+  }
 
-  renderCreateBookButton: function() {
-    if(!this.currentUserProfile()) {
+  renderCreateBookButton() {
+    if (!this.currentUserProfile()) {
       if (this.props.currentUser) {
         return (
           <a href="/books/new" className="newBook" title="Create a new book">+</a>
-        )
+        );
       }
     }
-  },
+  }
 
-  renderDashboardList: function() {
+  renderDashboardList() {
     if (this.props.currentUser) {
-      if(this.currentUserProfile()) {
+      if (this.currentUserProfile()) {
         return (
           <div className="controlPanel">
-            <button id="books" onClick={this.toggleShowBooks}>Books <span className="bookCount">{this.props.authoredBooks.length}</span></button>
-            <button id="favorites" onClick={this.toggleShowFavorites}>Favorites <span className="bookCount">{this.props.favorites.length}</span></button>
+            <button id="books" onClick={this.toggleShowBooks}>
+              Books <span className="bookCount">{this.props.authoredBooks.length}</span>
+            </button>
+            <button id="favorites" onClick={this.toggleShowFavorites}>
+              Favorites <span className="bookCount">{this.props.favorites.length}</span>
+            </button>
           </div>
-        )
-      } else {
-        return (
-          <div className="controlPanel">
-            <button id="books" onClick={this.toggleShowBooks}>My Books <span className="bookCount">{this.props.authoredBooks.length}</span></button>
-            <button id="favorites" onClick={this.toggleShowFavorites}>Favorites <span className="bookCount">{this.props.favorites.length}</span></button>
-            <a href="/books/new" title="Create a new book">+</a>
-          </div>
-        )
+        );
       }
-    } else {
-     return (
+      return (
         <div className="controlPanel">
-          <button id="books" onClick={this.toggleShowBooks}>Books <span className="bookCount">{this.props.authoredBooks.length}</span></button>
-          <button id="favorites" onClick={this.toggleShowFavorites}>Favorites <span className="bookCount">{this.props.favorites.length}</span></button>
+          <button id="books" onClick={this.toggleShowBooks}>
+            My Books <span className="bookCount">{this.props.authoredBooks.length}</span>
+          </button>
+          <button id="favorites" onClick={this.toggleShowFavorites}>
+            Favorites <span className="bookCount">{this.props.favorites.length}</span>
+          </button>
+          <a href="/books/new" title="Create a new book">+</a>
         </div>
-      )
+      );
     }
-  },
+    return (
+      <div className="controlPanel">
+        <button id="books" onClick={this.toggleShowBooks}>
+          Books <span className="bookCount">{this.props.authoredBooks.length}</span>
+        </button>
+        <button id="favorites" onClick={this.toggleShowFavorites}>
+          Favorites <span className="bookCount">{this.props.favorites.length}</span>
+        </button>
+      </div>
+    );
+  }
 
-  renderEditButton: function() {
-    if(this.props.currentUser) {
-      if(this.props.currentUser.id == this.props.userData.id) {
+  renderEditButton() {
+    if (this.props.currentUser) {
+      if (this.props.currentUser.id === this.props.userData.id) {
         return (
           <a className="editButton" href="account/edit">Edit</a>
-        )
+        );
       }
     }
-  },
+  }
 
-  renderUserContent: function() {
-    if(this.state.showingFavorites) {
+  renderUserContent() {
+    if (this.state.showingFavorites) {
       return (
         <div className="indexContent favorites">
          {this.renderDashboardList()}
@@ -128,31 +157,36 @@ Profile = React.createClass( {
             {this.renderFavoriteBooks()}
           </ul>
         </div>
-      )
-    } else {
-      if(this.state.showingBooks) {
-          return (
-          <div className="indexContent books">
-            {this.renderDashboardList()}
-            <ul className="bookEntryList">
-              {this.renderAuthoredBooks()}
-            </ul>
-          </div>
-          )
-        }
-      }
-  },
+      );
+    }
+    if (this.state.showingBooks) {
+      return (
+        <div className="indexContent books">
+          {this.renderDashboardList()}
+          <ul className="bookEntryList">
+            {this.renderAuthoredBooks()}
+          </ul>
+        </div>
+      );
+    }
+  }
 
-  render: function() {
-    let createdDate = new Date(this.props.userData.created_at),
-    createdYear = createdDate.getUTCFullYear(),
-    months = ["January","February","March","April","May","June","July","August","September","October","November","December"],
-    createdMonth = months[createdDate.getMonth()]
+  render() {
+    const createdDate = new Date(this.props.userData.created_at);
+    const createdYear = createdDate.getUTCFullYear();
+    const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    const createdMonth = months[createdDate.getMonth()];
 
-    return(
+    return (
       <div className="container">
-        <NavBar currentUser={this.props.currentUser} menu={this.props.menu} logo={this.props.logo} detail={this.props.detail} search={this.props.search}/>
-        <span className="backgroundElement"></span>
+        <NavBar
+          currentUser={this.props.currentUser}
+          menu={this.props.menu}
+          logo={this.props.logo}
+          detail={this.props.detail}
+          search={this.props.search}
+        />
+        <span className="backgroundElement" />
         <div id="profile">
           <div className="userInformation">
             <div className="wrapper">
@@ -181,5 +215,10 @@ Profile = React.createClass( {
           </div>
         </div>
       </div>
-    )}
-  });
+    );
+  }
+}
+
+Profile.propTypes = {
+
+};
