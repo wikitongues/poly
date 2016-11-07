@@ -22,6 +22,7 @@ Dictionary = React.createClass( {
       refreshToken: '1/vI-S3g2HImFh7nj2wV_cw8y-28lMva6O1IiTQZ7jKZQ',
       interval: '',
       accessToken: '',
+      isVideoNotAvailable: true,
     };
   },
 
@@ -50,7 +51,13 @@ Dictionary = React.createClass( {
       scopes,
     }).then(() => {
       gapi.client.load('youtube', 'v3')
-      .then(() => console.log('youtube api loaded'));
+      .then(() => {
+        // Uncomment the two lines below in order to try it out
+        // setTimeout(() => {
+        this.setState({ isVideoNotAvailable: false });
+        this.refs.buttonVideo.style.opacity = 1;    
+        // }, 5000);
+      });
     });
   },
 
@@ -386,7 +393,7 @@ Dictionary = React.createClass( {
       return (
         <span className="inputOptions">
           <button title="Text" className="text icon selectedInput"><img src={this.props.textAlt} alt="text"/></button>
-          <button title="Video" onClick={this.onToggleInputType} className="video icon"><img src={this.props.video} alt="video"/></button>
+          <button ref="buttonVideo" disabled={this.state.isVideoNotAvailable} title="Video" onClick={this.onToggleInputType} className="video icon"><img src={this.props.video} alt="video"/></button>
           <button title="Cancel" onClick={this.onCancelEditPhrase} className="close icon"><img src={this.props.close} alt="close"/></button>
         </span>
       );
