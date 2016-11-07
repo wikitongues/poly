@@ -6,6 +6,17 @@ class Profile extends React.Component {
       showingFavorites: false,
       showingBooks: true,
     };
+    this.renderAllBooks = this.renderAllBooks.bind(this);
+    this.renderAuthoredBooks = this.renderAuthoredBooks.bind(this);
+    this.renderFavoriteBooks = this.renderFavoriteBooks.bind(this);
+    this.currentUserProfile = this.currentUserProfile.bind(this);
+    this.toggleShowFavorites = this.toggleShowFavorites.bind(this);
+    this.toggleShowBooks = this.toggleShowBooks.bind(this);
+    this.toggleShowAll = this.toggleShowAll.bind(this);
+    this.renderCreateBookButton = this.renderCreateBookButton.bind(this);
+    this.renderDashboardList = this.renderDashboardList.bind(this);
+    this.renderEditButton = this.renderEditButton.bind(this);
+    this.renderUserContent = this.renderUserContent.bind(this);
   }
 
   renderAllBooks() {
