@@ -78,6 +78,20 @@ Book = React.createClass( {
     })
   },
 
+  onInvertLanguagesClick:function(e){
+    var newBook = this.state.book;
+    var newState = this.state;
+
+    var sourceLanguage = this.state.book.source_language;
+    var targetLanguage = this.state.book.target_language;
+
+    newBook.source_language = targetLanguage
+    newBook.target_language = sourceLanguage
+
+    newState.book = newBook;
+    this.setState(newState);
+  },
+
   toggleEditingBookState: function() {
     this.setState({
       isEditingBook: !this.state.isEditingBook
@@ -150,6 +164,9 @@ Book = React.createClass( {
       if (this.state.isEditingBook) {
         return (
           <div className="menu saving">
+            <button title="Flip" onClick={this.onInvertLanguagesClick} className="icon">
+              <img src={this.props.flipAlt}/>
+            </button>
             <button title="Save" onClick={this.onSaveBookClick} className="icon">
               <img src={this.props.saveAlt}/>
             </button>
@@ -315,6 +332,7 @@ Book = React.createClass( {
           onSourcePhraseSubmit={this.onSourcePhraseSubmit}
           onTargetPhraseSubmit={this.onTargetPhraseSubmit}
           menu={this.props.menu}
+          flip={this.props.flip}
           save={this.props.save}
           delete={this.props.delete}
           edit={this.props.edit}

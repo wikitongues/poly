@@ -24,7 +24,7 @@ PhrasePair = React.createClass( {
   },
 
   cancelEditingPhraseState: function(e) {
-    e.preventDefault();
+    e.preventDefault()
     this.setState({
       sourcePhrase: this.props.initialSourcePhrase,
       targetPhrase: this.props.initialTargetPhrase,
@@ -56,7 +56,15 @@ PhrasePair = React.createClass( {
     })
   },
 
-  onEditPhraseClick() {
+  onInvertPhraseClick:function(e){
+    e.preventDefault()
+    this.setState({
+      sourcePhrase: this.state.targetPhrase,
+      targetPhrase: this.state.sourcePhrase
+    })
+  },
+
+  onEditPhraseClick: function() {
     this.toggleEditingPhraseState();
   },
 
@@ -150,6 +158,9 @@ PhrasePair = React.createClass( {
       if (this.state.isEditingPhrase) {
         return (
           <li className="menu saving">
+            <button title="Flip" onClick={this.onInvertPhraseClick} className="icon">
+              <img src={this.props.flip}/>
+            </button>
             <button title="Save" onClick={this.onSavePhraseClick} className="icon">
               <img src={this.props.save}/>
             </button>

@@ -5,7 +5,8 @@ NavBar = React.createClass( {
       return (
           <span className="loggedIn">
             <a className="currentUser" href="/dashboard">
-              {this.props.currentUser.username}
+              <span>{this.props.currentUser.username}</span>
+              <img className="mobile" src={this.props.menu}/>
             </a>
             <a href="/sign_out">Sign out</a>
           </span>
