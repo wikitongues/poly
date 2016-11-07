@@ -4,6 +4,7 @@ class ProgressBar extends React.Component {
     this.state = {
       bookProgress: '',
     };
+    this.handleScroll = this.handleScroll.bind(this);
   }
 
   componentDidMount() {

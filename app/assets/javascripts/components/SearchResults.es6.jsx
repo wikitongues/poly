@@ -1,42 +1,40 @@
-SearchResults = React.createClass ( {
+class SearchResults extends React.Component {
 
-  renderCreateBookPanel: function() {
+  renderCreateBookPanel() {
     if (this.props.currentUser) {
       return (
         <a href="/books/new" title="Create a new book">New book</a>
-      )
-    } else {
-      return (
-        <a href="/sign_in" title="Create a new book">Log in to create new books</a>
-      )
+      );
     }
-  },
+    return (
+      <a href="/sign_in" title="Create a new book">Log in to create new books</a>
+    );
+  }
 
-  renderCreateBookButton: function() {
+  renderCreateBookButton() {
     if (this.props.currentUser) {
       return (
         <a href="/books/new" className="newBook" title="Create a new book">+</a>
-      )
+      );
     }
-  },
+  }
 
-  renderSearchResults: function() {
-    if (this.props.sourceLanguage.length != 0 || this.props.targetLanguage != 0) {
+  renderSearchResults() {
+    if (this.props.sourceLanguage.length !== 0 || this.props.targetLanguage !== 0) {
       return (
         <div className="search">
           {this.renderSourceResultSection()}
           {this.renderTargetResultSection()}
         </div>
-      )
-    } else {
-      return (
-        <span className="emptySearch">No results for "{this.props.query}"</span>
-      )
+      );
     }
-  },
+    return (
+      <span className="emptySearch">No results for "{this.props.query}"</span>
+    );
+  }
 
-  renderSourceResultSection: function() {
-    if (this.props.sourceLanguage.length != 0) {
+  renderSourceResultSection() {
+    if (this.props.sourceLanguage.length !== 0) {
       return (
         <div className="indexContent">
           <div className="controlPanel">
@@ -47,20 +45,25 @@ SearchResults = React.createClass ( {
             {this.renderSourceResults()}
           </ul>
         </div>
-      )
+      );
     }
-  },
+  }
 
-  renderSourceResults: function() {
+  renderSourceResults() {
     return this.props.sourceLanguage.map((book) => {
       return (
-        <BookEntry users={this.props.users} book={book} key={book.id} cardinality={this.props.cardinality}></BookEntry>
-      )
-    })
-  },
+        <BookEntry
+          users={this.props.users}
+          book={book}
+          key={book.id}
+          cardinality={this.props.cardinality}
+        />
+      );
+    });
+  }
 
-  renderTargetResultSection: function() {
-    if (this.props.targetLanguage.length != 0) {
+  renderTargetResultSection() {
+    if (this.props.targetLanguage.length !== 0) {
       return (
         <div className="indexContent">
           <div className="controlPanel">
@@ -71,28 +74,43 @@ SearchResults = React.createClass ( {
             {this.renderTargetResults()}
           </ul>
         </div>
-      )
+      );
     }
-  },
+  }
 
-  renderTargetResults: function() {
+  renderTargetResults() {
     return this.props.targetLanguage.map((book) => {
       return (
-        <BookEntry users={this.props.users} book={book} key={book.id} cardinality={this.props.cardinality}></BookEntry>
-      )
-    })
-  },
+        <BookEntry
+          users={this.props.users}
+          book={book}
+          key={book.id}
+          cardinality={this.props.cardinality}
+        />
+      );
+    });
+  }
 
-  render: function() {
+  render() {
     return (
       <div className="container">
-        <NavBar currentUser={this.props.currentUser} query={this.props.query} logo={this.props.logo} detail={this.props.detail} search={this.props.search}/>
+        <NavBar
+          currentUser={this.props.currentUser}
+          query={this.props.query}
+          logo={this.props.logo}
+          detail={this.props.detail}
+          search={this.props.search}
+        />
         <div className="dashboard">
-          <span className="backgroundElement"></span>
+          <span className="backgroundElement" />
           {this.renderSearchResults()}
           {this.renderCreateBookButton()}
+        </div>
       </div>
-    </div>
-    )
+    );
   }
-} )
+}
+
+SearchResults.propTypes = {
+
+};
