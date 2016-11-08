@@ -27,16 +27,6 @@ DummyContent = React.createClass( {
             </li>
           </ul>
         </li>
-        {/*<li className="entry">
-              <ul>
-                <li className="source">
-                  <p>Reply to 'How are you?'</p>
-                </li>
-                <li className="target">
-                  <p>Bem obrigada. E você?</p>
-                </li>
-              </ul>
-            </li>*/}
       </ul>
     )}
   });

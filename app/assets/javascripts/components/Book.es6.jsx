@@ -6,7 +6,8 @@ Book = React.createClass( {
       isEditingBook: false,
       book: this.props.initialBook,
       isDescriptionTruncated:true,
-      isFavoriteBook: this.isFavoriteBook()
+      isFavoriteBook: this.isFavoriteBook(),
+      errors:[]
     }
   },
 
@@ -53,29 +54,48 @@ Book = React.createClass( {
   },
 
   onDeleteBookClick: function() {
-    if(window.confirm("Are you sure you want to delete this book?")) {
-      $.ajax({
-        url: '/books/' + this.state.book.id,
-        type: 'DELETE',
-        success: function() {
-          window.location.href = '/dashboard';
+    var id = this.state.book.id
+    bootbox.confirm({
+      message: "Are you sure you want to delete this book?",
+      closeButton:false,
+      callback: function(result) {
+        if(result === true) {
+          $.ajax({
+            url: '/books/' + id,
+            type: 'DELETE',
+            success: function() {
+              window.location.href = '/dashboard';
+            }
+          })
         }
-      })
-    }
+      }
+    })
   },
 
   onSaveBookClick: function() {
-    $.ajax({
-      url: '/books/' + this.state.book.id,
-      type: "PUT",
-      data: { book: this.state.book },
-      success: function() {
-        this.toggleEditingBookState();
-      }.bind(this),
-      error: function() {
-        alert('something went wrong')
-      }
-    })
+    this.state.errors = []
+    if(this.state.book.title && this.state.book.source_language && this.state.book.target_language) {
+      $.ajax({
+        url: '/books/' + this.state.book.id,
+        type: "PUT",
+        data: { book: this.state.book },
+        success: function() {
+          this.cancelEditingBookState();
+        }.bind(this),
+        error: function() {
+          bootbox.alert({
+            message: "something went wrong",
+            closeButton:false})
+        }
+      })
+    } else {
+      if(!this.state.book.title) {this.state.errors.push(" Title")}
+      if(!this.state.book.source_language) {this.state.errors.push(" Source language")}
+      if(!this.state.book.target_language) {this.state.errors.push(" Target language")}
+      bootbox.alert({
+        message: "Your book is missing the following required details:"+(this.state.errors),
+        closeButton:false})
+    }
   },
 
   onInvertLanguagesClick:function(e){
@@ -94,8 +114,14 @@ Book = React.createClass( {
 
   toggleEditingBookState: function() {
     this.setState({
-      isEditingBook: !this.state.isEditingBook
+      isEditingBook: true
     });
+  },
+
+  cancelEditingBookState: function() {
+    this.setState({
+      isEditingBook: false
+    })
   },
 
   onInputChange: function(e) {
@@ -104,10 +130,6 @@ Book = React.createClass( {
     newBook[e.target.name] = e.target.value;
     newState.book = newBook;
     this.setState(newState);
-  },
-
-  onSearchBook: function() {
-    alert("Searching is coming soon!")
   },
 
   onClickFavoriteBook: function() {
@@ -170,7 +192,7 @@ Book = React.createClass( {
             <button title="Save" onClick={this.onSaveBookClick} className="icon">
               <img src={this.props.saveAlt}/>
             </button>
-            <button title="Cancel" onClick={this.toggleEditingBookState} className="close icon">
+            <button title="Cancel" onClick={this.cancelEditingBookState} className="close icon">
               <img src={this.props.closeAlt}/>
             </button>
           </div>

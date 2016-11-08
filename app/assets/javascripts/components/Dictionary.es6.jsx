@@ -36,7 +36,9 @@ Dictionary = React.createClass( {
           sourcePhrase: ""
       });
     } else {
-      alert("Source phrase is empty")
+      bootbox.alert({
+        message: "Source phrase is empty",
+        closeButton:false})
     }
   },
 
@@ -54,7 +56,9 @@ Dictionary = React.createClass( {
         targetPhrase: ""
       });
     } else {
-      alert("Target phrase is empty")
+      bootbox.alert({
+        message: "Target phrase is empty",
+        closeButton:false})
     }
   },
 
