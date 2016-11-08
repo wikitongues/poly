@@ -36,22 +36,34 @@ PhrasePair = React.createClass( {
 
   onSavePhraseClick:function(e){
     e.preventDefault()
-    $.ajax({
-      url: '/phrase_pairs/' + this.props.id,
-      type: 'PUT',
-      data: {
-        phrase_pair: {
-          source_phrase: this.state.sourcePhrase,
-          target_phrase: this.state.targetPhrase
+    if(this.state.sourcePhrase && this.state.targetPhrase) {
+      $.ajax({
+        url: '/phrase_pairs/' + this.props.id,
+        type: 'PUT',
+        data: {
+          phrase_pair: {
+            source_phrase: this.state.sourcePhrase,
+            target_phrase: this.state.targetPhrase
+          }
+        },
+        success: function() {
+          this.toggleEditingPhraseState();
+        }.bind(this),
+        error: function() {
+          console.log("Error: Could not save phrase")
         }
-      },
-      success: function() {
-        this.toggleEditingPhraseState();
-      }.bind(this),
-      error: function() {
-        console.log("Error: Could not save phrase")
+      })
+    } else {
+      if(this.state.sourcePhrase) {
+        bootbox.alert({
+          message: "Target phrase is empty",
+          closeButton:false})
+      } else {
+        bootbox.alert({
+          message: "Source phrase is empty",
+          closeButton:false})
       }
-    })
+    }
   },
 
   onInvertPhraseClick:function(e){
