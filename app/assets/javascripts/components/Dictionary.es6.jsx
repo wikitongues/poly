@@ -116,6 +116,7 @@ Dictionary = React.createClass( {
             key={index}
             onDeletePhrasePair={this.onDeletePhrasePair}
             menu={this.props.menu}
+            flip={this.props.flip}
             save={this.props.save}
             delete={this.props.delete}
             edit={this.props.edit}
