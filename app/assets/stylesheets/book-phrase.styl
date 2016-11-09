@@ -8,6 +8,16 @@ li.entry
   border-color transparent
   transition background $time*2 ease-in-out
 
+  &.pre
+    ul
+      margin 0
+
+      li.target
+        opacity .3
+        p
+          min-height 61px
+          min-width 61px
+
   &:hover
     background white
     border-top-color lighten(#E7EFF2, 55%)
@@ -112,3 +122,50 @@ li.entry
           .icon
             opacity 1
 
+.container-iframe
+  max-width 90%
+  width 100%
+  overflow hidden
+  margin-bottom 6px
+  position relative
+
+  iframe
+    width 100%
+    height 378px
+    background inherit
+    float left
+
+.videoLoader
+  margin 177px auto
+  display table
+
+.progressTicker
+  display inline-block
+  width 18px
+  padding-top 1em
+
+  @keyframes loading
+    0%
+      transform translateY(0px)
+    50%
+      transform translateY(-6px)
+    100%
+      transform translateY(0px)
+
+  span
+    background #4F6387
+    border-radius 100%
+    margin 0 3px 0 0
+    height 4px
+    width 4px
+    float left
+
+    &:nth-of-type(1)
+      -webkit-animation loading 1s 0s infinite cubic-bezier(.60,0,.40,1)
+
+    &:nth-of-type(2)
+      -webkit-animation loading 1s .1s infinite cubic-bezier(.60,0,.40,1)
+
+    &:nth-of-type(3)
+      margin 0
+      -webkit-animation loading 1s .2s infinite cubic-bezier(.60,0,.40,1)
