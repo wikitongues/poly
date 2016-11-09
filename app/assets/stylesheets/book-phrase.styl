@@ -147,9 +147,9 @@ li.entry
   @keyframes loading
     0%
       transform translateY(0px)
-    50%
+    40%
       transform translateY(-6px)
-    100%
+    80%,100%
       transform translateY(0px)
 
   span
@@ -161,11 +161,11 @@ li.entry
     float left
 
     &:nth-of-type(1)
-      -webkit-animation loading 1s 0s infinite cubic-bezier(.60,0,.40,1)
+      -webkit-animation loading 1.2s 0s infinite cubic-bezier(.60,0,.40,1)
 
     &:nth-of-type(2)
-      -webkit-animation loading 1s .1s infinite cubic-bezier(.60,0,.40,1)
+      -webkit-animation loading 1.2s .1s infinite cubic-bezier(.60,0,.40,1)
 
     &:nth-of-type(3)
       margin 0
-      -webkit-animation loading 1s .2s infinite cubic-bezier(.60,0,.40,1)
+      -webkit-animation loading 1.2s .2s infinite cubic-bezier(.60,0,.40,1)
