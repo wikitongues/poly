@@ -233,12 +233,7 @@ Dictionary = React.createClass( {
          <div className="dictionary">
           <ul className="content">{this.renderPhrasePairs()}</ul>
           {this.renderPreSourcePhrase()}
-          {
-            !this.state.isInputVideo ?
-              this.renderCreateNewPhraseButton()
-              :
-              !this.renderCreateNewPhraseButton()
-          }
+          {this.renderCreateNewPhraseButton()}
          </div>
       )
   }
