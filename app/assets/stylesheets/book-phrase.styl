@@ -8,6 +8,16 @@ li.entry
   border-color transparent
   transition background $time*2 ease-in-out
 
+  &.pre
+    ul
+      margin 0
+
+      li.target
+        opacity .3
+        p
+          min-height 61px
+          min-width 61px
+
   &:hover
     background white
     border-top-color lighten(#E7EFF2, 55%)
@@ -164,97 +174,44 @@ li.entry
   overflow hidden
   margin-bottom 6px
   position relative
-  
-  span 
-    display none
 
-  &.source
-    float left
-    border-radius 31px 31px 31px 0
-    // border 1px solid darken($source, 2%)
-    background darken($source, 2%)
-
-    iframe
-      background inherit
-
-  &.target
-    float right
-    border-radius 31px 31px 0px 31px
-    // border 1px solid $target
-    background $target
-
-    iframe
-      background inherit
+  .videoLoader
+    margin 175px auto
+    display table
 
   iframe
+    background inherit
     width 100%
-    // margin-left -.5%
     height 378px
     float left
-    
-.loader,
-.loader:before,
-.loader:after 
-  border-radius 50%
-  width 1.5em
-  height 1.5em
-  -webkit-animation-fill-mode both
-  animation-fill-mode both
-  -webkit-animation load7 1.8s infinite ease-in-out
-  animation load7 1.8s infinite ease-in-out
 
-.loader 
-  color black
-  font-size 10px
-  margin 30px auto 150px auto
-  position relative
-  text-indent -9999em
-  -webkit-transform translateZ(0)
-  -ms-transform translateZ(0)
-  transform translateZ(0)
-  -webkit-animation-delay -0.16s
-  animation-delay -0.16s
+.progressTicker
+  display inline-block
+  width 18px
+  padding-top 1em
 
-.loader:before,
-.loader:after 
-  content ''
-  position absolute
-  top 0
+  @keyframes loading
+    0%
+      transform translateY(0px)
+    40%
+      transform translateY(-6px)
+    80%,100%
+      transform translateY(0px)
 
+  span
+    background #4F6387
+    border-radius 100%
+    margin 0 3px 0 0
+    height 4px
+    width 4px
+    float left
 
-.loader:before 
-  left -3.5em
-  -webkit-animation-delay -0.32s
-  animation-delay -0.32s
+    &:nth-of-type(1)
+      -webkit-animation loading 1.2s 0s infinite cubic-bezier(.60,0,.40,1)
 
+    &:nth-of-type(2)
+      -webkit-animation loading 1.2s .1s infinite cubic-bezier(.60,0,.40,1)
 
-.loader:after 
-  left 3.5em
-
-
-.loader-message 
-  text-align center
-  font-size 12pt
-  margin-bottom 10px
-  margin-top 100px
-
-@-webkit-keyframes load7 {
-  0%,
-  80%,
-  100% {
-    box-shadow: 0 2.5em 0 -1.3em;
-  }
-  40% {
-    box-shadow: 0 2.5em 0 0;
-  }
-}
-@keyframes load7 {
-  0%,
-  80%,
-  100% {
-    box-shadow: 0 2.5em 0 -1.3em;
-  }
-  40% {
-    box-shadow: 0 2.5em 0 0;
-  }
-}
+    &:nth-of-type(3)
+      margin 0
+      -webkit-animation loading 1.2s .2s infinite cubic-bezier(.60,0,.40,1)
