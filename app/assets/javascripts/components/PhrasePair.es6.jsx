@@ -36,22 +36,34 @@ PhrasePair = React.createClass( {
 
   onSavePhraseClick:function(e){
     e.preventDefault()
-    $.ajax({
-      url: '/phrase_pairs/' + this.props.id,
-      type: 'PUT',
-      data: {
-        phrase_pair: {
-          source_phrase: this.state.sourcePhrase,
-          target_phrase: this.state.targetPhrase
+    if(this.state.sourcePhrase && this.state.targetPhrase) {
+      $.ajax({
+        url: '/phrase_pairs/' + this.props.id,
+        type: 'PUT',
+        data: {
+          phrase_pair: {
+            source_phrase: this.state.sourcePhrase,
+            target_phrase: this.state.targetPhrase
+          }
+        },
+        success: function() {
+          this.toggleEditingPhraseState();
+        }.bind(this),
+        error: function() {
+          console.log("Error: Could not save phrase")
         }
-      },
-      success: function() {
-        this.toggleEditingPhraseState();
-      }.bind(this),
-      error: function() {
-        console.log("Error: Could not save phrase")
+      })
+    } else {
+      if(this.state.sourcePhrase) {
+        bootbox.alert({
+          message: "Target phrase is empty",
+          closeButton:false})
+      } else {
+        bootbox.alert({
+          message: "Source phrase is empty",
+          closeButton:false})
       }
-    })
+    }
   },
 
   onInvertPhraseClick:function(e){
@@ -108,6 +120,21 @@ PhrasePair = React.createClass( {
     }
   },
 
+  renderParagraph(text) {
+    if(text) {
+      return (
+        <p>{text}</p>
+      );
+    } else {
+      return(
+        <p>
+          <Progress/>
+        </p>
+      )
+    }
+  },
+
+
   renderPhrasePair: function() {
      if (this.state.isEditingPhrase) {
       return (
@@ -133,10 +160,10 @@ PhrasePair = React.createClass( {
       return (
         <ul>
           <li className="source text">
-            <p>{this.state.sourcePhrase}</p>
+            {this.renderParagraph(this.state.sourcePhrase)}
           </li>
           <li className="target text">
-            <p>{this.state.targetPhrase}</p>
+            {this.renderParagraph(this.state.targetPhrase)}
           </li>
           { this.renderPhraseMenu() }
         </ul>

@@ -4,6 +4,7 @@
   <title>Poly</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+
   <%= csrf_meta_tags %>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href='https://fonts.googleapis.com/css?family=Roboto:900,300' rel='stylesheet' type='text/css'>
@@ -20,10 +21,9 @@
 
 
   <p class="brand"><%= image_tag 'icons/i_home_1.svg' %> Wikitongues</p>
-
-  <script>
-    setTimeout("$('#notice').fadeOut('4000')", 3000)
-  </script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <%= javascript_include_tag 'bootbox'%>
+  <script>setTimeout("$('#notice').fadeOut('4000')", 3000)</script>
 
 </body>
 </html>
