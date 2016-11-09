@@ -120,6 +120,21 @@ PhrasePair = React.createClass( {
     }
   },
 
+  renderParagraph(text) {
+    if(text) {
+      return (
+        <p>{text}</p>
+      );
+    } else {
+      return(
+        <p>
+          <Progress/>
+        </p>
+      )
+    }
+  },
+
+
   renderPhrasePair: function() {
      if (this.state.isEditingPhrase) {
       return (
@@ -145,10 +160,10 @@ PhrasePair = React.createClass( {
       return (
         <ul>
           <li className="source text">
-            <p>{this.state.sourcePhrase}</p>
+            {this.renderParagraph(this.state.sourcePhrase)}
           </li>
           <li className="target text">
-            <p>{this.state.targetPhrase}</p>
+            {this.renderParagraph(this.state.targetPhrase)}
           </li>
           { this.renderPhraseMenu() }
         </ul>
