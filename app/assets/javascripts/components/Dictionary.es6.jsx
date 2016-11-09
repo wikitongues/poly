@@ -17,6 +17,21 @@ Dictionary = React.createClass( {
     })
   },
 
+  componentDidUpdate: function() {
+    if (this.refs.sourceInput) {
+      this.refs.sourceInput.blur();
+    }
+    if (this.refs.targetInput) {
+      this.refs.targetInput.blur();
+    }
+    if (this.state.isPhraseInputActive && this.refs.sourceInput) {
+      this.refs.sourceInput.focus();
+    }
+    if (this.state.isTargetInputActive && this.refs.targetInput) {
+      this.refs.targetInput.focus();
+    }
+  },
+
   onAddNewPhraseButtonClick: function() {
     this.setState({
         isPhraseInputActive: !this.state.isPhraseInputActive
@@ -175,6 +190,7 @@ Dictionary = React.createClass( {
           { this.renderInputMethod() }
           <form className="newPhrase" onSubmit={this.onSourcePhraseSubmit}>
             <input
+              ref="sourceInput"
               value={this.state.sourcePhrase}
               onChange={this.onSourcePhraseChange}
               className="sourcePhrase input"
@@ -193,6 +209,7 @@ Dictionary = React.createClass( {
     return (
       <form className="newPhrase" onSubmit={continuousInput ? this.onTargetPhraseMultipleSubmit : this.onTargetPhraseSubmit}>
         <input
+          ref="targetInput"
           value={this.state.targetPhrase}
           onChange={this.onTargetPhraseChange}
           className="targetPhrase input"
