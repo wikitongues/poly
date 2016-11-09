@@ -37,23 +37,35 @@ PhrasePair = React.createClass( {
   },
 
   onSavePhraseClick:function(e){
-    e.preventDefault();
-    $.ajax({
-      url: '/phrase_pairs/' + this.props.id,
-      type: 'PUT',
-      data: {
-        phrase_pair: {
-          source_phrase: this.state.sourcePhrase,
-          target_phrase: this.state.targetPhrase
+    e.preventDefault()
+    if(this.state.sourcePhrase && this.state.targetPhrase) {
+      $.ajax({
+        url: '/phrase_pairs/' + this.props.id,
+        type: 'PUT',
+        data: {
+          phrase_pair: {
+            source_phrase: this.state.sourcePhrase,
+            target_phrase: this.state.targetPhrase
+          }
+        },
+        success: function() {
+          this.toggleEditingPhraseState();
+        }.bind(this),
+        error: function() {
+          console.log("Error: Could not save phrase")
         }
-      },
-      success: function() {
-        this.toggleEditingPhraseState();
-      }.bind(this),
-      error: function() {
-        console.log("Error: Could not save phrase")
+      })
+    } else {
+      if(this.state.sourcePhrase) {
+        bootbox.alert({
+          message: "Target phrase is empty",
+          closeButton:false})
+      } else {
+        bootbox.alert({
+          message: "Source phrase is empty",
+          closeButton:false})
       }
-    })
+    }
   },
 
   onInvertPhraseClick:function(e){
@@ -81,17 +93,15 @@ PhrasePair = React.createClass( {
       this.setState({ isSourceVideoloading: false });
     }, 10000);
 
-    const stickedClass = `container-iframe ${name}`;
-
     if (this.state.isSourceVideoloading) {
       return (
-        <div className={stickedClass}>
+        <div className="container-iframe">
           {this.renderLoader()}
         </div>
       );
     }
     return (
-      <div className={stickedClass}>
+      <div className="container-iframe">
         {this.renderIframe(src)}
       </div>
     );
@@ -102,17 +112,15 @@ PhrasePair = React.createClass( {
       this.setState({ isTargetVideoloading: false });
     }, 10000);
 
-    const stickedClass = `container-iframe ${name}`;
-
     if (this.state.isTargetVideoloading) {
       return (
-        <div className={stickedClass}>
+        <div className="container-iframe">
           {this.renderLoader()}
         </div>
       );
     }
     return (
-      <div className={stickedClass}>
+      <div className="container-iframe">
         {this.renderIframe(src)}
       </div>
     );
@@ -124,9 +132,8 @@ PhrasePair = React.createClass( {
 
   renderLoader() {
     return (
-      <div className="loader-container">
-        <div className="loader-message">Processing the video...</div>
-        <div className="loader"></div>
+      <div className="videoLoader">
+        <Progress/>
       </div>
     );
   },
@@ -136,6 +143,7 @@ PhrasePair = React.createClass( {
       <p>{text}</p>
     );
   },
+
   renderSourceInput(status) {
     return (<input
       disabled={status}
@@ -144,6 +152,7 @@ PhrasePair = React.createClass( {
       name="sourcePhrase"
     />);
   },
+
   renderTargetInput(status) {
     return (<input
       disabled={status}
@@ -186,6 +195,21 @@ PhrasePair = React.createClass( {
       }
     }
   },
+
+  renderParagraph(text) {
+    if(text) {
+      return (
+        <p>{text}</p>
+      );
+    } else {
+      return(
+        <p>
+          <Progress/>
+        </p>
+      )
+    }
+  },
+
 
   renderPhrasePair() {
     if (this.state.isEditingPhrase) {
