@@ -88,6 +88,16 @@ PhrasePair = React.createClass( {
     this.setState({ targetPhrase: e.target.value });
   },
 
+  renderVideoLoader() {
+    return(
+      <span className="loader">
+        <span><span></span></span>
+        <span><span></span></span>
+        <span><span></span></span>
+      </span>
+    )
+  },
+
   renderSourceVideo(src, name) {
     if (this.state.isSourceVideoloading !== false) {
       setTimeout(() => {
@@ -98,7 +108,7 @@ PhrasePair = React.createClass( {
     if (this.state.isSourceVideoloading) {
       return (
         <div className="container-iframe">
-          <div className="loader"></div>
+          {this.renderVideoLoader()}
         </div>
       );
     }
@@ -119,7 +129,7 @@ PhrasePair = React.createClass( {
     if (this.state.isTargetVideoloading) {
       return (
         <div className="container-iframe">
-          <div className="loader"></div>
+          {this.renderVideoLoader()}
         </div>
       );
     }
