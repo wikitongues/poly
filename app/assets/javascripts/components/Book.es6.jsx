@@ -358,7 +358,8 @@ Book = React.createClass( {
           save={this.props.save}
           delete={this.props.delete}
           edit={this.props.edit}
-          close={this.props.close} />
+          close={this.props.close}
+          />
         </div>
       </div>
     )
