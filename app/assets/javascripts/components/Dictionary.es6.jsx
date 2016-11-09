@@ -55,7 +55,7 @@ Dictionary = React.createClass( {
         // Uncomment the two lines below in order to try it out
         // setTimeout(() => {
         this.setState({ isVideoNotAvailable: false });
-        this.refs.buttonVideo.style.opacity = 1;    
+        this.refs.buttonVideo.style.opacity = 1;
         // }, 5000);
       });
     });
