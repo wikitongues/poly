@@ -23,6 +23,7 @@ Dictionary = React.createClass( {
       interval: '',
       accessToken: '',
       isVideoNotAvailable: true,
+      videoButtonClass: ' video-button-disabled',
     };
   },
 
@@ -52,11 +53,10 @@ Dictionary = React.createClass( {
     }).then(() => {
       gapi.client.load('youtube', 'v3')
       .then(() => {
-        // Uncomment the two lines below in order to try it out
-        // setTimeout(() => {
-        this.setState({ isVideoNotAvailable: false });
-        this.refs.buttonVideo.style.opacity = 1;    
-        // }, 5000);
+        this.setState({
+          isVideoNotAvailable: false,
+          videoButtonClass: ' video-button-enabled',
+        });
       });
     });
   },
@@ -390,10 +390,11 @@ Dictionary = React.createClass( {
       );
     }*/
     if (!this.state.isInputVideo) {
+      const videoButtonClass = 'video icon' + this.state.videoButtonClass;
       return (
         <span className="inputOptions">
           <button title="Text" className="text icon selectedInput"><img src={this.props.textAlt} alt="text"/></button>
-          <button ref="buttonVideo" disabled={this.state.isVideoNotAvailable} title="Video" onClick={this.onToggleInputType} className="video icon"><img src={this.props.video} alt="video"/></button>
+          <button disabled={this.state.isVideoNotAvailable} title="Video" onClick={this.onToggleInputType} className={videoButtonClass}><img src={this.props.video} alt="video"/></button>
           <button title="Cancel" onClick={this.onCancelEditPhrase} className="close icon"><img src={this.props.close} alt="close"/></button>
         </span>
       );
