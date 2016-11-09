@@ -89,9 +89,11 @@ PhrasePair = React.createClass( {
   },
 
   renderSourceVideo(src, name) {
-    setTimeout(() => {
-      this.setState({ isSourceVideoloading: false });
-    }, 10000);
+    if (this.state.isSourceVideoloading !== false) {
+      setTimeout(() => {
+        this.setState({ isSourceVideoloading: false });
+      }, 10000);      
+    }
 
     if (this.state.isSourceVideoloading) {
       return (
@@ -108,9 +110,11 @@ PhrasePair = React.createClass( {
   },
 
   renderTargetVideo(src, name) {
-    setTimeout(() => {
-      this.setState({ isTargetVideoloading: false });
-    }, 10000);
+    if (this.state.isTargetVideoloading !== false) {
+      setTimeout(() => {
+        this.setState({ isTargetVideoloading: false });
+      }, 10000);      
+    }
 
     if (this.state.isTargetVideoloading) {
       return (

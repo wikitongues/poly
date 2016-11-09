@@ -304,9 +304,11 @@ Video = React.createClass( {
         </div>
         <div className="progress">
           <div className="progress-message">Uploading the video...</div>
+          <div className="progress-hint">(The video's processing by Youtube might take some time. If an error occurs try reloading in a few minutes.)</div>
           <div className="progress-bar">
             <div style={{width: this.state.percent +'%'}}></div>
           </div>
+
         </div>
 
       </div>
