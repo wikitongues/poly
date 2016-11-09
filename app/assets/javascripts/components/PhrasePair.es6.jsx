@@ -92,13 +92,13 @@ PhrasePair = React.createClass( {
     if (this.state.isSourceVideoloading !== false) {
       setTimeout(() => {
         this.setState({ isSourceVideoloading: false });
-      }, 10000);      
+      }, 10000);
     }
 
     if (this.state.isSourceVideoloading) {
       return (
         <div className="container-iframe">
-          {this.renderLoader()}
+          <div className="loader"></div>
         </div>
       );
     }
@@ -113,13 +113,13 @@ PhrasePair = React.createClass( {
     if (this.state.isTargetVideoloading !== false) {
       setTimeout(() => {
         this.setState({ isTargetVideoloading: false });
-      }, 10000);      
+      }, 10000);
     }
 
     if (this.state.isTargetVideoloading) {
       return (
         <div className="container-iframe">
-          {this.renderLoader()}
+          <div className="loader"></div>
         </div>
       );
     }
@@ -132,20 +132,6 @@ PhrasePair = React.createClass( {
 
   renderIframe(src) {
     return <iframe className="iframe" src={src} frameBorder="0" />;
-  },
-
-  renderLoader() {
-    return (
-      <div className="videoLoader">
-        <Progress/>
-      </div>
-    );
-  },
-
-  renderParagraph(text) {
-    return (
-      <p>{text}</p>
-    );
   },
 
   renderSourceInput(status) {
