@@ -5,16 +5,16 @@ PhrasePair = React.createClass( {
       isEditingPhrase: false,
       sourcePhrase: this.props.initialSourcePhrase,
       targetPhrase: this.props.initialTargetPhrase,
-      isSourceVideoloading: false,
-      isTargetVideoloading: false,
+      isSourceVideoLoading: false,
+      isTargetVideoLoading: false,
     }
   },
 
   componentDidMount() {
     if (this.props.newPhrase) {
-      this.setState({ 
-        isSourceVideoloading: true,
-        isTargetVideoloading: true,
+      this.setState({
+        isSourceVideoLoading: true,
+        isTargetVideoLoading: true,
       });
     }
   },
@@ -108,13 +108,13 @@ PhrasePair = React.createClass( {
   },
 
   renderSourceVideo(src) {
-    if (this.state.isSourceVideoloading !== false) {
+    if (this.state.isSourceVideoLoading !== false) {
       setTimeout(() => {
-        this.setState({ isSourceVideoloading: false });
+        this.setState({ isSourceVideoLoading: false });
       }, 10000);
     }
 
-    if (this.state.isSourceVideoloading) {
+    if (this.state.isSourceVideoLoading) {
       return (
         <div className="container-iframe">
           {this.renderVideoLoader()}
@@ -129,13 +129,13 @@ PhrasePair = React.createClass( {
   },
 
   renderTargetVideo(src) {
-    if (this.state.isTargetVideoloading !== false) {
+    if (this.state.isTargetVideoLoading !== false) {
       setTimeout(() => {
-        this.setState({ isTargetVideoloading: false });
+        this.setState({ isTargetVideoLoading: false });
       }, 10000);
     }
 
-    if (this.state.isTargetVideoloading) {
+    if (this.state.isTargetVideoLoading) {
       return (
         <div className="container-iframe">
           {this.renderVideoLoader()}
