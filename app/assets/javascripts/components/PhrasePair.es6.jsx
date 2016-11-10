@@ -5,8 +5,17 @@ PhrasePair = React.createClass( {
       isEditingPhrase: false,
       sourcePhrase: this.props.initialSourcePhrase,
       targetPhrase: this.props.initialTargetPhrase,
-      isSourceVideoloading: true,
-      isTargetVideoloading: true,
+      isSourceVideoloading: false,
+      isTargetVideoloading: false,
+    }
+  },
+
+  componentDidMount() {
+    if (this.props.newPhrase) {
+      this.setState({ 
+        isSourceVideoloading: true,
+        isTargetVideoloading: true,
+      });
     }
   },
 
@@ -98,7 +107,7 @@ PhrasePair = React.createClass( {
     )
   },
 
-  renderSourceVideo(src, name) {
+  renderSourceVideo(src) {
     if (this.state.isSourceVideoloading !== false) {
       setTimeout(() => {
         this.setState({ isSourceVideoloading: false });
@@ -119,7 +128,7 @@ PhrasePair = React.createClass( {
     );
   },
 
-  renderTargetVideo(src, name) {
+  renderTargetVideo(src) {
     if (this.state.isTargetVideoloading !== false) {
       setTimeout(() => {
         this.setState({ isTargetVideoloading: false });
@@ -244,7 +253,7 @@ PhrasePair = React.createClass( {
           <li className="source">
             {
               this.state.sourcePhrase.startsWith('http://www.youtube') ?
-                this.renderSourceVideo(this.state.sourcePhrase, 'source')
+                this.renderSourceVideo(this.state.sourcePhrase)
                 :
                 this.renderParagraph(this.state.sourcePhrase)
             }
@@ -252,7 +261,7 @@ PhrasePair = React.createClass( {
           <li className="target">
             {
               this.state.targetPhrase && this.state.targetPhrase.startsWith('http://www.youtube') ?
-                this.renderTargetVideo(this.state.targetPhrase, 'target')
+                this.renderTargetVideo(this.state.targetPhrase)
                 :
                 this.renderParagraph(this.state.targetPhrase)
             }

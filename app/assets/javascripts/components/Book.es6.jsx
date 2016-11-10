@@ -7,11 +7,15 @@ Book = React.createClass( {
       book: this.props.initialBook,
       isDescriptionTruncated:true,
       isFavoriteBook: this.isFavoriteBook(),
-      errors:[]
+      errors:[],
+      isNewPhrase: false,
     }
   },
 
-  onSourcePhraseSubmit(sourcePhrase) {
+  onSourcePhraseSubmit(sourcePhrase, isNewPhrase) {
+    if (isNewPhrase) {
+      this.setState({ isNewPhrase: true });
+    }
     var newPhrasePair = {
       source_phrase: sourcePhrase,
     };
@@ -382,6 +386,7 @@ Book = React.createClass( {
           sourceLanguage={this.state.book.source_language}
           targetLanguage={this.state.book.target_language}
           author={this.state.book.user_id}
+          isNewPhrase={this.state.isNewPhrase}
           />
         </div>
       </div>

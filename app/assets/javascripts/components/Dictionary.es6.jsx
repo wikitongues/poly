@@ -106,7 +106,7 @@ Dictionary = React.createClass( {
   onSourceVideoSubmit(video) {
     this.setState({ sourcePhrase: video });
     if(this.state.sourcePhrase) {
-      this.props.onSourcePhraseSubmit(this.state.sourcePhrase),
+      this.props.onSourcePhraseSubmit(this.state.sourcePhrase, this.state.isPhraseInputActive),
       this.setState({
           isTargetInputActive: !this.state.isTargetInputActive,
           sourcePhrase: ""
@@ -289,6 +289,24 @@ Dictionary = React.createClass( {
 
   renderPhrasePairs() {
     return this.state.phrasePairs.map((phrasePair, index) => {
+      if (this.props.isNewPhrase) {
+        return (
+            <PhrasePair
+              id={phrasePair.id}
+              isOwnedByCurrentUser={this.props.isOwnedByCurrentUser}
+              initialSourcePhrase={phrasePair.source_phrase}
+              initialTargetPhrase={phrasePair.target_phrase}
+              key={index}
+              onDeletePhrasePair={this.onDeletePhrasePair}
+              menu={this.props.menu}
+              flip={this.props.flip}
+              save={this.props.save}
+              delete={this.props.delete}
+              edit={this.props.edit}
+              close={this.props.close}
+              newPhrase="newPhrase" />
+        );        
+      }
       return (
           <PhrasePair
             id={phrasePair.id}
