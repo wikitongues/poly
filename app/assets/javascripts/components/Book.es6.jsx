@@ -13,6 +13,7 @@ class Book extends React.Component {
     this.saveNewPhrasePair = this.saveNewPhrasePair.bind(this);
     this.onDeleteBookClick = this.onDeleteBookClick.bind(this);
     this.onSaveBookClick = this.onSaveBookClick.bind(this);
+    this.onInvertLanguagesClick = this.onInvertLanguagesClick.bind(this);
     this.toggleEditingBookState = this.toggleEditingBookState.bind(this);
     this.onInputChange = this.onInputChange.bind(this);
     this.onSearchBook = this.onSearchBook.bind(this);
