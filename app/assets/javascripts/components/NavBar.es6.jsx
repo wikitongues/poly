@@ -42,5 +42,16 @@ class NavBar extends React.Component {
 }
 
 NavBar.propTypes = {
-
+  currentUser: React.PropTypes.shape({
+    created_at: React.PropTypes.string,
+    email: React.PropTypes.string,
+    favorite_books: React.PropTypes.array,
+    id: React.PropTypes.number,
+    username: React.PropTypes.string,
+  }),
+  menu: React.PropTypes.string,
+  logo: React.PropTypes.string,
+  detail: React.PropTypes.string,
+  query: React.PropTypes.string,
+  search: React.PropTypes.string,
 };

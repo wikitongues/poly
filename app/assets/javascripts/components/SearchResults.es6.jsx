@@ -112,5 +112,19 @@ class SearchResults extends React.Component {
 }
 
 SearchResults.propTypes = {
-
+  currentUser: React.PropTypes.shape({
+    created_at: React.PropTypes.string,
+    email: React.PropTypes.string,
+    favorite_books: React.PropTypes.array,
+    id: React.PropTypes.number,
+    username: React.PropTypes.string,
+  }),
+  sourceLanguage: React.PropTypes.array, // TODO: precise
+  targetLanguage: React.PropTypes.array, // TODO: precise
+  query: React.PropTypes.string,
+  users: React.PropTypes.string,
+  cardinality: React.PropTypes.string,
+  logo: React.PropTypes.string,
+  detail: React.PropTypes.string,
+  search: React.PropTypes.string,
 };

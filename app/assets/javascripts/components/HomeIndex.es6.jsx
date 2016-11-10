@@ -68,5 +68,37 @@ class HomeIndex extends React.Component {
 }
 
 HomeIndex.propTypes = {
-
+  currentUser: React.PropTypes.shape({
+    created_at: React.PropTypes.string,
+    email: React.PropTypes.string,
+    favorite_books: React.PropTypes.array,
+    id: React.PropTypes.number,
+    username: React.PropTypes.string,
+  }),
+  books: React.PropTypes.arrayOf(React.PropTypes.shape({
+    created_at: React.PropTypes.string,
+    description: React.PropTypes.string,
+    id: React.PropTypes.number,
+    source_language: React.PropTypes.string,
+    target_language: React.PropTypes.string,
+    title: React.PropTypes.string,
+    user: React.PropTypes.shape({
+      created_at: React.PropTypes.string,
+      email: React.PropTypes.string,
+      favorite_books: React.PropTypes.array,
+      id: React.PropTypes.number,
+      username: React.PropTypes.string,
+    }),
+  })),
+  users: React.PropTypes.arrayOf(React.PropTypes.shape({
+    created_at: React.PropTypes.string,
+    email: React.PropTypes.string,
+    favorite_books: React.PropTypes.array,
+    id: React.PropTypes.number,
+    username: React.PropTypes.string,
+  })),
+  cardinality: React.PropTypes.string,
+  logo: React.PropTypes.string,
+  detail: React.PropTypes.string,
+  search: React.PropTypes.string,
 };

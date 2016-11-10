@@ -422,6 +422,55 @@ class Book extends React.Component {
 }
 
 Book.propTypes = {
-
+  initialPhrasePairs: React.PropTypes.arrayOf(React.PropTypes.shape({
+    book_id: React.PropTypes.number,
+    created_at: React.PropTypes.string,
+    id: React.PropTypes.number,
+    source_phrase: React.PropTypes.string,
+    target_phrase: React.PropTypes.string,
+    updated_at: React.PropTypes.string,
+  })),
+  initialBook: React.PropTypes.shape({
+    created_at: React.PropTypes.string,
+    description: React.PropTypes.string,
+    id: React.PropTypes.number,
+    source_language: React.PropTypes.string,
+    target_language: React.PropTypes.string,
+    title: React.PropTypes.string,
+    updated_at: React.PropTypes.string,
+    user_id: React.PropTypes.number,
+  }),
+  currentUser: React.PropTypes.shape({
+    created_at: React.PropTypes.string,
+    email: React.PropTypes.string,
+    favorite_books: React.PropTypes.array,
+    id: React.PropTypes.number,
+    username: React.PropTypes.string,
+  }),
+  flipAlt: React.PropTypes.string,
+  saveAlt: React.PropTypes.string,
+  closeAlt: React.PropTypes.string,
+  menuAlt: React.PropTypes.string,
+  editAlt: React.PropTypes.string,
+  deleteAlt: React.PropTypes.string,
+  users: React.PropTypes.arrayOf(React.PropTypes.shape({
+    created_at: React.PropTypes.string,
+    email: React.PropTypes.string,
+    favorite_books: React.PropTypes.array,
+    id: React.PropTypes.number,
+    username: React.PropTypes.string,
+  })),
+  star: React.PropTypes.string,
+  unstar: React.PropTypes.string,
+  logo: React.PropTypes.string,
+  detail: React.PropTypes.string,
+  search: React.PropTypes.string,
+  cardinality: React.PropTypes.string,
+  menu: React.PropTypes.string,
+  flip: React.PropTypes.string,
+  save: React.PropTypes.string,
+  delete: React.PropTypes.string,
+  edit: React.PropTypes.string,
+  close: React.PropTypes.string,
 };
 

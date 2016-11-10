@@ -17,5 +17,6 @@ class SearchBar extends React.Component {
 }
 
 SearchBar.proptypes = {
-
+  query: React.PropTypes.string,
+  search: React.PropTypes.string,
 };

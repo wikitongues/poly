@@ -163,5 +163,14 @@ class PhrasePair extends React.Component {
 }
 
 PhrasePair.propTypes = {
-
+  initialSourcePhrase: React.PropTypes.string,
+  initialTargetPhrase: React.PropTypes.string,
+  id: React.PropTypes.number,
+  isOwnedByCurrentUser: React.PropTypes.bool,
+  flip: React.PropTypes.string,
+  save: React.PropTypes.string,
+  close: React.PropTypes.string,
+  menu: React.PropTypes.string,
+  edit: React.PropTypes.string,
+  delete: React.PropTypes.string,
 };

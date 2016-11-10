@@ -166,7 +166,8 @@ class Dictionary extends React.Component {
     );
   }
 
-  // NB If in continuous input state, show source input field following successful phrase pair completion.
+  // NB If in continuous input state, show source input field following successful 
+  // phrase pair completion.
   renderTargetInput() {
     const continuousInput = this.state.isContinuousInputActive;
     return (
@@ -234,5 +235,21 @@ class Dictionary extends React.Component {
 }
 
 Dictionary.propTypes = {
-
+  initialPhrasePairs: React.PropTypes.arrayOf(React.PropTypes.shape({
+    book_id: React.PropTypes.number,
+    created_at: React.PropTypes.string,
+    id: React.PropTypes.number,
+    source_phrase: React.PropTypes.string,
+    target_phrase: React.PropTypes.string,
+    updated_at: React.PropTypes.string,
+  })),
+  onSourcePhraseSubmit: React.PropTypes.func,
+  onTargetPhraseSubmit: React.PropTypes.func,
+  isOwnedByCurrentUser: React.PropTypes.bool,
+  menu: React.PropTypes.string,
+  flip: React.PropTypes.string,
+  save: React.PropTypes.string,
+  delete: React.PropTypes.string,
+  edit: React.PropTypes.string,
+  close: React.PropTypes.string,
 };

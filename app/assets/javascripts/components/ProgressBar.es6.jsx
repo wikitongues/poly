@@ -37,7 +37,3 @@ class ProgressBar extends React.Component {
     );
   }
 }
-
-ProgressBar.proptypes = {
-
-};
