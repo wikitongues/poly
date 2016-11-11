@@ -151,7 +151,7 @@ class Profile extends React.Component {
 
   renderEditButton() {
     if (this.props.currentUser) {
-      if (this.props.currentUser.id === this.props.userData.id) {
+      if (this.props.currentUser.id == this.props.userData.id) {
         return (
           <a className="editButton" href="account/edit">Edit</a>
         );

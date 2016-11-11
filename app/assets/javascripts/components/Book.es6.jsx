@@ -168,7 +168,7 @@ class Book extends React.Component {
 
   bookIsOwnedByCurrentUser() {
     if (this.props.currentUser) {
-      return this.props.initialBook.user_id === this.props.currentUser.id;
+      return this.props.initialBook.user_id == this.props.currentUser.id;
     }
   }
 
@@ -237,7 +237,7 @@ class Book extends React.Component {
     const users = this.props.users;
     let authorName = '';
     for (var i = users.length - 1; i >= 0; i--) {
-      if (this.props.initialBook.user_id === users[i].id) {
+      if (this.props.initialBook.user_id == users[i].id) {
         authorName = users[i].username;
       }
     }
@@ -357,7 +357,7 @@ class Book extends React.Component {
   isFavoriteBook() {
     if (this.props.currentUser) {
       return this.props.currentUser.favorite_books.filter(function (favorite) {
-        return favorite.book_id === this.props.initialBook.id;
+        return favorite.book_id == this.props.initialBook.id;
       }.bind(this)).length > 0;
     }
   }

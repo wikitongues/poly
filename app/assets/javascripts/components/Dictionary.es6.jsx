@@ -90,7 +90,7 @@ class Dictionary extends React.Component {
         success: function (response) {
           const phrasePairs = this.state.phrasePairs;
           const indexToRemove = _.findIndex(phrasePairs, (phrasePair) => {
-            return phrasePair.id === response.id;
+            return phrasePair.id == response.id;
           });
           phrasePairs.splice(indexToRemove, 1);
           this.setState({ phrasePairs });
