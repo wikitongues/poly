@@ -73,7 +73,7 @@ class Profile extends React.Component {
 
   currentUserProfile() {
     if (this.props.currentUser) {
-      return this.props.userData.id !== this.props.currentUser.id;
+      return this.props.userData.id != this.props.currentUser.id;
     }
   }
 

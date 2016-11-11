@@ -216,7 +216,7 @@ class Dictionary extends React.Component {
   }
 
   render() {
-    if (this.state.phrasePairs.length !== 0) {
+    if (this.state.phrasePairs.length != 0) {
       return (
          <div className="dictionary">
           <ul className="content">{this.renderPhrasePairs()}</ul>

@@ -30,7 +30,7 @@ class SearchResults extends React.Component {
   }
 
   renderSearchResults() {
-    if (this.props.sourceLanguage.length !== 0 || this.props.targetLanguage !== 0) {
+    if (this.props.sourceLanguage.length != 0 || this.props.targetLanguage != 0) {
       return (
         <div className="search">
           {this.renderSourceResultSection()}
@@ -44,7 +44,7 @@ class SearchResults extends React.Component {
   }
 
   renderSourceResultSection() {
-    if (this.props.sourceLanguage.length !== 0) {
+    if (this.props.sourceLanguage.length != 0) {
       return (
         <div className="indexContent">
           <div className="controlPanel">
@@ -60,20 +60,18 @@ class SearchResults extends React.Component {
   }
 
   renderSourceResults() {
-    return this.props.sourceLanguage.map((book) => {
-      return (
-        <BookEntry
-          users={this.props.users}
-          book={book}
-          key={book.id}
-          cardinality={this.props.cardinality}
-        />
-      );
-    });
+    return this.props.sourceLanguage.map(book => (
+      <BookEntry
+        users={this.props.users}
+        book={book}
+        key={book.id}
+        cardinality={this.props.cardinality}
+      />)
+    );
   }
 
   renderTargetResultSection() {
-    if (this.props.targetLanguage.length !== 0) {
+    if (this.props.targetLanguage.length != 0) {
       return (
         <div className="indexContent">
           <div className="controlPanel">
@@ -89,16 +87,14 @@ class SearchResults extends React.Component {
   }
 
   renderTargetResults() {
-    return this.props.targetLanguage.map((book) => {
-      return (
-        <BookEntry
-          users={this.props.users}
-          book={book}
-          key={book.id}
-          cardinality={this.props.cardinality}
-        />
-      );
-    });
+    return this.props.targetLanguage.map(book => (
+      <BookEntry
+        users={this.props.users}
+        book={book}
+        key={book.id}
+        cardinality={this.props.cardinality}
+      />)
+    );
   }
 
   render() {
