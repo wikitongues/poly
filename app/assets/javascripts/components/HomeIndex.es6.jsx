@@ -1,9 +1,5 @@
 HomeIndex = React.createClass ( {
 
-  onSearchStoreClick: function() {
-    alert("Search is coming soon!")
-  },
-
   renderCreateBookPanel: function() {
     if (this.props.currentUser) {
       return (

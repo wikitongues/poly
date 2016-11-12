@@ -51,7 +51,9 @@ Dictionary = React.createClass( {
           sourcePhrase: ""
       });
     } else {
-      alert("Source phrase is empty")
+      bootbox.alert({
+        message: "Source phrase is empty",
+        closeButton:false})
     }
   },
 
@@ -69,7 +71,9 @@ Dictionary = React.createClass( {
         targetPhrase: ""
       });
     } else {
-      alert("Target phrase is empty")
+      bootbox.alert({
+        message: "Target phrase is empty",
+        closeButton:false})
     }
   },
 
@@ -137,7 +141,28 @@ Dictionary = React.createClass( {
     this.forceUpdate()
   },
 
-  renderCreateNewPhraseButton: function() {
+  renderPreSourcePhrase() {
+    if(this.state.isPhraseInputActive == true && this.state.isTargetInputActive == false) {
+      return(
+         <li className="entry pre">
+          <ul>
+            <li className="source">
+              <p><Progress/></p>
+            </li>
+            <li className="target">
+              <p></p>
+            </li>
+          </ul>
+        </li>
+      )
+    } else {
+      if(this.state.isPhraseInputActive == false && this.state.phrasePairs.length == 0 ) {
+        return(<DummyContent/>)
+      }
+    }
+  },
+
+  renderCreateNewPhraseButton() {
     if (this.props.isOwnedByCurrentUser) {
       if (this.state.isPhraseInputActive) {
         return (
@@ -221,21 +246,13 @@ Dictionary = React.createClass( {
   },
 
   render: function() {
-    if(this.state.phrasePairs.length != 0 ) {
       return (
          <div className="dictionary">
           <ul className="content">{this.renderPhrasePairs()}</ul>
+          {this.renderPreSourcePhrase()}
           {this.renderCreateNewPhraseButton()}
          </div>
       )
-    } else {
-      return (
-        <div className="dictionary">
-          <span className="notice">Phrasebook is empty</span>
-          <DummyContent/>
-          {this.renderCreateNewPhraseButton()}
-        </div>
-      )
-    }
   }
-} )
+} );
+

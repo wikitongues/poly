@@ -18,6 +18,7 @@ NewBook = React.createClass( {
 
   onSubmit: function(e) {
     e.preventDefault();
+    this.state.errors = []
     if(this.state.title && this.state.source_language && this.state.target_language) {
       $.ajax({
         url: '/books',
@@ -33,7 +34,12 @@ NewBook = React.createClass( {
         }
       })
     } else {
-      alert("Please make sure you have a book title, source and target language to continue.")
+      if(!this.state.title) {this.state.errors.push(" Title")}
+      if(!this.state.source_language) {this.state.errors.push(" Source language")}
+      if(!this.state.target_language) {this.state.errors.push(" Target language")}
+      bootbox.alert({
+        message: "Your book is missing the following required details:"+(this.state.errors),
+        closeButton:false})
     }
   },
 
