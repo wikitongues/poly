@@ -6,10 +6,6 @@ class HomeIndex extends React.Component {
     this.renderBooks = this.renderBooks.bind(this);
   }
 
-  onSearchStoreClick() {
-    alert('Search is coming soon!');
-  }
-
   renderCreateBookPanel() {
     if (this.props.currentUser) {
       return (

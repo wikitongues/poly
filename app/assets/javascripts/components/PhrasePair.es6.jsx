@@ -45,22 +45,36 @@ class PhrasePair extends React.Component {
 
   onSavePhraseClick(e) {
     e.preventDefault();
-    $.ajax({
-      url: '/phrase_pairs/' + this.props.id,
-      type: 'PUT',
-      data: {
-        phrase_pair: {
-          source_phrase: this.state.sourcePhrase,
-          target_phrase: this.state.targetPhrase,
+    if (this.state.sourcePhrase && this.state.targetPhrase) {
+      $.ajax({
+        url: '/phrase_pairs/' + this.props.id,
+        type: 'PUT',
+        data: {
+          phrase_pair: {
+            source_phrase: this.state.sourcePhrase,
+            target_phrase: this.state.targetPhrase,
+          },
         },
-      },
-      success: function () {
-        this.toggleEditingPhraseState();
-      }.bind(this),
-      error() {
-        console.log('Error: Could not save phrase');
-      },
-    });
+        success: function () {
+          this.toggleEditingPhraseState();
+        }.bind(this),
+        error() {
+          console.log('Error: Could not save phrase');
+        },
+      });
+    } else {
+      if (this.state.sourcePhrase) {
+        bootbox.alert({
+          message: 'Target phrase is empty',
+          closeButton: false,
+        });
+      } else {
+        bootbox.alert({
+          message: 'Source phrase is empty',
+          closeButton: false,
+        });
+      }
+    }
   }
 
   onInvertPhraseClick(e) {
@@ -116,6 +130,19 @@ class PhrasePair extends React.Component {
     }
   }
 
+  renderParagraph(text) {
+    if (text) {
+      return (
+        <p>{text}</p>
+      );
+    }
+    return (
+      <p>
+        <Progress />
+      </p>
+    );
+  }
+
   renderPhrasePair() {
     if (this.state.isEditingPhrase) {
       return (
@@ -143,6 +170,19 @@ class PhrasePair extends React.Component {
     return (
       <ul>
         <li className="source text">
+          {this.renderParagraph(this.state.sourcePhrase)}
+        </li>
+        <li className="target text">
+          {this.renderParagraph(this.state.targetPhrase)}
+        </li>
+        { this.renderPhraseMenu() }
+      </ul>
+    );
+    // Commented out this part of code because it is unreachable
+    /*
+    return (
+      <ul>
+        <li className="source text">
           <p>{this.state.sourcePhrase}</p>
         </li>
         <li className="target text">
@@ -151,6 +191,7 @@ class PhrasePair extends React.Component {
         { this.renderPhraseMenu() }
       </ul>
     );
+    */
   }
 
   render() {

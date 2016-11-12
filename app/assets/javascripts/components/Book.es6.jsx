@@ -7,6 +7,7 @@ class Book extends React.Component {
       book: this.props.initialBook,
       isDescriptionTruncated: true,
       isFavoriteBook: this.isFavoriteBook(),
+      errors: [],
     };
     this.onSourcePhraseSubmit = this.onSourcePhraseSubmit.bind(this);
     this.onTargetPhraseSubmit = this.onTargetPhraseSubmit.bind(this);
@@ -15,8 +16,8 @@ class Book extends React.Component {
     this.onSaveBookClick = this.onSaveBookClick.bind(this);
     this.onInvertLanguagesClick = this.onInvertLanguagesClick.bind(this);
     this.toggleEditingBookState = this.toggleEditingBookState.bind(this);
+    this.cancelEditingBookState = this.cancelEditingBookState.bind(this);
     this.onInputChange = this.onInputChange.bind(this);
-    this.onSearchBook = this.onSearchBook.bind(this);
     this.onClickFavoriteBook = this.onClickFavoriteBook.bind(this);
     this.destroyFavorite = this.destroyFavorite.bind(this);
     this.createFavorite = this.createFavorite.bind(this);
@@ -70,29 +71,50 @@ class Book extends React.Component {
   }
 
   onDeleteBookClick() {
-    if (window.confirm('Are you sure you want to delete this book?')) {
-      $.ajax({
-        url: '/books/' + this.state.book.id,
-        type: 'DELETE',
-        success() {
-          window.location.href = '/dashboard';
-        },
-      });
-    }
+    const id = this.state.book.id;
+    bootbox.confirm({
+      message: 'Are you sure you want to delete this book?',
+      closeButton: false,
+      callback: (result) => {
+        if (result === true) {
+          $.ajax({
+            url: '/books/' + id,
+            type: 'DELETE',
+            success() {
+              window.location.href = '/dashboard';
+            },
+          });
+        }
+      },
+    });
   }
 
   onSaveBookClick() {
-    $.ajax({
-      url: '/books/' + this.state.book.id,
-      type: 'PUT',
-      data: { book: this.state.book },
-      success: function () {
-        this.toggleEditingBookState();
-      }.bind(this),
-      error() {
-        alert('something went wrong');
-      },
-    });
+    this.state.errors = [];
+    if (this.state.book.title && this.state.book.source_language && this.state.book.target_language) {
+      $.ajax({
+        url: '/books/' + this.state.book.id,
+        type: 'PUT',
+        data: { book: this.state.book },
+        success: function () {
+          this.cancelEditingBookState();
+        }.bind(this),
+        error() {
+          bootbox.alert({
+            message: 'Something went wrong',
+            closeButton: false,
+          });
+        },
+      });
+    } else {
+      if (!this.state.book.title) this.state.errors.push(' Title');
+      if (!this.state.book.source_language) this.state.errors.push(" Source language");
+      if (!this.state.book.target_language) this.state.errors.push(" Target language");
+      bootbox.alert({
+        message: 'Your book is missing the following required details:' + (this.state.errors),
+        closeButton: false,
+      });
+    }
   }
 
   onInvertLanguagesClick() {
@@ -110,7 +132,11 @@ class Book extends React.Component {
   }
 
   toggleEditingBookState() {
-    this.setState({ isEditingBook: !this.state.isEditingBook });
+    this.setState({ isEditingBook: true });
+  }
+
+  cancelEditingBookState() {
+    this.setState({ isEditingBook: false });
   }
 
   onInputChange(e) {
@@ -119,10 +145,6 @@ class Book extends React.Component {
     newBook[e.target.name] = e.target.value;
     newState.book = newBook;
     this.setState(newState);
-  }
-
-  onSearchBook() {
-    alert('Searching is coming soon!');
   }
 
   onClickFavoriteBook() {
@@ -183,12 +205,22 @@ class Book extends React.Component {
             <button title="Save" onClick={this.onSaveBookClick} className="icon">
               <img src={this.props.saveAlt} alt="Save" />
             </button>
-            <button
-              title="Cancel"
-              onClick={this.toggleEditingBookState}
-              className="close icon"
-            >
-              <img src={this.props.closeAlt} alt="Close" />
+            <button title="Cancel" onClick={this.cancelEditingBookState} className="close icon">
+              <img src={this.props.closeAlt}/>
+            </button>
+          </div>
+        );
+      } else {
+        return (
+          <div className="menu">
+            <button title="Menu" className="more icon">
+              <img src={this.props.menuAlt}/>
+            </button>
+            <button title="Edit" onClick={this.toggleEditingBookState} className="icon" tabIndex="-1">
+              <img src={this.props.editAlt}/>
+            </button>
+            <button title="Delete" onClick={this.onDeleteBookClick} className="icon" tabIndex="-1">
+              <img src={this.props.deleteAlt}/>
             </button>
           </div>
         );
@@ -253,7 +285,7 @@ class Book extends React.Component {
       );
     }
     return (
-      <a href={"/users/" + this.state.book.user_id} className="author">{authorName}</a>
+      <a href={'/users/' + this.state.book.user_id} className="author">{authorName}</a>
     );
   }
 
@@ -356,9 +388,9 @@ class Book extends React.Component {
 
   isFavoriteBook() {
     if (this.props.currentUser) {
-      return this.props.currentUser.favorite_books.filter(function (favorite) {
+      return this.props.currentUser.favorite_books.filter((favorite) => {
         return favorite.book_id == this.props.initialBook.id;
-      }.bind(this)).length > 0;
+      }).length > 0;
     }
   }
 

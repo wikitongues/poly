@@ -30,6 +30,21 @@ class Dictionary extends React.Component {
     this.setState({ phrasePairs: newProps.initialPhrasePairs });
   }
 
+  componentDidUpdate() {
+    if (this.refs.sourceInput) {
+      this.refs.sourceInput.blur();
+    }
+    if (this.refs.targetInput) {
+      this.refs.targetInput.blur();
+    }
+    if (this.state.isPhraseInputActive && this.refs.sourceInput) {
+      this.refs.sourceInput.focus();
+    }
+    if (this.state.isTargetInputActive && this.refs.targetInput) {
+      this.refs.targetInput.focus();
+    }
+  }
+
   onAddNewPhraseButtonClick() {
     this.setState({ isPhraseInputActive: !this.state.isPhraseInputActive });
   }
@@ -47,7 +62,10 @@ class Dictionary extends React.Component {
         sourcePhrase: '',
       });
     } else {
-      alert('Source phrase is empty');
+      bootbox.alert({
+        message: 'Source phrase is empty',
+        closeButton: false,
+      });
     }
   }
 
@@ -65,7 +83,10 @@ class Dictionary extends React.Component {
         targetPhrase: '',
       });
     } else {
-      alert('Target phrase is empty');
+      bootbox.alert({
+        message: 'Target phrase is empty',
+        closeButton: false,
+      });
     }
   }
 
@@ -96,7 +117,7 @@ class Dictionary extends React.Component {
           this.setState({ phrasePairs });
         }.bind(this),
         error() {
-          console.log('Error: Could not delete phrase pair')
+          console.log('Error: Could not delete phrase pair');
         },
       });
     }
@@ -109,22 +130,42 @@ class Dictionary extends React.Component {
   renderPhrasePairs() {
     return this.state.phrasePairs.map((phrasePair, index) => {
       return (
-          <PhrasePair
-            id={phrasePair.id}
-            isOwnedByCurrentUser={this.props.isOwnedByCurrentUser}
-            initialSourcePhrase={phrasePair.source_phrase}
-            initialTargetPhrase={phrasePair.target_phrase}
-            key={index}
-            onDeletePhrasePair={this.onDeletePhrasePair}
-            menu={this.props.menu}
-            flip={this.props.flip}
-            save={this.props.save}
-            delete={this.props.delete}
-            edit={this.props.edit}
-            close={this.props.close}
-          />
+        <PhrasePair
+          id={phrasePair.id}
+          isOwnedByCurrentUser={this.props.isOwnedByCurrentUser}
+          initialSourcePhrase={phrasePair.source_phrase}
+          initialTargetPhrase={phrasePair.target_phrase}
+          key={index}
+          onDeletePhrasePair={this.onDeletePhrasePair}
+          menu={this.props.menu}
+          flip={this.props.flip}
+          save={this.props.save}
+          delete={this.props.delete}
+          edit={this.props.edit}
+          close={this.props.close}
+        />
       );
     });
+  }
+
+  renderPreSourcePhrase() {
+    if (this.state.isPhraseInputActive == true && this.state.isTargetInputActive == false) {
+      return (
+         <li className="entry pre">
+          <ul>
+            <li className="source">
+              <p><Progress /></p>
+            </li>
+            <li className="target">
+              <p></p>
+            </li>
+          </ul>
+        </li>
+      );
+    }
+    if (this.state.isPhraseInputActive == false && this.state.phrasePairs.length == 0) {
+      return <DummyContent />;
+    }
   }
 
   renderCreateNewPhraseButton() {
@@ -154,19 +195,20 @@ class Dictionary extends React.Component {
         { this.renderInputMethod() }
         <form className="newPhrase" onSubmit={this.onSourcePhraseSubmit}>
           <input
+            ref="sourceInput"
             value={this.state.sourcePhrase}
             onChange={this.onSourcePhraseChange}
             className="sourcePhrase input"
             type="text"
-            placeholder="Source"
-          />
+            placeholder="Source"/>
           <button className="savePhrase">Save</button>
         </form>
       </div>
     );
   }
 
-  // NB If in continuous input state, show source input field following successful 
+
+  // NB If in continuous input state, show source input field following successful
   // phrase pair completion.
   renderTargetInput() {
     const continuousInput = this.state.isContinuousInputActive;
@@ -176,6 +218,7 @@ class Dictionary extends React.Component {
         onSubmit={continuousInput ? this.onTargetPhraseMultipleSubmit : this.onTargetPhraseSubmit}
       >
         <input
+          ref="targetInput"
           value={this.state.targetPhrase}
           onChange={this.onTargetPhraseChange}
           className="targetPhrase input"
@@ -216,20 +259,12 @@ class Dictionary extends React.Component {
   }
 
   render() {
-    if (this.state.phrasePairs.length != 0) {
-      return (
-         <div className="dictionary">
-          <ul className="content">{this.renderPhrasePairs()}</ul>
-          {this.renderCreateNewPhraseButton()}
-         </div>
-      );
-    }
     return (
-      <div className="dictionary">
-        <span className="notice">Phrasebook is empty</span>
-        <DummyContent />
+       <div className="dictionary">
+        <ul className="content">{this.renderPhrasePairs()}</ul>
+        {this.renderPreSourcePhrase()}
         {this.renderCreateNewPhraseButton()}
-      </div>
+       </div>
     );
   }
 }
