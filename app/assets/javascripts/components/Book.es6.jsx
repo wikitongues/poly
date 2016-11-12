@@ -353,6 +353,7 @@ Book = React.createClass( {
           initialPhrasePairs={this.state.phrasePairs}
           onSourcePhraseSubmit={this.onSourcePhraseSubmit}
           onTargetPhraseSubmit={this.onTargetPhraseSubmit}
+          isEditingBook={this.state.isEditingBook}
           menu={this.props.menu}
           flip={this.props.flip}
           save={this.props.save}
