@@ -47,7 +47,7 @@ Planned features for future releases. Releases are mapped below. We use [semanti
 - [x] ~~Favorite a book~~
 - [x] ~~Only save new book if all inputs are complete~~
 - [x] ~~In-progress phrase ellipsis animation~~
-- [ ] Video phrases
+- [ ] Video phrases ([In progress](https://github.com/wikitongues/poly/tree/video-comp-ben))
   - [x] ~~Video phrase interface~~
   - [x] ~~Input video phrases~~
   - [ ] Transcribe video phrases
