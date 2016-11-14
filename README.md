@@ -25,6 +25,7 @@ Planned features for future releases. Releases are mapped below. We use [semanti
 #####Platform
 - [x] ~~Deployment~~
 - [x] ~~Alerts~~
+- [] Refactor to ES6([In progress](https://github.com/wikitongues/poly/tree/es6-remastered))
 - [ ] Testing ([In progress](https://github.com/wikitongues/poly/tree/79-improve-unit-test-coverage))
 
 #####Users
@@ -90,6 +91,7 @@ Planned features for future releases. Releases are mapped below. We use [semanti
 - [ ] Search by tags
 
 ##Version 1.0
+#####Platform
 - [ ] Native app
 - [ ] Offline-first architecture
 - [ ] Public API
