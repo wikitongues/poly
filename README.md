@@ -22,34 +22,36 @@ Planned features for future releases. Releases are mapped below. We use [semanti
 - [x] ~~Sign in upon account creation~~
 
 ##Version 0.2
-####Platform
+#####Platform
 - [x] ~~Deployment~~
 - [ ] Data import / export
 - [ ] Testing ([In progress](https://github.com/wikitongues/poly/tree/79-improve-unit-test-coverage))
 
-####Users
+#####Users
 
  - [x] ~~Profile page~~
   - [x] ~~User name~~
   - [x] ~~User books~~
   - [x] ~~Gravatar~~
   - [ ] User edit profile data
+  - [ ] User upload profile picture
 - [x] ~~Proper user validations~~
   - [x] ~~Unique usernames~~
   - [ ] Password Reset
   - [x] ~~Handle error messages on login page~~
 
-####Books
+#####Books
 
 - [x] ~~Favorite a book~~
 - [x] ~~Only save new book if all inputs are complete~~
+- [x] ~~In-progress phrase ellipsis animation~~
 - [ ] Video phrases
   - [x] ~~Video phrase interface~~
   - [ ] Input video phrases
   - [ ] Transcribe video phrases
   - [ ] Upload video phrases
 
-####Search
+#####Search
 
 - [ ] Search
   - [x] ~~Search by language~~
@@ -64,11 +66,9 @@ Planned features for future releases. Releases are mapped below. We use [semanti
 - [ ] Book templates
 - [ ] Monolingual dictionaries
 - [ ] Rich text descriptions (paragraphs, links)
-- [ ] User upload profile picture
 - [ ] Follow a user
 - [ ] Input and upload book banner images
 - [ ] Input area blur action behavior
-- [ ] In-progress phrase ellipsis animation
 - [ ] Document scroll position progress marker
 - [ ] Fixed position book languages sub-header
 
