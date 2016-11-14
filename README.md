@@ -28,11 +28,9 @@ Planned features for future releases. Releases are mapped below. We use [semanti
 - [ ] Testing ([In progress](https://github.com/wikitongues/poly/tree/79-improve-unit-test-coverage))
 
 #####Users
-
 - [x] ~~Proper user validations~~
   - [x] ~~Unique usernames~~
   - [x] ~~Handle error messages on login page~~
-
 - [x] ~~Profile page~~
   - [x] ~~User name~~
   - [x] ~~User books~~
@@ -41,9 +39,7 @@ Planned features for future releases. Releases are mapped below. We use [semanti
   - [ ] User upload profile picture
   - [ ] Password Reset
 
-
 #####Books
-
 - [x] ~~Favorite a book~~
 - [x] ~~Only save new book if all inputs are complete~~
 - [x] ~~In-progress phrase ellipsis animation~~
@@ -54,21 +50,26 @@ Planned features for future releases. Releases are mapped below. We use [semanti
   - [ ] Upload video phrases
 
 #####Search
+- [x] ~~Search by language~~
 
-- [ ] Search
-  - [x] ~~Search by language~~
-  - [ ] Search by title
-  - [ ] Search by author
-  - [ ] Search by content
 
 ##Version  0.3
+#####Platform
+- [ ] Security audit
+
+#####Users
+- [ ] Follow a user
+
+#####Books
 - [ ] Book Licenses
 - [ ] Book templates
 - [ ] Monolingual dictionaries
 - [ ] Collaborative Books
-- [ ] Security audit
+
+#####Search
+
 - [ ] Rich text descriptions (paragraphs, links)
-- [ ] Follow a user
+
 - [ ] Input and upload book banner images
 - [ ] Input area blur action behavior
 - [ ] Document scroll position progress marker
@@ -77,6 +78,12 @@ Planned features for future releases. Releases are mapped below. We use [semanti
 ##Version 0.4
 - [ ] Add tags to books
 - [ ] Search phrases
+
+#####Search
+  - [ ] Search by title
+  - [ ] Search by author
+  - [ ] Search by content
+
 
 ##Version 1.0
 - [ ] Offline-first architecture
