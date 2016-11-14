@@ -57,7 +57,7 @@ Planned features for future releases. Releases are mapped below. We use [semanti
 - [ ] Security audit
 
 #####Books
-- [ ] Book type  *Breaking change* ([In Progress](https://github.com/wikitongues/poly/tree/draft-books))
+- [ ] Book type  ***Breaking change*** ([In Progress](https://github.com/wikitongues/poly/tree/draft-books))
   - [ ] Public/Private
   - [ ] Licenses
   - [ ] Book templates
