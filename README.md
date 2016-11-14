@@ -25,7 +25,6 @@ Planned features for future releases. Releases are mapped below. We use [semanti
 #####Platform
 - [x] ~~Deployment~~
 - [x] ~~Alerts~~
-- [ ] Data import / export
 - [ ] Testing ([In progress](https://github.com/wikitongues/poly/tree/79-improve-unit-test-coverage))
 
 #####Users
@@ -38,7 +37,7 @@ Planned features for future releases. Releases are mapped below. We use [semanti
   - [x] ~~Gravatar~~
   - [ ] User edit profile data
   - [ ] User upload profile picture
-  - [ ] Password Reset
+- [ ] Password Reset
 
 #####Books
 - [x] ~~Favorite a book~~
@@ -48,7 +47,6 @@ Planned features for future releases. Releases are mapped below. We use [semanti
 - [ ] Video phrases ([In progress](https://github.com/wikitongues/poly/tree/video-comp-ben))
   - [x] ~~Video phrase interface~~
   - [x] ~~Input video phrases~~
-
 
 #####Search
 - [x] ~~Search by language~~
@@ -63,17 +61,23 @@ Planned features for future releases. Releases are mapped below. We use [semanti
   - [ ] Licenses
   - [ ] Book templates
   - [ ] Dictionaries
-- [ ] Rich text descriptions (paragraphs, links)
+- [ ] Rich text
+  - [ ] Descriptions
+  - [ ] Phrases
 - [ ] Document scroll position progress marker
 - [ ] Fixed position book languages sub-header
-- [ ] Transcribe video phrases
-- [ ] Upload video phrases
+- [ ] Video phrases
+  - [ ] Transcribe video phrases
+  - [ ] Upload video phrases
 
 #####Search
 - [ ] Search by title
 - [ ] Search by author
 
 ##Version 0.4
+#####Platform
+- [ ] User-facing data import / export
+
 #####Books
 - [ ] Add tags to books
 - [ ] Collaborative Books
