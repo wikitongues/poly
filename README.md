@@ -24,6 +24,7 @@ Planned features for future releases. Releases are mapped below. We use [semanti
 ##Version 0.2
 #####Platform
 - [x] ~~Deployment~~
+- [x] ~~Alerts~~
 - [ ] Data import / export
 - [ ] Testing ([In progress](https://github.com/wikitongues/poly/tree/79-improve-unit-test-coverage))
 
@@ -43,9 +44,11 @@ Planned features for future releases. Releases are mapped below. We use [semanti
 - [x] ~~Favorite a book~~
 - [x] ~~Only save new book if all inputs are complete~~
 - [x] ~~In-progress phrase ellipsis animation~~
+- [ ] Video descriptions
 - [ ] Video phrases ([In progress](https://github.com/wikitongues/poly/tree/video-comp-ben))
   - [x] ~~Video phrase interface~~
   - [x] ~~Input video phrases~~
+
 
 #####Search
 - [x] ~~Search by language~~
@@ -82,8 +85,8 @@ Planned features for future releases. Releases are mapped below. We use [semanti
 - [ ] Search by content
 - [ ] Search by tags
 
-
 ##Version 1.0
+- [ ] Native app
 - [ ] Offline-first architecture
 - [ ] Public API
 - [ ] Language object model
