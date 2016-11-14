@@ -52,37 +52,35 @@ Planned features for future releases. Releases are mapped below. We use [semanti
 #####Search
 - [x] ~~Search by language~~
 
-
 ##Version  0.3
 #####Platform
 - [ ] Security audit
 
-#####Users
-- [ ] Follow a user
-
 #####Books
-- [ ] Book Licenses
-- [ ] Book templates
-- [ ] Monolingual dictionaries
-- [ ] Collaborative Books
-
-#####Search
-
+- [ ] Book type  *Breaking change* ([In Progress](https://github.com/wikitongues/poly/tree/draft-books))
+  - [ ] Public/Private
+  - [ ] Licenses
+  - [ ] Book templates
+  - [ ] Dictionaries
 - [ ] Rich text descriptions (paragraphs, links)
-
-- [ ] Input and upload book banner images
-- [ ] Input area blur action behavior
 - [ ] Document scroll position progress marker
 - [ ] Fixed position book languages sub-header
 
+#####Search
+- [ ] Search by title
+- [ ] Search by author
+
 ##Version 0.4
+#####Books
 - [ ] Add tags to books
-- [ ] Search phrases
+- [ ] Collaborative Books
+
+#####Users
+- [ ] Follow a user
 
 #####Search
-  - [ ] Search by title
-  - [ ] Search by author
-  - [ ] Search by content
+- [ ] Search by content
+- [ ] Search by tags
 
 
 ##Version 1.0
