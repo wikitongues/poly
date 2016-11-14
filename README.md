@@ -46,8 +46,6 @@ Planned features for future releases. Releases are mapped below. We use [semanti
 - [ ] Video phrases ([In progress](https://github.com/wikitongues/poly/tree/video-comp-ben))
   - [x] ~~Video phrase interface~~
   - [x] ~~Input video phrases~~
-  - [ ] Transcribe video phrases
-  - [ ] Upload video phrases
 
 #####Search
 - [x] ~~Search by language~~
@@ -57,14 +55,16 @@ Planned features for future releases. Releases are mapped below. We use [semanti
 - [ ] Security audit
 
 #####Books
-- [ ] Book type ([In Progress](https://github.com/wikitongues/poly/tree/draft-books)) ***Breaking change***
-  - [ ] Public/Private
+- [ ] Book type ***Breaking change***
+  - [ ] Public/Private ([In Progress](https://github.com/wikitongues/poly/tree/draft-books))
   - [ ] Licenses
   - [ ] Book templates
   - [ ] Dictionaries
 - [ ] Rich text descriptions (paragraphs, links)
 - [ ] Document scroll position progress marker
 - [ ] Fixed position book languages sub-header
+- [ ] Transcribe video phrases
+- [ ] Upload video phrases
 
 #####Search
 - [ ] Search by title
