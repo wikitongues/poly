@@ -27,13 +27,20 @@ Planned features for future releases. Releases are mapped below. We use [semanti
 
 ####Users
 
-- [x] ~~Profile page~~
+ - [x] ~~Profile page~~
   - [x] ~~User name~~
   - [x] ~~User books~~
   - [x] ~~Gravatar~~
   - [ ] User edit profile data
 - [x] ~~Favorite a book~~
-- [x] ~~Search~~
+
+####Search
+
+- [ ] ~~Search~~
+  - [x] ~~Search by language~~
+  - [ ] ~~Search by title~~
+  - [ ] ~~Search by author~~
+  - [ ] ~~Search by content~~
 - [x] ~~Handle error messages on login page~~
 - [ ] Testing
 - [ ] Proper user validations
