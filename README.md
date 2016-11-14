@@ -24,6 +24,8 @@ Planned features for future releases. Releases are mapped below. We use [semanti
 ##Version 0.2
 ####Platform
 - [x] ~~Deployment~~
+- [ ] Data import / export
+- [ ] Testing
 
 ####Users
 
@@ -32,27 +34,28 @@ Planned features for future releases. Releases are mapped below. We use [semanti
   - [x] ~~User books~~
   - [x] ~~Gravatar~~
   - [ ] User edit profile data
+- [x] ~~Proper user validations~~
+  - [x] ~~Unique usernames~~
+  - [ ] Password Reset
+  - [x] ~~Handle error messages on login page~~
+
+####Books
+
 - [x] ~~Favorite a book~~
-
-####Search
-
-- [ ] ~~Search~~
-  - [x] ~~Search by language~~
-  - [ ] ~~Search by title~~
-  - [ ] ~~Search by author~~
-  - [ ] ~~Search by content~~
-- [x] ~~Handle error messages on login page~~
-- [ ] Testing
-- [ ] Proper user validations
-  - [ ] Unique usernames
-- [ ] Password Reset
-- [ ] Only save new book if all inputs are complete
+- [x] ~~Only save new book if all inputs are complete~~
 - [ ] Video phrases
   - [x] ~~Video phrase interface~~
   - [ ] Input video phrases
   - [ ] Transcribe video phrases
   - [ ] Upload video phrases
-- [ ] Data import / export
+
+####Search
+
+- [ ] Search
+  - [x] ~~Search by language~~
+  - [ ] Search by title
+  - [ ] Search by author
+  - [ ] Search by content
 
 ##Version  0.3
 - [ ] Collaborative Books
