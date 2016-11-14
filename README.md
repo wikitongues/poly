@@ -32,6 +32,7 @@ Planned features for future releases. Releases are mapped below. We use [semanti
 - [x] ~~Proper user validations~~
   - [x] ~~Unique usernames~~
   - [x] ~~Handle error messages on login page~~
+
 - [x] ~~Profile page~~
   - [x] ~~User name~~
   - [x] ~~User books~~
