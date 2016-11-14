@@ -29,16 +29,17 @@ Planned features for future releases. Releases are mapped below. We use [semanti
 
 #####Users
 
- - [x] ~~Profile page~~
+- [x] ~~Proper user validations~~
+  - [x] ~~Unique usernames~~
+  - [x] ~~Handle error messages on login page~~
+- [x] ~~Profile page~~
   - [x] ~~User name~~
   - [x] ~~User books~~
   - [x] ~~Gravatar~~
   - [ ] User edit profile data
   - [ ] User upload profile picture
-- [x] ~~Proper user validations~~
-  - [x] ~~Unique usernames~~
   - [ ] Password Reset
-  - [x] ~~Handle error messages on login page~~
+
 
 #####Books
 
