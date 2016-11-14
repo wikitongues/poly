@@ -25,7 +25,7 @@ Planned features for future releases. Releases are mapped below. We use [semanti
 ####Platform
 - [x] ~~Deployment~~
 - [ ] Data import / export
-- [ ] Testing (In progress: branch[https://github.com/wikitongues/poly/tree/79-improve-unit-test-coverage])
+- [ ] Testing (In progress: [branch](https://github.com/wikitongues/poly/tree/79-improve-unit-test-coverage))
 
 ####Users
 
