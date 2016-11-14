@@ -49,7 +49,7 @@ Planned features for future releases. Releases are mapped below. We use [semanti
 - [x] ~~In-progress phrase ellipsis animation~~
 - [ ] Video phrases
   - [x] ~~Video phrase interface~~
-  - [ ] Input video phrases
+  - [x] ~~Input video phrases~~
   - [ ] Transcribe video phrases
   - [ ] Upload video phrases
 
@@ -62,11 +62,11 @@ Planned features for future releases. Releases are mapped below. We use [semanti
   - [ ] Search by content
 
 ##Version  0.3
-- [ ] Collaborative Books
 - [ ] Book Licenses
-- [ ] Security audit
 - [ ] Book templates
 - [ ] Monolingual dictionaries
+- [ ] Collaborative Books
+- [ ] Security audit
 - [ ] Rich text descriptions (paragraphs, links)
 - [ ] Follow a user
 - [ ] Input and upload book banner images
