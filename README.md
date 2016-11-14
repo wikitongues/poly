@@ -24,7 +24,9 @@ Planned features for future releases. Releases are mapped below. We use [semanti
 ##Version 0.2
 ####Platform
 - [x] ~~Deployment~~
+
 ####Users
+
 - [x] ~~Profile page~~
   - [x] ~~User name~~
   - [x] ~~User books~~
