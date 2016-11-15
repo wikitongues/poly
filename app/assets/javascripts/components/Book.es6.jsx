@@ -437,16 +437,17 @@ class Book extends React.Component {
           <div className="NObannerWrapper"></div>
 
           <Dictionary
-            isOwnedByCurrentUser={this.bookIsOwnedByCurrentUser()}
-            initialPhrasePairs={this.state.phrasePairs}
-            onSourcePhraseSubmit={this.onSourcePhraseSubmit}
-            onTargetPhraseSubmit={this.onTargetPhraseSubmit}
-            menu={this.props.menu}
-            flip={this.props.flip}
-            save={this.props.save}
-            delete={this.props.delete}
-            edit={this.props.edit}
-            close={this.props.close}
+          isOwnedByCurrentUser={this.bookIsOwnedByCurrentUser()}
+          initialPhrasePairs={this.state.phrasePairs}
+          onSourcePhraseSubmit={this.onSourcePhraseSubmit}
+          onTargetPhraseSubmit={this.onTargetPhraseSubmit}
+          isEditingBook={this.state.isEditingBook}
+          menu={this.props.menu}
+          flip={this.props.flip}
+          save={this.props.save}
+          delete={this.props.delete}
+          edit={this.props.edit}
+          close={this.props.close}
           />
         </div>
       </div>

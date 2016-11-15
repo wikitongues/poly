@@ -37,10 +37,10 @@ class Dictionary extends React.Component {
     if (this.refs.targetInput) {
       this.refs.targetInput.blur();
     }
-    if (this.state.isPhraseInputActive && this.refs.sourceInput) {
+    if (this.state.isPhraseInputActive && this.refs.sourceInput && !this.props.isEditingBook) {
       this.refs.sourceInput.focus();
     }
-    if (this.state.isTargetInputActive && this.refs.targetInput) {
+    if (this.state.isTargetInputActive && this.refs.targetInput && !this.props.isEditingBook) {
       this.refs.targetInput.focus();
     }
   }
