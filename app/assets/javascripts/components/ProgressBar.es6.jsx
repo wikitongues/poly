@@ -1,41 +1,39 @@
-ProgressBar = React.createClass({
-  getInitialState: function() {
-    return {
-      bookProgress:""
+class ProgressBar extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      bookProgress: '',
     };
-  },
+    this.handleScroll = this.handleScroll.bind(this);
+  }
 
-  handleScroll: function(e) {
-    let scrollTop = event.srcElement.body.scrollTop;
-    let viewHeight = $(window).height();
-    let pageHeight = $('body').height();
-    let bookProgress = 100/(pageHeight-viewHeight)*scrollTop;
-    this.setState({
-      bookProgress: bookProgress
-    })
-  },
-
-  componentDidMount: function() {
-    let scrollTop = event.srcElement.body.scrollTop;
-    let viewHeight = $(window).height();
-    let pageHeight = $('body').height();
-    let bookProgress = 100/(pageHeight-viewHeight)*scrollTop;
+  componentDidMount() {
+    const scrollTop = event.srcElement.body.scrollTop;
+    const viewHeight = $(window).height();
+    const pageHeight = $('body').height();
+    const bookProgress = 100 / (pageHeight - viewHeight) * scrollTop;
     window.addEventListener('scroll', this.handleScroll);
-    this.setState({
-      bookProgress: bookProgress
-    })
-  },
+    this.setState({ bookProgress });
+  }
 
-  componentWillUnmount: function() {
+  componentWillUnmount() {
     window.removeEventListener('resize', this.handleScroll);
-  },
+  }
 
-  render: function() {
+  handleScroll() {
+    const scrollTop = event.srcElement.body.scrollTop;
+    const viewHeight = $(window).height();
+    const pageHeight = $('body').height();
+    const bookProgress = 100 / (pageHeight - viewHeight) * scrollTop;
+    this.setState({ bookProgress });
+  }
+
+  render() {
     return (
       <span className="progressBar">
         {this.state.pageHeight}
-        <span className="bar" style={{width: this.state.bookProgress +"%"}}></span>
+        <span className="bar" style={{ width: this.state.bookProgress + '%' }} />
       </span>
-    )
+    );
   }
-})
+}
