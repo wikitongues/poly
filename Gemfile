@@ -43,11 +43,11 @@ gem 'active_model_serializers', '~> 0.10.0'
 # gem 'capistrano-rails', group: :development
 
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
   gem 'pry'
   gem 'rspec-rails', '~> 3.4'
   gem 'capybara'
+  gem "factory_girl_rails", "~> 4.0"
 end
 
 group :development do
