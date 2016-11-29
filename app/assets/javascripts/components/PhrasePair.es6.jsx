@@ -98,7 +98,7 @@ class PhrasePair extends React.Component {
   }
 
   renderPhraseMenu() {
-    if (this.props.isOwnedByCurrentUser) {
+    if (this.props.isOwnedByCurrentUser && this.props.id) {
       if (this.state.isEditingPhrase) {
         return (
           <li className="menu saving">
