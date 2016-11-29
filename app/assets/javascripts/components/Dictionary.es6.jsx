@@ -5,7 +5,6 @@ class Dictionary extends React.Component {
     this.state = {
       isPhraseInputActive: false,
       isTargetInputActive: false,
-      isContinuousInputActive: false,
       phrasePairs: this.props.initialPhrasePairs,
       sourcePhrase: '',
       targetPhrase: '',
@@ -15,8 +14,6 @@ class Dictionary extends React.Component {
     this.onSourcePhraseSubmit = this.onSourcePhraseSubmit.bind(this);
     this.onTargetPhraseChange = this.onTargetPhraseChange.bind(this);
     this.onTargetPhraseSubmit = this.onTargetPhraseSubmit.bind(this);
-    this.onTargetPhraseMultipleSubmit = this.onTargetPhraseMultipleSubmit.bind(this);
-    this.onContinuousInputClick = this.onContinuousInputClick.bind(this);
     this.onDeletePhrasePair = this.onDeletePhrasePair.bind(this);
     this.onCancelEditPhrase = this.onCancelEditPhrase.bind(this);
     this.renderPhrasePairs = this.renderPhrasePairs.bind(this);
@@ -78,7 +75,6 @@ class Dictionary extends React.Component {
     if (this.state.targetPhrase) {
       this.props.onTargetPhraseSubmit(this.state.targetPhrase);
       this.setState({
-        isPhraseInputActive: !this.state.isPhraseInputActive,
         isTargetInputActive: !this.state.isTargetInputActive,
         targetPhrase: '',
       });
@@ -88,19 +84,6 @@ class Dictionary extends React.Component {
         closeButton: false,
       });
     }
-  }
-
-  onTargetPhraseMultipleSubmit(e) {
-    e.preventDefault();
-    this.props.onTargetPhraseSubmit(this.state.targetPhrase);
-    this.setState({
-      isTargetInputActive: !this.state.isTargetInputActive,
-      targetPhrase: '',
-    });
-  }
-
-  onContinuousInputClick() {
-    this.setState({ isContinuousInputActive: !this.state.isContinuousInputActive });
   }
 
   onDeletePhrasePair(phrasePairId) {
@@ -207,24 +190,18 @@ class Dictionary extends React.Component {
     );
   }
 
-
-  // NB If in continuous input state, show source input field following successful
-  // phrase pair completion.
   renderTargetInput() {
-    const continuousInput = this.state.isContinuousInputActive;
     return (
       <form
         className="newPhrase"
-        onSubmit={continuousInput ? this.onTargetPhraseMultipleSubmit : this.onTargetPhraseSubmit}
-      >
+        onSubmit={this.onTargetPhraseSubmit} >
         <input
           ref="targetInput"
           value={this.state.targetPhrase}
           onChange={this.onTargetPhraseChange}
           className="targetPhrase input"
           type="text"
-          placeholder="Target"
-        />
+          placeholder="Target" />
         <button className="savePhrase"> Save </button>
       </form>
     );
@@ -232,25 +209,8 @@ class Dictionary extends React.Component {
 
   // TODO: Consider the flow of canceling a phrase in progress.
   renderInputMethod() {
-    if (this.state.isContinuousInputActive) {
-      return (
-        <div className="inputMethod">
-          <label>
-            <input type="checkbox" checked onChange={this.onContinuousInputClick} />
-            Continuous entry
-          </label>
-          <button title="Cancel" onClick={this.onCancelEditPhrase} className="close icon">
-            <img src={this.props.close} alt="close" />
-          </button>
-        </div>
-      );
-    }
     return (
       <div className="inputMethod">
-        <label>
-          <input type="checkbox" onChange={this.onContinuousInputClick} />
-          Continuous entry
-        </label>
         <button title="Cancel" onClick={this.onCancelEditPhrase} className="close icon">
           <img src={this.props.close} alt="close" />
         </button>
