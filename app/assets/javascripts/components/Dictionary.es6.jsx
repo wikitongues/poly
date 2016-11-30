@@ -211,6 +211,12 @@ class Dictionary extends React.Component {
   renderInputMethod() {
     return (
       <div className="inputMethod">
+        <span className="text">
+          <button title="Bold">B</button>
+          <button title="Italic">I</button>
+          <button title="Underline"><span>U</span></button>
+          <button title="Headers"><span className="small">T</span>T</button>
+        </span>
         <button title="Cancel" onClick={this.onCancelEditPhrase} className="close icon">
           <img src={this.props.close} alt="close" />
         </button>

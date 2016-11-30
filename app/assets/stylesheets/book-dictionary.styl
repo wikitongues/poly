@@ -66,32 +66,48 @@
     float left
     background #fafcfc
     box-shadow 0 -1px 2px rgba(0,0,0,0.1)
+    padding 7px 14px
 
-    label
-      float left
-      background transparent
-      border none
-      color $buttonBlue
-      font-weight 500
-      font-size 1em
-      padding 1em
-
-      input
-        display block
-        float left
-        margin 6px 6px 0 0
+    span.text
+      button
+        span
+          font-weight bold
+        span
+          &.small
+            font-weight bolder
+            font-size .6em
 
     button
-      float right
-      margin 12px
+      float left
+      margin 0
       width 40px
       height 40px
       border-radius 100%
+      border-color transparent
       outline none
       background transparent
+      font-weight bold
+      font-size 1em
+      cursor pointer
+      color #4f6387
+
+      &.close
+        float right
 
       &:hover
         background-color #f5f5f5
+
+    button[title="Italic"]
+      font-style italic
+      padding 2px 8px 2px 4px
+
+    button[title="Underline"]
+      span
+        border-bottom 2px solid
+        display block
+        height 22px
+        width 15px
+        margin -12px auto
 
   .newPhrase
     float left
@@ -103,7 +119,7 @@
     input
       border none
       font-size 1em
-      padding 1em 2em
+      padding 18px 36px
       outline none
       height 80px
       width 500px
@@ -116,16 +132,10 @@
         border-left .5em solid #FDBE2C
 
     button.savePhrase
-      background transparent
-      border none
-      color $buttonBlue
-      width 100px
-      text-align center
-      font-weight 400
-      padding 16px 0
-      margin 10px 0
-      border-left 2px solid #eee
-      display inline-block
+      textButton()
+      boxShadow()
+      color white
+      width 80px
+      margin 20px 20px 20px 0
       cursor pointer
       font-size 1em
-      outline none
