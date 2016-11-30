@@ -32,8 +32,10 @@ class Dictionary extends React.Component {
     this.onAddNewPhraseButtonClick = this.onAddNewPhraseButtonClick.bind(this);
     this.onSourcePhraseChange = this.onSourcePhraseChange.bind(this);
     this.onSourcePhraseSubmit = this.onSourcePhraseSubmit.bind(this);
+    this.onSourceVideoSubmit = this.onSourceVideoSubmit.bind(this);
     this.onTargetPhraseChange = this.onTargetPhraseChange.bind(this);
     this.onTargetPhraseSubmit = this.onTargetPhraseSubmit.bind(this);
+    this.onTargetVideoSubmit = this.onTargetVideoSubmit.bind(this);
     this.onDeletePhrasePair = this.onDeletePhrasePair.bind(this);
     this.onCancelEditPhrase = this.onCancelEditPhrase.bind(this);
     this.onToggleInputType = this.onToggleInputType.bind(this);
