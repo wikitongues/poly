@@ -12,12 +12,15 @@ class Dictionary extends React.Component {
       sourcePhrase: '',
       targetPhrase: '',
       stream: '',
+      // clientId Ben
+      clientId: '463787160210-mcm71qds0opgn9cf661pptqt1hcofh3d.apps.googleusercontent.com',
       // wikitongues
-      clientId: '20162064407-uf2hnjg83uhaq6v3soa0bm0ngp5gmvjq.apps.googleusercontent.com',
+      // clientId: '20162064407-uf2hnjg83uhaq6v3soa0bm0ngp5gmvjq.apps.googleusercontent.com',
       scopes: [
         'https://www.googleapis.com/auth/youtube',
       ],
-      refreshToken: '',
+      // refresh token Ben
+      refreshToken: '1/vI-S3g2HImFh7nj2wV_cw8y-28lMva6O1IiTQZ7jKZQ',
       interval: '',
       accessToken: '',
       isVideoNotAvailable: true,
