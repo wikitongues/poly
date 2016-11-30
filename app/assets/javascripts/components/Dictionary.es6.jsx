@@ -33,10 +33,21 @@ class Dictionary extends React.Component {
     this.onTargetPhraseSubmit = this.onTargetPhraseSubmit.bind(this);
     this.onDeletePhrasePair = this.onDeletePhrasePair.bind(this);
     this.onCancelEditPhrase = this.onCancelEditPhrase.bind(this);
+    this.onToggleInputType = this.onToggleInputType.bind(this);
+    this.onCloseVideoComponent = this.onCloseVideoComponent.bind(this);
+    this.onStopRecordingClick = this.onStopRecordingClick.bind(this);
+    this.onStartRecordingClick = this.onStartRecordingClick.bind(this);
+    this.onRenderVideoInput = this.onRenderVideoInput.bind(this);
+    this.onSaveStream = this.onSaveStream.bind(this);
+    this.onStopStream = this.onStopStream.bind(this);
+    this.onClearStream = this.onClearStream.bind(this);
     this.renderPhrasePairs = this.renderPhrasePairs.bind(this);
+    this.renderPreSourcePhrase = this.renderPreSourcePhrase.bind(this);
     this.renderCreateNewPhraseButton = this.renderCreateNewPhraseButton.bind(this);
     this.renderPhraseInputFields = this.renderPhraseInputFields.bind(this);
     this.renderTargetInput = this.renderTargetInput.bind(this);
+    this.renderInputOptions = this.renderInputOptions.bind(this);
+    this.renderVideoInput = this.renderVideoInput.bind(this);
     this.renderInputMethod = this.renderInputMethod.bind(this);
   }
 
@@ -229,9 +240,7 @@ class Dictionary extends React.Component {
 // Video Zone
 
   onToggleInputType() {
-    this.setState({
-      isInputVideo: !this.state.isInputVideo
-    });
+    this.setState({ isInputVideo: !this.state.isInputVideo });
   }
 
   onCloseVideoComponent() {
@@ -245,15 +254,11 @@ class Dictionary extends React.Component {
   }
 
   onStopRecordingClick() {
-    this.setState({
-      isVideoRecording: !this.state.isVideoRecording
-    });
+    this.setState({ isVideoRecording: !this.state.isVideoRecording });
   }
 
   onStartRecordingClick() {
-    this.setState({
-      isVideoRecording: !this.state.isVideoRecording
-    });
+    this.setState({ isVideoRecording: !this.state.isVideoRecording });
   }
 
   onRenderVideoInput() {
@@ -434,28 +439,6 @@ class Dictionary extends React.Component {
   }
 
   renderInputOptions() {
-    /*
-    if (this.state.isInputVideo) {
-      return;
-        // Not sure whether it is necessary to still have these guys showing up
-        // after the video component is displaying with the exact same buttons inside
-        // of it
-      (
-        <span hidden className="inputOptions">
-          <button title="Text" onClick={this.onToggleInputType} className="text icon"><img src={this.props.text} alt="text"/></button>
-          <button title="Video" onClick={this.onToggleInputType} className="video icon selectedInput"><img src={this.props.videoAlt} alt="video"/></button>
-          <button title="Cancel" onClick={this.onCancelEditPhrase} className="close icon"><img src={this.props.close} alt="close"/></button>
-        </span>
-      );
-    } else {
-      return (
-        <span className="inputOptions">
-          <button title="Text" className="text icon selectedInput"><img src={this.props.textAlt} alt="text"/></button>
-          <button title="Video" onClick={this.onToggleInputType} className="video icon"><img src={this.props.video} alt="video"/></button>
-          <button title="Cancel" onClick={this.onCancelEditPhrase} className="close icon"><img src={this.props.close} alt="close"/></button>
-        </span>
-      );
-    }*/
     if (!this.state.isInputVideo) {
       const videoButtonClass = 'video icon' + this.state.videoButtonClass;
       return (
@@ -508,9 +491,7 @@ class Dictionary extends React.Component {
   renderInputMethod() {
     return (
       <div className="inputMethod">
-        <button title="Cancel" onClick={this.onCancelEditPhrase} className="close icon">
-          <img src={this.props.close} alt="close" />
-        </button>
+        {this.renderInputOptions()}
       </div>
     );
   }
