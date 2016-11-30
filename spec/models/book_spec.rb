@@ -18,6 +18,6 @@ RSpec.describe Book, type: :model do
     book = create(:book_with_phrase_pairs)
     expect(book.phrase_pairs.count).to eq 3
     book.destroy
-    execpt(book.phrase_pairs.count).to eq 0 
+    expect(book.phrase_pairs.count).to eq 0 
   end
 end
