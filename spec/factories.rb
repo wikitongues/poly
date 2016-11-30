@@ -13,14 +13,8 @@ FactoryGirl.define do
     target_language "greek"
     user
 
-    factory :book_with_phrase_pairs do
-      transient do
-        pair_count 3
-      end
-
-      after(:create) do |book, evaluator|
-        create_list(:phrase_pair, evaluator.pair_count, books: [book])
-      end
+    factory :book_with_phrase_pairs, parent: :book do |book|
+      phrase_pairs { build_list :phrase_pair, 3}
     end
   end
 
@@ -31,8 +25,5 @@ FactoryGirl.define do
   end
 
   #favorite books as join table between user and book, only have IDs
-
-  #create user with multiple books
   #create user with favorite books
-  #create mulitple books (by default will need to create users )
 end
