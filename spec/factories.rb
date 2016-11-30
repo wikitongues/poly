@@ -5,8 +5,6 @@ FactoryGirl.define do
     password "password"
   end
 
-  #users have many books
-
   factory :book do
     sequence(:title) { |n| "Great Title #{n}" }
     source_language "hebrew"
@@ -23,7 +21,4 @@ FactoryGirl.define do
     source_phrase "fortuna audaces iuvat"
     target_phrase "fortune favors the bold"
   end
-
-  #favorite books as join table between user and book, only have IDs
-  #create user with favorite books
 end
