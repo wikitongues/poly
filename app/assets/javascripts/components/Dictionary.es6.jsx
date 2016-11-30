@@ -13,7 +13,7 @@ class Dictionary extends React.Component {
       targetPhrase: '',
       stream: '',
       // wikitongues
-      // clientId: '20162064407-uf2hnjg83uhaq6v3soa0bm0ngp5gmvjq.apps.googleusercontent.com',
+      clientId: '20162064407-uf2hnjg83uhaq6v3soa0bm0ngp5gmvjq.apps.googleusercontent.com',
       scopes: [
         'https://www.googleapis.com/auth/youtube',
       ],
@@ -23,6 +23,9 @@ class Dictionary extends React.Component {
       isVideoNotAvailable: true,
       videoButtonClass: ' video-button-disabled',
     };
+    this.makeApiCall = this.makeApiCall.bind(this);
+    this.refreshToken = this.refreshToken.bind(this);
+    this.saveToken = this.saveToken.bind(this);
     this.onAddNewPhraseButtonClick = this.onAddNewPhraseButtonClick.bind(this);
     this.onSourcePhraseChange = this.onSourcePhraseChange.bind(this);
     this.onSourcePhraseSubmit = this.onSourcePhraseSubmit.bind(this);
@@ -415,14 +418,16 @@ class Dictionary extends React.Component {
     return (
       <form
         className="newPhrase"
-        onSubmit={this.onTargetPhraseSubmit} >
+        onSubmit={this.onTargetPhraseSubmit}
+      >
         <input
           ref="targetInput"
           value={this.state.targetPhrase}
           onChange={this.onTargetPhraseChange}
           className="targetPhrase input"
           type="text"
-          placeholder="Target" />
+          placeholder="Target"
+        />
         <button className="savePhrase"> Save </button>
       </form>
     );
@@ -461,42 +466,42 @@ class Dictionary extends React.Component {
         </span>
       );
     }
-  },
+  }
 
   renderVideoInput() {
     if (this.state.isInputVideo) {
       return (
         <div ref="video">
           <Video
-          onRenderVideoInput={this.onRenderVideoInput}
-          renderRecordButton={this.renderRecordButton}
-          onCancelEditPhrase={this.onCancelEditPhrase}
-          onCloseVideoComponent={this.onCloseVideoComponent}
-          onStartRecordingClick={this.onStartRecordingClick}
-          onStopRecordingClick={this.onStopRecordingClick}
-          onSourceVideoSubmit={this.onSourceVideoSubmit}
-          onTargetVideoSubmit={this.onTargetVideoSubmit}
-          onToggleInputType={this.onToggleInputType}
-          onClearStream={this.onClearStream}
-          onToggleGAPILoaded={this.onToggleGAPILoaded}
-          closeAlt={this.props.closeAlt}
-          textAlt={this.props.textAlt}
-          isVideoRecording={this.state.isVideoRecording}
-          isInputVideo={this.state.isInputVideo}
-          onSaveStream={this.onSaveStream}
-          onStopStream={this.onStopStream}
-          mediaConstraints={this.state.mediaConstraints}
-          stream={this.state.stream}
-          isTargetInputActive={this.state.isTargetInputActive}
-          sourceLanguage={this.props.sourceLanguage}
-          targetLanguage={this.props.targetLanguage}
-          author={this.props.author}
-          accessToken={this.state.accessToken}
+            onRenderVideoInput={this.onRenderVideoInput}
+            renderRecordButton={this.renderRecordButton}
+            onCancelEditPhrase={this.onCancelEditPhrase}
+            onCloseVideoComponent={this.onCloseVideoComponent}
+            onStartRecordingClick={this.onStartRecordingClick}
+            onStopRecordingClick={this.onStopRecordingClick}
+            onSourceVideoSubmit={this.onSourceVideoSubmit}
+            onTargetVideoSubmit={this.onTargetVideoSubmit}
+            onToggleInputType={this.onToggleInputType}
+            onClearStream={this.onClearStream}
+            onToggleGAPILoaded={this.onToggleGAPILoaded}
+            closeAlt={this.props.closeAlt}
+            textAlt={this.props.textAlt}
+            isVideoRecording={this.state.isVideoRecording}
+            isInputVideo={this.state.isInputVideo}
+            onSaveStream={this.onSaveStream}
+            onStopStream={this.onStopStream}
+            mediaConstraints={this.state.mediaConstraints}
+            stream={this.state.stream}
+            isTargetInputActive={this.state.isTargetInputActive}
+            sourceLanguage={this.props.sourceLanguage}
+            targetLanguage={this.props.targetLanguage}
+            author={this.props.author}
+            accessToken={this.state.accessToken}
           />
         </div>
       );
     }
-  },
+  }
 
 
   // TODO: Consider the flow of canceling a phrase in progress.
