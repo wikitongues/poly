@@ -22,49 +22,77 @@ Planned features for future releases. Releases are mapped below. We use [semanti
 - [x] ~~Sign in upon account creation~~
 
 ##Version 0.2
-####Platform
+#####Platform
 - [x] ~~Deployment~~
-####Users
+- [x] ~~Alerts~~
+- [x] ~~Refactor to ES6~~
+- [ ] Testing ([In progress](https://github.com/wikitongues/poly/tree/79-improve-unit-test-coverage))
+
+#####Users
+- [x] ~~Proper user validations~~
+  - [x] ~~Unique usernames~~
+  - [x] ~~Handle error messages on login page~~
 - [x] ~~Profile page~~
   - [x] ~~User name~~
   - [x] ~~User books~~
   - [x] ~~Gravatar~~
   - [ ] User edit profile data
-- [x] ~~Favorite a book~~
-- [x] ~~Search~~
-- [x] ~~Handle error messages on login page~~
-- [ ] Testing
-- [ ] Proper user validations
-  - [ ] Unique usernames
+  - [ ] User upload profile picture
 - [ ] Password Reset
-- [ ] Only save new book if all inputs are complete
-- [ ] Video phrases
+
+#####Books
+- [x] ~~Favorite a book~~
+- [x] ~~Only save new book if all inputs are complete~~
+- [x] ~~In-progress phrase ellipsis animation~~
+- [ ] Video descriptions
+- [ ] Video phrases ([In progress](https://github.com/wikitongues/poly/tree/video-comp-ben))
   - [x] ~~Video phrase interface~~
-  - [ ] Input video phrases
-  - [ ] Transcribe video phrases
-  - [ ] Upload video phrases
-- [ ] Data import / export
+  - [x] ~~Input video phrases~~
+
+#####Search
+- [x] ~~Search by language~~
 
 ##Version  0.3
-- [ ] Collaborative Books
-- [ ] Book Licenses
+#####Platform
 - [ ] Security audit
-- [ ] Book templates
-- [ ] Monolingual dictionaries
-- [ ] Rich text descriptions (paragraphs, links)
-- [ ] User upload profile picture
-- [ ] Follow a user
-- [ ] Input and upload book banner images
-- [ ] Input area blur action behavior
-- [ ] In-progress phrase ellipsis animation
+
+#####Books
+- [ ] Book type ***Breaking change***
+  - [ ] Public/Private ([In Progress](https://github.com/wikitongues/poly/tree/draft-books))
+  - [ ] Licenses
+  - [ ] Book templates
+  - [ ] Dictionaries
+- [ ] Rich text
+  - [ ] Descriptions
+  - [ ] Phrases
 - [ ] Document scroll position progress marker
 - [ ] Fixed position book languages sub-header
+- [ ] Video phrases
+  - [ ] Transcribe video phrases
+  - [ ] Upload video phrases
+
+#####Search
+- [ ] Search by title
+- [ ] Search by author
 
 ##Version 0.4
+#####Platform
+- [ ] User-facing data import / export
+
+#####Books
 - [ ] Add tags to books
-- [ ] Search phrases
+- [ ] Collaborative Books
+
+#####Users
+- [ ] Follow a user
+
+#####Search
+- [ ] Search by content
+- [ ] Search by tags
 
 ##Version 1.0
+#####Platform
+- [ ] Native app
 - [ ] Offline-first architecture
 - [ ] Public API
 - [ ] Language object model

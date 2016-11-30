@@ -1,7 +1,7 @@
-Dictionary = React.createClass( {
-
-  getInitialState() {
-    return {
+class Dictionary extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
       isPhraseInputActive: false,
       isTargetInputActive: false,
       isContinuousInputActive: false,
@@ -23,7 +23,19 @@ Dictionary = React.createClass( {
       isVideoNotAvailable: true,
       videoButtonClass: ' video-button-disabled',
     };
-  },
+    this.onAddNewPhraseButtonClick = this.onAddNewPhraseButtonClick.bind(this);
+    this.onSourcePhraseChange = this.onSourcePhraseChange.bind(this);
+    this.onSourcePhraseSubmit = this.onSourcePhraseSubmit.bind(this);
+    this.onTargetPhraseChange = this.onTargetPhraseChange.bind(this);
+    this.onTargetPhraseSubmit = this.onTargetPhraseSubmit.bind(this);
+    this.onDeletePhrasePair = this.onDeletePhrasePair.bind(this);
+    this.onCancelEditPhrase = this.onCancelEditPhrase.bind(this);
+    this.renderPhrasePairs = this.renderPhrasePairs.bind(this);
+    this.renderCreateNewPhraseButton = this.renderCreateNewPhraseButton.bind(this);
+    this.renderPhraseInputFields = this.renderPhraseInputFields.bind(this);
+    this.renderTargetInput = this.renderTargetInput.bind(this);
+    this.renderInputMethod = this.renderInputMethod.bind(this);
+  }
 
   componentWillMount() {
     const makeApiCall = this.makeApiCall;
@@ -33,13 +45,26 @@ Dictionary = React.createClass( {
     this.refreshToken();
     const int = setInterval(this.refreshToken(), 2400000);
     this.setState({ interval: int });
-  },
+  }
+
+  componentDidUpdate() {
+    if (this.refs.sourceInput) {
+      this.refs.sourceInput.blur();
+    }
+    if (this.refs.targetInput) {
+      this.refs.targetInput.blur();
+    }
+    if (this.state.isPhraseInputActive && this.refs.sourceInput && !this.props.isEditingBook) {
+      this.refs.sourceInput.focus();
+    }
+    if (this.state.isTargetInputActive && this.refs.targetInput && !this.props.isEditingBook) {
+      this.refs.targetInput.focus();
+    }
+  }
 
   componentWillReceiveProps(newProps) {
-    this.setState({
-      phrasePairs: newProps.initialPhrasePairs,
-    });
-  },
+    this.setState({ phrasePairs: newProps.initialPhrasePairs });
+  }
 
   makeApiCall() {
     const clientId = this.state.clientId;
@@ -57,7 +82,7 @@ Dictionary = React.createClass( {
         });
       });
     });
-  },
+  }
 
   refreshToken() {
     const url = 'https://www.googleapis.com/oauth2/v4/token';
@@ -72,34 +97,32 @@ Dictionary = React.createClass( {
     request.open(method, url);
     request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     request.send(postData);
-  },
+  }
 
   saveToken(accessToken) {
     this.setState({ accessToken });
-  },
+  }
 
   onAddNewPhraseButtonClick() {
-    this.setState({
-      isPhraseInputActive: !this.state.isPhraseInputActive,
-    });
-  },
+    this.setState({ isPhraseInputActive: !this.state.isPhraseInputActive });
+  }
 
   onSourcePhraseChange(e) {
     this.setState({ sourcePhrase: e.target.value });
-  },
+  }
 
   onSourcePhraseSubmit(e) {
     e.preventDefault();
-    if(this.state.sourcePhrase) {
-      this.props.onSourcePhraseSubmit(this.state.sourcePhrase),
+    if (this.state.sourcePhrase) {
+      this.props.onSourcePhraseSubmit(this.state.sourcePhrase);
       this.setState({
-          isTargetInputActive: !this.state.isTargetInputActive,
-          sourcePhrase: ""
+        isTargetInputActive: !this.state.isTargetInputActive,
+        sourcePhrase: '',
       });
     } else {
-      alert("Source phrase is empty")
+      alert("Source phrase is empty");
     }
-  },
+  }
 
   onSourceVideoSubmit(video) {
     this.setState({ sourcePhrase: video });
@@ -111,30 +134,31 @@ Dictionary = React.createClass( {
       });
     } else {
       bootbox.alert({
-        message: "Source phrase is empty",
-        closeButton:false})
+        message: 'Source phrase is empty',
+        closeButton: false,
+      });
     }
-  },
+  }
 
   onTargetPhraseChange(e) {
     this.setState({targetPhrase: e.target.value });
-  },
+  }
 
   onTargetPhraseSubmit(e) {
     e.preventDefault()
     if(this.state.targetPhrase) {
       this.props.onTargetPhraseSubmit(this.state.targetPhrase),
       this.setState({
-        isPhraseInputActive: !this.state.isPhraseInputActive,
         isTargetInputActive: !this.state.isTargetInputActive,
-        targetPhrase: ""
+        targetPhrase: '',
       });
     } else {
       bootbox.alert({
-        message: "Target phrase is empty",
-        closeButton:false})
+        message: 'Target phrase is empty',
+        closeButton: false,
+      });
     }
-  },
+  }
 
   onTargetVideoSubmit(video) {
     this.setState({targetPhrase: video });
@@ -148,7 +172,7 @@ Dictionary = React.createClass( {
     } else {
       alert("Target phrase is empty")
     }
-  },
+  }
 
   onTargetPhraseMultipleSubmit(e) {
     e.preventDefault()
@@ -157,35 +181,33 @@ Dictionary = React.createClass( {
       isTargetInputActive: !this.state.isTargetInputActive,
       targetPhrase: ""
     });
-  },
+  }
 
   onContinuousInputClick() {
     this.setState({
         isContinuousInputActive: !this.state.isContinuousInputActive
     });
-  },
+  }
 
   onDeletePhrasePair(phrasePairId) {
-    if(window.confirm("Are you sure you want to delete this phrase?")) {
+    if (window.confirm('Are you sure you want to delete this phrase?')) {
       $.ajax({
         url: '/phrase_pairs/' + phrasePairId,
         type: 'DELETE',
-        success: function(response) {
-          var phrasePairs = this.state.phrasePairs;
-          var indexToRemove = _.findIndex(phrasePairs, function(phrasePair) {
+        success: function (response) {
+          const phrasePairs = this.state.phrasePairs;
+          const indexToRemove = _.findIndex(phrasePairs, (phrasePair) => {
             return phrasePair.id == response.id;
           });
           phrasePairs.splice(indexToRemove, 1);
-          this.setState({
-            phrasePairs: phrasePairs
-          })
+          this.setState({ phrasePairs });
         }.bind(this),
-        error: function() {
-          console.log('Error: Could not delete phrase pair')
-        }
-      })
-    };
-  },
+        error() {
+          console.log('Error: Could not delete phrase pair');
+        },
+      });
+    }
+  }
 
   onCancelEditPhrase() {
     this.setState({
@@ -198,7 +220,7 @@ Dictionary = React.createClass( {
     if (this.state.stream !== '') {
       this.onStopStream();
     }
-  },
+  }
 
 
 // Video Zone
@@ -207,7 +229,7 @@ Dictionary = React.createClass( {
     this.setState({
       isInputVideo: !this.state.isInputVideo
     });
-  },
+  }
 
   onCloseVideoComponent() {
     this.setState({
@@ -217,19 +239,19 @@ Dictionary = React.createClass( {
     if (this.state.stream !== '') {
       this.onStopStream();
     }
-  },
+  }
 
   onStopRecordingClick() {
     this.setState({
       isVideoRecording: !this.state.isVideoRecording
     });
-  },
+  }
 
   onStartRecordingClick() {
     this.setState({
       isVideoRecording: !this.state.isVideoRecording
     });
-  },
+  }
 
   onRenderVideoInput() {
     if (this.state.isInputVideo) {
@@ -267,24 +289,23 @@ Dictionary = React.createClass( {
         console.log(err.name + ": " + err.message);
       });
     }
-  },
+  }
 
   onSaveStream(stream) {
     this.setState({stream: stream});
-  },
+  }
 
   onStopStream() {
     const tracks = this.state.stream.getTracks();
     tracks[0].stop();
     tracks[1].stop();
     this.onClearStream();
-  },
+  }
   onClearStream() {
     this.setState({stream: ''});
-  },
+  }
 
 // Render Zone
-
   renderPhrasePairs() {
     return this.state.phrasePairs.map((phrasePair, index) => {
       if (this.props.isNewPhrase) {
@@ -306,43 +327,43 @@ Dictionary = React.createClass( {
         );        
       }
       return (
-          <PhrasePair
-            id={phrasePair.id}
-            isOwnedByCurrentUser={this.props.isOwnedByCurrentUser}
-            initialSourcePhrase={phrasePair.source_phrase}
-            initialTargetPhrase={phrasePair.target_phrase}
-            key={index}
-            onDeletePhrasePair={this.onDeletePhrasePair}
-            menu={this.props.menu}
-            flip={this.props.flip}
-            save={this.props.save}
-            delete={this.props.delete}
-            edit={this.props.edit}
-            close={this.props.close} />
+        <PhrasePair
+          id={phrasePair.id}
+          isOwnedByCurrentUser={this.props.isOwnedByCurrentUser}
+          initialSourcePhrase={phrasePair.source_phrase}
+          initialTargetPhrase={phrasePair.target_phrase}
+          key={index}
+          onDeletePhrasePair={this.onDeletePhrasePair}
+          menu={this.props.menu}
+          flip={this.props.flip}
+          save={this.props.save}
+          delete={this.props.delete}
+          edit={this.props.edit}
+          close={this.props.close}
+        />
       );
     });
-  },
+  }
 
   renderPreSourcePhrase() {
-    if(this.state.isPhraseInputActive == true && this.state.isTargetInputActive == false && this.state.isInputVideo == false ) {
-      return(
+    if (this.state.isPhraseInputActive == true && this.state.isTargetInputActive == false) {
+      return (
          <li className="entry pre">
           <ul>
             <li className="source">
-              <p><Progress/></p>
+              <p><Progress /></p>
             </li>
             <li className="target">
               <p></p>
             </li>
           </ul>
         </li>
-      )
-    } else {
-      if(this.state.isPhraseInputActive == false && this.state.phrasePairs.length == 0 ) {
-        return(<DummyContent/>)
-      }
+      );
     }
-  },
+    if (this.state.isPhraseInputActive == false && this.state.phrasePairs.length == 0) {
+      return <DummyContent />;
+    }
+  }
 
   renderCreateNewPhraseButton() {
     if (this.props.isOwnedByCurrentUser) {
@@ -356,14 +377,13 @@ Dictionary = React.createClass( {
         }
         return (
           <div>{this.renderPhraseInputFields()}</div>
-        )
-      } else {
-        return (
-          <button className="addPhrase" onClick={this.onAddNewPhraseButtonClick}>+</button>
-        )
+        );
       }
+      return (
+        <button className="addPhrase" onClick={this.onAddNewPhraseButtonClick}>+</button>
+      );
     }
-  },
+  }
 
   renderPhraseInputFields() {
     if (this.state.isTargetInputActive) {
@@ -372,40 +392,41 @@ Dictionary = React.createClass( {
           { this.renderInputMethod() }
           { this.renderTargetInput() }
         </div>
-      )
-    } else {
-      return (
-        <div>
-          { this.renderInputMethod() }
-          <form className="newPhrase" onSubmit={this.onSourcePhraseSubmit}>
-            <input
-              value={this.state.sourcePhrase}
-              onChange={this.onSourcePhraseChange}
-              className="sourcePhrase input"
-              type="text"
-              placeholder="Source"/>
-            <button className="savePhrase">Save</button>
-          </form>
-        </div>
-      )
-    };
-  },
-
-  // NB If in continuous input state, show source input field following successful phrase pair completion.
-  renderTargetInput() {
-    const continuousInput = this.state.isContinuousInputActive
+      );
+    }
     return (
-      <form className="newPhrase" onSubmit={continuousInput ? this.onTargetPhraseMultipleSubmit : this.onTargetPhraseSubmit}>
+      <div>
+        { this.renderInputMethod() }
+        <form className="newPhrase" onSubmit={this.onSourcePhraseSubmit}>
+          <input
+            ref="sourceInput"
+            value={this.state.sourcePhrase}
+            onChange={this.onSourcePhraseChange}
+            className="sourcePhrase input"
+            type="text"
+            placeholder="Source"/>
+          <button className="savePhrase">Save</button>
+        </form>
+      </div>
+    );
+  }
+
+  renderTargetInput() {
+    return (
+      <form
+        className="newPhrase"
+        onSubmit={this.onTargetPhraseSubmit} >
         <input
+          ref="targetInput"
           value={this.state.targetPhrase}
           onChange={this.onTargetPhraseChange}
           className="targetPhrase input"
           type="text"
-          placeholder="Target"/>
+          placeholder="Target" />
         <button className="savePhrase"> Save </button>
       </form>
     );
-  },
+  }
 
   renderInputOptions() {
     /*
@@ -480,30 +501,16 @@ Dictionary = React.createClass( {
 
   // TODO: Consider the flow of canceling a phrase in progress.
   renderInputMethod() {
-    if (this.state.isContinuousInputActive) {
-      return (
-        <div className="inputMethod">
-          <label>
-            <input type="checkbox" checked onChange={this.onContinuousInputClick}/>
-            Continuous entry
-          </label>
-          {this.renderInputOptions()}
-        </div>
-      )
-    } else {
-      return (
-        <div className="inputMethod">
-          <label>
-            <input type="checkbox" onChange={this.onContinuousInputClick}/>
-            Continuous entry
-          </label>
-          {this.renderInputOptions()}
-        </div>
-      )
-    }
-  },
+    return (
+      <div className="inputMethod">
+        <button title="Cancel" onClick={this.onCancelEditPhrase} className="close icon">
+          <img src={this.props.close} alt="close" />
+        </button>
+      </div>
+    );
+  }
 
-  render: function() {
+  render() {
     return (
       <div className="dictionary">
         <ul className="content">{this.renderPhrasePairs()}</ul>
@@ -516,6 +523,26 @@ Dictionary = React.createClass( {
             !this.renderCreateNewPhraseButton()
         }
       </div>
-    )
+    );
   }
-} );
+}
+
+Dictionary.propTypes = {
+  initialPhrasePairs: React.PropTypes.arrayOf(React.PropTypes.shape({
+    book_id: React.PropTypes.number,
+    created_at: React.PropTypes.string,
+    id: React.PropTypes.number,
+    source_phrase: React.PropTypes.string,
+    target_phrase: React.PropTypes.string,
+    updated_at: React.PropTypes.string,
+  })),
+  onSourcePhraseSubmit: React.PropTypes.func,
+  onTargetPhraseSubmit: React.PropTypes.func,
+  isOwnedByCurrentUser: React.PropTypes.bool,
+  menu: React.PropTypes.string,
+  flip: React.PropTypes.string,
+  save: React.PropTypes.string,
+  delete: React.PropTypes.string,
+  edit: React.PropTypes.string,
+  close: React.PropTypes.string,
+};

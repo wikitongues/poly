@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 LOG:  database system was interrupted; last known up at 2016-07-18 13:53:15 CEST
 LOG:  database system was not properly shut down; automatic recovery in progress
 LOG:  invalid record length at 0/184BD88
@@ -112,3 +113,17 @@ LOG:  database system is ready to accept connections
 LOG:  autovacuum launcher started
 FATAL:  lock file "postmaster.pid" already exists
 HINT:  Is another postmaster (PID 7341) running in data directory "/usr/local/var/postgres"?
+=======
+LOG:  database system was shut down at 2016-10-20 12:16:19 CEST
+LOG:  MultiXact member wraparound protections are now enabled
+LOG:  database system is ready to accept connections
+LOG:  autovacuum launcher started
+LOG:  database system was shut down at 2016-11-10 17:41:31 CET
+LOG:  MultiXact member wraparound protections are now enabled
+LOG:  database system is ready to accept connections
+LOG:  autovacuum launcher started
+LOG:  database system was shut down at 2016-11-12 03:03:17 CET
+LOG:  MultiXact member wraparound protections are now enabled
+LOG:  database system is ready to accept connections
+LOG:  autovacuum launcher started
+>>>>>>> master
