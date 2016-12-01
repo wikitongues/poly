@@ -1,23 +1,23 @@
-BookEntry = React.createClass ( {
-  render: function() {
-    let createdDate = new Date(this.props.book.created_at),
-    createdYear = createdDate.getUTCFullYear(),
-    months = ["January","February","March","April","May","June","July","August","September","October","November","December"],
-    createdMonth = months[createdDate.getMonth()]
-    createdDay = createdDate.getDate()
+class BookEntry extends React.Component {
+  render() {
+    const createdDate = new Date(this.props.book.created_at);
+    const createdYear = createdDate.getUTCFullYear();
+    const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    const createdMonth = months[createdDate.getMonth()];
+    const createdDay = createdDate.getDate();
 
     return (
        <li className="bookEntry">
-        <a href={"/books/"+this.props.book.id}>
+        <a href={'/books/'+this.props.book.id}>
           <section className="info">
-            {/*<span className="banner"><img src=""/></span>*/}
+            {/* <span className="banner"><img src=""/></span> */}
             <section className="clear">
                 <h2 className="title"title={this.props.book.title}>{this.props.book.title}</h2>
               <section className="details">
                 <p className="source language" title={this.props.book.source_language}>
                   {this.props.book.source_language}
                 </p>
-                <img className="bookEntry icon cardinality" src={this.props.cardinality} alt=""/>
+                <img className="bookEntry icon cardinality" src={this.props.cardinality} alt="" />
                 <p className="target language" title={this.props.book.target_language}>
                   {this.props.book.target_language}
                 </p>
@@ -30,6 +30,10 @@ BookEntry = React.createClass ( {
           </section>
          </a>
        </li>
-    )
+    );
   }
-} )
+}
+
+BookEntry.propTypes = {
+
+};
