@@ -153,9 +153,11 @@ class PhrasePair extends React.Component {
       );
     }
     return (
-      <div className="container-iframe">
-        {this.renderIframe(src)}
-      </div>
+      <span>
+        <div className="container-iframe">
+          {this.renderIframe(src)}
+        </div>
+      </span>
     );
   }
 

@@ -15,7 +15,7 @@ class Dictionary extends React.Component {
       // clientId Ben
       clientId: '463787160210-mcm71qds0opgn9cf661pptqt1hcofh3d.apps.googleusercontent.com',
       // wikitongues
-      // clientId: '20162064407-uf2hnjg83uhaq6v3soa0bm0ngp5gmvjq.apps.googleusercontent.com',
+      clientId: '20162064407-29ls3r7qcugrfvc1ieq5p2ldahqr8bis.apps.googleusercontent.com',
       scopes: [
         'https://www.googleapis.com/auth/youtube',
       ],
@@ -337,7 +337,7 @@ class Dictionary extends React.Component {
               edit={this.props.edit}
               close={this.props.close}
               newPhrase="newPhrase" />
-        );        
+        );
       }
       return (
         <PhrasePair

@@ -150,7 +150,7 @@ Video = React.createClass( {
         headers: {
           Authorization: 'Bearer ' + accessToken,
         },
-        callback: function (response) {  
+        callback: function (response) {
           if (response.error) {
             console.log(response.error.message);
             self.props.onCloseVideoComponent();
