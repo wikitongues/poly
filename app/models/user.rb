@@ -12,8 +12,4 @@ class User < ActiveRecord::Base
   has_many :favorite_books
   has_many :favorites, through: :favorite_books, source: :book
 
-  def authored_books
-      books.order("created_at DESC").to_a
-  end
-
 end
