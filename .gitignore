@@ -11,3 +11,6 @@
 /log/*
 !/log/.keep
 /tmp
+
+# Ignore simplcov test coverage reports:
+/coverage/*
