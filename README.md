@@ -55,6 +55,7 @@ Planned features for future releases. Releases are mapped below. We use [semanti
 ##Version  0.3
 #####Platform
 - [ ] Security audit
+- [ ] Phrasebook embed
 
 #####Books
 - [ ] Book type ***Breaking change***
@@ -62,6 +63,11 @@ Planned features for future releases. Releases are mapped below. We use [semanti
   - [ ] Licenses
   - [ ] Book templates
   - [ ] Dictionaries
+- [ ] Dictionary operations
+  - [ ] Reorder phrases
+    - [ ] Alphabetically
+    - [ ] Arbitrarily (Drag & drop)
+  - [ ] Delete multiple phrases
 - [ ] Rich text
   - [ ] Descriptions
   - [ ] Phrases
