@@ -38,7 +38,7 @@ Planned features for future releases. Releases are mapped below. We use [semanti
   - [x] ~~Gravatar~~
   - [ ] User edit profile data
   - [ ] User upload profile picture
-- [ ] Password Reset
+- [x] ~~Password Reset~~
 
 #####Books
 - [x] ~~Favorite a book~~
