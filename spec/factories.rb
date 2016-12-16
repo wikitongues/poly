@@ -9,6 +9,7 @@ FactoryGirl.define do
     sequence(:title) { |n| "Great Title #{n}" }
     source_language "hebrew"
     target_language "greek"
+    status "public"
     user
 
     factory :book_with_phrase_pairs, parent: :book do |book|
