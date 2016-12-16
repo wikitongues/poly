@@ -30,6 +30,7 @@ gem 'lodash-rails'
 gem 'devise'
 gem 'pundit'
 
+
 gem 'rails_12factor', group: :production
 
 gem 'active_model_serializers', '~> 0.10.0'
@@ -48,6 +49,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.4'
   gem 'capybara'
   gem "factory_girl_rails", "~> 4.0"
+  gem 'dotenv-rails'
 end
 
 group :development do
