@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   root to:  "home#index"
 
   get "/search" => "searches#search"
+  get "/video-upload-url" => "video_uploads#presigned_url"
 
   resources :books, only: [:show, :new, :create, :destroy, :update]
 

@@ -34,6 +34,7 @@ class Book extends React.Component {
     this.favoriteImage = this.favoriteImage.bind(this);
     this.isFavoriteBook = this.isFavoriteBook.bind(this);
     this.renderFavoriteButton = this.renderFavoriteButton.bind(this);
+    this.renderUploadButton = this.renderUploadButton.bind(this);
   }
 
   onSourcePhraseSubmit(sourcePhrase) {
@@ -404,6 +405,41 @@ class Book extends React.Component {
     }
   }
 
+  // THIS IS JUST AN EXAMPLE UPLOAD
+  renderUploadButton() {
+    return(
+      <form id='video-upload-form'>
+        <input type='file' id='video-file-input' onChange={this.onUploadClick.bind(this)}/>
+      </form>
+    );
+  }
+
+  onUploadClick(event) {
+    var filename = event.target.value.split(/(\\|\/)/g).pop().split('.')[0];
+    $.get(
+      '/video-upload-url',
+      { filename: filename },
+      this.onPresignedUrlFetchSuccess.bind(this)
+    )
+  }
+
+  onPresignedUrlFetchSuccess(response) {
+    var theFormFile = $('#video-file-input').get()[0].files[0];
+
+    $.ajax({
+      type: 'PUT',
+      url: response.url,
+      processData: false,
+      data: theFormFile
+    })
+    .success(function() {
+      alert('File uploaded');
+    })
+    .error(function() {
+      alert('File NOT uploaded');
+    });
+  }
+
   render() {
     return (
       <div className="container">
@@ -417,6 +453,7 @@ class Book extends React.Component {
         <div className="book">
           <div className="tools">
             {this.renderFavoriteButton()}
+            {this.renderUploadButton()}
             <div className="cardinality">
               <section>
                 { this.renderSourceLanguage() }

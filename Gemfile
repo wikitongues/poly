@@ -30,6 +30,7 @@ gem 'lodash-rails'
 gem 'devise'
 gem 'pundit'
 
+gem 'aws-sdk', '~> 2'
 
 gem 'rails_12factor', group: :production
 
