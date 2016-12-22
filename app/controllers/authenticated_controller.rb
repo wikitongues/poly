@@ -1,12 +1,6 @@
 class AuthenticatedController < ApplicationController
   include Pundit
 
-  before_action :redirect_unless_user_signed_in
+  before_action :authenticate_user!
   after_action :verify_authorized
-
-  private
-
-  def redirect_unless_user_signed_in
-    redirect_to root_path unless current_user
-  end
 end
