@@ -12,12 +12,14 @@ class NavBar extends React.Component {
               <span>{this.props.currentUser.username}</span>
               <img className="mobile" src={this.props.menu} />
             </a>
+            <a href="/features">Roadmap</a>
             <a href="/sign_out">Sign out</a>
           </span>
       );
     }
     return (
       <span className="logIn">
+        <a href="/features">Roadmap</a>
         <a className="signInButton" href="/sign_in">Log in</a>
         {/* <p> or </p>
         <a href="/sign_up">Sign up</a> */}
