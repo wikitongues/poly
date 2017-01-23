@@ -5,7 +5,7 @@ nav
   position relative
   z-index 5
   width 100%
-  min-width 970px
+  min-width 600px
   float left
   padding 0
   margin-bottom 20px
@@ -15,7 +15,7 @@ nav
 
     &.icon.home
       height 40px
-      width 180px
+      width 40px
       float left
 
       img
@@ -34,13 +34,7 @@ nav
         transition all $time ease-in-out
 
       &:hover, &:focus
-        outline none
-        > img
-          margin-left -2px
-
-        .detail
-          width 122px
-          margin-left 3px
+            outline none
 
   a,
   span.logIn a,
@@ -84,9 +78,7 @@ nav
 
   form
     max-width 600px
-    min-width 450px
-    margin-top 13px
-    width 100%
+    margin-top 5px
     float left
     position absolute
     left 50%
@@ -94,7 +86,7 @@ nav
 
     img
       float left
-      margin 9px -55px 0 18px
+      margin 17px -55px 0 18px
       position relative
       height 20px
       pointer-events none
@@ -103,10 +95,9 @@ nav
       border-radius $radius
       width 100%
       font-size 16px
-      padding 8px 8px 8px 55px
+      padding 16px 8px 16px 55px
       float left
-      border 1px solid #eee
-      // border-right none
+      border none
       font-weight 100
 
       &:focus, &:hover
