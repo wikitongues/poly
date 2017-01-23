@@ -105,6 +105,7 @@ GEM
       jsonapi-renderer (= 0.1.1.beta1)
     jsonapi-parser (0.1.1.beta3)
     jsonapi-renderer (0.1.1.beta1)
+    libv8 (3.16.14.17)
     lodash-rails (4.16.4)
       railties (>= 3.1)
     loofah (2.0.3)
@@ -170,6 +171,7 @@ GEM
       execjs
       rails (>= 3.2)
       tilt
+    ref (2.0.0)
     responders (2.3.0)
       railties (>= 4.2.0, < 5.1)
     rspec-core (3.5.4)
@@ -189,13 +191,6 @@ GEM
       rspec-mocks (~> 3.5.0)
       rspec-support (~> 3.5.0)
     rspec-support (3.5.0)
-    sass (3.4.22)
-    sass-rails (5.0.6)
-      railties (>= 4.0.0, < 6)
-      sass (~> 3.1)
-      sprockets (>= 2.8, < 4.0)
-      sprockets-rails (>= 2.0, < 4.0)
-      tilt (>= 1.1, < 3)
     sdoc (0.4.2)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
@@ -220,6 +215,9 @@ GEM
       execjs
       stylus-source
     stylus-source (0.54.5)
+    therubyracer (0.12.3)
+      libv8 (~> 3.16.14.15)
+      ref
     thor (0.19.1)
     thread_safe (0.3.5)
     tilt (2.0.5)
@@ -258,12 +256,13 @@ DEPENDENCIES
   rails_12factor
   react-rails (~> 1.5.0)
   rspec-rails (~> 3.4)
-  sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   shoulda-matchers (~> 3.1)
   simplecov
   spring
   stylus
+  therubyracer
+  tilt
   uglifier (>= 1.3.0)
   web-console (~> 2.0)
 

@@ -6,9 +6,14 @@ gem 'rails', '4.2.5.1'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 0.15'
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
-# Use Uglifier as compressor for JavaScript assets
+# gem 'sass-rails', '~> 5.0'
+# Tilt is included with sass-rails, but not stylus
+gem 'tilt'
+# Use Stylus for stylesheets
 gem 'stylus'
+# For compilation of assets during deployment (e.g. for heroku).
+gem 'therubyracer', platforms: :ruby
+# Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.1.0'
@@ -29,7 +34,6 @@ gem 'lodash-rails'
 
 gem 'devise'
 gem 'pundit'
-
 
 gem 'rails_12factor', group: :production
 
