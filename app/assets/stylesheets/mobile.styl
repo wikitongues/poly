@@ -1,3 +1,36 @@
+@media (max-width:720px)
+  html
+    body
+      nav
+        form
+          margin-left 60px
+          left 0
+
+@media (max-width: 930px)
+  html
+    body
+      nav
+        form
+          width 2*(100/3)%
+
+@media (min-width: 930px)
+  html
+    body
+      nav
+        a.icon.home
+          width 180px
+          &:hover, &:focus
+            > img
+              margin-left -2px
+
+            .detail
+              width 122px
+              margin-left 3px
+
+        form
+          width 100%
+
+
 @media only screen and (min-device-width 340px) and (max-device-width 667px) and (-webkit-min-device-pixel-ratio 2)
   html
     body
