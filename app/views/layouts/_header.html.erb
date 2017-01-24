@@ -6,13 +6,21 @@
     </span>
   </a>
 
-  <% if @user.username? %>
+  <% if @user && @user.username %>
 
     <span class="loggedIn">
-      <a class="currentUser" href="/account">
+      <a class="currentUser" href="/dashboard">
         <%= @user.username%>
       </a>
+      <a href="/features">Roadmap</a>
       <a href="/sign_out">Sign out</a>
+    </span>
+
+  <% else %>
+
+    <span class="logIn">
+      <a href="/Features">Roadmap</a>
+      <a class="signInButton" href="/sign_in">Log in</a>
     </span>
 
   <% end %>
