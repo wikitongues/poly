@@ -1,28 +1,64 @@
+h2
+  margin 0
+  font-weight 100
+  font-size 2em
+  width 600px
+  display block
+  border-radius $radius $radius 0 0
+  margin auto
+  overflow auto
+  position relative
+  background $buttonBlue
+  color white
+  padding 20px 40px
+  boxShadow()
+
+  span
+    font-size .4em
+    margin-top 18px
+    float right
+
 #featureContainer
   width 600px
   background white
   boxShadow()
-  padding 40px
+  padding 20px 40px 40px
   display block
-  border-radius $radius
+  border-radius 0 0 $radius $radius
   margin auto
   overflow auto
   position relative
 
-  h2
-    color red
-    margin 0
-    font-weight 100
-    font-size 2em
+  p.small
+    font-size .7em
+    color $buttonBlue
 
   ul
     padding-left 1em
-    margin-bottom 1em
+    // margin-bottom 1em
+    list-style-type none
 
-  >ul
+  > ul
+    padding 0
     > li
-      &:nth-of-type(2n)
-        background #fafafa
+      >ul
+        padding .8em 1em 1.2em
 
-  i
-    text-decoration line-through
+      b
+        background $buttonBlue
+        color white
+        width 100%
+        padding 1em
+        display block
+
+      >i
+        text-decoration none
+        b
+          &::after
+            content "(Deployed)"
+            float right
+
+
+
+  s
+    color #ccc
