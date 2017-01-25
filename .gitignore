@@ -28,6 +28,8 @@ config/initializers/secret_token.rb
 # TODO Comment out this rule if environment variables can be committed
 .env
 
+.DS_Store
+
 ## Environment normalization:
 /.bundle
 /vendor/bundle
