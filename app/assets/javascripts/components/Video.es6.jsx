@@ -159,6 +159,7 @@ Video = React.createClass( {
         '/video-upload',
         { filename: self.state.titleVideo }
       ).success(this.onPresignedUrlFetchSuccess.bind(this, file))
+
     };
 
     this.handleUploadClick = function () {

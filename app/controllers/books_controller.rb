@@ -1,5 +1,6 @@
 class BooksController < AuthenticatedController
-  skip_before_action :redirect_unless_user_signed_in, only: [:show]
+  skip_before_filter :authenticate_user!, only: [:show]
+
 
   def show
     @users=User.all

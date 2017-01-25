@@ -6,12 +6,11 @@ class UsersController < ApplicationController
     @books = Book.all.order("created_at DESC").map do |book|
       BookSerializer.new(book)
     end
-    @authoredBooks = Book
-      .where(user_id: @user)
-      .order("created_at DESC")
-      .map do |book|
-          BookSerializer.new(book)
+
+    @authoredBooks = @user.authored_books.map do |book|
+      BookSerializer.new(book)
     end
+
     @favorites = @user.favorites
       .order("created_at DESC")
       .map do |book|

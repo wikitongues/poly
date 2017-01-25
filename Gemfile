@@ -6,9 +6,14 @@ gem 'rails', '4.2.5.1'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 0.15'
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
-# Use Uglifier as compressor for JavaScript assets
+# gem 'sass-rails', '~> 5.0'
+# Tilt is included with sass-rails, but not stylus
+gem 'tilt'
+# Use Stylus for stylesheets
 gem 'stylus'
+# For compilation of assets during deployment (e.g. for heroku).
+gem 'therubyracer', platforms: :ruby
+# Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.1.0'
@@ -18,7 +23,7 @@ gem 'coffee-rails', '~> 4.1.0'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
+# gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
@@ -47,12 +52,13 @@ gem 'active_model_serializers', '~> 0.10.0'
 # gem 'capistrano-rails', group: :development
 
 group :development, :test do
-  gem 'dotenv-rails'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
   gem 'pry'
   gem 'rspec-rails', '~> 3.4'
   gem 'capybara'
+  gem "factory_girl_rails", "~> 4.0"
+  gem 'dotenv-rails'
 end
 
 group :development do
@@ -63,3 +69,7 @@ group :development do
   gem 'spring'
 end
 
+group :test do
+  gem 'simplecov'
+  gem 'shoulda-matchers', '~> 3.1'
+end
