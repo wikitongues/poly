@@ -153,51 +153,74 @@ Video = React.createClass( {
         },
       };
 
-      // AWS CANDIES
 
-      const uploader = new MediaUploader({
-        baseUrl: 'https://www.googleapis.com/upload/youtube/v3/videos',
-        file,
-        token: self.props.accessToken,
-        metadata,
-        params: {
-          part: Object.keys(metadata).join(','),
-        },
+      this.onPresignedUrlFetchSuccess = function (file, response) {
+        const objectUrl = `https://s3.amazonaws.com/poly-video-uploads-dev/${response.object_key}`;
 
-        onError: function (data) {
-          let message = data;
-          try {
-            const errorResponse = JSON.parse(data);
-            console.log(data);
-            message = errorResponse.error.message;
-            console.log(message);
-          } finally {
-            self.props.onCloseVideoComponent();
-            alert('There was an issue while uploading. Please check your connection.');
-          }
-        }.bind(this),
+        self.setState({currentVideoUploadUrl: objectUrl});
 
-        onProgress: function (data) {
-          const currentTime = Date.now();
-          const bytesUploaded = data.loaded;
-          const totalBytes = data.total;
+        $.ajax({
+          type: 'PUT',
+          url: response.url,
+          processData: false,
+          data: file
+        })
+        .success(function() {
+          self.onHandleVideoUpload();
+        })
+        .error(function() {
+          alert('File NOT uploaded');
+        });
+      }
+      console.log('$.get')
+      $.get(
+        '/video-upload',
+        { filename: self.state.titleVideo }
+      ).success(this.onPresignedUrlFetchSuccess.bind(this, file))
 
-          const bytesPerSecond = bytesUploaded / ((currentTime - this.uploadStartTime) / 1000);
-          const estimatedSecondsRemaining = (totalBytes - bytesUploaded) / bytesPerSecond;
-          const percentageComplete = (bytesUploaded * 100) / totalBytes;
-          self.onSaveProgress(percentageComplete);
-        }.bind(this),
+      // const uploader = new MediaUploader({
+      //   baseUrl: 'https://www.googleapis.com/upload/youtube/v3/videos',
+      //   file,
+      //   token: self.props.accessToken,
+      //   metadata,
+      //   params: {
+      //     part: Object.keys(metadata).join(','),
+      //   },
 
-        onComplete: function (data) {
-          console.log('Upload complete.');
-          const uploadResponse = JSON.parse(data);
-          const videoId = uploadResponse.id;
-          self.onHandleVideoId(videoId);
-        },
-      });
+      //   onError: function (data) {
+      //     let message = data;
+      //     try {
+      //       const errorResponse = JSON.parse(data);
+      //       console.log(data);
+      //       message = errorResponse.error.message;
+      //       console.log(message);
+      //     } finally {
+      //       self.props.onCloseVideoComponent();
+      //       alert('There was an issue while uploading. Please check your connection.');
+      //     }
+      //   }.bind(this),
 
-      this.uploadStartTime = Date.now();
-      uploader.upload();
+      //   onProgress: function (data) {
+      //     const currentTime = Date.now();
+      //     const bytesUploaded = data.loaded;
+      //     const totalBytes = data.total;
+
+      //     const bytesPerSecond = bytesUploaded / ((currentTime - this.uploadStartTime) / 1000);
+      //     const estimatedSecondsRemaining = (totalBytes - bytesUploaded) / bytesPerSecond;
+      //     const percentageComplete = (bytesUploaded * 100) / totalBytes;
+      //     self.onSaveProgress(percentageComplete);
+      //   }.bind(this),
+
+      //   onComplete: function (data) {
+      //     console.log('Upload complete.');
+      //     const uploadResponse = JSON.parse(data);
+      //     const videoId = uploadResponse.id;
+      //     self.onHandleVideoUpload(videoId);
+      //   },
+      // });
+
+      // this.uploadStartTime = Date.now();
+      // uploader.upload();
     };
 
     this.handleUploadClick = function () {
@@ -232,13 +255,13 @@ Video = React.createClass( {
     Saves our youtube urls as Phrase Pairs
   */
 
-  onHandleVideoId(videoId) {
-    this.onSaveYoutubeUrl(videoId);
+  onHandleVideoUpload() {
     this.props.onToggleInputType();
+    console.log('got here with ', this.state.currentVideoUploadUrl)
     if (this.props.isTargetInputActive) {
-      this.props.onTargetVideoSubmit(this.state.youtubeVideoEmbed);
+      this.props.onTargetVideoSubmit(this.state.currentVideoUploadUrl);
     } else {
-      this.props.onSourceVideoSubmit(this.state.youtubeVideoEmbed);
+      this.props.onSourceVideoSubmit(this.state.currentVideoUploadUrl);
     }
   },
 

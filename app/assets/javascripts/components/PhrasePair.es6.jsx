@@ -124,7 +124,7 @@ class PhrasePair extends React.Component {
       }, 10000);
     }
 
-    if (this.state.isSourceVideoLoading) {
+    if (false) {
       return (
         <div className="container-iframe">
           {this.renderVideoLoader()}
@@ -145,7 +145,7 @@ class PhrasePair extends React.Component {
       }, 10000);
     }
 
-    if (this.state.isTargetVideoLoading) {
+    if (false) {
       return (
         <div className="container-iframe">
           {this.renderVideoLoader()}
@@ -162,7 +162,8 @@ class PhrasePair extends React.Component {
   }
 
   renderIframe(src) {
-    return <iframe className="iframe" src={src} frameBorder="0" />;
+    // return <iframe className="iframe" src={src} frameBorder="0" />;
+    return <video className="iframe" src={src}></video>
   }
 
   renderSourceInput(status) {
@@ -236,7 +237,7 @@ class PhrasePair extends React.Component {
           <form onSubmit={this.onSavePhraseClick}>
             <li className="source">
               {
-                this.state.sourcePhrase.startsWith('http://www.youtube') ?
+                this.state.sourcePhrase.startsWith('https://s3.amazonaws.com/poly-video-uploads-dev/') ?
                   this.renderSourceInput(true)
                   :
                   this.renderSourceInput(false)
@@ -244,7 +245,7 @@ class PhrasePair extends React.Component {
             </li>
             <li className="target">
               {
-                this.state.targetPhrase && this.state.targetPhrase.startsWith('http://www.youtube') ?
+                this.state.targetPhrase && this.state.targetPhrase.startsWith('https://s3.amazonaws.com/poly-video-uploads-dev/') ?
                   this.renderTargetInput(true)
                   :
                   this.renderTargetInput(false)
@@ -261,7 +262,7 @@ class PhrasePair extends React.Component {
       <ul>
         <li className="source">
           {
-            this.state.sourcePhrase.startsWith('http://www.youtube') ?
+            this.state.sourcePhrase.startsWith('https://s3.amazonaws.com/poly-video-uploads-dev/') ?
               this.renderSourceVideo(this.state.sourcePhrase)
               :
               this.renderParagraph(this.state.sourcePhrase)
@@ -269,7 +270,7 @@ class PhrasePair extends React.Component {
         </li>
         <li className="target">
           {
-            this.state.targetPhrase && this.state.targetPhrase.startsWith('http://www.youtube') ?
+            this.state.targetPhrase && this.state.targetPhrase.startsWith('https://s3.amazonaws.com/poly-video-uploads-dev/') ?
               this.renderTargetVideo(this.state.targetPhrase)
               :
               this.renderParagraph(this.state.targetPhrase)

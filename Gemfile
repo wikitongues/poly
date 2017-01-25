@@ -30,6 +30,8 @@ gem 'lodash-rails'
 gem 'devise'
 gem 'pundit'
 
+gem 'aws-sdk', '~> 2'
+
 gem "browserify-rails"
 
 gem 'rails_12factor', group: :production
@@ -45,6 +47,7 @@ gem 'active_model_serializers', '~> 0.10.0'
 # gem 'capistrano-rails', group: :development
 
 group :development, :test do
+  gem 'dotenv-rails'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
   gem 'pry'
