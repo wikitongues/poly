@@ -195,7 +195,6 @@ Video = React.createClass( {
 
   onHandleVideoUpload() {
     this.props.onToggleInputType();
-    console.log('got here with ', this.state.currentVideoUploadUrl)
     if (this.props.isTargetInputActive) {
       this.props.onTargetVideoSubmit(this.state.currentVideoUploadUrl);
     } else {
