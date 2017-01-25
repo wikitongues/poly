@@ -8,7 +8,7 @@ class Book extends React.Component {
       isDescriptionTruncated: true,
       isFavoriteBook: this.isFavoriteBook(),
       errors: [],
-      isNewPhrase: false,
+      isNewPhrase: false
     };
     this.onSourcePhraseSubmit = this.onSourcePhraseSubmit.bind(this);
     this.onTargetPhraseSubmit = this.onTargetPhraseSubmit.bind(this);

@@ -1,4 +1,5 @@
 class Dictionary extends React.Component {
+
   constructor(props) {
     super(props);
     this.state = {
@@ -86,8 +87,8 @@ class Dictionary extends React.Component {
     if(this.state.sourcePhrase) {
       this.props.onSourcePhraseSubmit(this.state.sourcePhrase, this.state.isPhraseInputActive),
       this.setState({
-          isTargetInputActive: !this.state.isTargetInputActive,
-          sourcePhrase: ""
+        isTargetInputActive: !this.state.isTargetInputActive,
+        sourcePhrase: '',
       });
     } else {
       bootbox.alert({
@@ -124,10 +125,13 @@ class Dictionary extends React.Component {
       this.setState({
         isPhraseInputActive: !this.state.isPhraseInputActive,
         isTargetInputActive: !this.state.isTargetInputActive,
-        targetPhrase: ""
+        targetPhrase: '',
       });
     } else {
-      alert("Target phrase is empty")
+      bootbox.alert({
+        message: 'Target phrase is empty',
+        closeButton: false,
+      });
     }
   }
 
@@ -365,16 +369,14 @@ class Dictionary extends React.Component {
     return (
       <form
         className="newPhrase"
-        onSubmit={this.onTargetPhraseSubmit}
-      >
+        onSubmit={this.onTargetPhraseSubmit} >
         <input
           ref="targetInput"
           value={this.state.targetPhrase}
           onChange={this.onTargetPhraseChange}
           className="targetPhrase input"
           type="text"
-          placeholder="Target"
-        />
+          placeholder="Target" />
         <button className="savePhrase"> Save </button>
       </form>
     );

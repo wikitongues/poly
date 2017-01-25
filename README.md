@@ -26,7 +26,7 @@ Planned features for future releases. Releases are mapped below. We use [semanti
 - [x] ~~Deployment~~
 - [x] ~~Alerts~~
 - [x] ~~Refactor to ES6~~
-- [ ] Testing ([In progress](https://github.com/wikitongues/poly/tree/79-improve-unit-test-coverage))
+- [x] ~~Testing~~
 
 #####Users
 - [x] ~~Proper user validations~~
@@ -38,7 +38,7 @@ Planned features for future releases. Releases are mapped below. We use [semanti
   - [x] ~~Gravatar~~
   - [ ] User edit profile data
   - [ ] User upload profile picture
-- [ ] Password Reset
+- [x] ~~Password Reset~~
 
 #####Books
 - [x] ~~Favorite a book~~
@@ -55,6 +55,7 @@ Planned features for future releases. Releases are mapped below. We use [semanti
 ##Version  0.3
 #####Platform
 - [ ] Security audit
+- [ ] Phrasebook embed
 
 #####Books
 - [ ] Book type ***Breaking change***
@@ -62,6 +63,11 @@ Planned features for future releases. Releases are mapped below. We use [semanti
   - [ ] Licenses
   - [ ] Book templates
   - [ ] Dictionaries
+- [ ] Dictionary operations
+  - [ ] Reorder phrases
+    - [ ] Alphabetically
+    - [ ] Arbitrarily (Drag & drop)
+  - [ ] Delete multiple phrases
 - [ ] Rich text
   - [ ] Descriptions
   - [ ] Phrases

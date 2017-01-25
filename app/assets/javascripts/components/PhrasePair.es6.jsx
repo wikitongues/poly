@@ -1,4 +1,5 @@
 class PhrasePair extends React.Component {
+
   constructor(props) {
     super(props);
     this.state = {
@@ -18,15 +19,6 @@ class PhrasePair extends React.Component {
     this.onTargetChange = this.onTargetChange.bind(this);
     this.renderPhraseMenu = this.renderPhraseMenu.bind(this);
     this.renderPhrasePair = this.renderPhrasePair.bind(this);
-  }
-
-  componentDidMount() {
-    if (this.props.newPhrase) {
-      this.setState({
-        isSourceVideoLoading: true,
-        isTargetVideoLoading: true,
-      });
-    }
   }
 
   componentWillReceiveProps(nextProps) {
@@ -96,8 +88,6 @@ class PhrasePair extends React.Component {
   }
 
   onEditPhraseClick() {
-    this.toggleEditingPhraseState();
-  }
 
   onSourceChange(e) {
     this.setState({ sourcePhrase: e.target.value });
@@ -183,8 +173,9 @@ class PhrasePair extends React.Component {
     />);
   }
 
+
   renderPhraseMenu() {
-    if (this.props.isOwnedByCurrentUser) {
+    if (this.props.isOwnedByCurrentUser && this.props.id) {
       if (this.state.isEditingPhrase) {
         return (
           <li className="menu saving">
