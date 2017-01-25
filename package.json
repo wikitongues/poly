@@ -1,12 +1,15 @@
 {
-  "name": "poly",
-  "version": "1.0.0",
+  "name": "Poly",
+  "version": "0.2.0",
+  "author": "Wikitongues",
   "description": "Poly is open source, modern software to share and learn every language in the world..",
-  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/wikitongues/poly.git"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
   "license": "ISC",
   "dependencies": {
     "browserify": "~10.2.4",

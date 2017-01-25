@@ -118,14 +118,14 @@ class PhrasePair extends React.Component {
 
     if (false) {
       return (
-        <div className="container-iframe">
+        <div className="video">
           {this.renderVideoLoader()}
         </div>
       );
     }
     return (
-      <div className="container-iframe">
-        {this.renderIframe(src)}
+      <div className="video">
+        {this.renderVideo(src)}
       </div>
     );
   }
@@ -139,40 +139,48 @@ class PhrasePair extends React.Component {
 
     if (false) {
       return (
-        <div className="container-iframe">
+        <div className="video">
           {this.renderVideoLoader()}
         </div>
       );
     }
     return (
       <span>
-        <div className="container-iframe">
-          {this.renderIframe(src)}
+        <div className="video">
+          {this.renderVideo(src)}
         </div>
       </span>
     );
   }
 
-  renderIframe(src) {
-    return <video className="iframe" src={src} controls loop></video>
+  renderVideo(src) {
+    return <video src={src} controls loop></video>
   }
 
-  renderSourceInput(status) {
-    return (<input
-      disabled={status}
-      value={this.state.sourcePhrase}
-      onChange={this.onSourceChange}
-      name="sourcePhrase"
-    />);
+  renderSourceInput(status, src) {
+    if(status) {
+      return <div className="video"><video src={this.state.sourcePhrase}></video></div>
+    } else {
+      return (
+        <input
+          value={this.state.sourcePhrase}
+          onChange={this.onSourceChange}
+          name="sourcePhrase"/>
+      );
+    }
   }
 
-  renderTargetInput(status) {
-    return (<input
-      disabled={status}
-      value={this.state.targetPhrase}
-      onChange={this.onTargetChange}
-      name="targetPhrase"
-    />);
+  renderTargetInput(status, src) {
+    if(status) {
+      return <div className="video"><video src={this.state.targetPhrase}></video></div>
+    } else {
+      return (
+        <input
+          value={this.state.targetPhrase}
+          onChange={this.onTargetChange}
+          name="targetPhrase"/>
+      );
+    }
   }
 
 
@@ -248,8 +256,7 @@ class PhrasePair extends React.Component {
         </ul>
       );
     }
-    // Checks whether the source phrase or the target phrase is a video and renders
-    // an iframe or a paragraph accordingly
+    // Checks whether the source phrase or the target phrase is a video and renders video or a paragraph accordingly
     return (
       <ul>
         <li className="source">
