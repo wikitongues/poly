@@ -8,6 +8,7 @@ class Book extends React.Component {
       isDescriptionTruncated: true,
       isFavoriteBook: this.isFavoriteBook(),
       errors: [],
+      isNewPhrase: false
     };
     this.onSourcePhraseSubmit = this.onSourcePhraseSubmit.bind(this);
     this.onTargetPhraseSubmit = this.onTargetPhraseSubmit.bind(this);
@@ -36,7 +37,10 @@ class Book extends React.Component {
     this.renderFavoriteButton = this.renderFavoriteButton.bind(this);
   }
 
-  onSourcePhraseSubmit(sourcePhrase) {
+  onSourcePhraseSubmit(sourcePhrase, isNewPhrase) {
+    if (isNewPhrase) {
+      this.setState({ isNewPhrase: true });
+    }
     const newPhrasePair = { source_phrase: sourcePhrase };
     const newPhrasePairs = this.state.phrasePairs;
     newPhrasePairs.push(newPhrasePair);
@@ -142,6 +146,7 @@ class Book extends React.Component {
   onInputChange(e) {
     const newBook = this.state.book;
     const newState = this.state;
+
     newBook[e.target.name] = e.target.value;
     newState.book = newBook;
     this.setState(newState);
@@ -447,7 +452,16 @@ class Book extends React.Component {
           save={this.props.save}
           delete={this.props.delete}
           edit={this.props.edit}
+          text={this.props.text}
+          textAlt={this.props.textAlt}
+          video={this.props.video}
+          videoAlt={this.props.videoAlt}
           close={this.props.close}
+          closeAlt={this.props.closeAlt}
+          sourceLanguage={this.state.book.source_language}
+          targetLanguage={this.state.book.target_language}
+          author={this.state.book.user_id}
+          isNewPhrase={this.state.isNewPhrase}
           />
         </div>
       </div>
@@ -507,4 +521,3 @@ Book.propTypes = {
   edit: React.PropTypes.string,
   close: React.PropTypes.string,
 };
-
