@@ -1,7 +1,7 @@
 {
   "name": "poly",
   "version": "1.0.0",
-  "description": "###Poly makes crowdsourcing translation dictionaries in any language easy and familiar.",
+  "description": "Poly is open source, modern software to share and learn every language in the world..",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -12,7 +12,6 @@
     "browserify": "~10.2.4",
     "browserify-fs": "^1.0.0",
     "browserify-incremental": "^3.0.1",
-    "file-system": "^2.2.1",
-    "googleapis": "^14.0.0"
+    "file-system": "^2.2.1"
   }
 }
