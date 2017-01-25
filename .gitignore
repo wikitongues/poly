@@ -28,6 +28,8 @@ config/initializers/secret_token.rb
 # TODO Comment out this rule if environment variables can be committed
 .env
 
+.DS_Store
+
 ## Environment normalization:
 /.bundle
 /vendor/bundle
@@ -44,12 +46,10 @@ config/initializers/secret_token.rb
 bower.json
 
 # Node dependency directories
-node_modules
+#node_modules
 
 # Ignore pow environment settings
 .powenv
 
 # Ignore Byebug command history file.
 .byebug_history
-
-.DS_Store
