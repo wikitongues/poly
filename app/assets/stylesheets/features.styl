@@ -1,66 +1,64 @@
+h2
+  margin 0
+  font-weight 100
+  font-size 2em
+  width 600px
+  display block
+  border-radius $radius $radius 0 0
+  margin auto
+  overflow auto
+  position relative
+  background $buttonBlue
+  color white
+  padding 20px 40px
+  boxShadow()
+
+  span
+    font-size .4em
+    margin-top 18px
+    float right
+
 #featureContainer
   width 600px
   background white
   boxShadow()
+  padding 20px 40px 40px
   display block
-  border-radius $radius
+  border-radius 0 0 $radius $radius
   margin auto
-  float left
-  margin-left 20px
   overflow auto
   position relative
 
-  h2
-    font-weight 100
-    font-size 2em
-    background $buttonBlue
-    color white
-    padding 20px 40px
-    margin 0
-    boxShadow()
+  p.small
+    font-size .7em
+    color $buttonBlue
 
-    span
-      font-size .4em
-      margin-top 18px
-      float right
+  ul
+    padding-left 1em
+    // margin-bottom 1em
+    list-style-type none
 
-  .content
-    padding 20px 40px 40px
+  > ul
+    padding 0
+    > li
+      >ul
+        padding .8em 1em 1.2em
 
-    p.small
-      font-size .7em
-      color $buttonBlue
+      b
+        background $buttonBlue
+        color white
+        width 100%
+        padding 1em
+        display block
 
-    ul
-      padding-left 1em
-      list-style-type none
-
-    > ul
-      padding 0
-      > li
-        >ul
-          padding .8em 1em 1.2em
-
+      >i
+        text-decoration none
         b
-          background $buttonBlue
-          color white
-          width 100%
-          padding 1em
-          display block
+          &::after
+            content "(Deployed)"
+            float right
 
-        >i
-          text-decoration none
-          b
-            &::after
-              content "(Deployed)"
-              float right
+
 
   s
     color #ccc
-
-  a
-    border-bottom 3px solid $hover
-    line-height 12px
-    display inline-block
-    text-decoration none
-    text-shadow 1px 1px 0px white, -1px 1px white, 1px 0px 0px white, -1px 0 0 white
