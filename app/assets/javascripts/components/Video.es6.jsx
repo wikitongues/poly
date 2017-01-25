@@ -9,18 +9,12 @@ Video = React.createClass( {
       recordRTC: '',
       recordedBlob: '',
       uploadVideo: '',
-      youtubeVideoEmbed: '',
       isHidden: '',
       percent: '',
     };
   },
 
   componentDidMount() {
-    // if (this.props.accessToken === '') {
-    //   this.props.onCloseVideoComponent();
-    //   alert('Oups, something went wrong. Please check your connection.');
-    //   return;
-    // }
     this.onSaveTitle();
     this.onCreateUploadClass();
 
@@ -46,12 +40,6 @@ Video = React.createClass( {
 
   onUpdateRecordedBlob(updatedBlob) {
     this.setState({ recordedBlob: updatedBlob });
-  },
-
-  onSaveYoutubeUrl(videoId) {
-    this.setState({
-      youtubeVideoEmbed: `http://www.youtube.com/embed/${videoId}?showinfo=0&rel=0&color=white&autohide=1&controls=0`,
-    });
   },
 
   onSaveProgress(percent) {
@@ -132,8 +120,6 @@ Video = React.createClass( {
   },
 
   UploadVideo(self) {
-    this.tags = ['youtube-cors-upload'];
-    this.categoryId = 22;
     this.videoId = '';
     this.uploadStartTime = 0;
 
@@ -144,9 +130,6 @@ Video = React.createClass( {
       const metadata = {
         snippet: {
           title: self.state.titleVideo,
-          description: self.state.descVideo,
-          tags: this.tags,
-          categoryId: this.categoryId,
         },
         status: {
           privacyStatus: self.state.privacyVideo,
@@ -172,55 +155,10 @@ Video = React.createClass( {
           alert('File NOT uploaded');
         });
       }
-      console.log('$.get')
       $.get(
         '/video-upload',
         { filename: self.state.titleVideo }
       ).success(this.onPresignedUrlFetchSuccess.bind(this, file))
-
-      // const uploader = new MediaUploader({
-      //   baseUrl: 'https://www.googleapis.com/upload/youtube/v3/videos',
-      //   file,
-      //   token: self.props.accessToken,
-      //   metadata,
-      //   params: {
-      //     part: Object.keys(metadata).join(','),
-      //   },
-
-      //   onError: function (data) {
-      //     let message = data;
-      //     try {
-      //       const errorResponse = JSON.parse(data);
-      //       console.log(data);
-      //       message = errorResponse.error.message;
-      //       console.log(message);
-      //     } finally {
-      //       self.props.onCloseVideoComponent();
-      //       alert('There was an issue while uploading. Please check your connection.');
-      //     }
-      //   }.bind(this),
-
-      //   onProgress: function (data) {
-      //     const currentTime = Date.now();
-      //     const bytesUploaded = data.loaded;
-      //     const totalBytes = data.total;
-
-      //     const bytesPerSecond = bytesUploaded / ((currentTime - this.uploadStartTime) / 1000);
-      //     const estimatedSecondsRemaining = (totalBytes - bytesUploaded) / bytesPerSecond;
-      //     const percentageComplete = (bytesUploaded * 100) / totalBytes;
-      //     self.onSaveProgress(percentageComplete);
-      //   }.bind(this),
-
-      //   onComplete: function (data) {
-      //     console.log('Upload complete.');
-      //     const uploadResponse = JSON.parse(data);
-      //     const videoId = uploadResponse.id;
-      //     self.onHandleVideoUpload(videoId);
-      //   },
-      // });
-
-      // this.uploadStartTime = Date.now();
-      // uploader.upload();
     };
 
     this.handleUploadClick = function () {
@@ -308,7 +246,7 @@ Video = React.createClass( {
         </div>
         <div className="progress">
           <div className="progress-message">Uploading the video...</div>
-          <div className="progress-hint">(The video's processing by Youtube might take some time. If an error occurs try reloading in a few minutes.)</div>
+          <div className="progress-hint">(The video is being processed and will render as soon as it is ready. If an error occurs try reloading in a few minutes.)</div>
           <div className="progress-bar">
             <div style={{width: this.state.percent +'%'}}></div>
           </div>

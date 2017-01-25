@@ -8,7 +8,7 @@ class PhrasePair extends React.Component {
       isSourceVideoLoading: false,
       isTargetVideoLoading: false,
     };
-    this.toggleEditingPhraseStat = this.toggleEditingPhraseState.bind(this);
+    this.toggleEditingPhraseState = this.toggleEditingPhraseState.bind(this);
     this.cancelEditingPhraseState = this.cancelEditingPhraseState.bind(this);
     this.onDeletePhraseClick = this.onDeletePhraseClick.bind(this);
     this.onSavePhraseClick = this.onSavePhraseClick.bind(this);
@@ -162,8 +162,7 @@ class PhrasePair extends React.Component {
   }
 
   renderIframe(src) {
-    // return <iframe className="iframe" src={src} frameBorder="0" />;
-    return <video className="iframe" src={src}></video>
+    return <video className="iframe" src={src} controls loop></video>
   }
 
   renderSourceInput(status) {
@@ -279,20 +278,6 @@ class PhrasePair extends React.Component {
         { this.renderPhraseMenu() }
       </ul>
     );
-    // Commented out this part of code because it is unreachable
-    /*
-    return (
-      <ul>
-        <li className="source text">
-          <p>{this.state.sourcePhrase}</p>
-        </li>
-        <li className="target text">
-          <p>{this.state.targetPhrase}</p>
-        </li>
-        { this.renderPhraseMenu() }
-      </ul>
-    );
-    */
   }
 
   render() {
