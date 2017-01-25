@@ -16,11 +16,11 @@ Video = React.createClass( {
   },
 
   componentDidMount() {
-    if (this.props.accessToken === '') {
-      this.props.onCloseVideoComponent();
-      alert('Oups, something went wrong. Please check your connection.');
-      return;
-    }
+    // if (this.props.accessToken === '') {
+    //   this.props.onCloseVideoComponent();
+    //   alert('Oups, something went wrong. Please check your connection.');
+    //   return;
+    // }
     this.onSaveTitle();
     this.onCreateUploadClass();
 
@@ -138,28 +138,7 @@ Video = React.createClass( {
     this.uploadStartTime = 0;
 
     this.ready = function (accessToken) {
-      this.accessToken = accessToken;
-      this.gapi = gapi;
-      this.authenticated = true;
-      this.gapi.client.request({
-        path: '/youtube/v3/channels',
-        params: {
-          part: 'snippet',
-          mine: true,
-        },
-        headers: {
-          Authorization: 'Bearer ' + accessToken,
-        },
-        callback: function (response) {
-          if (response.error) {
-            console.log(response.error.message);
-            self.props.onCloseVideoComponent();
-            alert('There was an issue while authenticating. Please check your connection.');
-            return;
-          }
-          self.props.onRenderVideoInput();
-        }.bind(this),
-      });
+        self.props.onRenderVideoInput();
     };
     this.uploadFile = function (file) {
       const metadata = {
@@ -173,6 +152,8 @@ Video = React.createClass( {
           privacyStatus: self.state.privacyVideo,
         },
       };
+
+      // AWS CANDIES
 
       const uploader = new MediaUploader({
         baseUrl: 'https://www.googleapis.com/upload/youtube/v3/videos',
