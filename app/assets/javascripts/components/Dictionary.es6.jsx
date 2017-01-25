@@ -7,28 +7,13 @@ class Dictionary extends React.Component {
       isContinuousInputActive: false,
       isInputVideo: false,
       isVideoRecording: false,
-      isGAPILoaded: false,
       phrasePairs: this.props.initialPhrasePairs,
       sourcePhrase: '',
       targetPhrase: '',
       stream: '',
-      // clientId Ben
-      clientId: '463787160210-mcm71qds0opgn9cf661pptqt1hcofh3d.apps.googleusercontent.com',
-      // wikitongues
-      clientId: '20162064407-29ls3r7qcugrfvc1ieq5p2ldahqr8bis.apps.googleusercontent.com',
-      scopes: [
-        'https://www.googleapis.com/auth/youtube',
-      ],
-      // refresh token Ben
-      refreshToken: '1/vI-S3g2HImFh7nj2wV_cw8y-28lMva6O1IiTQZ7jKZQ',
-      interval: '',
-      accessToken: '',
       isVideoNotAvailable: true,
-      videoButtonClass: ' video-button-disabled',
+      videoButtonClass: ' video-button-enabled',
     };
-    this.makeApiCall = this.makeApiCall.bind(this);
-    this.refreshToken = this.refreshToken.bind(this);
-    this.saveToken = this.saveToken.bind(this);
     this.onAddNewPhraseButtonClick = this.onAddNewPhraseButtonClick.bind(this);
     this.onSourcePhraseChange = this.onSourcePhraseChange.bind(this);
     this.onSourcePhraseSubmit = this.onSourcePhraseSubmit.bind(this);
@@ -56,16 +41,6 @@ class Dictionary extends React.Component {
     this.renderInputMethod = this.renderInputMethod.bind(this);
   }
 
-  componentWillMount() {
-    const makeApiCall = this.makeApiCall;
-    if (typeof gapi !== 'undefined') {
-      gapi.load('client:auth2', makeApiCall);
-    }
-    this.refreshToken();
-    const int = setInterval(this.refreshToken(), 2400000);
-    this.setState({ interval: int });
-  }
-
   componentDidUpdate() {
     if (this.refs.sourceInput) {
       this.refs.sourceInput.blur();
@@ -83,43 +58,6 @@ class Dictionary extends React.Component {
 
   componentWillReceiveProps(newProps) {
     this.setState({ phrasePairs: newProps.initialPhrasePairs });
-  }
-
-  makeApiCall() {
-    const clientId = this.state.clientId;
-    const scopes = this.state.scopes;
-
-    gapi.auth2.init({
-      client_id: clientId,
-      scopes,
-    }).then(() => {
-      gapi.client.load('youtube', 'v3')
-      .then(() => {
-        this.setState({
-          isVideoNotAvailable: false,
-          videoButtonClass: ' video-button-enabled',
-        });
-      });
-    });
-  }
-
-  refreshToken() {
-    const url = 'https://www.googleapis.com/oauth2/v4/token';
-    const method = 'POST';
-    const postData = 'client_secret=31zQmZ0j4_16OXYRh_PLy5tB&grant_type=refresh_token&refresh_token=1%2FE_yN56Kk6X5Y6qv3bnackF7yH2SOfWJ7uaaMMcTtpP-GqAK8dNkv2sl1LRgG-sZl&client_id=463787160210-mcm71qds0opgn9cf661pptqt1hcofh3d.apps.googleusercontent.com';
-    const request = new XMLHttpRequest();
-    const saveToken = this.saveToken;
-    request.onload = () => {
-      const data = JSON.parse(request.responseText);
-      saveToken(data.access_token);
-    };
-    request.open(method, url);
-    request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    request.send(postData);
-  }
-
-  saveToken(accessToken) {
-    this.setState({ accessToken });
   }
 
   onAddNewPhraseButtonClick() {
@@ -240,7 +178,6 @@ class Dictionary extends React.Component {
       this.onStopStream();
     }
   }
-
 
 // Video Zone
 
@@ -449,7 +386,7 @@ class Dictionary extends React.Component {
       return (
         <span className="inputOptions">
           <button title="Text" className="text icon selectedInput"><img src={this.props.textAlt} alt="text"/></button>
-          <button title="Video" onClick={this.onToggleInputType} className={videoButtonClass}><img src={this.props.video} alt="video"/></button>
+          <button title="Video" onClick={this.onToggleInputType} className="video icon video-button-enabled"><img src={this.props.video} alt="video"/></button>
           <button title="Cancel" onClick={this.onCancelEditPhrase} className="close icon"><img src={this.props.close} alt="close"/></button>
         </span>
       );
@@ -471,7 +408,6 @@ class Dictionary extends React.Component {
             onTargetVideoSubmit={this.onTargetVideoSubmit}
             onToggleInputType={this.onToggleInputType}
             onClearStream={this.onClearStream}
-            onToggleGAPILoaded={this.onToggleGAPILoaded}
             closeAlt={this.props.closeAlt}
             textAlt={this.props.textAlt}
             isVideoRecording={this.state.isVideoRecording}
@@ -484,13 +420,11 @@ class Dictionary extends React.Component {
             sourceLanguage={this.props.sourceLanguage}
             targetLanguage={this.props.targetLanguage}
             author={this.props.author}
-            accessToken={this.state.accessToken}
           />
         </div>
       );
     }
   }
-
 
   // TODO: Consider the flow of canceling a phrase in progress.
   renderInputMethod() {
