@@ -159,6 +159,7 @@ Video = React.createClass( {
         '/video-upload',
         { filename: self.state.titleVideo }
       ).success(this.onPresignedUrlFetchSuccess.bind(this, file))
+
     };
 
     this.handleUploadClick = function () {
@@ -195,7 +196,6 @@ Video = React.createClass( {
 
   onHandleVideoUpload() {
     this.props.onToggleInputType();
-    console.log('got here with ', this.state.currentVideoUploadUrl)
     if (this.props.isTargetInputActive) {
       this.props.onTargetVideoSubmit(this.state.currentVideoUploadUrl);
     } else {
