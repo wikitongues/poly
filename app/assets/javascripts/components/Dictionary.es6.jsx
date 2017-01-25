@@ -12,8 +12,7 @@ class Dictionary extends React.Component {
       sourcePhrase: '',
       targetPhrase: '',
       stream: '',
-      isVideoNotAvailable: true,
-      videoButtonClass: ' video-button-enabled',
+      isVideoNotAvailable: true
     };
     this.onAddNewPhraseButtonClick = this.onAddNewPhraseButtonClick.bind(this);
     this.onSourcePhraseChange = this.onSourcePhraseChange.bind(this);
@@ -387,8 +386,8 @@ class Dictionary extends React.Component {
       const videoButtonClass = 'video icon' + this.state.videoButtonClass;
       return (
         <span className="inputOptions">
-          <button title="Text" className="text icon selectedInput"><img src={this.props.textAlt} alt="text"/></button>
-          <button title="Video" onClick={this.onToggleInputType} className="video icon video-button-enabled"><img src={this.props.video} alt="video"/></button>
+          <button title="Text" className="text icon selectedInput"><img src={this.props.text} alt="text"/></button>
+          <button title="Video" onClick={this.onToggleInputType} className="video icon"><img src={this.props.video} alt="video"/></button>
           <button title="Cancel" onClick={this.onCancelEditPhrase} className="close icon"><img src={this.props.close} alt="close"/></button>
         </span>
       );
