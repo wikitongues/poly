@@ -88,6 +88,8 @@ class PhrasePair extends React.Component {
   }
 
   onEditPhraseClick() {
+    this.toggleEditingPhraseState();
+  }
 
   onSourceChange(e) {
     this.setState({ sourcePhrase: e.target.value });
