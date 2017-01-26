@@ -26,7 +26,7 @@ Video = React.createClass( {
     Modify state methods
   */
   onSaveTitle() {
-    const title = `${this.props.sourceLanguage}.${this.props.targetLanguage}.${this.props.author}`;
+    const title = `${this.props.sourceLanguage}_${this.props.targetLanguage}_${this.props.author}_`;
     this.setState({ titleVideo: title });
   },
 
