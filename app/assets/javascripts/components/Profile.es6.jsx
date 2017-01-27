@@ -27,6 +27,7 @@ class Profile extends React.Component {
           book={book}
           key={book.id}
           cardinality={this.props.cardinality}
+          phrase={this.props.phrase}
         />
       );
     });
@@ -40,6 +41,7 @@ class Profile extends React.Component {
             book={book}
             key={book.id}
             cardinality={this.props.cardinality}
+            phrase={this.props.phrase}
           />
         );
       });
@@ -60,6 +62,7 @@ class Profile extends React.Component {
             book={book}
             key={book.id}
             cardinality={this.props.cardinality}
+            phrase={this.props.phrase}
           />
         );
       });
