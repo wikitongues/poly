@@ -201,7 +201,7 @@ class Profile extends React.Component {
         <div id="profile">
           <div className="userInformation">
             <div className="wrapper">
-              <img src={`http://www.gravatar.com/avatar/${this.props.hashedEmail}?s=200`} />
+              <img src={`https://www.gravatar.com/avatar/${this.props.hashedEmail}?s=200`} />
               <span className="tooltip">?</span>
               <span className="details">
                 <h2>{this.props.userData.username}</h2>
