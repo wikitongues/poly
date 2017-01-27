@@ -1,7 +1,6 @@
 class BooksController < AuthenticatedController
   skip_before_filter :authenticate_user!, only: [:show]
 
-
   def show
     @users=User.all
     @book = Book.find(params[:id])
@@ -71,7 +70,6 @@ class BooksController < AuthenticatedController
     else
       redirect_to :back, notice: 'Nothing happened.'
     end
-
   end
 
   private

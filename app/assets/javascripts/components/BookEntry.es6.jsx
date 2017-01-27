@@ -12,7 +12,7 @@ class BookEntry extends React.Component {
           <section className="info">
             {/* <span className="banner"><img src=""/></span> */}
             <section className="clear">
-                <h2 className="title"title={this.props.book.title}>{this.props.book.title}</h2>
+                <h2 className="title"title={this.props.book.title}>{this.props.book.title} <span className="count">{this.props.book.phrase_pairs.length}</span></h2>
               <section className="details">
                 <p className="source language" title={this.props.book.source_language}>
                   {this.props.book.source_language}
