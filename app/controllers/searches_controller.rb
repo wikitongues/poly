@@ -23,7 +23,7 @@ class SearchesController < ApplicationController
           UserSerializer.new(user)
         end
 
-      @phrase = PhrasePair.where("source_phrase like ?", q).sort_by{|phrasePair| phrasePair.created_at}
+      @phrase = PhrasePair.where("source_phrase || target_phrase like ?", q).sort_by{|phrasePair| phrasePair.created_at}
         .reverse
         .map do |phrase|
           PhraseSerializer.new(phrase)
