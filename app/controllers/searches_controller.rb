@@ -23,10 +23,17 @@ class SearchesController < ApplicationController
           UserSerializer.new(user)
         end
 
+      # Make sure aws links dont display
       @phrase = PhrasePair.where("source_phrase || target_phrase like ?", q).sort_by{|phrasePair| phrasePair.created_at}
         .reverse
         .map do |phrase|
           PhraseSerializer.new(phrase)
+        end
+
+      @title = Book.where("title like?", q).sort_by{|book| book.created_at}
+        .reverse
+        .map do |book|
+          BookSerializer.new(book)
         end
 
       render 'search/index'

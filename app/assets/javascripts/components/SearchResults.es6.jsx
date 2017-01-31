@@ -34,6 +34,7 @@ class SearchResults extends React.Component {
       return (
         <div className="search">
           {this.renderUserSection()}
+          {this.renderTitleSection()}
           {this.renderSourceResultSection()}
           {this.renderTargetResultSection()}
           {this.renderPhraseSection()}
@@ -133,18 +134,45 @@ class SearchResults extends React.Component {
             <span className="bookCount search">{this.props.phrase.length}</span>
           </div>
           <ul className="bookEntryList">
-            {this.renderPhrases()}
+            {this.renderPhraseResults()}
           </ul>
         </div>
       );
     }
   }
 
-  renderPhrases() {
+  renderPhraseResults() {
     return this.props.phrase.map(phrase => (
       <PhraseSearchResult
         phrase={phrase}
         key={phrase.id}
+      />)
+    );
+  }
+
+  renderTitleSection() {
+    if (this.props.title.length != 0) {
+      return (
+        <div className="indexContent">
+          <div className="controlPanel">
+            <p>Title contains "{this.props.query}"</p>
+            <span className="bookCount search">{this.props.title.length}</span>
+          </div>
+          <ul className="bookEntryList">
+            {this.renderTitleResults()}
+          </ul>
+        </div>
+      );
+    }
+  }
+
+  renderTitleResults() {
+    return this.props.title.map(book => (
+      <BookEntry
+        users={this.props.users}
+        book={book}
+        key={book.id}
+        cardinality={this.props.cardinality}
       />)
     );
   }
