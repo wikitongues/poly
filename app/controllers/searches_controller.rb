@@ -25,6 +25,9 @@ class SearchesController < ApplicationController
 
       @phrase = PhrasePair.where("source_phrase like ?", q).sort_by{|phrasePair| phrasePair.created_at}
         .reverse
+        .map do |phrase|
+          PhraseSerializer.new(phrase)
+        end
 
       render 'search/index'
 

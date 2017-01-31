@@ -8,6 +8,7 @@ class PhraseSearchResult extends React.Component {
 
     return (
       <a href={"books/" + this.props.phrase.book_id}>
+        <h2>From "{this.props.phrase.book.title}"</h2>
         <li className="bookEntry entry">
           <ul>
             <li className="source"><p>{this.props.phrase.source_phrase}</p></li>
