@@ -6,7 +6,7 @@ class SearchesController < ApplicationController
     if params[:q].length > 0
       q = "%#{params[:q].downcase}%"
       @sourceLanguage = Book.where("source_language like ?", q).sort_by{|book| book.created_at}
-      .reverse
+        .reverse
         .map do |book|
           BookSerializer.new(book)
         end
@@ -16,6 +16,15 @@ class SearchesController < ApplicationController
         .map do |book|
           BookSerializer.new(book)
         end
+
+      @user = User.where("username like ?", q).sort_by{|user| user.created_at}
+        .reverse
+        .map do |user|
+          UserSerializer.new(user)
+        end
+
+      @phrase = PhrasePair.where("source_phrase like ?", q).sort_by{|phrasePair| phrasePair.created_at}
+        .reverse
 
       render 'search/index'
 

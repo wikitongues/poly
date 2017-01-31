@@ -30,16 +30,43 @@ class SearchResults extends React.Component {
   }
 
   renderSearchResults() {
-    if (this.props.sourceLanguage.length != 0 || this.props.targetLanguage != 0) {
+    if (this.props.sourceLanguage.length != 0 || this.props.targetLanguage != 0 || this.props.username != 0 || this.props.phrase != 0) {
       return (
         <div className="search">
+          {this.renderUserSection()}
           {this.renderSourceResultSection()}
           {this.renderTargetResultSection()}
+          {this.renderPhraseSection()}
         </div>
       );
     }
     return (
       <span className="emptySearch">No results for "{this.props.query}"</span>
+    );
+  }
+
+  renderUserSection() {
+    if (this.props.user.length != 0) {
+      return (
+        <div className="indexContent">
+          <div className="controlPanel">
+            <p>Username contains "{this.props.query}"</p>
+            <span className="bookCount search">{this.props.user.length}</span>
+          </div>
+          <ul className="bookEntryList">
+            {this.renderUserResults()}
+          </ul>
+        </div>
+      );
+    }
+  }
+
+  renderUserResults() {
+    return this.props.user.map(user => (
+      <UserSearchResult
+      user={user}
+      key={user.id}/>
+      )
     );
   }
 
@@ -93,6 +120,31 @@ class SearchResults extends React.Component {
         book={book}
         key={book.id}
         cardinality={this.props.cardinality}
+      />)
+    );
+  }
+
+  renderPhraseSection() {
+    if (this.props.phrase.length != 0) {
+      return (
+        <div className="indexContent">
+          <div className="controlPanel">
+            <p>Phrase contains "{this.props.query}"</p>
+            <span className="bookCount search">{this.props.phrase.length}</span>
+          </div>
+          <ul className="bookEntryList">
+            {this.renderPhrases()}
+          </ul>
+        </div>
+      );
+    }
+  }
+
+  renderPhrases() {
+    return this.props.phrase.map(phrase => (
+      <PhraseSearchResult
+        phrase={phrase}
+        key={phrase.id}
       />)
     );
   }
