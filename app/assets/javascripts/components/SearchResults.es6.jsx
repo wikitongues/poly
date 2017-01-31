@@ -4,6 +4,9 @@ class SearchResults extends React.Component {
     this.renderCreateBookPanel = this.renderCreateBookPanel.bind(this);
     this.renderCreateBookButton = this.renderCreateBookButton.bind(this);
     this.renderSearchResults = this.renderSearchResults.bind(this);
+    this.renderUserSection = this.renderUserSection.bind(this);
+    this.renderTitleSection = this.renderTitleSection.bind(this);
+    this.renderPhraseSection = this.renderPhraseSection.bind(this);
     this.renderSourceResultSection = this.renderSourceResultSection.bind(this);
     this.renderSourceResults = this.renderSourceResults.bind(this);
     this.renderTargetResultSection = this.renderTargetResultSection.bind(this);

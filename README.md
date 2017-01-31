@@ -78,8 +78,8 @@ Planned features for future releases. Releases are mapped below. We use [semanti
   - [ ] Upload video phrases
 
 #####Search
-- [ ] Search by title
-- [ ] Search by author
+- [x] ~~Search by title~~
+- [x] ~~Search by author~~
 
 ##Version 0.4
 #####Platform
