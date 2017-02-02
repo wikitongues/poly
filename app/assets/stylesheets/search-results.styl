@@ -26,27 +26,71 @@
       max-height 70vh
       overflow-y scroll
 
-      .bookEntry.entry
-        h2
-          font-size 1.3em
+      &:hover
+        li
+          opacity 1
+
+      .phrase
+        text-decoration none
+        border-bottom 2px solid #F2F5F6
+        display inline-block
+        width 100%
+
+        h2.title
+          font-size 1.0em
           font-weight 500
           margin 0
+          padding .6em
+          background lighten(#F2F5F6, 50%)
+          color $blue
 
-        ul
-          width 200px
-          float none
-          margin auto
-          display block
+        .bookEntry
+          ul
+            float none
+            margin auto
+            display table
+            list-style-type none
+            padding 1em
+            width 100%
 
-          li
-            &.source
+            li
+              width 100%
+              float left
+
               p
-                border-radius 12px 12px 12px 0
-                margin 6px 2px 0 2px
+                width initial
+                display inline-block
+                margin 0
+                padding .7em 1em
+                position relative
+                z-index 1
+                font-size 1.2em
+                max-width 90%
+                overflow hidden
+                text-overflow ellipsis
+                border-style solid
+                outline none
 
-            &.target
-              p
-                border-radius 12px 12px 0 12px
+              &.source
+                p
+                  border-width 1px
+                  margin 2px 2px 4px 2px
+                  border-radius 31px 31px 31px 0
+                  float left
 
-            p
-              font-size .5em
+                p
+                  background $source
+                  border 1px solid darken($source, 2%)
+                  margin 2px 2px 6px 2px
+
+              &.target
+                p
+                  border-width 1px
+                  border-radius 31px 31px 0 31px
+                  margin 2px
+                  float right
+
+                p
+                  background $target
+                  border 1px solid darken($target, 2%)
+                  margin 2px
