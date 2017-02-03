@@ -1,4 +1,6 @@
-# Wikitongues Poly
+# Poly
+
+
 
 ###Poly is open source, modern software to share and learn every language in the world.
 
@@ -68,7 +70,7 @@ Planned features for future releases. Releases are mapped below. We use [semanti
     - [ ] Alphabetically
     - [ ] Arbitrarily (Drag & drop)
   - [ ] Delete multiple phrases
-- [ ] Rich text
+- [ ] Rich text [Example](https://facebook.github.io/draft-js/docs/overview.html#content)
   - [ ] Descriptions
   - [ ] Phrases
 - [ ] Document scroll position progress marker
@@ -94,6 +96,7 @@ Planned features for future releases. Releases are mapped below. We use [semanti
 
 #####Search
 - [ ] Search by content
+- [ ] Search term highlighting [Example](https://github.com/bvaughn/react-highlight-words) 
 - [ ] Search by tags
 
 ##Version 1.0
