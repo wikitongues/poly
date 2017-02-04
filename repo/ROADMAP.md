@@ -6,12 +6,13 @@ Planned features for future releases.
 #Table of Contents
 1. [Feature map](#feature-map)
   1. [Version 0.1](#version-01-deployed)
-  1. [Version 0.2](#version-02)
+  1. [Version 0.2](#version-02-deployed)
   1. [Version 0.3](#version--03)
   1. [Version 0.4](#version-04)
   1. [Version 1.0](#version-10)
 
-##Version 0.1 DEPLOYED
+##Version 0.1, *Deployed*
+Version 0.1 establishes the application. It prepares an application to receive users, allows the creation of books and the input and editing of phrase content.
 - [x] ~~Create new phrasebook~~
 - [x] ~~Input and save new phrase~~
 - [x] ~~Refactor new phrase controller~~
@@ -21,7 +22,8 @@ Planned features for future releases.
 - [x] ~~Book authorship~~
 - [x] ~~Sign in upon account creation~~
 
-##Version 0.2
+##Version 0.2, *Deployed*
+Version 0.2 focuses on developing core features that are not structural. Breaking changes to the schema for implementation of book favoriting. Heavy attention paid to video input and display, as well as search. A user dashboard and profile pages are also anticipated.
 ###Platform
 - [x] ~~Deployment~~
 - [x] ~~Alerts~~
@@ -29,10 +31,9 @@ Planned features for future releases.
 - [x] ~~Testing~~
 
 ###Books
-- [x] ~~Favorite a book~~
+- [x] ~~Favorite a book~~ ***Breaking change***
 - [x] ~~Only save new book if all inputs are complete~~
 - [x] ~~In-progress phrase ellipsis animation~~
-- [ ] Video descriptions
 - [x] ~~Video phrases~~
   - [x] ~~Video phrase interface~~
   - [x] ~~Input video phrases~~
@@ -45,39 +46,44 @@ Planned features for future releases.
   - [x] ~~User name~~
   - [x] ~~User books~~
   - [x] ~~Gravatar~~
-  - [ ] User edit profile data
-  - [ ] User upload profile picture
 - [x] ~~Password Reset~~
 
 ###Search
 - [x] ~~Search by language~~
 
 ##Version  0.3
+Version 0.3 introduces breaking changes to the schema for implementation of book type and status, as well as for phrase operations like reordering and rich-text.
 ###Platform
 - [ ] Security audit
 - [ ] Phrasebook embed
 
 ###Books
-- [ ] Book type ***Breaking change***
+- [ ] 0.3.1 Book type ***Breaking change***
   - [ ] Public/Private ([In Progress](https://github.com/wikitongues/poly/tree/draft-books))
   - [ ] Licenses
   - [ ] Book templates
   - [ ] Dictionaries
-- [ ] Dictionary operations
+- [ ] 0.3.2 Dictionary operations ***Breaking change***
   - [ ] Reorder phrases
     - [ ] Alphabetically
     - [ ] Arbitrarily (Drag & drop)
   - [ ] Delete multiple phrases
-- [ ] Rich text [Example](https://facebook.github.io/draft-js/docs/overview.html#content)
+- [ ] 0.3.3 Rich text [Example](https://facebook.github.io/draft-js/docs/overview.html#content) ***Breaking change***
   - [ ] Descriptions
   - [ ] Phrases
 - [ ] Document scroll position progress marker
 - [ ] Fixed position book languages sub-header
+- [ ] Video descriptions
 - [ ] Video phrases
   - [ ] Transcribe video phrases
   - [ ] Upload video phrases
 
+###Users
+- [ ] User edit profile data
+- [ ] User upload profile picture
+
 ###Search
+- [ ] Search by content
 - [ ] Search by title
 - [ ] Search by author
 
@@ -93,7 +99,6 @@ Planned features for future releases.
 - [ ] Follow a user
 
 ###Search
-- [ ] Search by content
 - [ ] Search term highlighting [Example](https://github.com/bvaughn/react-highlight-words)
 - [ ] Search by tags
 
