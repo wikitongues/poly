@@ -4,6 +4,14 @@ All contributors will be held accountable to the following code of conduct.
 
 [Directory](https://github.com/wikitongues/poly#poly)
 
+#Table of Contents
+1. [Our pledge](#our-pledge)
+1. [Our standards](#our-standards)
+1. [Our responsibilities](#our-responsibilities)
+1. [Scope](#scope)
+1. [Enforcement](#enforcement)
+1. [Attribution](#attribution)
+
 ##Our Pledge
 
 In the interest of fostering an open and welcoming environment, we as contributors and maintainers pledge to making participation in our project and our community a harassment-free experience for everyone, regardless of age, body size, disability, ethnicity, gender identity and expression, level of experience, nationality, personal appearance, race, religion, or sexual identity and orientation.

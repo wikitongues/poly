@@ -51,7 +51,7 @@ Poly is written in [Ruby on Rails](http://rubyonrails.org/) and [React.js](https
 To install and set up this application locally, follow the steps below. For any specific questions, please email us at [poly@wikitongues.org](mailto:poly@wikitongues.org).
 
 ##Pre-requisites
-You will need the following things properly installed on your computer.
+You will need the following things properly installed on your computer:
 * [Git](http://git-scm.com/)
 * [Ruby 2.3.0](https://www.ruby-lang.org/en/downloads/) (check what version of ruby you have by running `ruby -v`)
 * [NPM](npmjs.com) (Installed with [Node.js](https://nodejs.org/en/))
@@ -64,7 +64,7 @@ You will need the following things properly installed on your computer.
   git clone https://github.com/wikitongues/poly.git
   ```
 
-2. Change into the new directory
+2. Change into the new directory.
 3.  Install all dependencies:
 
   ```shell
