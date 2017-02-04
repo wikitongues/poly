@@ -101,6 +101,11 @@ To run tests:
 rspec
 ```
 
+###Browser Testing
+We're proud to do our live, web-based browser testing together with the awesome people at [BrowserStack](browserstack.com).
+
+BrowserStack gives you instant access to all real mobile and desktop browsers. Say goodbye to your lab of devices and virtual machines. Go check them out!
+
 #Usage
 The app is intended to be used via the UI by any person with access to a modern browser.
 
