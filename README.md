@@ -1,6 +1,6 @@
 # Poly
 
-![Poly](https://raw.githubusercontent.com/wikitongues/poly/master/polyPoster.jpg)
+![Poly](https://raw.githubusercontent.com/wikitongues/poly/master/repo/polyPoster.jpg)
 
 > Poly is open source, modern software to share and learn every language in the world.
 
@@ -110,7 +110,7 @@ We're proud to do our live, web-based browser testing together with the awesome 
 
 BrowserStack gives you instant access to all real mobile and desktop browsers. Say goodbye to your lab of devices and virtual machines. Go check them out!
 
-[<img src="https://github.com/wikitongues/poly/blob/master/Browserstack_Logo.jpg?raw=true" width="200px"/>](http://browserstack.com)
+[<img src="https://raw.githubusercontent.com/wikitongues/poly/master/repo/Browserstack_Logo.jpg" width="200px"/>](http://browserstack.com)
 
 #Usage
 The app is intended to be used via the UI by any person with access to a modern browser.
@@ -123,7 +123,7 @@ The app is intended to be used via the UI by any person with access to a modern 
 #Feature Map
 We use [semantic versioning](http://semver.org/).
 
-For an overview of planned features and future releases, refer to [ROADMAP.md](https://github.com/wikitongues/poly/blob/master/ROADMAP.md).
+For an overview of planned features and future releases, refer to [ROADMAP.md](https://github.com/wikitongues/poly/blob/master/repo/ROADMAP.md).
 
 #Security
 The app requires a number of secret keys to function correctly. Features that will not work:
@@ -146,7 +146,7 @@ Feature requests may be made by [opening new issues](https://github.com/wikitong
 
 **Note on requesting features:**
 
->Before making a new request, please review our [roadmap](https://github.com/wikitongues/poly/blob/master/ROADMAP.md) and [issues list](https://github.com/wikitongues/poly/issues) to avoid duplicates. If a feature is already described, please feel free to add your support in the comments!
+>Before making a new request, please review our [roadmap](https://github.com/wikitongues/poly/blob/master/repo/ROADMAP.md) and [issues list](https://github.com/wikitongues/poly/issues) to avoid duplicates. If a feature is already described, please feel free to add your support in the comments!
 
 ##PRs are accepted.
 Make pull requests to have your contributions reviewed and deployed by the maintainers, or contact us directly by email at [poly@wikitongues.org](mailto:poly@wikitongues.org).
@@ -157,7 +157,7 @@ Refer to the [Github Contribution guide](https://guides.github.com/activities/co
 <!-- Requirements -->
 
 ##Code of Conduct
-All contributors will be held accountable to the [Contributor Covenant](https://github.com/wikitongues/poly/blob/master/CONDUCT.md).
+All contributors will be held accountable to the [Contributor Covenant](https://github.com/wikitongues/poly/blob/master/repo/CONDUCT.md).
 
 TLDR: be nice. But go read it anyway.
 
