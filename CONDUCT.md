@@ -1,6 +1,6 @@
 #Poly Contributor Covenant Code of Conduct
 
-[Directory](https://github.com/wikitongues/poly)
+[Directory](https://github.com/wikitongues/poly#poly)
 
 ##Our Pledge
 

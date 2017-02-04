@@ -1,7 +1,7 @@
 #Poly Roadmap
 Planned features for future releases.
 
-[Directory](https://github.com/wikitongues/poly)
+[Directory](https://github.com/wikitongues/poly#poly)
 
 #Table of Contents
 1. [Feature map](#feature-map)
