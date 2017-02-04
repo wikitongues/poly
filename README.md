@@ -192,9 +192,10 @@ Feature requests may be made by [opening new issues](https://github.com/wikitong
 ##PRs are accepted.
 Make pull requests to have your contributions reviewed and deployed by the maintainers, or contact [us](mailto:poly@wikitongues.org) directly.
 
+##Best Practices
 Refer to best practices for contributing to open source projects on the [Github Contribution guide](https://guides.github.com/activities/contributing-to-open-source/) or the more comprehensive [Open-Source Contribution Guide](http://www.contribution-guide.org/).
 
-Requirements
+<!-- Requirements -->
 
 ##Code of Conduct
 All contributors will be held accountable to the [Contributor Covenant](http://contributor-covenant.org/version/1/4/)
