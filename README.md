@@ -113,7 +113,7 @@ BrowserStack gives you instant access to all real mobile and desktop browsers. S
 [<img src="https://raw.githubusercontent.com/wikitongues/poly/master/repo/Browserstack_Logo.jpg" width="200px"/>](http://browserstack.com)
 
 #Usage
-The app is intended to be used via the UI by any person with access to a modern browser.
+The app is intended to be used via the UI by any person with access to a modern browser. As of February 21st, 2017, anyone will be able to create an account and start creating content.
 
 [Video Demo](https://youtu.be/rt-NigJJCgI)
 
