@@ -14,6 +14,7 @@ Poly streamlines the process of creating and sharing dictionaries between any tw
   1. [Install](#install)
   1. [Run](#run)
   1. [Test](#test)
+    1. [Browser testing](#browser-testing)
 1. [Usage](#usage)
 1. [Feature map](#feature-map)
 1. [Security](#security)
