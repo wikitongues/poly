@@ -93,6 +93,13 @@ An alternative to running poly that dispenses from installing prerequisites like
 * Visit the app at [http://localhost:3000](http://localhost:3000). -->
 
 ##Test
+Testing is implemented with RSpec, [FactoryGirl](https://github.com/thoughtbot/factory_girl_rails), [shouldamatchers](http://matchers.shoulda.io/), [simplecov](https://github.com/colszowka/simplecov)
+
+To run tests:
+
+```shell
+rspec
+```
 
 #Usage
 The app is intended to be used via the UI by any person with access to a modern browser.
