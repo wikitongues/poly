@@ -54,21 +54,16 @@ You will need the following things properly installed on your computer.
 * [Bundler](http://bundler.io/) (run `$ gem install bundler`)
 
 ##Install
-* Clone or fork this repository
-
+1. Clone or fork this repository
   ```shell
   git clone https://github.com/wikitongues/poly.git
   ```
-
-* Change into the new directory
-* Install all dependencies
-
+2. Change into the new directory
+3.  Install all dependencies
   ```shell
   bundle install && npm install
   ```
-
-* Create a Postgres database
-
+4.  Create a Postgres database
   ```shell
   rake db:setup
   ```
@@ -78,7 +73,7 @@ To start the application locally, run:
 ```shell
 rails server
 ```
-* Visit the app at [http://localhost:3000](http://localhost:3000).
+Then, visit the app at [http://localhost:3000](http://localhost:3000).
 
 <!-- ## Alternative Workflow with Convox and Docker
 An alternative to running poly that dispenses from installing prerequisites like ruby, Postgres, etc... locally is to use [docker](https://www.docker.com/) to run poly locally, namely via the [convox](https://convox.com/) cli.
