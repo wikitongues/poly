@@ -188,13 +188,13 @@ The app requires a number of secret keys to function correctly. Features that wi
 
 
 #Contribute
-Feel free to dive in!
+We are actively looking for help developing Poly. If you're interested in getting involved, be sure to [let us know](mailto:poly@wikitongues.org)!
 
 ##Request features
 Feature requests may be made by [opening new issues](https://github.com/wikitongues/poly/issues/new) and labeling them enhancements.
 
 ##PRs are accepted.
-Make pull requests to have your contributions reviewed and deployed by the maintainers, or contact [us](mailto:poly@wikitongues.org) directly.
+Make pull requests to have your contributions reviewed and deployed by the maintainers, or contact us directly by email at [poly@wikitongues.org](mailto:poly@wikitongues.org).
 
 ##Best Practices
 Refer to the [Github Contribution guide](https://guides.github.com/activities/contributing-to-open-source/) or the more comprehensive [Open-Source Contribution Guide](http://www.contribution-guide.org/) for best practices in contributing to open source projects.
