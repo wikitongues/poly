@@ -179,7 +179,7 @@ The app requires a number of secret keys to function correctly. Features that wi
 
 |![Freddie](https://avatars1.githubusercontent.com/u/2080065?v=3&s=100)|[Freddie Andrade](https://github.com/FredericoAndrade)|
 |:---|:---|
-|![Chris](https://avatars3.githubusercontent.com/u/2336288?v=3&s=100)|[Chris Voxland](https://github.com/ChrisVoxland)|
+||[Chris Voxland](https://github.com/ChrisVoxland)|
 |![Ben](https://avatars1.githubusercontent.com/u/12382534?v=3&s=100)|[Ben Arias](https://github.com/bjlaa)|
 
 #Contribute
