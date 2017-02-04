@@ -35,9 +35,9 @@ Initial development on Poly was made possible by record-breaking a [Kickstarter 
 
 ##About [Wikitongues](www.wikitongues.org)
 
-![Wikitongues](https://raw.githubusercontent.com/wikitongues/poly/master/wikitonguesBanner.jpg)
-
 In the next eighty years, 3,000 languages are expected to disappear. We won't let that happen.
+
+![Wikitongues](https://raw.githubusercontent.com/wikitongues/poly/master/wikitonguesBanner.jpg)![Wikitongues](https://raw.githubusercontent.com/wikitongues/poly/master/wikitonguesBanner.jpg)
 
 Wikitongues is a platform for every language in the world. We publish oral histories and dictionaries in all of the world's 7,000 languages and develop open source technology for cultural exchange.
 
