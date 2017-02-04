@@ -4,12 +4,20 @@ class NewBook extends React.Component {
     this.state = {
       title: '',
       description: '',
+      isInputVideo: true,
       source_language: '',
       target_language: '',
       errors: [],
+      stream: '',
+      isVideoRecording: false,
     };
+    this.onToggleDescriptionType = this.onToggleDescriptionType.bind(this);
+    this.onCloseVideoComponent = this.onCloseVideoComponent.bind(this);
     this.onInputChange = this.onInputChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+    this.onStopRecordingClick = this.onStopRecordingClick.bind(this);
+    this.onStartRecordingClick = this.onStartRecordingClick.bind(this);
+    this.onRenderVideoInput = this.onRenderVideoInput.bind(this);
   }
 
   onInputChange(e) {
@@ -43,6 +51,131 @@ class NewBook extends React.Component {
         message: 'Your book is missing the following required details:' + (this.state.errors),
         closeButton: false,
       });
+    }
+  }
+
+  onRenderVideoInput() {
+    if (this.state.isInputVideo) {
+      const video = document.getElementById('camera-stream');
+      video.muted = true;
+      const self = this;
+
+      if (navigator.mediaDevices === undefined) {
+        navigator.mediaDevices = {};
+      }
+
+      if (navigator.mediaDevices.getUserMedia === undefined) {
+        navigator.mediaDevices.getUserMedia = (constraints) => {
+          const getUserMedia = (navigator.getUserMedia ||
+            navigator.webkitGetUserMedia ||
+            navigator.mozGetUserMedia);
+
+          if (!getUserMedia) {
+            self.onCloseVideoComponent();
+            alert('Sorry, your browser does not support the video recording.\n(In order to access the video recording, try again with one of these browsers: Chrome, Firefox, Edge, Opera.)');
+            return Promise.reject(new Error('getUserMedia is not implemented in this browser'));
+          }
+          return new Promise((resolve, reject) => {
+            getUserMedia.call(navigator, constraints, resolve, reject);
+          });
+        };
+      }
+      navigator.mediaDevices.getUserMedia({ audio: true, video: true })
+      .then((stream) => {
+        self.onSaveStream(stream);
+        video.controls = false;
+        video.src = window.URL.createObjectURL(stream);
+      })
+      .catch((err) => {
+        console.log(err.name + ": " + err.message);
+      });
+    }
+  }
+
+  onStopRecordingClick() {
+    this.setState({ isVideoRecording: !this.state.isVideoRecording });
+  }
+
+  onStartRecordingClick() {
+    this.setState({ isVideoRecording: !this.state.isVideoRecording });
+  }
+
+  onToggleDescriptionType() {
+    this.setState({
+      isVideoRecording: false,
+      isInputVideo: false
+    });
+  }
+
+  onCloseVideoComponent() {
+    this.setState({
+      isVideoRecording: false,
+      isInputVideo: true
+    });
+    if (this.state.stream !== '') {
+      this.onStopStream();
+    }
+  }
+
+  onStopStream() {
+    const tracks = this.state.stream.getTracks();
+    tracks[0].stop();
+    tracks[1].stop();
+    this.onClearStream();
+  }
+  onClearStream() {
+    this.setState({stream: ''});
+  }
+
+  renderDescription() {
+    if(this.state.isInputVideo) {
+      return(
+        <div className="descriptionArea">
+          <div className="descriptionOptions">
+            <button type="button" title="Text" className="text icon selectedInput"><img src={this.props.textIcon} alt="text"/></button>
+            <button type="button" title="Video" onClick={this.onToggleDescriptionType} className="video icon"><img src={this.props.videoIcon} alt="video"/></button>
+          </div>
+          <textarea
+            className="new description"
+            type="text"
+            name="description"
+            placeholder="Describe the contents of your book, Ex: A
+            collection of useful phrases in Laputa, a Swiftian language
+            spoken in Balnibarbi and a number of other islands."
+            value={this.state.description}
+            onChange={this.onInputChange}
+          />
+        </div>
+      )
+    } else {
+      return(
+        <div className="videoDescription" ref="video">
+          <Video
+            onRenderVideoInput={this.onRenderVideoInput}
+            renderRecordButton={this.renderRecordButton}
+            onCancelEditPhrase={this.onCancelEditPhrase}
+            onCloseVideoComponent={this.onCloseVideoComponent}
+            onStartRecordingClick={this.onStartRecordingClick}
+            onStopRecordingClick={this.onStopRecordingClick}
+            onSourceVideoSubmit={this.onSourceVideoSubmit}
+            onTargetVideoSubmit={this.onTargetVideoSubmit}
+            onToggleInputType={this.onToggleInputType}
+            onClearStream={this.onClearStream}
+            textAlt={this.props.textAlt}
+            isVideoRecording={this.state.isVideoRecording}
+            isInputVideo={this.state.isInputVideo}
+            onSaveStream={this.onSaveStream}
+            onStopStream={this.onStopStream}
+            mediaConstraints={this.state.mediaConstraints}
+            stream={this.state.stream}
+            isTargetInputActive={this.state.isTargetInputActive}
+            sourceLanguage={this.props.sourceLanguage}
+            targetLanguage={this.props.targetLanguage}
+            author={this.props.author}
+            width="600"
+          />
+        </div>
+      )
     }
   }
 
@@ -102,16 +235,7 @@ class NewBook extends React.Component {
                   onChange={this.onInputChange}
                 />
                 <a className="author">{this.props.currentUser.username}</a>
-                <textarea
-                  className="new description"
-                  type="text"
-                  name="description"
-                  placeholder="Describe the contents of your book, Ex: A
-                  collection of useful phrases in Laputa, a Swiftian language
-                  spoken in Balnibarbi and a number of other islands."
-                  value={this.state.description}
-                  onChange={this.onInputChange}
-                />
+                {this.renderDescription()}
               </div>
             </fieldset>
             <section className="new dictionary">

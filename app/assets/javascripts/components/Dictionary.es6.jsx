@@ -421,6 +421,7 @@ class Dictionary extends React.Component {
             sourceLanguage={this.props.sourceLanguage}
             targetLanguage={this.props.targetLanguage}
             author={this.props.author}
+            width={600}
           />
         </div>
       );

@@ -116,8 +116,38 @@
       .author
         float left
 
+      .descriptionOptions
+        float right
+        width 36px
+        height 73px
+        border-radius 34px
+        padding 1px
+        margin-top 30px
+
+        button
+          float left
+          width 32px
+          border-radius 100%
+          opacity .5
+          transition opacity $time ease-in-out
+
+          &.video
+            padding 3px 4px
+            margin-top 4px
+
+          &:hover
+            opacity .7
+
+          &.selectedInput
+            opacity 1
+            background $buttonBlue
+
+      .videoDescription
+        margin 0 -20px
+        display block
+
       .description
-        width 100%
+        width 510px
         min-height 60px
         margin 0 0 1.5em 0
         padding 2px 2px 4px
@@ -127,7 +157,6 @@
           border none
           color $buttonBlue
           cursor pointer
-
 
       a.author, p.author
         clear both
