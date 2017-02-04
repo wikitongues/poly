@@ -14,10 +14,14 @@ Poly streamlines the process of creating and sharing dictionaries between any tw
   1. [Install](#install)
   1. [Run](#run)
 1. [Usage](#usage)
-1. [Feature Map](#feature-map)
+1. [Feature map](#feature-map)
 1. [Security](#security)
 1. [Maintainers](#maintainers)
 1. [Contribute](#contribute)
+  1. [Request features](#request-features)
+  1. [PRs are accepted](#prs-are-accepted)
+  1. [Best practices](#best-practices)
+  1. [Code of conduct](#code-of-conduct)
 1. [License](#license)
 
 #Background
@@ -186,7 +190,7 @@ The app requires a number of secret keys to function correctly. Features that wi
 #Contribute
 Feel free to dive in!
 
-##Request issues
+##Request features
 Feature requests may be made by [opening new issues](https://github.com/wikitongues/poly/issues/new) and labeling them enhancements.
 
 ##PRs are accepted.
