@@ -140,11 +140,4 @@ All contributors will be held accountable to the [Contributor Covenant](http://c
 TLDR: be nice. But go read it anyway.
 
 #License
-
-
-
-
-
-
-<!-- ### Community -->
-<!-- Join us on our open [Slack](http://wikitongues-slack.herokuapp.com/) channel. -->
+We are in the process of reviewing and selecting an appropriate license for the codebase.
