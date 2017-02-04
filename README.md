@@ -51,7 +51,7 @@ To install and set up this application locally, follow the steps below. For any 
 You will need the following things properly installed on your computer.
 * [Git](http://git-scm.com/)
 * [Ruby 2.3.0](https://www.ruby-lang.org/en/downloads/) (check what version of ruby you have by running `ruby -v`)
-* [Node.js](https://nodejs.org/en/)
+* [NPM](npmjs.com) (Installed with [Node.js](https://nodejs.org/en/))
 * [Bundler](http://bundler.io/) (run `$ gem install bundler`)
 
 ##Install
