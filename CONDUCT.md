@@ -1,6 +1,6 @@
 #Poly Contributor Covenant Code of Conduct
 
-All contributors will be held accountable to the Contributor Covenant.
+All contributors will be held accountable to the following code of conduct.
 
 [Directory](https://github.com/wikitongues/poly#poly)
 
