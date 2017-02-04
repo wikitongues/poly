@@ -150,7 +150,7 @@ Refer to the [Github Contribution guide](https://guides.github.com/activities/co
 <!-- Requirements -->
 
 ##Code of Conduct
-All contributors will be held accountable to the [Contributor Covenant](http://contributor-covenant.org/version/1/4/).
+All contributors will be held accountable to the [Contributor Covenant](https://github.com/wikitongues/poly/blob/master/CONDUCT.md).
 
 TLDR: be nice. But go read it anyway.
 
