@@ -177,10 +177,10 @@ The app requires a number of secret keys to function correctly. Features that wi
 
 #Maintainers
 
-|<img src="https://avatars1.githubusercontent.com/u/2080065?v=3&s=100" width="100px">[Freddie Andrade](https://github.com/FredericoAndrade)|
+|<img src="https://avatars1.githubusercontent.com/u/2080065?v=3&s=100" width="100px"/>|[Freddie Andrade](https://github.com/FredericoAndrade)|
 |:---|:---|
-|<img src="https://avatars3.githubusercontent.com/u/2336288?v=3&s=100" width="100px">|[Chris Voxland](https://github.com/ChrisVoxland)|
-|<img src="https://avatars1.githubusercontent.com/u/12382534?v=3&s=100" width="100px">|[Ben Arias](https://github.com/bjlaa)|
+|<img src="https://avatars3.githubusercontent.com/u/2336288?v=3&s=100" width="100px"/>|[Chris Voxland](https://github.com/ChrisVoxland)|
+|<img src="https://avatars1.githubusercontent.com/u/12382534?v=3&s=100" width="100px"/>|[Ben Arias](https://github.com/bjlaa)|
 
 
 
