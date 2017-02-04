@@ -1,3 +1,26 @@
+#Planned features for future releases.
+[Directory](https://github.com/wikitongues/poly)
+
+#Table of Contents
+1. [Feature map](#feature-map)
+  1. [Version 0.1](#version-01-deployed)
+  1. [Version 0.2](#version-02)
+    1. [Platform](#platform)
+    1. [Books](#books)
+    1. [Users](#users)
+    1. [Search](#search)
+  1. [Version 0.3](#version--03)
+    1. [Platform](#platform)
+    1. [Books](#books)
+    1. [Search](#search)
+  1. [Version 0.4](#version-04)
+    1. [Platform](#platform)
+    1. [Books](#books)
+    1. [Users](#users)
+    1. [Search](#search)
+  1. [Version 1.0](#version-10)
+    1. [Platform](#platform)
+
 ##Version 0.1 DEPLOYED
 - [x] ~~Create new phrasebook~~
 - [x] ~~Input and save new phrase~~
@@ -15,6 +38,15 @@
 - [x] ~~Refactor to ES6~~
 - [x] ~~Testing~~
 
+###Books
+- [x] ~~Favorite a book~~
+- [x] ~~Only save new book if all inputs are complete~~
+- [x] ~~In-progress phrase ellipsis animation~~
+- [ ] Video descriptions
+- [ ] Video phrases ([In progress](https://github.com/wikitongues/poly/tree/video-comp-ben))
+  - [x] ~~Video phrase interface~~
+  - [x] ~~Input video phrases~~
+
 ###Users
 - [x] ~~Proper user validations~~
   - [x] ~~Unique usernames~~
@@ -26,15 +58,6 @@
   - [ ] User edit profile data
   - [ ] User upload profile picture
 - [x] ~~Password Reset~~
-
-###Books
-- [x] ~~Favorite a book~~
-- [x] ~~Only save new book if all inputs are complete~~
-- [x] ~~In-progress phrase ellipsis animation~~
-- [ ] Video descriptions
-- [ ] Video phrases ([In progress](https://github.com/wikitongues/poly/tree/video-comp-ben))
-  - [x] ~~Video phrase interface~~
-  - [x] ~~Input video phrases~~
 
 ###Search
 - [x] ~~Search by language~~
