@@ -1,4 +1,4 @@
-#Contributor Covenant Code of Conduct
+#Poly Contributor Covenant Code of Conduct
 
 [Directory](https://github.com/wikitongues/poly)
 
