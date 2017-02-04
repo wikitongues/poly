@@ -1,5 +1,7 @@
 #Poly Contributor Covenant Code of Conduct
 
+All contributors will be held accountable to the Contributor Covenant.
+
 [Directory](https://github.com/wikitongues/poly#poly)
 
 ##Our Pledge
