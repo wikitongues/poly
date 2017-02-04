@@ -202,7 +202,9 @@ Refer to best practices for contributing to open source projects on the [Github 
 <!-- Requirements -->
 
 ##Code of Conduct
-All contributors will be held accountable to the [Contributor Covenant](http://contributor-covenant.org/version/1/4/)
+All contributors will be held accountable to the [Contributor Covenant](http://contributor-covenant.org/version/1/4/).
+
+TLDR: be nice. But go read it anyway.
 
 #License
 
