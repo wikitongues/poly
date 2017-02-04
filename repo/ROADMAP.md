@@ -56,6 +56,7 @@ Version 0.3 introduces breaking changes to the schema for implementation of book
 ###Platform
 - [ ] Security audit
 - [ ] Phrasebook embed
+- [ ] Phrasebook social sharing
 
 ###Books
 - [ ] 0.3.1 Book type ***Breaking change***
