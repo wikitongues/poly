@@ -13,6 +13,7 @@ Poly streamlines the process of creating and sharing dictionaries between any tw
   1. [Pre-requisites](#pre-requisits)
   1. [Install](#install)
   1. [Run](#run)
+  1. [Testing](#testing)
 1. [Usage](#usage)
 1. [Feature map](#feature-map)
 1. [Security](#security)
@@ -53,10 +54,13 @@ You will need the following things properly installed on your computer.
 * [Bundler](http://bundler.io/) (run `$ gem install bundler`)
 
 ##Install
-* Clone or fork this repository with `$ git clone https://github.com/wikitongues/poly.git`
+* Clone or fork this repository
+  `$ git clone https://github.com/wikitongues/poly.git`
 * Change into the new directory
-* Install all dependencies with `$ bundle install && npm install`
-* Create a Postgres database with `$ rake db:setup`
+* Install all dependencies
+  `$ bundle install && npm install`
+* Create a Postgres database
+  `$ rake db:setup`
 
 ##Run
 To run the application locally, run:
@@ -74,6 +78,8 @@ An alternative to running poly that dispenses from installing prerequisites like
 * Run `bin/poly-start` to run poly locally (data will be persisted to `~/.convox/volumes/poly/database/var/lib/postgresql/`)
 * Run `bin/poly-migrate` in case poly has some pending migrations
 * Visit the app at [http://localhost:3000](http://localhost:3000). -->
+
+##Testing
 
 #Usage
 The app is intended to be used via the UI by any person with access to a modern browser.
