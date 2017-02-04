@@ -7,21 +7,9 @@ Planned features for future releases.
 1. [Feature map](#feature-map)
   1. [Version 0.1](#version-01-deployed)
   1. [Version 0.2](#version-02)
-    1. [Platform](#platform)
-    1. [Books](#books)
-    1. [Users](#users)
-    1. [Search](#search)
   1. [Version 0.3](#version--03)
-    1. [Platform](#platform)
-    1. [Books](#books)
-    1. [Search](#search)
   1. [Version 0.4](#version-04)
-    1. [Platform](#platform)
-    1. [Books](#books)
-    1. [Users](#users)
-    1. [Search](#search)
   1. [Version 1.0](#version-10)
-    1. [Platform](#platform)
 
 ##Version 0.1 DEPLOYED
 - [x] ~~Create new phrasebook~~
