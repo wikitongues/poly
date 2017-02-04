@@ -29,7 +29,7 @@ Poly streamlines the process of creating and sharing dictionaries between any tw
 #Background
 Poly was conceived in response to a [New York Times article](https://www.nytimes.com/2014/08/19/opinion/who-speaks-wukchumni.html) that identified one of the last living speakers of her native language Wukchumni manually composing documentation using pen, paper and a voice recorder. Through years of dedication, Marie Wilcox produced an exhaustive dictionary of her mother language, with supplemental recordings, to be used by future generations in their revitalization efforts.
 
-Marie's reality not unique, and over 5% of the languages spoken in the world today are expected to have fewer than 100 speakers. We at Wikitongues resolved to provide tools to facilitate the experience of documentation.
+Marie's reality is not unique, and over 5% of the languages spoken in the world today are expected to have fewer than 100 speakers. We at Wikitongues resolved to provide tools to facilitate the experience of documentation.
 
 Development on Poly was made possible by record-breaking a [Kickstarter campaign](www.kck.st/poly). Thank you very much to all our backers.
 
