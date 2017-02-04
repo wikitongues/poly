@@ -31,7 +31,7 @@ Poly was conceived in response to a [New York Times article](https://www.nytimes
 
 Marie's reality is not unique, and over 5% of the languages spoken in the world today are expected to have fewer than 100 speakers. We at Wikitongues resolved to provide tools to facilitate the experience of documentation.
 
-Development on Poly was made possible by record-breaking a [Kickstarter campaign](www.kck.st/poly). Thank you very much to all our backers.
+Initial development on Poly was made possible by record-breaking a [Kickstarter campaign](www.kck.st/poly). Thank you very much to all our backers.
 
 ##About [Wikitongues](www.wikitongues.org)
 In the next eighty years, 3,000 languages are expected to disappear. We won't let that happen.
