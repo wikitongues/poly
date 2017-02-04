@@ -102,7 +102,7 @@ rspec
 ```
 
 ###Browser Testing
-<img src="https://github.com/wikitongues/poly/blob/master/Browserstack_Logo.jpg?raw=true" width="200px"/>
+<img src="https://github.com/wikitongues/poly/blob/master/Browserstack_Logo.eps?raw=true" width="200px"/>
 We're proud to do our live, web-based browser testing together with the awesome people at [BrowserStack](browserstack.com).
 
 BrowserStack gives you instant access to all real mobile and desktop browsers. Say goodbye to your lab of devices and virtual machines. Go check them out!
