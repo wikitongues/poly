@@ -57,25 +57,27 @@ You will need the following things properly installed on your computer.
 * Clone or fork this repository
 
   ```shell
-  $ git clone https://github.com/wikitongues/poly.git
+  git clone https://github.com/wikitongues/poly.git
   ```
 
 * Change into the new directory
 * Install all dependencies
 
   ```shell
-  $ bundle install && npm install
+  bundle install && npm install
   ```
 
 * Create a Postgres database
 
   ```shell
-  $ rake db:setup
+  rake db:setup
   ```
 
 ##Run
-To run the application locally, run:
-* `$ rails s`
+To start the application locally, run:
+```shell
+rails server
+```
 * Visit the app at [http://localhost:3000](http://localhost:3000).
 
 <!-- ## Alternative Workflow with Convox and Docker
