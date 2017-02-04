@@ -45,7 +45,7 @@ Planned features for future releases.
 - [x] ~~Only save new book if all inputs are complete~~
 - [x] ~~In-progress phrase ellipsis animation~~
 - [ ] Video descriptions
-- [ ] Video phrases ([In progress](https://github.com/wikitongues/poly/tree/video-comp-ben))
+- [x] ~~Video phrases~~
   - [x] ~~Video phrase interface~~
   - [x] ~~Input video phrases~~
 
