@@ -103,9 +103,9 @@ The app is intended to be used via the UI by any person with access to a modern 
 <!-- App screenshots -->
 
 #Feature Map
-Planned features for future releases. Refer to [ROADMAP.md](https://github.com/wikitongues/poly/blob/master/ROADMAP.md) for an overview of planned features.
-
 We use [semantic versioning](http://semver.org/).
+
+For an overview of planned features and future releases, refer to [ROADMAP.md](https://github.com/wikitongues/poly/blob/master/ROADMAP.md).
 
 #Security
 The app requires a number of secret keys to function correctly. Features that will not work:
