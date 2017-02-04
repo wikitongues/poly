@@ -13,7 +13,7 @@ Poly streamlines the process of creating and sharing dictionaries between any tw
   1. [Pre-requisites](#pre-requisits)
   1. [Install](#install)
   1. [Run](#run)
-  1. [Testing](#testing)
+  1. [Test](#test)
 1. [Usage](#usage)
 1. [Feature map](#feature-map)
 1. [Security](#security)
@@ -37,14 +37,14 @@ In the next eighty years, 3,000 languages are expected to disappear. We won't le
 
 Wikitongues is a platform for every language in the world. We publish oral histories and dictionaries in all of the world's 7,000 languages and develop open source technology for cultural exchange.
 
-[Brief intro](https://youtu.be/54zMtbaDFL8)
+<!-- [Brief intro](https://youtu.be/54zMtbaDFL8) -->
 
-You may find the [Oral Histories](https://youtube.com/wikitongues) project on Youtube.
+The [Oral Histories](https://youtube.com/wikitongues) project lives on YouTube.
 
 #Set-up
 Poly is written in [Ruby on Rails](http://rubyonrails.org/) and [React.js](https://facebook.github.io/react/), and uses [RecordRTC](recordrtc.org) to record video. It uses a [PostgreSQL](https://www.postgresql.org/) database, is deployed to [Heroku](heroku.com) and uses [Amazon S3](https://aws.amazon.com/s3) as content delivery network ([CDN](https://en.wikipedia.org/wiki/Content_delivery_network)). RecordRTC relies on [NPM](https://www.npmjs.com/), which in turn requires [Browserify](http://browserify.org/).
 
-To install and set up this application locally, follow the steps below. For any specific questions, please email us at [poly@wikitongues.org](mailto:poly@wikitongues.org)
+To install and set up this application locally, follow the steps below. For any specific questions, please email us at [poly@wikitongues.org](mailto:poly@wikitongues.org).
 
 ##Pre-requisites
 You will need the following things properly installed on your computer.
@@ -54,20 +54,20 @@ You will need the following things properly installed on your computer.
 * [Bundler](http://bundler.io/) (run `$ gem install bundler`)
 
 ##Install
-1. Clone or fork this repository
+1. Clone or fork this repository:
 
   ```shell
   git clone https://github.com/wikitongues/poly.git
   ```
 
 2. Change into the new directory
-3.  Install all dependencies
+3.  Install all dependencies:
 
   ```shell
   bundle install && npm install
   ```
 
-4.  Create a Postgres database
+4.  Create a Postgres database:
 
   ```shell
   rake db:setup
@@ -92,10 +92,11 @@ An alternative to running poly that dispenses from installing prerequisites like
 * Run `bin/poly-migrate` in case poly has some pending migrations
 * Visit the app at [http://localhost:3000](http://localhost:3000). -->
 
-##Testing
+##Test
 
 #Usage
 The app is intended to be used via the UI by any person with access to a modern browser.
+<!-- App screenshots -->
 
 #Feature Map
 Planned features for future releases. Releases are mapped below. We use [semantic versioning](http://semver.org/).
@@ -111,13 +112,13 @@ Planned features for future releases. Releases are mapped below. We use [semanti
 - [x] ~~Sign in upon account creation~~
 
 ##Version 0.2
-#####Platform
+###Platform
 - [x] ~~Deployment~~
 - [x] ~~Alerts~~
 - [x] ~~Refactor to ES6~~
 - [x] ~~Testing~~
 
-#####Users
+###Users
 - [x] ~~Proper user validations~~
   - [x] ~~Unique usernames~~
   - [x] ~~Handle error messages on login page~~
@@ -129,7 +130,7 @@ Planned features for future releases. Releases are mapped below. We use [semanti
   - [ ] User upload profile picture
 - [x] ~~Password Reset~~
 
-#####Books
+###Books
 - [x] ~~Favorite a book~~
 - [x] ~~Only save new book if all inputs are complete~~
 - [x] ~~In-progress phrase ellipsis animation~~
@@ -138,15 +139,15 @@ Planned features for future releases. Releases are mapped below. We use [semanti
   - [x] ~~Video phrase interface~~
   - [x] ~~Input video phrases~~
 
-#####Search
+###Search
 - [x] ~~Search by language~~
 
 ##Version  0.3
-#####Platform
+###Platform
 - [ ] Security audit
 - [ ] Phrasebook embed
 
-#####Books
+###Books
 - [ ] Book type ***Breaking change***
   - [ ] Public/Private ([In Progress](https://github.com/wikitongues/poly/tree/draft-books))
   - [ ] Licenses
@@ -166,28 +167,28 @@ Planned features for future releases. Releases are mapped below. We use [semanti
   - [ ] Transcribe video phrases
   - [ ] Upload video phrases
 
-#####Search
+###Search
 - [ ] Search by title
 - [ ] Search by author
 
 ##Version 0.4
-#####Platform
+###Platform
 - [ ] User-facing data import / export
 
-#####Books
+###Books
 - [ ] Add tags to books
 - [ ] Collaborative Books
 
-#####Users
+###Users
 - [ ] Follow a user
 
-#####Search
+###Search
 - [ ] Search by content
 - [ ] Search term highlighting [Example](https://github.com/bvaughn/react-highlight-words)
 - [ ] Search by tags
 
 ##Version 1.0
-#####Platform
+###Platform
 - [ ] Native app
 - [ ] Offline-first architecture
 - [ ] Public API
