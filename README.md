@@ -141,7 +141,7 @@ We are actively looking for help developing Poly. If you're interested in gettin
 ##Request features
 Feature requests may be made by [opening new issues](https://github.com/wikitongues/poly/issues/new) and labeling them enhancements.
 
-Note on requesting features
+**Note on requesting features**
 
 >Before making a new request, please review our [roadmap](https://github.com/wikitongues/poly/blob/master/ROADMAP.md) and [issues list](https://github.com/wikitongues/poly/issues) to avoid duplicates. If a feature is already described, please feel free to add your support in the comments!
 
