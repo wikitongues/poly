@@ -55,15 +55,20 @@ You will need the following things properly installed on your computer.
 
 ##Install
 1. Clone or fork this repository
+
   ```shell
   git clone https://github.com/wikitongues/poly.git
   ```
+
 2. Change into the new directory
 3.  Install all dependencies
+
   ```shell
   bundle install && npm install
   ```
+
 4.  Create a Postgres database
+
   ```shell
   rake db:setup
   ```
