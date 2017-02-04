@@ -186,7 +186,7 @@ The app requires a number of secret keys to function correctly. Features that wi
 #Contribute
 Feel free to dive in!
 
-#Request issues
+##Request issues
 Feature requests may be made by [opening new issues](https://github.com/wikitongues/poly/issues/new) and labeling them enhancements.
 
 ##PRs are accepted.
