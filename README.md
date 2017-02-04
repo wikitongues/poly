@@ -34,6 +34,9 @@ Marie's reality is not unique, and over 5% of the languages spoken in the world 
 Initial development on Poly was made possible by record-breaking a [Kickstarter campaign](www.kck.st/poly). Thank you very much to all our backers.
 
 ##About [Wikitongues](www.wikitongues.org)
+
+![Wikitongues](https://raw.githubusercontent.com/wikitongues/poly/master/wikitonguesBanner.jpg)
+
 In the next eighty years, 3,000 languages are expected to disappear. We won't let that happen.
 
 Wikitongues is a platform for every language in the world. We publish oral histories and dictionaries in all of the world's 7,000 languages and develop open source technology for cultural exchange.
@@ -41,8 +44,6 @@ Wikitongues is a platform for every language in the world. We publish oral histo
 <!-- [Brief intro](https://youtu.be/54zMtbaDFL8) -->
 
 The [Oral Histories](https://youtube.com/wikitongues) project lives on YouTube.
-
-![Wikitongues](https://raw.githubusercontent.com/wikitongues/poly/master/wikitonguesBanner.jpg)
 
 #Set-up
 Poly is written in [Ruby on Rails](http://rubyonrails.org/) and [React.js](https://facebook.github.io/react/), and uses [RecordRTC](recordrtc.org) for video recording. It uses a [PostgreSQL](https://www.postgresql.org/) database, is deployed to [Heroku](heroku.com) and uses [Amazon S3](https://aws.amazon.com/s3) as content delivery network ([CDN](https://en.wikipedia.org/wiki/Content_delivery_network)). RecordRTC relies on [NPM](https://www.npmjs.com/), which in turn requires [Browserify](http://browserify.org/).
