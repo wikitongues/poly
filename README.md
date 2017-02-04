@@ -98,6 +98,7 @@ An alternative to running poly that dispenses from installing prerequisites like
 The app is intended to be used via the UI by any person with access to a modern browser.
 
 [Video Demo](https://youtu.be/rt-NigJJCgI)
+
 [Live App](poly-wikitongues.herokuapp.com)
 <!-- App screenshots -->
 
