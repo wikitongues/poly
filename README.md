@@ -155,4 +155,4 @@ All contributors will be held accountable to the [Contributor Covenant](https://
 TLDR: be nice. But go read it anyway.
 
 #License
-We are in the process of reviewing and selecting an appropriate license for the codebase. If you have any suggestions, please let us know by [opening new issues](https://github.com/wikitongues/poly/issues/new).
+We are in the process of [reviewing and selecting](https://choosealicense.com/licenses/) an appropriate license for the codebase. If you have any suggestions, please let us know by [opening new issues](https://github.com/wikitongues/poly/issues/new).
