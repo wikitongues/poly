@@ -176,18 +176,20 @@ The app requires a number of secret keys to function correctly. Features that wi
 * Video recording
 
 #Maintainers
-|---|---|
+
 |![Freddie](https://avatars1.githubusercontent.com/u/2080065?v=3&s=400)|[Freddie Andrade](https://github.com/FredericoAndrade)|
+|---|---|
 |![Chris](https://avatars3.githubusercontent.com/u/2336288?v=3&s=460)|[Chris Voxland](https://github.com/ChrisVoxland)|
 |![Ben](https://avatars1.githubusercontent.com/u/12382534?v=3&s=460)|[Ben Arias](https://github.com/bjlaa)|
 
 #Contribute
-Feel free to dive in! [Open an issue](https://github.com/RichardLitt/standard-readme/issues/new) or submit PRs.
+Feel free to dive in!
+
+#Request issues
+Feature requests may be made by [opening new issues](https://github.com/wikitongues/poly/issues/new) and labeling them enhancements.
 
 ##PRs are accepted.
 Make pull requests to have your contributions reviewed and deployed by the maintainers, or contact [us](mailto:poly@wikitongues.org) directly.
-
-Feature requests may be made
 
 Refer to best practices for contributing to open source projects on the [Github Contribution guide](https://guides.github.com/activities/contributing-to-open-source/) or the more comprehensive [Open-Source Contribution Guide](http://www.contribution-guide.org/).
 
