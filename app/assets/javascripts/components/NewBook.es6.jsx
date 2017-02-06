@@ -92,6 +92,10 @@ class NewBook extends React.Component {
     }
   }
 
+  onSaveStream(stream) {
+    this.setState({stream: stream});
+  }
+
   onStopRecordingClick() {
     this.setState({ isVideoRecording: !this.state.isVideoRecording });
   }
@@ -101,10 +105,7 @@ class NewBook extends React.Component {
   }
 
   onToggleDescriptionType() {
-    this.setState({
-      isVideoRecording: false,
-      isInputVideo: false
-    });
+    this.setState({ isInputVideo: !this.state.isInputVideo });
   }
 
   onCloseVideoComponent() {
