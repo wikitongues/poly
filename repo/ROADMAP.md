@@ -74,7 +74,7 @@ Version 0.3 introduces breaking changes to the schema for implementation of book
   - [ ] Phrases
 - [ ] Document scroll position progress marker
 - [ ] Fixed position book languages sub-header
-- [x] ~~Video descriptions~~
+- [x] ~~Video descriptions~~ ***Breaking change***
 - [ ] Video phrases
   - [ ] Transcribe video phrases
   - [ ] Upload video phrases
