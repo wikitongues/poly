@@ -26,8 +26,13 @@ Video = React.createClass( {
     Modify state methods
   */
   onSaveTitle() {
-    const title = `${this.props.sourceLanguage}_${this.props.targetLanguage}_${this.props.author}_`;
-    this.setState({ titleVideo: title });
+    if(this.props.videoPhrase) {
+      const title = `phrase_${this.props.sourceLanguage}_${this.props.targetLanguage}_${this.props.author}_`;
+      this.setState({ titleVideo: title });
+    } else {
+      const title = `description_${this.props.author}_`;
+      this.setState({ titleVideo: title });
+    }
   },
 
   onSaveUploadVideoSession(uploadVideo) {
@@ -222,8 +227,18 @@ Video = React.createClass( {
   renderCancelButton() {
     if (this.props.closeAlt) {
       return(
-        <button type="button" title="Cancel" onClick={this.props.onCancelEditPhrase} className="close icon">
+        <button type="button" title="Cancel" onClick={this.props.onCancelEditPhrase, this.props.onCloseVideoComponent} className="close icon">
           <img src={this.props.closeAlt} alt="close" />
+        </button>
+      )
+    }
+  },
+
+  renderTextButton() {
+    if (this.props.textAlt) {
+      return(
+        <button type="button" title="Text" onClick={this.props.onCloseVideoComponent} className="text icon">
+          <img src={this.props.textAlt} alt="close" />
         </button>
       )
     }
@@ -236,9 +251,7 @@ Video = React.createClass( {
         <div className="videoControls">
           {this.renderRecordButton()}
           {this.renderCancelButton()}
-          <button type="button" title="Text" onClick={this.props.onCloseVideoComponent} className="text icon">
-            <img src={this.props.textAlt} alt="close" />
-          </button>
+          {this.renderTextButton()}
           <button
             type="button"
             hidden

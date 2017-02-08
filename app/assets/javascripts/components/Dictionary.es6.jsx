@@ -410,7 +410,6 @@ class Dictionary extends React.Component {
             onToggleInputType={this.onToggleInputType}
             onClearStream={this.onClearStream}
             closeAlt={this.props.closeAlt}
-            textAlt={this.props.textAlt}
             isVideoRecording={this.state.isVideoRecording}
             isInputVideo={this.state.isInputVideo}
             onSaveStream={this.onSaveStream}
@@ -422,6 +421,7 @@ class Dictionary extends React.Component {
             targetLanguage={this.props.targetLanguage}
             author={this.props.author}
             width={600}
+            videoPhrase={true}
           />
         </div>
       );

@@ -39,7 +39,7 @@
       height 100%
       min-width 3px
       float left
-      background $buttonBlue
+      background $blue
 
   .info
     z-index 1
@@ -116,50 +116,64 @@
       .author
         float left
 
-      .descriptionOptions
-        float right
-        width 36px
-        height 73px
-        border-radius 34px
-        padding 1px
-        margin-top 30px
+      .descriptionArea
+        display inline-block
+        width 100%
 
-        button
-          float left
-          width 32px
-          border-radius 100%
-          opacity .5
-          transition opacity $time ease-in-out
+      .addVideoButton
+        background lighten($whiteHover, 50%)
+        border none
+        color $blue
+        cursor pointer
+        width 100%
+        padding 1em 0 1em
+        border-radius $radius
+        margin 1em 0
+        transition $time all ease-in-out
 
-          &.video
-            padding 3px 4px
-            margin-top 4px
-
-          &:hover
-            opacity .7
-
-          &.selectedInput
-            opacity 1
-            background $buttonBlue
+        &:hover
+          background $whiteHover
 
       .videoDescription
         margin 0 -20px
-        display block
+        width 600px
+        display inline-block
 
         .videoComponent
-          video
-            min-height 337.5px //600px wide / (16/9 aspect ratio)
+          margin 0
+          position relative
+
+          button
+            &.play
+              width 45px
+              height 45px
+              padding 0
+              border-radius 100%
+              cursor pointer
+              outline none
+              background #5d5d5d
+              background rgba(50,50,50,0.3)
+              margin 10px 0
+              border none
+
+              img
+                margin 12px 9px 12px 12px
+                width 21px
+                height 21px
+
+              &.descriptionVideoPause
+                img
+                  margin 12px 13px
 
       .description
-        width 510px
-        min-height 60px
-        margin 0 0 1.5em 0
+        width 100%
+        margin 1em 0 1.5em 0
         padding 2px 2px 4px
 
         button
           background none
           border none
-          color $buttonBlue
+          color $blue
           cursor pointer
 
       a.author, p.author
@@ -169,9 +183,7 @@
         font-size 12px
         text-decoration none
         border-radius $radius
+        color $blue
 
-      p.author
-        color #aaa
-
-      a.author
-        color $buttonBlue
+      p.author.new
+        color #a9a9a9

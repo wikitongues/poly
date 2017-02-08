@@ -3,21 +3,31 @@ class NewBook extends React.Component {
     super(props);
     this.state = {
       title: '',
+      video_description: '',
       description: '',
-      isInputVideo: true,
+      isInputVideo: false,
+      hasVideoDescription: false,
       source_language: '',
       target_language: '',
       errors: [],
       stream: '',
       isVideoRecording: false,
+      isDescriptionPlaying: false,
     };
-    this.onToggleDescriptionType = this.onToggleDescriptionType.bind(this);
     this.onCloseVideoComponent = this.onCloseVideoComponent.bind(this);
     this.onInputChange = this.onInputChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
-    this.onStopRecordingClick = this.onStopRecordingClick.bind(this);
+    this.onDescriptionVideoSubmit = this.onDescriptionVideoSubmit.bind(this)
+    this.onToggleInputType = this.onToggleInputType.bind(this);
+    this.onSaveStream = this.onSaveStream.bind(this);
+    this.onStopStream = this.onStopStream.bind(this);
+    this.onClearStream = this.onClearStream.bind(this);
     this.onStartRecordingClick = this.onStartRecordingClick.bind(this);
+    this.onStopRecordingClick = this.onStopRecordingClick.bind(this);
     this.onRenderVideoInput = this.onRenderVideoInput.bind(this);
+    this.playButton = this.playButton.bind(this);
+    this.pauseButton = this.pauseButton.bind(this);
+    this.onDeleteVideoDescription = this.onDeleteVideoDescription.bind(this);
   }
 
   onInputChange(e) {
@@ -97,21 +107,21 @@ class NewBook extends React.Component {
   }
 
   onStopRecordingClick() {
-    this.setState({ isVideoRecording: !this.state.isVideoRecording });
+    this.setState({ isVideoRecording: !this.state.isVideoRecording, hasVideoDescription: true });
   }
 
   onStartRecordingClick() {
     this.setState({ isVideoRecording: !this.state.isVideoRecording });
   }
 
-  onToggleDescriptionType() {
+  onToggleInputType() {
     this.setState({ isInputVideo: !this.state.isInputVideo });
   }
 
   onCloseVideoComponent() {
     this.setState({
       isVideoRecording: false,
-      isInputVideo: true
+      isInputVideo: false
     });
     if (this.state.stream !== '') {
       this.onStopStream();
@@ -124,30 +134,22 @@ class NewBook extends React.Component {
     tracks[1].stop();
     this.onClearStream();
   }
+
   onClearStream() {
     this.setState({stream: ''});
   }
 
-  renderDescription() {
-    if(this.state.isInputVideo) {
-      return(
-        <div className="descriptionArea">
-          <div className="descriptionOptions">
-            <button type="button" title="Text" className="text icon selectedInput"><img src={this.props.textIcon} alt="text"/></button>
-            <button type="button" title="Video" onClick={this.onToggleDescriptionType} className="video icon"><img src={this.props.videoIcon} alt="video"/></button>
-          </div>
-          <textarea
-            className="new description"
-            type="text"
-            name="description"
-            placeholder="Describe the contents of your book, Ex: A
-            collection of useful phrases in Laputa, a Swiftian language
-            spoken in Balnibarbi and a number of other islands."
-            value={this.state.description}
-            onChange={this.onInputChange}
-          />
-        </div>
-      )
+  onDescriptionVideoSubmit(video) {
+    this.setState({ video_description: video });
+  }
+
+  renderVideoDescription() {
+    if(this.state.isInputVideo == false) {
+      if(this.state.hasVideoDescription) {
+        return <div className="videoDescription"><div className="videoComponent"><video src={this.state.video_description} loop width="600"></video>{this.renderPlayButton()}</div></div>
+      } else {
+        return <button type="button" title="Add a video" onClick={this.onToggleInputType} className="addVideoButton">Add a video introduction</button>
+      }
     } else {
       return(
         <div className="videoDescription" ref="video">
@@ -158,11 +160,11 @@ class NewBook extends React.Component {
             onCloseVideoComponent={this.onCloseVideoComponent}
             onStartRecordingClick={this.onStartRecordingClick}
             onStopRecordingClick={this.onStopRecordingClick}
-            onSourceVideoSubmit={this.onSourceVideoSubmit}
+            onSourceVideoSubmit={this.onDescriptionVideoSubmit}
             onTargetVideoSubmit={this.onTargetVideoSubmit}
             onToggleInputType={this.onToggleInputType}
             onClearStream={this.onClearStream}
-            textAlt={this.props.textAlt}
+            closeAlt={this.props.closeAlt}
             isVideoRecording={this.state.isVideoRecording}
             isInputVideo={this.state.isInputVideo}
             onSaveStream={this.onSaveStream}
@@ -172,12 +174,53 @@ class NewBook extends React.Component {
             isTargetInputActive={this.state.isTargetInputActive}
             sourceLanguage={this.props.sourceLanguage}
             targetLanguage={this.props.targetLanguage}
-            author={this.props.author}
-            width="600"
+            author={this.props.currentUser.username}
+            width={600}
+            videoPhrase={false}
           />
         </div>
       )
     }
+  }
+
+  renderPlayButton() {
+    if(this.state.isDescriptionPlaying) {
+      return (
+        <div className="videoControls">
+          <button className="play descriptionVideoPause" type="button" onClick={this.pauseButton} title="Pause">
+              <img src={this.props.pause}/>
+          </button>
+          <button type="button" title="Remove video" onClick={this.onDeleteVideoDescription} className="text icon">
+            <img src={this.props.deleteAlt} alt="close" />
+          </button>
+        </div>
+      )
+    } else {
+      return (
+        <div className="videoControls">
+          <button type="button" onClick={this.playButton} title="Play" className="play">
+            <img src={this.props.play}/>
+          </button>
+          <button type="button" title="Remove video" onClick={this.onDeleteVideoDescription} className="text icon">
+            <img src={this.props.deleteAlt} alt="close" />
+          </button>
+        </div>
+      )
+    }
+  }
+
+  onDeleteVideoDescription() {
+    this.setState({video_description:"", hasVideoDescription:false})
+  }
+
+  playButton() {
+    this.setState({isDescriptionPlaying:!this.state.isDescriptionPlaying})
+    $("video")[0].play()
+  }
+
+  pauseButton() {
+    this.setState({isDescriptionPlaying:!this.state.isDescriptionPlaying})
+    $("video")[0].pause()
   }
 
   render() {
@@ -235,8 +278,24 @@ class NewBook extends React.Component {
                   value={this.state.title}
                   onChange={this.onInputChange}
                 />
-                <a className="author">{this.props.currentUser.username}</a>
-                {this.renderDescription()}
+                <p className="new author">{this.props.currentUser.username}</p>
+                <div className="descriptionArea">
+                  {/*<div className="descriptionOptions">
+                              <button type="button" title="Text" className="text icon selectedInput"><img src={this.props.textIcon} alt="text"/></button>
+                              <button type="button" title="Video" onClick={this.onToggleInputType} className="video icon"><img src={this.props.videoIcon} alt="video"/></button>
+                            </div>*/}
+                  {this.renderVideoDescription()}
+                  <textarea
+                    className="new description"
+                    type="text"
+                    name="description"
+                    placeholder="Describe the contents of your book, Ex: A
+                    collection of useful phrases in Laputa, a Swiftian language
+                    spoken in Balnibarbi and a number of other islands."
+                    value={this.state.description}
+                    onChange={this.onInputChange}
+                  />
+                </div>
               </div>
             </fieldset>
             <section className="new dictionary">
