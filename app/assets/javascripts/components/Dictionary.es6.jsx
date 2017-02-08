@@ -275,6 +275,8 @@ class Dictionary extends React.Component {
               save={this.props.save}
               delete={this.props.delete}
               edit={this.props.edit}
+              play={this.props.play}
+              pause={this.props.pause}
               close={this.props.close}
               newPhrase="newPhrase" />
         );
@@ -292,6 +294,8 @@ class Dictionary extends React.Component {
           save={this.props.save}
           delete={this.props.delete}
           edit={this.props.edit}
+          play={this.props.play}
+          pause={this.props.pause}
           close={this.props.close}
         />
       );
@@ -398,7 +402,7 @@ class Dictionary extends React.Component {
     if (this.state.isInputVideo) {
       return (
         <div ref="video">
-          <Video
+          <VideoRecorder
             onRenderVideoInput={this.onRenderVideoInput}
             renderRecordButton={this.renderRecordButton}
             onCancelEditPhrase={this.onCancelEditPhrase}

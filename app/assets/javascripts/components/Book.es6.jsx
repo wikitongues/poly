@@ -366,7 +366,7 @@ class Book extends React.Component {
     } else {
       return(
         <div className="videoDescription" ref="video">
-          <Video
+          <VideoRecorder
             onRenderVideoInput={this.onRenderVideoInput}
             renderRecordButton={this.renderRecordButton}
             onCancelEditPhrase={this.onCancelEditPhrase}
@@ -664,6 +664,8 @@ class Book extends React.Component {
           targetLanguage={this.state.book.target_language}
           author={this.state.book.user_id}
           isNewPhrase={this.state.isNewPhrase}
+          pause={this.props.pause}
+          play={this.props.play}
           />
         </div>
       </div>

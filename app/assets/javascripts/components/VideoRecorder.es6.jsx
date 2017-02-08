@@ -1,6 +1,6 @@
 const RecordRTC = require('recordrtc');
 
-Video = React.createClass( {
+VideoRecorder = React.createClass( {
   getInitialState() {
     return {
       titleVideo: '',

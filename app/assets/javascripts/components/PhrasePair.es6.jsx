@@ -8,6 +8,7 @@ class PhrasePair extends React.Component {
       targetPhrase: this.props.initialTargetPhrase,
       isSourceVideoLoading: false,
       isTargetVideoLoading: false,
+      isPhrasePlaying: false,
     };
     this.toggleEditingPhraseState = this.toggleEditingPhraseState.bind(this);
     this.cancelEditingPhraseState = this.cancelEditingPhraseState.bind(this);
