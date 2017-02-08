@@ -26,8 +26,13 @@ Video = React.createClass( {
     Modify state methods
   */
   onSaveTitle() {
-    const title = `${this.props.sourceLanguage}_${this.props.targetLanguage}_${this.props.author}_`;
-    this.setState({ titleVideo: title });
+    if(this.props.videoPhrase) {
+      const title = `phrase_${this.props.sourceLanguage}_${this.props.targetLanguage}_${this.props.author}_`;
+      this.setState({ titleVideo: title });
+    } else {
+      const title = `description_${this.props.author}_`;
+      this.setState({ titleVideo: title });
+    }
   },
 
   onSaveUploadVideoSession(uploadVideo) {
@@ -206,38 +211,56 @@ Video = React.createClass( {
   renderRecordButton() {
     if (this.props.isVideoRecording) {
       return (
-        <button className="videoButtonContainer" onClick={this.onStopRecording}>
+        <button type="button" className="videoButtonContainer" onClick={this.onStopRecording}>
           <div className="videoButton"></div>
         </button>
       );
     }
 
     return (
-      <button className="videoButtonContainer" onClick={this.onRecordVideo}>
+      <button type="button" className="videoButtonContainer" onClick={this.onRecordVideo}>
         <div className="videoButton startRecording"></div>
       </button>
     );
   },
 
+  renderCancelButton() {
+    if (this.props.closeAlt) {
+      return(
+        <button type="button" title="Cancel" onClick={this.props.onCancelEditPhrase, this.props.onCloseVideoComponent} className="close icon">
+          <img src={this.props.closeAlt} alt="close" />
+        </button>
+      )
+    }
+  },
+
+  renderTextButton() {
+    if (this.props.textAlt) {
+      return(
+        <button type="button" title="Text" onClick={this.props.onCloseVideoComponent} className="text icon">
+          <img src={this.props.textAlt} alt="close" />
+        </button>
+      )
+    }
+  },
+
   render() {
     return (
       <div ref='video' className="videoComponent">
-        <video id="camera-stream" width="600" autoPlay />
+        <video id="camera-stream" width={this.props.width} autoPlay />
         <div className="videoControls">
           {this.renderRecordButton()}
-          <button title="Cancel" onClick={this.props.onCancelEditPhrase} className="close icon">
-            <img src={this.props.closeAlt} alt="close" />
-          </button>
-          <button title="Text" onClick={this.props.onCloseVideoComponent} className="text icon">
-            <img src={this.props.textAlt} alt="close" />
-          </button>
+          {this.renderCancelButton()}
+          {this.renderTextButton()}
           <button
+            type="button"
             hidden
             className="extra"
             ref="button-download"
             id="button-download"
           >Download</button>
           <button
+            type="button"
             hidden
             className="extra"
             onClick={this.props.handleUploadClick}
@@ -246,7 +269,6 @@ Video = React.createClass( {
         </div>
         <div className="progress">
           <div className="progress-message">Uploading the video...</div>
-          <div className="progress-hint">(The video is being processed and will render as soon as it is ready. If an error occurs try reloading in a few minutes.)</div>
           <div className="progress-bar">
             <div style={{width: this.state.percent +'%'}}></div>
           </div>

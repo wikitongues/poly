@@ -6,10 +6,10 @@
   a
     textButton()
     background transparent
-    color $blue
+    color $darkBlue
 
     &:hover
-      background lighten($buttonBlue,90%)
+      background lighten($blue,90%)
     &:visited
       background transparent
 
@@ -26,7 +26,7 @@
 
     &.signInButton
       color white
-      background $buttonBlue
+      background $blue
       border 1px solid rgba(71,153,252,0.1)
 
     &:visited
@@ -69,7 +69,7 @@
 
       button, a
         border none
-        background $buttonBlue
+        background $blue
         transition background $time ease-in-out
         color white
         padding 15px
@@ -105,4 +105,4 @@
         border-radius 2*$radius 2*$radius 0 0
 
         &:hover
-          background lighten($buttonBlue,10%)
+          background lighten($blue,10%)

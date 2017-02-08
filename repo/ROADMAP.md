@@ -59,22 +59,22 @@ Version 0.3 introduces breaking changes to the schema for implementation of book
 - [ ] Phrasebook social sharing
 
 ###Books
-- [ ] 0.3.1 Book type ***Breaking change***
+- [ ] Book type ***Breaking change***
   - [ ] Public/Private ([In Progress](https://github.com/wikitongues/poly/tree/draft-books))
   - [ ] Licenses
   - [ ] Book templates
   - [ ] Dictionaries
-- [ ] 0.3.2 Dictionary operations ***Breaking change***
+- [ ] Dictionary operations ***Breaking change***
   - [ ] Reorder phrases
     - [ ] Alphabetically
     - [ ] Arbitrarily (Drag & drop)
   - [ ] Delete multiple phrases
-- [ ] 0.3.3 Rich text [Example](https://facebook.github.io/draft-js/docs/overview.html#content) ***Breaking change***
+- [ ] Rich text [Example](https://facebook.github.io/draft-js/docs/overview.html#content) ***Breaking change***
   - [ ] Descriptions
   - [ ] Phrases
 - [ ] Document scroll position progress marker
 - [ ] Fixed position book languages sub-header
-- [ ] Video descriptions
+- [ ] Video descriptions ***Breaking change***
 - [ ] Video phrases
   - [ ] Transcribe video phrases
   - [ ] Upload video phrases
@@ -84,6 +84,7 @@ Version 0.3 introduces breaking changes to the schema for implementation of book
 - [ ] User upload profile picture
 
 ###Search
+- [ ] Search term highlighting [Example](https://github.com/bvaughn/react-highlight-words)
 - [ ] Search by content
 - [ ] Search by title
 - [ ] Search by author
@@ -100,7 +101,6 @@ Version 0.3 introduces breaking changes to the schema for implementation of book
 - [ ] Follow a user
 
 ###Search
-- [ ] Search term highlighting [Example](https://github.com/bvaughn/react-highlight-words)
 - [ ] Search by tags
 
 ##Version 1.0

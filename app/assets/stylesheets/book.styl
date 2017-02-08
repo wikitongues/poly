@@ -39,7 +39,7 @@
       height 100%
       min-width 3px
       float left
-      background $buttonBlue
+      background $blue
 
   .info
     z-index 1
@@ -116,18 +116,65 @@
       .author
         float left
 
+      .descriptionArea
+        display inline-block
+        width 100%
+
+      .addVideoButton
+        background lighten($whiteHover, 50%)
+        border none
+        color $blue
+        cursor pointer
+        width 100%
+        padding 1em 0 1em
+        border-radius $radius
+        margin 1em 0
+        transition $time all ease-in-out
+
+        &:hover
+          background $whiteHover
+
+      .videoDescription
+        margin 0 -20px
+        width 600px
+        display inline-block
+
+        .videoComponent
+          margin 0
+          position relative
+
+          button
+            &.play
+              width 45px
+              height 45px
+              padding 0
+              border-radius 100%
+              cursor pointer
+              outline none
+              background #5d5d5d
+              background rgba(50,50,50,0.3)
+              margin 10px 0
+              border none
+
+              img
+                margin 12px 9px 12px 12px
+                width 21px
+                height 21px
+
+              &.descriptionVideoPause
+                img
+                  margin 12px 13px
+
       .description
         width 100%
-        min-height 60px
-        margin 0 0 1.5em 0
+        margin 1em 0 1.5em 0
         padding 2px 2px 4px
 
         button
           background none
           border none
-          color $buttonBlue
+          color $blue
           cursor pointer
-
 
       a.author, p.author
         clear both
@@ -136,9 +183,7 @@
         font-size 12px
         text-decoration none
         border-radius $radius
+        color $blue
 
-      p.author
-        color #aaa
-
-      a.author
-        color $buttonBlue
+      p.author.new
+        color #a9a9a9

@@ -78,6 +78,7 @@ class BooksController < AuthenticatedController
     params.require(:book).permit(
       :title,
       :description,
+      :video_description,
       :source_language,
       :target_language
     )
