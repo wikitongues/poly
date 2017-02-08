@@ -15,7 +15,9 @@
     <p>For more information about any of these features, or to request specific features not outlined below, please send us an email at <a href="mailto:poly@wikitongues.org">poly@wikitongues.org</a></p>
     <p class="small"><i><s>Striked out text</s> indicates changes that have been deployed.</i></p>
     <ul>
-      <li><i><b>Version 0.1</b></i>
+      <li>
+        <b class="deployed">Version 0.1</b>
+        <p>Version 0.1 establishes the application. It prepares an application to receive users, allows the creation of books and the input and editing of phrase content.</p>
         <ul>
           <li><i><s>Create new phrasebook</s></i></li>
           <li><i><s>Input and save new phrase</s></i></li>
@@ -27,115 +29,141 @@
           <li><i><s>Sign in upon account creation</s></i></li>
         </ul>
       </li>
-      <li><b>Version 0.2</b>
+      <li>
+        <b class="deployed">Version 0.2</b>
+        <p>Version 0.2 focuses on developing core features that are not structural. Breaking changes to the schema for implementation of book favoriting. Heavy attention paid to video input and display, as well as search. A user dashboard and profile pages are also anticipated.</p>
         <ul>
-          <li><i><s>Platform</s></i></li>
-          <ul>
-            <li><i><s>Deployment</s></i></li>
-            <li><i><s>Alerts</s></i></li>
-            <li><i><s>Refactor to ES6</s></i></li>
-            <li><i><s>Testing</s></i></li>
-          </ul>
-          <li>Users</li>
-          <ul>
-            <li><i><s>Proper user validations</s></i></li>
+          <li><i><s>Platform</s></i>
             <ul>
-              <li><i><s>Unique usernames</s></i></li>
-              <li><i><s>Handle error messages on login page</s></i></li>
+              <li><i><s>Deployment</s></i></li>
+              <li><i><s>Alerts</s></i></li>
+              <li><i><s>Refactor to ES6</s></i></li>
+              <li><i><s>Testing</s></i></li>
             </ul>
-            <li>Profile page</li>
+          </li>
+          <li><i><s>Books</s></i>
             <ul>
-              <li><i><s>User name</s></i></li>
-              <li><i><s>User books</s></i></li>
-              <li><i><s>Gravatar</s></i></li>
-              <li>User edit profile data</li>
-              <li>User upload profile picture</li>
+              <li><i><s>Favorite a book</s></i></li>
+              <li><i><s>Only save new book if all inputs are complete</s></i></li>
+              <li><i><s>In-progress phrase ellipsis animation</s></i></li>
+              <li><i><s>Video phrases</s></i>
+                <ul>
+                  <li><i><s>Video phrase interface</s></i></li>
+                  <li><i><s>Input video phrases</s></i></li>
+                </ul>
+              </li>
             </ul>
-            <li><i><s>Password Reset</s></i></li>
-          </ul>
-          <li>Books</li>
-          <ul>
-            <li><i><s>Favorite a book</s></i></li>
-            <li><i><s>Only save new book if all inputs are complete</s></i></li>
-            <li><i><s>In-progress phrase ellipsis animation</s></i></li>
-            <li>Video descriptions</li>
-            <li>Video phrases (In progress)</li>
+          </li>
+          <li><i><s>Users</s></i>
             <ul>
-              <li><i><s>Video phrase interface</s></i></li>
-              <li><i><s>Input video phrases</s></i></li>
+              <li><i><s>Proper user validations</s></i>
+                <ul>
+                  <li><i><s>Unique usernames</s></i></li>
+                  <li><i><s>Handle error messages on login page</s></i></li>
+                </ul>
+              </li>
+              <li><i><s>Profile page</s></i></li>
+              <ul>
+                <li><i><s>User name</s></i></li>
+                <li><i><s>User books</s></i></li>
+                <li><i><s>Gravatar</s></i></li>
+              </ul>
+              <li><i><s>Password Reset</s></i></li>
             </ul>
-          </ul>
-          <li><i><s>Search</s></i></li>
-          <ul>
-            <li><i><s>Search by language</s></i></li>
-          </ul>
+          </li>
+          <li><i><s>Search</s></i>
+            <ul>
+              <li><i><s>Search by language</s></i></li>
+            </ul>
+          </li>
         </ul>
       </li>
       <li><b>Version 0.3</b>
+      <p>Version 0.3 introduces breaking changes to the schema for implementation of book type and status, as well as for phrase operations like reordering and rich-text.</p>
         <ul>
-          <li>Platform</li>
-          <ul>
-            <li>Security audit</li>
-            <li>Phrasebook embed</li>
-          </ul>
-          <li>Books</li>
-          <ul>
-            <li>Book type <em>Breaking change</em></li>
+          <li>Platform
             <ul>
-              <li>Public/Private (In Progress)</li>
-              <li>Licenses</li>
-              <li>Book templates</li>
-              <li>Dictionaries</li>
+              <li>Security audit</li>
+              <li>Phrasebook embed</li>
+              <li>Phrasebook social sharing</li>
             </ul>
-            <li>Dictionary operations</li>
+          </li>
+          <li>Books
             <ul>
-              <li>Reorder phrases</li>
-              <ul>
-                <li>Alphabetically</li>
-                <li>Arbitrarily (Drag & drop)</li>
-              </ul>
-              <li>Delete multiple phrases</li>
+              <li>Book type <em>Breaking change</em>
+                <ul>
+                  <li>Public/Private (In Progress)</li>
+                  <li>Licenses</li>
+                  <li>Book templates</li>
+                  <li>Dictionaries</li>
+                </ul>
+              </li>
+              <li>Dictionary operations
+                <ul>
+                  <li>Reorder phrases</li>
+                  <ul>
+                    <li>Alphabetically</li>
+                    <li>Arbitrarily (Drag & drop)</li>
+                  </ul>
+                  <li>Delete multiple phrases</li>
+                </ul>
+              </li>
+              <li>Rich text
+                <ul>
+                  <li>Descriptions</li>
+                  <li>Phrases</li>
+                </ul>
+              </li>
+              <li>Document scroll position progress marker</li>
+              <li>Fixed position book languages sub-header</li>
+              <li><i><s>Video descriptions</s></i></li>
+              <li>Video phrases
+                <ul>
+                  <li>Transcribe video phrases</li>
+                  <li>Upload video phrases</li>
+                </ul>
+              </li>
             </ul>
-            <li>Rich text</li>
+          </li>
+          <li>User
             <ul>
-              <li>Descriptions</li>
-              <li>Phrases</li>
+              <li>User edit profile data</li>
+              <li>User upload profile picture</li>
             </ul>
-            <li>Document scroll position progress marker</li>
-            <li>Fixed position book languages sub-header</li>
-            <li>Video phrases</li>
+          </li>
+          <li>Search
             <ul>
-              <li>Transcribe video phrases</li>
-              <li>Upload video phrases</li>
+              <li>Search term highlighting</li>
+              <li>Search by content</li>
+              <li>Search by title</li>
+              <li>Search by author</li>
             </ul>
-          </ul>
-          <li>Search</li>
-          <ul>
-            <li>Search by title</li>
-            <li>Search by author</li>
-          </ul>
+          </li>
         </ul>
       </li>
       <li><b>Version 0.4</b>
         <ul>
-          <li>Platform</li>
-          <ul>
-            <li>User-facing data import / export</li>
-          </ul>
-          <li>Books</li>
-          <ul>
-            <li>Add tags to books</li>
-            <li>Collaborative Books</li>
-          </ul>
-          <li>Users</li>
-          <ul>
-            <li>Follow a user</li>
-          </ul>
-          <li>Search</li>
-          <ul>
-            <li>Search by content</li>
-            <li>Search by tags</li>
-          </ul>
+          <li>Platform
+            <ul>
+              <li>User-facing data import / export</li>
+            </ul>
+          </li>
+          <li>Books
+            <ul>
+              <li>Add tags to books</li>
+              <li>Collaborative Books</li>
+            </ul>
+          </li>
+          <li>Users
+            <ul>
+              <li>Follow a user</li>
+            </ul>
+          </li>
+          <li>Search
+            <ul>
+              <li>Search by tags</li>
+            </ul>
+          </li>
         </ul>
       </li>
       <li><b>Version 1.0</b>
@@ -151,5 +179,3 @@
       </li>
   </div>
 </div>
-
-
