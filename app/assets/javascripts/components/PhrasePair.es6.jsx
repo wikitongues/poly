@@ -145,11 +145,9 @@ class PhrasePair extends React.Component {
       );
     }
     return (
-      <span>
-        <div className="video">
-          {this.renderVideo(src)}
-        </div>
-      </span>
+      <div className="video">
+        {this.renderVideo(src)}
+      </div>
     );
   }
 
@@ -162,10 +160,15 @@ class PhrasePair extends React.Component {
       return <div className="video"><video src={this.state.sourcePhrase}></video></div>
     } else {
       return (
-        <input
-          value={this.state.sourcePhrase}
-          onChange={this.onSourceChange}
-          name="sourcePhrase"/>
+        <span>
+          <input
+            value={this.state.sourcePhrase}
+            onChange={this.onSourceChange}
+            name="sourcePhrase"/>
+          <button title="Add a video" type="button">
+            <img src={this.props.videoIcon} alt=""/>
+          </button>
+        </span>
       );
     }
   }
@@ -175,10 +178,15 @@ class PhrasePair extends React.Component {
       return <div className="video"><video src={this.state.targetPhrase}></video></div>
     } else {
       return (
-        <input
-          value={this.state.targetPhrase}
-          onChange={this.onTargetChange}
-          name="targetPhrase"/>
+        <span>
+          <input
+            value={this.state.targetPhrase}
+            onChange={this.onTargetChange}
+            name="targetPhrase"/>
+          <button title="Add a video" type="button">
+            <img src={this.props.videoIcon} alt=""/>
+          </button>
+        </span>
       );
     }
   }

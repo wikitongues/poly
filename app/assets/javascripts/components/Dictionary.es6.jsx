@@ -276,6 +276,7 @@ class Dictionary extends React.Component {
               delete={this.props.delete}
               edit={this.props.edit}
               close={this.props.close}
+              videoIcon={this.props.videoIcon}
               newPhrase="newPhrase" />
         );
       }
@@ -293,6 +294,7 @@ class Dictionary extends React.Component {
           delete={this.props.delete}
           edit={this.props.edit}
           close={this.props.close}
+          videoIcon={this.props.videoIcon}
         />
       );
     });

@@ -63,10 +63,54 @@ li.entry
         border-style solid
         outline none
 
-      input
+      span
+        display inline-block
         width 80%
 
+        button
+          height 40px
+          width 40px
+          padding 0
+          border-radius 100%
+          cursor pointer
+          outline none
+          background transparent
+          border 3px solid
+          margin 14px 5px 14px 5px
+          position relative
+
+          img
+            margin 5px
+
+          span
+            float none
+            position absolute
+            left -9px
+            top 11px
+            text-shadow 1px 1px white, 1px -1px white
+            color #4799FC
+            font-weight bold
+
       &.source
+        span
+          float left
+
+          input
+            border-width 3px
+            margin-bottom 6px
+            border-radius 31px 31px 31px 0
+            float left
+            background transparent
+            border-color darken($source, 2%)
+
+            &:focus, &:active
+              margin 0 2px 4px 2px
+              border-color $source
+
+          button
+            border-color darken($source, 2%)
+            float left
+
         p
           border-width 1px
           margin 2px 2px 4px 2px
@@ -83,24 +127,28 @@ li.entry
           border-radius 31px 31px 31px 0
           background darken($source, 2%)
 
-        input
-          margin 2px 2px 6px 2px
-          background $source
-          border-color darken($source, 2%)
-
-        input
-          border-width 3px
-          margin-bottom 6px
-          border-radius 31px 31px 31px 0
-          float left
-          background transparent
-          border-color darken($source, 2%)
-
-          &:focus, &:active
-            margin 0 2px 4px 2px
-            border-color $source
-
       &.target
+        span
+          float right
+
+          input
+            border-width 3px
+            border-radius 31px 31px 0 31px
+            border-color darken($target, 2%)
+            margin-bottom 1px
+            text-align right
+            float right
+            background transparent
+            margin 2px
+
+            &:focus, &:active
+              margin-top 0
+              border-color $target
+
+          button
+            border-color darken($target, 2%)
+            float right
+
         p
           border-width 1px
           border-radius 31px 31px 0 31px
@@ -116,20 +164,6 @@ li.entry
           float right
           border-radius 31px 31px 0px 31px
           background $target
-
-        input
-          border-width 3px
-          border-radius 31px 31px 0 31px
-          border-color darken($target, 2%)
-          margin-bottom 1px
-          text-align right
-          float right
-          background transparent
-          margin 2px
-
-          &:focus, &:active
-            margin-top 0
-            border-color $target
 
       input:focus, input:active
         border-width 3px

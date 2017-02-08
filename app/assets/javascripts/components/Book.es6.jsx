@@ -664,6 +664,9 @@ class Book extends React.Component {
           targetLanguage={this.state.book.target_language}
           author={this.state.book.user_id}
           isNewPhrase={this.state.isNewPhrase}
+          pause={this.props.pause}
+          play={this.props.play}
+          videoIcon={this.props.video}
           />
         </div>
       </div>
