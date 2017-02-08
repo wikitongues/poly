@@ -1,40 +1,24 @@
-$darkBlue = #11242f
+// Blues
+$darkBlue = #11242F
 $blue = #4799FC
 $secondaryBlue = #B7BCBF
-$hover = #FFC328
+
+// Phrase colors
+$source = #E7EFF2
+$target = #C6E7FF
+
+// Whites
+$white = #FFFFFF
+$whiteHover = #F2F5F6
+$grey = #A9A9A9
+
+// Yellow
+$yellow = #FFC328
+
+// Misc
 $time = 0.1s
 $radius = 2px
 $sans = 'Roboto', sans-serif
-$serif = 'Lora', serif
-$source = #E7EFF2
-$target = #C6E7FF
-$whiteHover = #F2F5F6
-
-button()
-  font-family $sans
-  display inline-block
-  resize none
-  outline none
-  margin 2em initial 0
-  padding .7em
-  cursor pointer
-  text-align center
-  border-radius $radius
-  background lighten($hover, 40%)
-  border none
-
-  &:hover, &:focus
-    background $hover
-
-textLink()
-  padding 0.2em
-  background lighten($hover, 40%)
-  margin 0 -0.2em
-  border-radius $radius
-
-  &:hover
-    background $hover
-    color initial
 
 textButton()
   text-decoration none
@@ -58,9 +42,9 @@ materialButton()
   text-align center
   line-height 1.2em
   border-radius 100%
-  background #4799FC
+  background $blue
   text-shadow 0 2px 0 #558FCE
-  color white
+  color $white
   box-shadow 0 1px 0 rgba(51, 111, 176,1), 0 2px 4px rgba(34,84,137,0.5)
   border-top 1px solid #68ABFD !important
   transition box-shadow $time ease-in-out
