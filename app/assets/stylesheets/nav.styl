@@ -1,8 +1,8 @@
 nav
   height 63px
-  background white
+  background $white
   boxShadow()
-  position relative
+  position fixed
   z-index 5
   width 100%
   min-width 600px
@@ -60,12 +60,12 @@ nav
           border-radius 0 0 $radius $radius
 
         &:hover
-          background $buttonBlue
-          color white
+          background $blue
+          color $white
 
     a
       width 100%
-      background white
+      background $white
 
       span
         display block
@@ -99,6 +99,7 @@ nav
       float left
       border none
       font-weight 100
+      placeholder-color($grey)
 
       &:focus, &:hover
-        background #fafafa
+        background $whiteHover

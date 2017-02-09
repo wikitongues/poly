@@ -1,30 +1,40 @@
 .search
   .indexContent
     margin-bottom 20px
+    border none
+
+    &:not(:first-of-type)
+      margin-top 0
 
     .controlPanel
-      background #90A2B7
+      height initial
+      background transparent
 
       p
         float left
-        padding 21px 20px 20px
+        padding 17px 20px
         margin 0
         font-weight 100
-        color white
+        color darken($grey,30%)
         transition color $time ease-in-out
+        font-size .8em
 
       .bookCount.search
         float right
-        background lighten(#90A2B7,20%)
+        background $secondaryBlue
         font-weight 500
         padding 2px 4px
-        color white
-        margin 18px 20px
+        color $white
+        margin 13px 20px
         border-radius $radius
 
     .bookEntryList
       max-height 70vh
       overflow-y scroll
+      border-radius 2*$radius
+      border-left 1px solid rgba(0,0,0,0.15)
+      border-right 1px solid rgba(0,0,0,0.15)
+      border-bottom 1px solid rgba(0,0,0,0.15)
 
       &:hover
         li

@@ -6,7 +6,7 @@
   margin auto
   font-size 1.2em
   padding 0
-  background #fff
+  background $white
   float left
   width 100%
   max-width 600px
@@ -33,7 +33,7 @@
     transition background $time*2 ease-in-out
 
     &:hover
-      background lighten(#E7EFF2, 80%)
+      background lighten($source, 80%)
 
     p.empty
       text-align center
@@ -71,7 +71,7 @@
       float left
       background transparent
       border none
-      color $buttonBlue
+      color $blue
       font-weight 500
       font-size 1em
       padding 1em
@@ -120,7 +120,7 @@
       height 80px
       width 500px
       float left
-      background #FFF
+      background $white
       transition padding 1ms ease-in-out, border-left 1ms ease-in-out
 
       &.focus
@@ -130,7 +130,7 @@
     button.savePhrase
       background transparent
       border none
-      color $buttonBlue
+      color $blue
       width 100px
       text-align center
       font-weight 400

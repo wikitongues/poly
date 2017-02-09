@@ -25,8 +25,8 @@ class BookEntry extends React.Component {
               </section>
             </section>
             <section className="meta">
-              <p className="author">{this.props.book.user.username}</p>
               <p className="date">{createdDay} {createdMonth} {createdYear}</p>
+              <p className="author">{this.props.book.user.username}</p>
             </section>
           </section>
          </a>

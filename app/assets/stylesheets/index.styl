@@ -6,10 +6,10 @@
   a
     textButton()
     background transparent
-    color $blue
+    color $darkBlue
 
     &:hover
-      background lighten($buttonBlue,90%)
+      background lighten($blue,90%)
     &:visited
       background transparent
 
@@ -25,12 +25,15 @@
     // border 1px solid rgba(71,153,252,1)
 
     &.signInButton
-      color white
-      background $buttonBlue
+      color $white
+      background $blue
       border 1px solid rgba(71,153,252,0.1)
 
     &:visited
       background transparent
+
+.indexContent
+  margin-top 80px
 
 .dashboard
   float left
@@ -55,7 +58,8 @@
     width 100%
     max-width 600px
     min-width 450px
-    margin 0 auto 0
+    margin-left auto
+    margin-right auto
     border-radius 2*$radius
     overflow hidden
     border-left 1px solid rgba(0,0,0,0.15)
@@ -69,9 +73,9 @@
 
       button, a
         border none
-        background $buttonBlue
+        background $blue
         transition background $time ease-in-out
-        color white
+        color $white
         padding 15px
         float left
         font-size 1em
@@ -105,4 +109,4 @@
         border-radius 2*$radius 2*$radius 0 0
 
         &:hover
-          background lighten($buttonBlue,10%)
+          background lighten($blue,10%)

@@ -1,11 +1,11 @@
 #login
   width 600px
-  background white
+  background $white
   boxShadow()
   padding 40px
   display block
   border-radius $radius
-  margin auto
+  margin 80px auto
   overflow auto
   position relative
 
@@ -57,7 +57,7 @@
         border-bottom-color #f7f7f7
 
       &:focus
-        border-bottom-color $hover
+        border-bottom-color $yellow
 
     .field_with_errors
       input
@@ -104,7 +104,7 @@
       display block
       cursor pointer
       textButton()
-      color white
+      color $white
       font-size 16px
 
     &.delete
@@ -125,7 +125,7 @@
 
     a
       cursor pointer
-      color lighten($blue, 35%)
+      color lighten($darkBlue, 35%)
       text-decoration none
 
       &:hover

@@ -1,5 +1,5 @@
 ul.bookEntryList
-  background #fff
+  background $white
   padding 0
   margin 0
   list-style-type none
@@ -12,7 +12,7 @@ ul.bookEntryList
   // border-bottom 1px solid rgba(0,0,0,0.15)
 
   &:hover
-    background lighten(#E7EFF2, 80%)
+    background lighten($source, 80%)
 
     li
       opacity .6
@@ -20,7 +20,7 @@ ul.bookEntryList
   li.bookEntry, li.emptyList
     overflow hidden
     display table
-    border-bottom 1px solid lighten(#E7EFF2, 35%)
+    border-bottom 1px solid lighten($source, 35%)
     width 100%
     transition background $time*2 ease-in-out, opacity $time*2 ease-in-out
 
@@ -29,8 +29,8 @@ ul.bookEntryList
 
     &:hover
       opacity 1
-      background #fff
-      border-bottom-color lighten(#E7EFF2, 55%)
+      background $white
+      border-bottom-color lighten($source, 55%)
 
     a
       display inline-block
@@ -82,9 +82,9 @@ ul.bookEntryList
               .count
                 font-size .5em
                 padding 2px 5px 1px 4px
-                color darken(#F2F5F6, 40%)
+                color darken($whiteHover, 40%)
                 margin 2px 5px 0 0
-                background #E7EFF2
+                background $source
                 border 1px solid #e1ebef
                 float left
                 border-radius 9px 9px 9px 0
@@ -121,8 +121,8 @@ ul.bookEntryList
               white-space normal
               width 100%
 
-              &.author
+              &:first-of-type
                 margin-top 4px
 
-              &.date
+              &:last-of-type
                 margin-top 10px

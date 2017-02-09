@@ -2,7 +2,7 @@
   width 1070px
   display table
   position relative
-  margin auto
+  margin 80px auto
 
   .userInformation
     width 450px
@@ -10,7 +10,7 @@
     margin 0 20px 0 0
 
     .wrapper
-      background #fff
+      background $white
       border-radius 2*$radius
       padding 0
       color #295671
@@ -43,13 +43,13 @@
 
         &::after
             position absolute
-            background white
+            background $white
             content "Manage your avatar using Gravatar."
             padding 10px 0
             border-radius 2*$radius
             white-space nowrap
             font-size .8em
-            color $buttonBlue
+            color $blue
             text-shadow none
             width 0
             overflow hidden
@@ -78,7 +78,7 @@
 
         a.editButton
           text-decoration none
-          color $buttonBlue
+          color $blue
           font-size .8em
 
   .languages
@@ -90,13 +90,13 @@
       border-radius 20px
       float left
       margin 5px
-      background #E7EFF2
+      background $source
 
   .follow
     margin auto
     display block
     textButton()
-    color white
+    color $white
     font-size 16px
 
   .dashboard
@@ -138,17 +138,18 @@
 
     .indexContent
       width 100%
+      margin-top 0
 
       .controlPanel
         overflow hidden
-        background $buttonBlue
+        background $blue
 
         p
           float left
           padding 21px 20px 20px
           margin 0
           font-weight 100
-          color white
+          color $white
           transition color $time ease-in-out
 
           span.bookCount
@@ -163,7 +164,7 @@
           padding 21px 20px 20px
           margin 0
           font-weight 100
-          color white
+          color $white
           transition color $time ease-in-out
           cursor pointer
 
@@ -181,7 +182,7 @@
             background lighten(#90A2B7, 10%)
             outline none
             span
-              color white
+              color $white
 
         a
           background transparent
@@ -196,7 +197,7 @@
       &.books
         .controlPanel
           #books
-            color white
+            color $white
 
             span.bookCount
               background lighten(#90A2B7,20%)
@@ -211,7 +212,7 @@
             color lighten(#90A2B7, 50%)
 
           #favorites
-            color white
+            color $white
 
             span.bookCount
               background lighten(#90A2B7,20%)
