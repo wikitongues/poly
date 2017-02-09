@@ -108,7 +108,7 @@ class SearchResults extends React.Component {
           search={this.props.search}
         />
         <div className="dashboard">
-          <span className="backgroundElement" />
+          {/*<span className="backgroundElement" />*/}
           {this.renderSearchResults()}
           {this.renderCreateBookButton()}
         </div>
