@@ -238,6 +238,9 @@ class Book extends React.Component {
             <button title="Menu" className="more icon">
               <img src={this.props.menuAlt}/>
             </button>
+            <button title="embed" className="icon embed">
+              <img src={this.props.embed} alt=""/>
+            </button>
             <button title="Edit" onClick={this.toggleEditingBookState} className="icon" tabIndex="-1">
               <img src={this.props.editAlt}/>
             </button>
@@ -247,29 +250,6 @@ class Book extends React.Component {
           </div>
         );
       }
-      return (
-        <div className="menu">
-          <button title="Menu" className="more icon">
-            <img src={this.props.menuAlt} alt="Menu" />
-          </button>
-          <button
-            title="Edit"
-            onClick={this.toggleEditingBookState}
-            className="icon"
-            tabIndex="-1"
-          >
-            <img src={this.props.editAlt} alt="Edit" />
-          </button>
-          <button
-            title="Delete"
-            onClick={this.onDeleteBookClick}
-            className="icon"
-            tabIndex="-1"
-          >
-            <img src={this.props.deleteAlt} alt="Delete" />
-          </button>
-        </div>
-      );
     }
   }
 
