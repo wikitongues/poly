@@ -17,7 +17,7 @@ class UserSearchResult extends React.Component {
             </section>
           </section>
           <section className="meta">
-            <p className="date">User since {createdDay} {createdMonth} {createdYear}</p>
+            <p className="date">Joined {createdMonth} {createdYear}</p>
           </section>
             {/* <span className="banner"><img src=""/></span> */}
           </section>
@@ -28,5 +28,19 @@ class UserSearchResult extends React.Component {
 }
 
 BookEntry.propTypes = {
-
+    currentUser: React.PropTypes.shape({
+    created_at: React.PropTypes.string,
+    email: React.PropTypes.string,
+    favorite_books: React.PropTypes.array,
+    id: React.PropTypes.number,
+    username: React.PropTypes.string,
+  }),
+  sourceLanguage: React.PropTypes.array, // TODO: precise
+  targetLanguage: React.PropTypes.array, // TODO: precise
+  query: React.PropTypes.string,
+  users: React.PropTypes.string,
+  cardinality: React.PropTypes.string,
+  logo: React.PropTypes.string,
+  detail: React.PropTypes.string,
+  search: React.PropTypes.string,
 };
