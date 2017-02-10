@@ -11,21 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170207195615) do
+ActiveRecord::Schema.define(version: 20170210204720) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "books", force: :cascade do |t|
     t.string   "title"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
     t.string   "description"
     t.string   "source_language"
     t.string   "target_language"
-    t.integer  "user_id",            null: false
-    t.integer  "source_language_id"
-    t.integer  "target_language_id"
+    t.integer  "user_id",           null: false
     t.string   "video_description"
   end
 
