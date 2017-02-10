@@ -255,29 +255,30 @@ class PhrasePair extends React.Component {
           </form>
         </ul>
       );
+    } else {
+      // Checks whether the source phrase or the target phrase is a video and renders video or a paragraph accordingly
+      return (
+        <ul>
+          <li className="source">
+            {
+              this.state.sourcePhrase.startsWith('https://s3.amazonaws.com/poly-video-uploads-dev/') ?
+                this.renderSourceVideo(this.state.sourcePhrase)
+                :
+                this.renderParagraph(this.state.sourcePhrase)
+            }
+          </li>
+          <li className="target">
+            {
+              this.state.targetPhrase && this.state.targetPhrase.startsWith('https://s3.amazonaws.com/poly-video-uploads-dev/') ?
+                this.renderTargetVideo(this.state.targetPhrase)
+                :
+                this.renderParagraph(this.state.targetPhrase)
+            }
+          </li>
+          { this.renderPhraseMenu() }
+        </ul>
+      );
     }
-    // Checks whether the source phrase or the target phrase is a video and renders video or a paragraph accordingly
-    return (
-      <ul>
-        <li className="source">
-          {
-            this.state.sourcePhrase.startsWith('https://s3.amazonaws.com/poly-video-uploads-dev/') ?
-              this.renderSourceVideo(this.state.sourcePhrase)
-              :
-              this.renderParagraph(this.state.sourcePhrase)
-          }
-        </li>
-        <li className="target">
-          {
-            this.state.targetPhrase && this.state.targetPhrase.startsWith('https://s3.amazonaws.com/poly-video-uploads-dev/') ?
-              this.renderTargetVideo(this.state.targetPhrase)
-              :
-              this.renderParagraph(this.state.targetPhrase)
-          }
-        </li>
-        { this.renderPhraseMenu() }
-      </ul>
-    );
   }
 
   render() {
