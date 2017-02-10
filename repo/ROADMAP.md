@@ -85,9 +85,9 @@ Version 0.3 introduces breaking changes to the schema for implementation of book
 
 ###Search
 - [ ] Search term highlighting [Example](https://github.com/bvaughn/react-highlight-words)
-- [ ] Search by content
-- [ ] Search by title
-- [ ] Search by author
+- [x] ~~Search by content~~
+- [x] ~~Search by title~~
+- [x] ~~Search by author~~
 
 ##Version 0.4
 ###Platform
