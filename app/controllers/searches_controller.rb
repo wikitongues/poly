@@ -16,11 +16,12 @@ class SearchesController < ApplicationController
         .map do |user|
           UserSerializer.new(user)
         end
-      @phrase = PhrasePair.where("source_phrase || target_phrase ilike ?", q).sort_by{|phrasePair| phrasePair.created_at}
-        .reverse
-        .map do |phrase|
-          PhraseSerializer.new(phrase)
-        end
+
+      # @phrase = PhrasePair.where("source_phrase || target_phrase ilike ?", q).sort_by{|phrasePair| phrasePair.created_at}
+      #   .reverse
+      #   .map do |phrase|
+      #     PhraseSerializer.new(phrase)
+      #   end
 
       render 'search/index'
 

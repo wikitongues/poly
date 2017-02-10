@@ -8,8 +8,8 @@ class SearchResults extends React.Component {
     this.renderUserResults = this.renderUserResults.bind(this)
     this.renderLanguageResultsSection = this.renderLanguageResultsSection.bind(this)
     this.renderLanguageResults = this.renderLanguageResults.bind(this)
-    this.renderPhraseSection = this.renderPhraseSection.bind(this)
-    this.renderPhraseResults = this.renderPhraseResults.bind(this)
+    // this.renderPhraseSection = this.renderPhraseSection.bind(this)
+    // this.renderPhraseResults = this.renderPhraseResults.bind(this)
   }
 
   renderCreateBookPanel() {
@@ -32,12 +32,12 @@ class SearchResults extends React.Component {
   }
 
   renderSearchResults() {
-    if (this.props.language.length != 0 || this.props.user.length != 0 || this.props.phrase.length != 0) {
+    if (this.props.language.length != 0 || this.props.user.length != 0 /*|| this.props.phrase.length != 0*/) {
       return (
         <div className="search">
           {this.renderUserSection()}
           {this.renderLanguageResultsSection()}
-          {this.renderPhraseSection()}
+          {/*{this.renderPhraseSection()}*/}
         </div>
       );
     } else {
@@ -99,30 +99,30 @@ class SearchResults extends React.Component {
     );
   }
 
-  renderPhraseSection() {
-    if (this.props.phrase.length != 0) {
-      return (
-        <div className="indexContent">
-          <div className="controlPanel">
-            <p>Phrases containing "{this.props.query}"</p>
-            <span className="bookCount search">{this.props.phrase.length}</span>
-          </div>
-          <ul className="bookEntryList">
-            {this.renderPhraseResults()}
-          </ul>
-        </div>
-      );
-    }
-  }
+  // renderPhraseSection() {
+  //   if (this.props.phrase.length != 0) {
+  //     return (
+  //       <div className="indexContent">
+  //         <div className="controlPanel">
+  //           <p>Phrases containing "{this.props.query}"</p>
+  //           <span className="bookCount search">{this.props.phrase.length}</span>
+  //         </div>
+  //         <ul className="bookEntryList">
+  //           {this.renderPhraseResults()}
+  //         </ul>
+  //       </div>
+  //     );
+  //   }
+  // }
 
-  renderPhraseResults() {
-    return this.props.phrase.map(phrase => (
-      <PhraseSearchResult
-        phrase={phrase}
-        key={phrase.id}
-      />)
-    );
-  }
+  // renderPhraseResults() {
+  //   return this.props.phrase.map(phrase => (
+  //     <PhraseSearchResult
+  //       phrase={phrase}
+  //       key={phrase.id}
+  //     />)
+  //   );
+  // }
 
   render() {
     return (
