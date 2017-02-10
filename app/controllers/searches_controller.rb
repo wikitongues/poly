@@ -5,7 +5,7 @@ class SearchesController < ApplicationController
 
     if params[:q].length > 0
       q = "%#{params[:q].downcase}%"
-      @language = Book.where("source_language || target_language || title like ?", q).sort_by{|book| book.created_at}
+      @language = Book.where("source_language || target_language || title ilike ?", q).sort_by{|book| book.created_at}
         .reverse
         .map do |book|
           BookSerializer.new(book)
@@ -23,14 +23,14 @@ class SearchesController < ApplicationController
       #     BookSerializer.new(book)
       #   end
 
-      @user = User.where("username like ?", q).sort_by{|user| user.created_at}
+      @user = User.where("username ilike ?", q).sort_by{|user| user.created_at}
         .reverse
         .map do |user|
           UserSerializer.new(user)
         end
 
       # Make sure aws links dont display
-      @phrase = PhrasePair.where("source_phrase || target_phrase like ?", q).sort_by{|phrasePair| phrasePair.created_at}
+      @phrase = PhrasePair.where("source_phrase || target_phrase ilike ?", q).sort_by{|phrasePair| phrasePair.created_at}
         .reverse
         .map do |phrase|
           PhraseSerializer.new(phrase)
