@@ -1,7 +1,12 @@
 .search
+  display block
+  margin auto
+
   .indexContent
-    margin-bottom 20px
+    margin-bottom 10px
     border none
+    padding 0 10px 10px
+    clear both
 
     &:not(:first-of-type)
       margin-top 0
@@ -32,6 +37,76 @@
       max-height 70vh
       overflow-y scroll
       border-radius 2*$radius
-      border-left 1px solid rgba(0,0,0,0.15)
-      border-right 1px solid rgba(0,0,0,0.15)
-      border-bottom 1px solid rgba(0,0,0,0.15)
+      max-width 600px
+      border 15px solid white
+
+      &:hover
+        li
+          opacity 1
+
+      .phrase
+        &:hover
+          h2.title
+            background white
+
+        .info
+          section
+            padding-bottom 0
+
+            h2.title
+              font-size 1.3em
+              font-weight 500
+              margin 0
+              color $darkBlue
+              transition background 2*$time ease-in-out
+
+        ul
+          float none
+          margin auto
+          display table
+          list-style-type none
+          padding 1em
+          width 100%
+
+          li
+            width 100%
+            float left
+
+            p
+              width initial
+              display inline-block
+              margin 0
+              padding .7em 1em
+              position relative
+              z-index 1
+              font-size 1.2em
+              max-width 90%
+              overflow hidden
+              text-overflow ellipsis
+              border-style solid
+              outline none
+              white-space initial
+
+            &.source
+              p
+                border-width 1px
+                margin 2px 2px 4px 2px
+                border-radius 31px 31px 31px 0
+                float left
+
+              p
+                background $source
+                border 1px solid darken($source, 2%)
+                margin 2px 2px 6px 2px
+
+            &.target
+              p
+                border-width 1px
+                border-radius 31px 31px 0 31px
+                margin 2px
+                float right
+
+              p
+                background $target
+                border 1px solid darken($target, 2%)
+                margin 2px
