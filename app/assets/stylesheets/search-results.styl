@@ -65,12 +65,24 @@
           margin auto
           display table
           list-style-type none
-          padding 1em
+          padding 0
           width 100%
 
           li
             width 100%
             float left
+
+            &.entry
+              border-top none
+              padding 1em 0
+
+              ul
+                li
+                  .video
+                    min-height initial
+                    width 30%
+                    video
+                      min-height initial
 
             p
               width initial
