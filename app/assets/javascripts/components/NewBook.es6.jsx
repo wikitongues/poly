@@ -286,6 +286,7 @@ class NewBook extends React.Component {
                             </div>*/}
                   {this.renderVideoDescription()}
                   <textarea
+                    rows="3"
                     className="new description"
                     type="text"
                     name="description"
