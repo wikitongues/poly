@@ -1,13 +1,15 @@
 #profile
-  width 1070px
+  width 1110px
   display table
   position relative
   margin 80px auto
+  padding 0 20px
 
   .userInformation
     width 450px
     float left
-    margin 0 20px 0 0
+    margin 0 20px 20px 0
+    transition width $time ease-in-out
 
     .wrapper
       background $white
@@ -120,10 +122,26 @@
 
         .bookEntryList
           li.emptyList
-            h2
-              padding-left 20px
+            p
               font-size 1em
               font-weight 100
+              margin 0
+              padding 25px 30px 15px 30px
+              display inline-block
+              text-align center
+              color darken($grey,30%)
+              font-size .8em
+              width 100%
+
+              a
+                font-size 1.2em
+                padding 5px
+                text-decoration none
+                color $blue
+                border none
+
+                &:active
+                  border none
 
           li.bookEntry
             a

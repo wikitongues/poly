@@ -23,7 +23,7 @@ class Profile extends React.Component {
     return this.props.books.map((book) => {
       return (
         <BookEntry
-          users={this.props.userData}
+          // users={this.props.userData}
           book={book}
           key={book.id}
           cardinality={this.props.cardinality}
@@ -48,7 +48,7 @@ class Profile extends React.Component {
     }
     return (
       <li className="emptyList">
-        <h2>No books</h2>
+        <p>You haven't created any books yet. <a href="/books/new">Create your first book</a></p>
       </li>
     );
   }
@@ -208,7 +208,7 @@ class Profile extends React.Component {
               <span className="tooltip">?</span>
               <span className="details">
                 <h2>{this.props.userData.username}</h2>
-                <p>Member since {createdMonth} {createdYear}</p>
+                <p>Joined {createdMonth} {createdYear}</p>
                 {this.renderEditButton()}
               </span>
             </div>
@@ -219,7 +219,7 @@ class Profile extends React.Component {
           <div className="dashboard">
             <div className="indexContent">
               <div className="controlPanel">
-                <p>All Books</p>
+                <p>Recent books</p>
               </div>
               <ul className="bookEntryList">
                 {this.renderAllBooks()}
