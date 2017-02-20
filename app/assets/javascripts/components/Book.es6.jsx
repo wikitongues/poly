@@ -113,7 +113,9 @@ class Book extends React.Component {
   onSaveBookClick() {
     this.state.errors = [];
     this.state.book.source_language = this.state.book.source_language_draft;
-    this.state.book.target_language = this.state.book.target_language_draft;    
+    this.state.book.target_language = this.state.book.target_language_draft;
+    this.state.book.title = this.state.book.title_draft;
+    this.state.book.description = this.state.book.description_draft;
     if (this.state.book.title && this.state.book.source_language && this.state.book.target_language) {
       $.ajax({
         url: '/books/' + this.state.book.id,
@@ -156,6 +158,8 @@ class Book extends React.Component {
 
   toggleEditingBookState() {
     const modBook = this.state.book;
+    modBook.title_draft = modBook.title;
+    modBook.description_draft = modBook.description;
     modBook.source_language_draft = modBook.source_language;
     modBook.target_language_draft = modBook.target_language;
     this.setState({
@@ -285,10 +289,10 @@ class Book extends React.Component {
     if (this.state.isEditingBook) {
       return (
         <input
-          name="title"
+          name="title_draft"
           className="title new isEditing"
           onChange={this.onInputChange}
-          value={this.state.book.title}
+          value={this.state.book.title_draft}
         />
       );
     }
@@ -532,9 +536,9 @@ class Book extends React.Component {
           <textarea
             rows="4"
             className="description new isEditing"
-            name="description"
+            name="description_draft"
             onChange={this.onInputChange}
-            value={this.state.book.description}
+            value={this.state.book.description_draft}
           />
         );
       } else {
@@ -546,9 +550,9 @@ class Book extends React.Component {
           <textarea
             rows="4"
             className="description new isEditing"
-            name="description"
+            name="description_draft"
             onChange={this.onInputChange}
-            value={this.state.book.description}
+            value={this.state.book.description_draft}
             placeholder="Describe the contents of your book,
             Ex: A collection of useful phrases in Laputa, a Swiftian
             language spoken in Balnibarbi and a number of other islands..."
