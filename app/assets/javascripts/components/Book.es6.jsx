@@ -112,6 +112,8 @@ class Book extends React.Component {
 
   onSaveBookClick() {
     this.state.errors = [];
+    this.state.book.source_language = this.state.book.source_language_draft;
+    this.state.book.target_language = this.state.book.target_language_draft;    
     if (this.state.book.title && this.state.book.source_language && this.state.book.target_language) {
       $.ajax({
         url: '/books/' + this.state.book.id,
@@ -153,7 +155,13 @@ class Book extends React.Component {
   }
 
   toggleEditingBookState() {
-    this.setState({ isEditingBook: true });
+    const modBook = this.state.book;
+    modBook.source_language_draft = modBook.source_language;
+    modBook.target_language_draft = modBook.target_language;
+    this.setState({
+      isEditingBook: true,
+      book: modBook
+    });
   }
 
   cancelEditingBookState() {
@@ -555,9 +563,9 @@ class Book extends React.Component {
       return (
         <input
           className="new isEditing"
-          name="source_language"
+          name="source_language_draft"
           onChange={this.onInputChange}
-          value={this.state.book.source_language}
+          value={this.state.book.source_language_draft}
         />
       );
     }
@@ -573,9 +581,9 @@ class Book extends React.Component {
       return (
         <input
           className="new isEditing"
-          name="target_language"
+          name="target_language_draft"
           onChange={this.onInputChange}
-          value={this.state.book.target_language}
+          value={this.state.book.target_language_draft}
         />
       );
     }
