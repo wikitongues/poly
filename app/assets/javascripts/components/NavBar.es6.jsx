@@ -7,23 +7,22 @@ class NavBar extends React.Component {
   renderSignIn() {
     if (this.props.currentUser) {
       return (
-          <span className="loggedIn">
+          <div className="loggedIn">
             <a className="currentUser" href="/dashboard">
               <span>{this.props.currentUser.username}</span>
               <img className="mobile" src={this.props.menu} />
             </a>
             <a href="/features">Roadmap</a>
             <a href="/sign_out">Sign out</a>
-          </span>
+          </div>
       );
     }
     return (
-      <span className="logIn">
+      <div className="logIn">
         <a href="/features">Roadmap</a>
-        <a className="signInButton" href="/sign_in">Log in</a>
-        {/* <p> or </p>
-        <a href="/sign_up">Sign up</a> */}
-      </span>
+        <a className="signUp" href="/sign_up">Sign up</a>
+        <a href="/sign_in">or log in</a>
+      </div>
     );
   }
 

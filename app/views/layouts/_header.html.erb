@@ -8,20 +8,22 @@
 
   <% if @user && @user.username %>
 
-    <span class="loggedIn">
+    <div class="loggedIn">
       <a class="currentUser" href="/dashboard">
         <%= @user.username%>
       </a>
       <a href="/features">Roadmap</a>
       <a href="/sign_out">Sign out</a>
-    </span>
+    </div>
 
   <% else %>
 
-    <span class="logIn">
+    <div class="logIn">
       <a href="/Features">Roadmap</a>
-      <a class="signInButton" href="/sign_in">Log in</a>
-    </span>
+      <a class="signUp" href="/sign_up">Sign up</a>
+      <a href="/sign_in">or log in</a>
+
+    </div>
 
   <% end %>
 
