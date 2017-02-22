@@ -45,12 +45,29 @@ class Profile extends React.Component {
           />
         );
       });
+    } else {
+      if (!this.currentUserProfile()) {
+        if (this.props.currentUser) {
+          return (
+            <li className="emptyList">
+              <p>You haven't created any books yet. <a href="/books/new">Create your first book</a></p>
+            </li>
+          );
+        } else {
+          return (
+            <li className="emptyList">
+              <p>{this.props.userData.username} does not have any books.</p>
+            </li>
+          );
+        }
+      } else {
+        return (
+          <li className="emptyList">
+            <p>{this.props.userData.username} does not have any books.</p>
+          </li>
+        );
+      }
     }
-    return (
-      <li className="emptyList">
-        <p>You haven't created any books yet. <a href="/books/new">Create your first book</a></p>
-      </li>
-    );
   }
 
   renderFavoriteBooks() {
