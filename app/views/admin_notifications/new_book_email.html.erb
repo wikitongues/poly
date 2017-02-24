@@ -4,7 +4,7 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <p>User <a href="<%= @book.user_id %>"><%= @book.user_id %></a> created a new book: <a href="<%= @book.id %>">"<%=@book.title%>" ( <%=@book.source_language%> - <%=@book.target_language%>)</a></p>
+    <p>User <a href="https://poly.wikitongues.org/users/<%= @book.user_id %>"><%= @book.user_id %></a> created a new book: <a href="https://poly.wikitongues.org/books/<%= @book.id %>">"<%=@book.title%>" ( <%=@book.source_language%> - <%=@book.target_language%>)</a></p>
   </body>
 </html>
 
