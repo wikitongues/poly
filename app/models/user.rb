@@ -12,6 +12,11 @@ class User < ActiveRecord::Base
   has_many :favorite_books
   has_many :favorites, through: :favorite_books, source: :book
 
+  after_create :send_admin_notification
+  def send_admin_notification
+    AdminNotifications.new_user_email(self).deliver
+  end
+
   def authored_books
       books.order("created_at DESC").to_a
   end
