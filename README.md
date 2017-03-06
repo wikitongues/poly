@@ -124,7 +124,7 @@ The app is intended to be used via the UI by any person with access to a modern 
 #Feature Map
 We use [semantic versioning](http://semver.org/).
 
-For an overview of planned features and future releases, refer to [ROADMAP.md](https://github.com/wikitongues/poly/blob/master/repo/ROADMAP.md).
+For an overview of planned features and future releases, refer to [ROADMAP.md](https://github.com/wikitongues/poly/blob/master/ROADMAP.md).
 
 #Security
 The app requires a number of secret keys to function correctly. Features that will not work:
@@ -147,7 +147,7 @@ Feature requests may be made by [opening new issues](https://github.com/wikitong
 
 **Note on requesting features:**
 
->Before making a new request, please review our [roadmap](https://github.com/wikitongues/poly/blob/master/repo/ROADMAP.md) and [issues list](https://github.com/wikitongues/poly/issues) to avoid duplicates. If a feature is already described, please feel free to add your support in the comments!
+>Before making a new request, please review our [roadmap](https://github.com/wikitongues/poly/blob/master/ROADMAP.md) and [issues list](https://github.com/wikitongues/poly/issues) to avoid duplicates. If a feature is already described, please feel free to add your support in the comments!
 
 ##PRs are accepted.
 Make pull requests to have your contributions reviewed and deployed by the maintainers, or contact us directly by email at [poly@wikitongues.org](mailto:poly@wikitongues.org).
@@ -158,11 +158,11 @@ Refer to the [Github Contribution guide](https://guides.github.com/activities/co
 <!-- Requirements -->
 
 ##Code of Conduct
-All contributors will be held accountable to the [Contributor Covenant](https://github.com/wikitongues/poly/blob/master/repo/CONDUCT.md).
+All contributors will be held accountable to the [Contributor Covenant](https://github.com/wikitongues/poly/blob/master/CONDUCT.md).
 
 TLDR: be nice. But go read it anyway.
 
 #License
 > Poly uses the GNU General Purpose License v3.
 
-Read the license in detail [here](https://github.com/wikitongues/poly/blob/master/repo/LICENSE.md).
+Read the license in detail [here](https://github.com/wikitongues/poly/blob/master/LICENSE.md).
