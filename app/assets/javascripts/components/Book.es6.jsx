@@ -291,6 +291,7 @@ class Book extends React.Component {
         <input
           name="title_draft"
           className="title new isEditing"
+          dir="auto"
           onChange={this.onInputChange}
           value={this.state.book.title_draft}
         />
@@ -537,6 +538,7 @@ class Book extends React.Component {
             rows="4"
             className="description new isEditing"
             name="description_draft"
+            dir="auto"
             onChange={this.onInputChange}
             value={this.state.book.description_draft}
           />
@@ -551,6 +553,7 @@ class Book extends React.Component {
             rows="4"
             className="description new isEditing"
             name="description_draft"
+            dir="auto"
             onChange={this.onInputChange}
             value={this.state.book.description_draft}
             placeholder="Describe the contents of your book,
@@ -645,7 +648,7 @@ class Book extends React.Component {
             { this.renderBookMenu() }
           </div>
           <div className="info">
-            <div className="wrapper">
+            <div className="wrapper" dir="auto">
               { this.renderTitle() }
               { this.renderAuthor() }
               { this.renderVideoDescription() }

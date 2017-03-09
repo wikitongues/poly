@@ -10,7 +10,7 @@ class SearchBar extends React.Component {
     return (
       <form action="/search">
         <img src={this.props.search} alt="Search icon" />
-        <input type="text" name="q" placeholder="Search" defaultValue={this.hasQueryValue()} />
+        <input type="text" name="q" placeholder="Search" dir="auto" defaultValue={this.hasQueryValue()} />
       </form>
     );
   }
