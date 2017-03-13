@@ -21,4 +21,8 @@ class User < ActiveRecord::Base
       books.order("created_at DESC").to_a
   end
 
+  before_destroy :clear_books
+  def clear_books
+    Book.where(user_id: self.id).delete_all
+  end
 end
