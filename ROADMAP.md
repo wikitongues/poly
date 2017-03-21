@@ -34,7 +34,7 @@ Version 0.2 focuses on developing core features that are not structural. Breakin
 - [x] ~~Testing~~
 
 ### Books
-- [x] ~~Favorite a book~~ ***Breaking change***
+- [x] ~~Favorite a book~~ - ***Breaking change***
 - [x] ~~Only save new book if all inputs are complete~~
 - [x] ~~In-progress phrase ellipsis animation~~
 - [x] ~~Video phrases~~
@@ -64,17 +64,17 @@ Version 0.3 introduces breaking changes to the schema for implementation of book
 - [ ] Social sharing
 
 ### Books
-- [ ] Book type ***Breaking change***
+- [ ] Book type - ***Breaking change***
   - [ ] Public/Private ([In Progress](https://github.com/wikitongues/poly/tree/draft-books))
   - [ ] Licenses
   - [ ] Book templates
   - [ ] Single language books
-- [ ] Dictionary operations ***Breaking change***
+- [ ] Dictionary operations ***Breaking change*** [Example](https://facebook.github.io/draft-js/docs/overview.html#content)
   - [ ] Reorder phrases
     - [ ] Alphabetically
     - [ ] Arbitrarily (Drag & drop)
   - [ ] Delete multiple phrases
-- [ ] Rich text [Example](https://facebook.github.io/draft-js/docs/overview.html#content) ***Breaking change***
+- [ ] Rich text - ***Breaking change***
   - [ ] Descriptions
   - [ ] Phrases
 - [ ] Document scroll position progress marker
@@ -83,7 +83,7 @@ Version 0.3 introduces breaking changes to the schema for implementation of book
 - Video phrases
   - [ ] Transcribe video phrases
   - [ ] Upload video phrases
-- [x] ~~Video descriptions~~ ***Breaking change***
+- [x] ~~Video descriptions~~ - ***Breaking change***
 
 ### Users
 - [ ] User-to-user contributions
