@@ -64,23 +64,23 @@ Version 0.3 introduces breaking changes to the schema for implementation of book
 - [ ] Social sharing
 
 ### Books
+- [ ] Document scroll position progress marker
+- [ ] Show favorite icon in dashboard
+- [ ] Fixed position book languages sub-header
 - [ ] Book type - ***Breaking change***
   - [ ] Public/Private ([In Progress](https://github.com/wikitongues/poly/tree/draft-books))
   - [ ] Licenses
   - [ ] Book templates
   - [ ] Single language books
 - [ ] Dictionary operations - ***Breaking change*** [Example](https://facebook.github.io/draft-js/docs/overview.html#content)
+  - [ ] Delete multiple phrases
   - [ ] Reorder phrases
     - [ ] Alphabetically
     - [ ] Arbitrarily (Drag & drop)
-  - [ ] Delete multiple phrases
 - [ ] Rich text - ***Breaking change***
   - [ ] Descriptions
   - [ ] Phrases
-- [ ] Document scroll position progress marker
-- [ ] Show favorite icon in dashboard
-- [ ] Fixed position book languages sub-header
-- Video phrases
+- Phrases - ***Breaking change***
   - [ ] Transcribe video phrases
   - [ ] Upload video phrases
 - [x] ~~Video descriptions~~ - ***Breaking change***
