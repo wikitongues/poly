@@ -14,7 +14,7 @@ Planned features for future releases.
 ## Version 0.1, *Deployed*
 
 Version 0.1 establishes the application. It prepares an application to receive users, allows the creation of books and the input and editing of phrase content.
-- [x] ~~Create new phrasebook~~
+- [x] ~~Create new book~~
 - [x] ~~Input and save new phrase~~
 - [x] ~~Refactor new phrase controller~~
 - [x] ~~Book title, description, L1, L2 editing~~
@@ -60,15 +60,15 @@ Version 0.3 introduces breaking changes to the schema for implementation of book
 
 ### Platform
 - [ ] Security audit
-- [ ] Phrasebook embed
-- [ ] Phrasebook social sharing
+- [ ] Embed books on other sites
+- [ ] Social sharing
 
 ### Books
 - [ ] Book type ***Breaking change***
   - [ ] Public/Private ([In Progress](https://github.com/wikitongues/poly/tree/draft-books))
   - [ ] Licenses
   - [ ] Book templates
-  - [ ] Dictionaries
+  - [ ] Single language books
 - [ ] Dictionary operations ***Breaking change***
   - [ ] Reorder phrases
     - [ ] Alphabetically
@@ -78,15 +78,17 @@ Version 0.3 introduces breaking changes to the schema for implementation of book
   - [ ] Descriptions
   - [ ] Phrases
 - [ ] Document scroll position progress marker
+- [ ] Show favorite icon in dashboard
 - [ ] Fixed position book languages sub-header
-- [x] ~~Video descriptions~~ ***Breaking change***
-- [ ] Video phrases
+- Video phrases
   - [ ] Transcribe video phrases
   - [ ] Upload video phrases
+- [x] ~~Video descriptions~~ ***Breaking change***
 
 ### Users
-- [ ] User edit profile data
+- [ ] User-to-user contributions
 - [ ] User upload profile picture
+- [x] ~~User edit profile data~~
 
 ### Search
 - [ ] Search term highlighting [Example](https://github.com/bvaughn/react-highlight-words)
