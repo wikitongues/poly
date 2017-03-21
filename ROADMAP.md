@@ -69,7 +69,7 @@ Version 0.3 introduces breaking changes to the schema for implementation of book
   - [ ] Licenses
   - [ ] Book templates
   - [ ] Single language books
-- [ ] Dictionary operations ***Breaking change*** [Example](https://facebook.github.io/draft-js/docs/overview.html#content)
+- [ ] Dictionary operations - ***Breaking change*** [Example](https://facebook.github.io/draft-js/docs/overview.html#content)
   - [ ] Reorder phrases
     - [ ] Alphabetically
     - [ ] Arbitrarily (Drag & drop)
