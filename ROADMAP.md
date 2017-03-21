@@ -5,8 +5,8 @@ Planned features for future releases.
 [Directory](https://github.com/wikitongues/poly#poly)
 
 # Table of Contents
-  1. [Version 0.1 *deployed*](#version-01-deployed)
-  1. [Version 0.2 *deployed*](#version-02-deployed)
+  1. [Version 0.1 - *deployed*](#version-01-deployed)
+  1. [Version 0.2 - *deployed*](#version-02-deployed)
   1. [Version 0.3](#version--03)
   1. [Version 0.4](#version-04)
   1. [Version 1.0](#version-10)
