@@ -1,4 +1,5 @@
 #Poly Roadmap
+
 Planned features for future releases.
 
 [Directory](https://github.com/wikitongues/poly#poly)
@@ -12,6 +13,7 @@ Planned features for future releases.
   1. [Version 1.0](#version-10)
 
 ##Version 0.1, *Deployed*
+
 Version 0.1 establishes the application. It prepares an application to receive users, allows the creation of books and the input and editing of phrase content.
 - [x] ~~Create new phrasebook~~
 - [x] ~~Input and save new phrase~~
@@ -23,7 +25,9 @@ Version 0.1 establishes the application. It prepares an application to receive u
 - [x] ~~Sign in upon account creation~~
 
 ##Version 0.2, *Deployed*
+
 Version 0.2 focuses on developing core features that are not structural. Breaking changes to the schema for implementation of book favoriting. Heavy attention paid to video input and display, as well as search. A user dashboard and profile pages are also anticipated.
+
 ###Platform
 - [x] ~~Deployment~~
 - [x] ~~Alerts~~
@@ -52,7 +56,9 @@ Version 0.2 focuses on developing core features that are not structural. Breakin
 - [x] ~~Search by language~~
 
 ##Version  0.3
+
 Version 0.3 introduces breaking changes to the schema for implementation of book type and status, as well as for phrase operations like reordering and rich-text.
+
 ###Platform
 - [ ] Security audit
 - [ ] Phrasebook embed
@@ -90,6 +96,7 @@ Version 0.3 introduces breaking changes to the schema for implementation of book
 - [x] ~~Search by author~~
 
 ##Version 0.4
+
 ###Platform
 - [ ] User-facing data import / export
 
@@ -104,6 +111,7 @@ Version 0.3 introduces breaking changes to the schema for implementation of book
 - [ ] Search by tags
 
 ##Version 1.0
+
 ###Platform
 - [ ] Native app
 - [ ] Offline-first architecture
