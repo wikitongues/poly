@@ -207,6 +207,7 @@ class Profile extends React.Component {
     const createdYear = createdDate.getUTCFullYear();
     const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
     const createdMonth = months[createdDate.getMonth()];
+    const username = this.props.userData.username;
 
     return (
       <div className="container">
@@ -224,7 +225,9 @@ class Profile extends React.Component {
               <img src={`https://www.gravatar.com/avatar/${this.props.hashedEmail}?s=200`} width="200px" height="200px"/>
               <span className="tooltip">?</span>
               <span className="details">
-                <h2>{this.props.userData.username}</h2>
+                <h2 className={username.length > 9 ? "smallText" : ""}>
+                  {username}
+                </h2>
                 <p>Joined {createdMonth} {createdYear}</p>
                 {this.renderEditButton()}
               </span>
