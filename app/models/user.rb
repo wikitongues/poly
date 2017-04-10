@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
 
   validates_presence_of :username
   validates_uniqueness_of :username
+  validates :username, length: { maximum: 14,
+                                 too_long: "is too long. %{count} characters is the maximum allowed" }
 
   has_many :books
 
