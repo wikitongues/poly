@@ -246,7 +246,7 @@ class NewBook extends React.Component {
                     className="new language source"
                     type="text"
                     name="source_language"
-                    placeholder="Source"
+                    placeholder="Source language"
                     value={this.state.sourceLanguage}
                     onChange={this.onInputChange}
                   />
@@ -255,7 +255,7 @@ class NewBook extends React.Component {
                     className="new language target"
                     type="text"
                     name="target_language"
-                    placeholder="Target"
+                    placeholder="Target language"
                     value={this.state.targetLanguager}
                     onChange={this.onInputChange}
                   />
