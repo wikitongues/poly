@@ -127,7 +127,7 @@ We use [semantic versioning](http://semver.org/).
 For an overview of planned features and future releases, refer to [ROADMAP.md](https://github.com/wikitongues/poly/blob/master/ROADMAP.md).
 
 # Security
-The app requires a number of secret keys to function correctly. Features that will not work:
+The app requires a number of secret keys to function correctly. Features that will not work locally without keys:
 * Password reset
 * Video recording
 
