@@ -1,19 +1,42 @@
 class NavBar extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      isNavMenuVisible: false
+    };
+    this.toggleMenu = this.toggleMenu.bind(this);
     this.renderSignIn = this.renderSignIn.bind(this);
+  }
+
+  toggleMenu() {
+    this.setState({
+      isNavMenuVisible: !this.state.isNavMenuVisible
+    })
+  }
+
+  renderNavMenu() {
+    if (this.state.isNavMenuVisible) {
+      return (
+        <div className="navMenu">
+          <a href="/dashboard">Home</a>
+          <a href="/books/new">Create a new book</a>
+          <a href="/account/edit">Edit profile</a>
+          <a href="/features">Roadmap</a>
+          <a href="/sign_out">Sign out</a>
+        </div>
+      )
+    }
   }
 
   renderSignIn() {
     if (this.props.currentUser) {
       return (
           <div className="loggedIn">
-            <a className="currentUser" href="/dashboard">
+            <a className="currentUser" onClick={this.toggleMenu}>
               <span>{this.props.currentUser.username}</span>
-              <img className="mobile" src={this.props.menu} />
+              <img src={this.props.menu} />
             </a>
-            <a href="/features">Roadmap</a>
-            <a href="/sign_out">Sign out</a>
+            {this.renderNavMenu()}
           </div>
       );
     }

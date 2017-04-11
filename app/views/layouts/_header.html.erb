@@ -6,14 +6,17 @@
     </span>
   </a>
 
+  <form action="/search">
+    <%= image_tag "icons/i_search.svg"%>
+    <input type="text" name="q" placeholder="Search" dir="auto" defaultValue={this.hasQueryValue()} />
+  </form>
+
   <% if @user && @user.username %>
 
-    <div class="loggedIn">
+    <div class="loggedIn rails">
       <a class="currentUser" href="/dashboard">
-        <%= @user.username%>
+        <span>back</span>
       </a>
-      <a href="/features">Roadmap</a>
-      <a href="/sign_out">Sign out</a>
     </div>
 
   <% else %>

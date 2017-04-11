@@ -4,6 +4,7 @@ class HomeController < ApplicationController
     @books = Book.all.order("created_at DESC").map do |book|
       BookSerializer.new(book)
     end
+
     @users = User.all
 
     if current_user

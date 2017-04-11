@@ -146,11 +146,11 @@ class Book extends React.Component {
     const newBook = this.state.book;
     const newState = this.state;
 
-    const sourceLanguage = this.state.book.source_language;
-    const targetLanguage = this.state.book.target_language;
+    const sourceLanguageDraft = this.state.book.source_language_draft;
+    const targetLanguageDraft = this.state.book.target_language_draft;
 
-    newBook.source_language = targetLanguage;
-    newBook.target_language = sourceLanguage;
+    newBook.source_language_draft = targetLanguageDraft;
+    newBook.target_language_draft = sourceLanguageDraft;
 
     newState.book = newBook;
     this.setState(newState);
@@ -233,28 +233,23 @@ class Book extends React.Component {
       if (this.state.isEditingBook) {
         return (
           <div className="menu saving">
-            <button title="Flip" onClick={this.onInvertLanguagesClick} className="icon">
+            <button
+              title="Flip"
+              onClick={this.onInvertLanguagesClick}
+              className="icon">
               <img src={this.props.flipAlt} />
             </button>
-            <button title="Save" onClick={this.onSaveBookClick} className="icon">
+            <button
+              title="Save"
+              onClick={this.onSaveBookClick}
+              className="icon">
               <img src={this.props.saveAlt} alt="Save" />
             </button>
-            <button title="Cancel" onClick={this.cancelEditingBookState} className="close icon">
+            <button
+              title="Cancel"
+              onClick={this.cancelEditingBookState}
+              className="close icon">
               <img src={this.props.closeAlt}/>
-            </button>
-          </div>
-        );
-      } else {
-        return (
-          <div className="menu">
-            <button title="Menu" className="more icon">
-              <img src={this.props.menuAlt}/>
-            </button>
-            <button title="Edit" onClick={this.toggleEditingBookState} className="icon" tabIndex="-1">
-              <img src={this.props.editAlt}/>
-            </button>
-            <button title="Delete" onClick={this.onDeleteBookClick} className="icon" tabIndex="-1">
-              <img src={this.props.deleteAlt}/>
             </button>
           </div>
         );
@@ -633,6 +628,7 @@ class Book extends React.Component {
           logo={this.props.logo}
           detail={this.props.detail}
           search={this.props.search}
+          menu={this.props.menu}
         />
         <span className="backgroundElement" />
         <div className="book">

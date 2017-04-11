@@ -231,6 +231,7 @@ class NewBook extends React.Component {
           logo={this.props.logo}
           detail={this.props.detail}
           search={this.props.search}
+          menu={this.props.menu}
         />
         <span className="backgroundElement" />
         <div className="book">
