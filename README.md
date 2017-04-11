@@ -118,7 +118,7 @@ The app is intended to be used via the UI by any person with access to a modern 
 
 [Video Demo](https://youtu.be/rt-NigJJCgI)
 
-[Live App](https://poly-wikitongues.herokuapp.com)
+[Live App](https://poly.wikitongues.org)
 <!-- App screenshots -->
 
 # Feature Map
