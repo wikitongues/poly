@@ -109,19 +109,21 @@
     float left
     width 100%
     border-top 1px solid #f0F3F5
+    border-bottom 5px solid #FAFCFC
     overflow hidden
     transition height $time ease-in-out, margin-top $time ease-in-out, margin-bottom $time ease-in-out
 
     input
       border none
       font-size 1em
-      padding 1em 2em
+      padding 0 1em
       outline none
-      height 80px
+      height 70px
       width 500px
       float left
       background $white
       transition padding 1ms ease-in-out, border-left 1ms ease-in-out
+      placeholder-color(#C9CDCF)
 
       &.focus
         padding 1em 2em 1em 1.5em
@@ -134,11 +136,14 @@
       width 100px
       text-align center
       font-weight 400
-      padding 16px 0
-      margin 10px 0
+      padding 23px 0
+      margin 0
       border-left 2px solid #eee
       display inline-block
       cursor pointer
       font-size 1em
       outline none
 
+    input,
+    button.savePhrase
+      border-bottom 1px solid #E9F1F3

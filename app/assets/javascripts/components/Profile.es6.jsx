@@ -23,7 +23,7 @@ class Profile extends React.Component {
     return this.props.books.map((book) => {
       return (
         <BookEntry
-          users={this.props.userData}
+          // users={this.props.userData}
           book={book}
           key={book.id}
           cardinality={this.props.cardinality}
@@ -45,12 +45,29 @@ class Profile extends React.Component {
           />
         );
       });
+    } else {
+      if (!this.currentUserProfile()) {
+        if (this.props.currentUser) {
+          return (
+            <li className="emptyList">
+              <p>You haven't created any books yet. <a href="/books/new">Create your first book</a></p>
+            </li>
+          );
+        } else {
+          return (
+            <li className="emptyList">
+              <p>{this.props.userData.username} does not have any books.</p>
+            </li>
+          );
+        }
+      } else {
+        return (
+          <li className="emptyList">
+            <p>{this.props.userData.username} does not have any books.</p>
+          </li>
+        );
+      }
     }
-    return (
-      <li className="emptyList">
-        <h2>No books</h2>
-      </li>
-    );
   }
 
   renderFavoriteBooks() {
@@ -190,6 +207,7 @@ class Profile extends React.Component {
     const createdYear = createdDate.getUTCFullYear();
     const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
     const createdMonth = months[createdDate.getMonth()];
+    const username = this.props.userData.username;
 
     return (
       <div className="container">
@@ -207,8 +225,10 @@ class Profile extends React.Component {
               <img src={`https://www.gravatar.com/avatar/${this.props.hashedEmail}?s=200`} width="200px" height="200px"/>
               <span className="tooltip">?</span>
               <span className="details">
-                <h2>{this.props.userData.username}</h2>
-                <p>Member since {createdMonth} {createdYear}</p>
+                <h2 className={username.length > 9 ? "smallText" : ""}>
+                  {username}
+                </h2>
+                <p>Joined {createdMonth} {createdYear}</p>
                 {this.renderEditButton()}
               </span>
             </div>
@@ -219,7 +239,7 @@ class Profile extends React.Component {
           <div className="dashboard">
             <div className="indexContent">
               <div className="controlPanel">
-                <p>All Books</p>
+                <p>Recent books</p>
               </div>
               <ul className="bookEntryList">
                 {this.renderAllBooks()}

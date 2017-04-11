@@ -231,6 +231,7 @@ class NewBook extends React.Component {
           logo={this.props.logo}
           detail={this.props.detail}
           search={this.props.search}
+          menu={this.props.menu}
         />
         <span className="backgroundElement" />
         <div className="book">
@@ -245,7 +246,7 @@ class NewBook extends React.Component {
                     className="new language source"
                     type="text"
                     name="source_language"
-                    placeholder="Source"
+                    placeholder="Source language"
                     value={this.state.sourceLanguage}
                     onChange={this.onInputChange}
                   />
@@ -254,7 +255,7 @@ class NewBook extends React.Component {
                     className="new language target"
                     type="text"
                     name="target_language"
-                    placeholder="Target"
+                    placeholder="Target language"
                     value={this.state.targetLanguager}
                     onChange={this.onInputChange}
                   />
@@ -274,6 +275,7 @@ class NewBook extends React.Component {
                   type="text"
                   name="title"
                   placeholder="Useful phrases in Laputa"
+                  dir="auto"
                   autoFocus
                   value={this.state.title}
                   onChange={this.onInputChange}
@@ -286,9 +288,11 @@ class NewBook extends React.Component {
                             </div>*/}
                   {this.renderVideoDescription()}
                   <textarea
+                    rows="3"
                     className="new description"
                     type="text"
                     name="description"
+                    dir="auto"
                     placeholder="Describe the contents of your book, Ex: A
                     collection of useful phrases in Laputa, a Swiftian language
                     spoken in Balnibarbi and a number of other islands."

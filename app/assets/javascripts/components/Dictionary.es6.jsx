@@ -357,7 +357,7 @@ class Dictionary extends React.Component {
             onChange={this.onSourcePhraseChange}
             className="sourcePhrase input"
             type="text"
-            placeholder="Source"/>
+            placeholder={this.props.sourceLanguage + " phrase"}/>
           <button className="savePhrase">Save</button>
         </form>
       </div>
@@ -375,7 +375,8 @@ class Dictionary extends React.Component {
           onChange={this.onTargetPhraseChange}
           className="targetPhrase input"
           type="text"
-          placeholder="Target" />
+          dir="auto"
+          placeholder={this.props.targetLanguage + " phrase"} />
         <button className="savePhrase"> Save </button>
       </form>
     );

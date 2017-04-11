@@ -112,6 +112,10 @@ class Book extends React.Component {
 
   onSaveBookClick() {
     this.state.errors = [];
+    this.state.book.source_language = this.state.book.source_language_draft;
+    this.state.book.target_language = this.state.book.target_language_draft;
+    this.state.book.title = this.state.book.title_draft;
+    this.state.book.description = this.state.book.description_draft;
     if (this.state.book.title && this.state.book.source_language && this.state.book.target_language) {
       $.ajax({
         url: '/books/' + this.state.book.id,
@@ -142,18 +146,26 @@ class Book extends React.Component {
     const newBook = this.state.book;
     const newState = this.state;
 
-    const sourceLanguage = this.state.book.source_language;
-    const targetLanguage = this.state.book.target_language;
+    const sourceLanguageDraft = this.state.book.source_language_draft;
+    const targetLanguageDraft = this.state.book.target_language_draft;
 
-    newBook.source_language = targetLanguage;
-    newBook.target_language = sourceLanguage;
+    newBook.source_language_draft = targetLanguageDraft;
+    newBook.target_language_draft = sourceLanguageDraft;
 
     newState.book = newBook;
     this.setState(newState);
   }
 
   toggleEditingBookState() {
-    this.setState({ isEditingBook: true });
+    const modBook = this.state.book;
+    modBook.title_draft = modBook.title;
+    modBook.description_draft = modBook.description;
+    modBook.source_language_draft = modBook.source_language;
+    modBook.target_language_draft = modBook.target_language;
+    this.setState({
+      isEditingBook: true,
+      book: modBook
+    });
   }
 
   cancelEditingBookState() {
@@ -221,34 +233,46 @@ class Book extends React.Component {
       if (this.state.isEditingBook) {
         return (
           <div className="menu saving">
-            <button title="Flip" onClick={this.onInvertLanguagesClick} className="icon">
+            <button
+              title="Flip"
+              onClick={this.onInvertLanguagesClick}
+              className="icon">
               <img src={this.props.flipAlt} />
             </button>
-            <button title="Save" onClick={this.onSaveBookClick} className="icon">
+            <button
+              title="Save"
+              onClick={this.onSaveBookClick}
+              className="icon">
               <img src={this.props.saveAlt} alt="Save" />
             </button>
-            <button title="Cancel" onClick={this.cancelEditingBookState} className="close icon">
+            <button
+              title="Cancel"
+              onClick={this.cancelEditingBookState}
+              className="close icon">
               <img src={this.props.closeAlt}/>
             </button>
           </div>
         );
-      } else {
-        return (
-          <div className="menu">
-            <button title="Menu" className="more icon">
-              <img src={this.props.menuAlt}/>
-            </button>
-            <button title="embed" className="icon embed">
-              <img src={this.props.embed} alt=""/>
-            </button>
-            <button title="Edit" onClick={this.toggleEditingBookState} className="icon" tabIndex="-1">
-              <img src={this.props.editAlt}/>
-            </button>
-            <button title="Delete" onClick={this.onDeleteBookClick} className="icon" tabIndex="-1">
-              <img src={this.props.deleteAlt}/>
-            </button>
-          </div>
-        );
+// <<<<<<< HEAD
+//       } else {
+//         return (
+//           <div className="menu">
+//             <button title="Menu" className="more icon">
+//               <img src={this.props.menuAlt}/>
+//             </button>
+//             <button title="embed" className="icon embed">
+//               <img src={this.props.embed} alt=""/>
+//             </button>
+//             <button title="Edit" onClick={this.toggleEditingBookState} className="icon" tabIndex="-1">
+//               <img src={this.props.editAlt}/>
+//             </button>
+//             <button title="Delete" onClick={this.onDeleteBookClick} className="icon" tabIndex="-1">
+//               <img src={this.props.deleteAlt}/>
+//             </button>
+//           </div>
+//         );
+// =======
+// >>>>>>> master
       }
     }
   }
@@ -257,10 +281,11 @@ class Book extends React.Component {
     if (this.state.isEditingBook) {
       return (
         <input
-          name="title"
+          name="title_draft"
           className="title new isEditing"
+          dir="auto"
           onChange={this.onInputChange}
-          value={this.state.book.title}
+          value={this.state.book.title_draft}
         />
       );
     }
@@ -504,9 +529,10 @@ class Book extends React.Component {
           <textarea
             rows="4"
             className="description new isEditing"
-            name="description"
+            name="description_draft"
+            dir="auto"
             onChange={this.onInputChange}
-            value={this.state.book.description}
+            value={this.state.book.description_draft}
           />
         );
       } else {
@@ -518,9 +544,10 @@ class Book extends React.Component {
           <textarea
             rows="4"
             className="description new isEditing"
-            name="description"
+            name="description_draft"
+            dir="auto"
             onChange={this.onInputChange}
-            value={this.state.book.description}
+            value={this.state.book.description_draft}
             placeholder="Describe the contents of your book,
             Ex: A collection of useful phrases in Laputa, a Swiftian
             language spoken in Balnibarbi and a number of other islands..."
@@ -535,9 +562,9 @@ class Book extends React.Component {
       return (
         <input
           className="new isEditing"
-          name="source_language"
+          name="source_language_draft"
           onChange={this.onInputChange}
-          value={this.state.book.source_language}
+          value={this.state.book.source_language_draft}
         />
       );
     }
@@ -553,9 +580,9 @@ class Book extends React.Component {
       return (
         <input
           className="new isEditing"
-          name="target_language"
+          name="target_language_draft"
           onChange={this.onInputChange}
-          value={this.state.book.target_language}
+          value={this.state.book.target_language_draft}
         />
       );
     }
@@ -598,6 +625,7 @@ class Book extends React.Component {
           logo={this.props.logo}
           detail={this.props.detail}
           search={this.props.search}
+          menu={this.props.menu}
         />
         <span className="backgroundElement" />
         <div className="book">
@@ -613,7 +641,7 @@ class Book extends React.Component {
             { this.renderBookMenu() }
           </div>
           <div className="info">
-            <div className="wrapper">
+            <div className="wrapper" dir="auto">
               { this.renderTitle() }
               { this.renderAuthor() }
               { this.renderVideoDescription() }

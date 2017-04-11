@@ -144,6 +144,7 @@ GEM
       method_source (~> 0.8.1)
       slop (~> 3.4)
     public_suffix (2.0.5)
+    puma (3.8.2)
     pundit (1.1.0)
       activesupport (>= 3.0.0)
     rack (1.6.5)
@@ -269,6 +270,7 @@ DEPENDENCIES
   lodash-rails
   pg (~> 0.15)
   pry
+  puma
   pundit
   rails (= 4.2.5.1)
   rails_12factor
