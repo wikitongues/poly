@@ -49,23 +49,23 @@ var lowerBound = exports.lowerBound = function (range) {
   return k && range[k]
 }
 
-exports.lowerBoundInclusive = function (range) {
+var lowerBoundInclusive = exports.lowerBoundInclusive = function (range) {
   return has(range, 'gt') ? false : true
 }
 
-exports.upperBoundInclusive =
+var upperBoundInclusive = exports.upperBoundInclusive =
   function (range) {
-    return has(range, 'lt') || !range.minEx ? false : true
+    return (has(range, 'lt') /*&& !range.maxEx*/) ? false : true
   }
 
 var lowerBoundExclusive = exports.lowerBoundExclusive =
   function (range) {
-    return has(range, 'gt') || range.minEx ? true : false
+    return !lowerBoundInclusive(range)
   }
 
 var upperBoundExclusive = exports.upperBoundExclusive =
   function (range) {
-    return has(range, 'lt') ? true : false
+    return !upperBoundInclusive(range)
   }
 
 var upperBoundKey = exports.upperBoundKey = function (range) {
@@ -144,3 +144,8 @@ exports.filter = function (range, compare) {
     return exports.contains(range, key, compare)
   }
 }
+
+
+
+
+

@@ -46,7 +46,7 @@ config/initializers/secret_token.rb
 bower.json
 
 # Node dependency directories
-#node_modules
+/node_modules
 
 # Ignore pow environment settings
 .powenv
