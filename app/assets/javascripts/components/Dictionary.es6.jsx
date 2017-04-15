@@ -177,6 +177,15 @@ class Dictionary extends React.Component {
       sourcePhrase: "",
       targetPhrase: ""
     });
+    if (this.state.isTargetInputActive && !this.state.targetPhrase) {
+      let phrasePairs = this.state.phrasePairs;
+      phrasePairs.splice(-1, 1);
+      this.setState({
+        phrasePairs,
+        isTargetInputActive: !this.state.isTargetInputActive,
+        isPhraseInputActive: true
+      });
+    }
     if (this.state.stream !== '') {
       this.onStopStream();
     }
