@@ -93,25 +93,25 @@
                 margin-left 0 !important
 
           form
-            max-width 55%
+            max-width 40%
             min-width auto
             width initial
             position initial
             left 0
             margin-left 0
 
-          span
-            &.loggedIn
-              width 78px
+          .loggedIn
+            min-width 42%
+            margin 15px 0
 
-              .currentUser
-                display none
-
-              a
-                padding 8px 15px
+          .logIn
+            a[href="/features"],
+            a[href="/sign_in"]
+              display none
 
       #login
         width initial
+        margin-top 67px
 
         h2
           font-size 2em
@@ -126,16 +126,19 @@
         #profile
           width 100%
           display inline-block
+          padding 0 10px
+          margin-top 73px
 
           .userInformation
             width 100%
+            margin-bottom 0
 
             .wrapper
               .details
                 max-width 140px
 
           .dashboard
-            margin-top 20px
+            margin-top 10px
             min-width 100%
 
 
@@ -147,6 +150,7 @@
             border-left none
             border-right none
             border-radius 0
+            margin-top 73px
 
             .controlPanel
               a
