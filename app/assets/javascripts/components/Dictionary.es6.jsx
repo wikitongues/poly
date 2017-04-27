@@ -170,22 +170,20 @@ class Dictionary extends React.Component {
   }
 
   onCancelEditPhrase() {
+    let phrasePairs = this.state.phrasePairs;
+    if (this.state.isTargetInputActive) {
+      phrasePairs.splice(-1, 1);
+    }
     this.setState({
+      phrasePairs,
+      isTargetInputActive: false,
       isPhraseInputActive: false,
       isInputVideo: false,
       isVideoRecording: false,
       sourcePhrase: "",
       targetPhrase: ""
     });
-    if (this.state.isTargetInputActive && !this.state.targetPhrase) {
-      let phrasePairs = this.state.phrasePairs;
-      phrasePairs.splice(-1, 1);
-      this.setState({
-        phrasePairs,
-        isTargetInputActive: !this.state.isTargetInputActive,
-        isPhraseInputActive: true
-      });
-    }
+
     if (this.state.stream !== '') {
       this.onStopStream();
     }
