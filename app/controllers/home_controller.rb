@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
 
   def index
-    @books = Book.all.includes(:user).order("created_at DESC").map do |book|
+    @books = Book.all.includes(:user).order("created_at DESC").limit(10).map do |book|
       BookSerializer.new(book)
     end
 
