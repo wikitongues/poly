@@ -63,9 +63,9 @@ class Admin extends React.Component {
             <h3>Users <span className="bookCount">({this.props.users.length})</span></h3>
             <table>
               <thead>
-                <td>Username</td>
-                <td>Books authored</td>
-                <td>Date joined</td>
+                <th>Username</th>
+                <th>Books authored</th>
+                <th>Date joined</th>
               </thead>
               <tbody>
                 {this.renderUsers()}
