@@ -8,7 +8,7 @@
   section.set
     display inline-block
     float left
-    width 33%
+    width (100/3)%
     padding 0 .5rem
 
     h3
@@ -39,9 +39,12 @@
 
         thead
           th
-            text-align left
+            text-align right
             font-weight 100
             padding 1rem
+
+            &:first-of-type
+              text-align left
 
         tbody
           padding 0
