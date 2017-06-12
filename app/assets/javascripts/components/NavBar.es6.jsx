@@ -14,6 +14,12 @@ class NavBar extends React.Component {
     })
   }
 
+  renderAdminButton() {
+    if (this.props.currentUser.admin) {
+      return <a href="/admin">Admin</a>
+    }
+  }
+
   renderNavMenu() {
     if (this.state.isNavMenuVisible) {
       return (
@@ -22,6 +28,7 @@ class NavBar extends React.Component {
           <a href="/books/new">Create a new book</a>
           <a href="/account/edit">Edit profile</a>
           <a href="/features">Roadmap</a>
+          {this.renderAdminButton()}
           <a href="/sign_out">Sign out</a>
         </div>
       )
