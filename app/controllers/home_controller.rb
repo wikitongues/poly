@@ -1,10 +1,7 @@
 class HomeController < ApplicationController
 
   def index
-    @books = Book.joins(:user, :phrase_pairs)
-      .order("created_at DESC")
-      .limit(10)
-      .map do |book|
+    @books = Book.joins(:user).order("created_at DESC").limit(10).map do |book|
         BookSerializer.new(book)
     end
 
