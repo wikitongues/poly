@@ -1,19 +1,32 @@
 <nav>
   <a class="icon home" href="/">
-    <%= image_tag "icons/i_home.svg"%>
+    <%= image_tag "icons/icon-logomark.svg"%>
     <span class="detail">
-      <%= image_tag "icons/i_home_detail.svg"%>
+      <%= image_tag "icons/icon-logotype.svg"%>
     </span>
   </a>
 
-  <% if @user.username? %>
+  <form action="/search">
+    <%= image_tag "icons/icon-search-grey.svg"%>
+    <input type="text" name="q" placeholder="Search" dir="auto" defaultValue={this.hasQueryValue()} />
+  </form>
 
-    <span class="loggedIn">
-      <a class="currentUser" href="/account">
-        <%= @user.username%>
+  <% if @user && @user.username %>
+
+    <div class="loggedIn rails">
+      <a class="currentUser" href="/dashboard">
+        <span>back</span>
       </a>
-      <a href="/sign_out">Sign out</a>
-    </span>
+    </div>
+
+  <% else %>
+
+    <div class="logIn">
+      <a href="/features">Roadmap</a>
+      <a class="signUp" href="/sign_up">Sign up</a>
+      <a href="/sign_in">or log in</a>
+
+    </div>
 
   <% end %>
 

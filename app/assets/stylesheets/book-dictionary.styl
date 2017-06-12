@@ -6,7 +6,7 @@
   margin auto
   font-size 1.2em
   padding 0
-  background #fff
+  background $white
   float left
   width 100%
   max-width 600px
@@ -33,7 +33,7 @@
     transition background $time*2 ease-in-out
 
     &:hover
-      background lighten(#E7EFF2, 80%)
+      background lighten($source, 80%)
 
     p.empty
       text-align center
@@ -48,54 +48,64 @@
 
   .addPhrase
     position fixed
-    z-index 10
-    left 50%
-    transform translateX(-50%)
+    z-index 2
     bottom 0
+    left 50%
     materialButton()
     display block
-    margin 0 auto .5em
+    margin 0 0 .5em -30px
     font-size 2em
     line-height 1em
-    border none
+    border-left none
+    border-right none
+    border-bottom none
     outline none
     cursor pointer
+    padding 0
 
   .inputMethod
     width 100%
     float left
     background #fafcfc
-    box-shadow 0 -1px 2px rgba(0,0,0,0.1)
-    padding 7px 14px
+    border-top 2px solid #e9f1f3
 
-    span.text
-      button
-        span
-          font-weight bold
-        span
-          &.small
-            font-weight bolder
-            font-size .6em
-
-    button
+    label
       float left
-      margin 0
-      width 40px
-      height 40px
-      border-radius 100%
-      border-color transparent
-      outline none
       background transparent
-      font-weight bold
+      border none
+      color $blue
+      font-weight 500
       font-size 1em
-      cursor pointer
-      color #4f6387
+      padding 1em
 
-      &.close
-        float right
+      input
+        display block
+        float left
+        margin 6px 6px 0 0
 
-      &:hover
-        background-color #f5f5f5
+    .inputOptions
+      float right
+      padding-right 5px
+
+      button
+        float left
+        margin 5px 3px
+        width 40px
+        height 40px
+        border-radius 100%
+        outline none
+        background-color transparent
+        &.text
+          background #E9F1F3
+
+        &:nth-child(2)
+          transition opacity 0.2s ease-in
+
+        &:hover
+          background-color #EFF5F7
+
+        .video
+          opacity .5
 
     button[title="Italic"]
       font-style italic
@@ -113,29 +123,41 @@
     float left
     width 100%
     border-top 1px solid #f0F3F5
+    border-bottom 5px solid #FAFCFC
     overflow hidden
-    transition height $time ease-in-out margin-top $time ease-in-out margin-bottom $time ease-in-out
+    transition height $time ease-in-out, margin-top $time ease-in-out, margin-bottom $time ease-in-out
 
     input
       border none
       font-size 1em
-      padding 18px 36px
+      padding 0 1em
       outline none
-      height 80px
+      height 70px
       width 500px
       float left
-      background #FFF
+      background $white
       transition padding 1ms ease-in-out, border-left 1ms ease-in-out
+      placeholder-color(#C9CDCF)
 
       &.focus
         padding 1em 2em 1em 1.5em
         border-left .5em solid #FDBE2C
 
     button.savePhrase
-      textButton()
-      boxShadow()
-      color white
-      width 80px
-      margin 20px 20px 20px 0
+      background transparent
+      border none
+      color $blue
+      width 100px
+      text-align center
+      font-weight 400
+      padding 23px 0
+      margin 0
+      border-left 2px solid #eee
+      display inline-block
       cursor pointer
       font-size 1em
+      outline none
+
+    input,
+    button.savePhrase
+      border-bottom 1px solid #E9F1F3

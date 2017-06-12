@@ -1,27 +1,58 @@
 class NavBar extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      isNavMenuVisible: false
+    };
+    this.toggleMenu = this.toggleMenu.bind(this);
     this.renderSignIn = this.renderSignIn.bind(this);
+  }
+
+  toggleMenu() {
+    this.setState({
+      isNavMenuVisible: !this.state.isNavMenuVisible
+    })
+  }
+
+  renderAdminButton() {
+    if (this.props.currentUser.admin) {
+      return <a href="/admin">Admin</a>
+    }
+  }
+
+  renderNavMenu() {
+    if (this.state.isNavMenuVisible) {
+      return (
+        <div className="navMenu">
+          <a href="/dashboard">Home</a>
+          <a href="/books/new">Create a new book</a>
+          <a href="/account/edit">Edit profile</a>
+          <a href="/features">Roadmap</a>
+          {this.renderAdminButton()}
+          <a href="/sign_out">Sign out</a>
+        </div>
+      )
+    }
   }
 
   renderSignIn() {
     if (this.props.currentUser) {
       return (
-          <span className="loggedIn">
-            <a className="currentUser" href="/dashboard">
+          <div className="loggedIn">
+            <a className="currentUser" onClick={this.toggleMenu}>
               <span>{this.props.currentUser.username}</span>
-              <img className="mobile" src={this.props.menu} />
+              <img src={this.props.menu} />
             </a>
-            <a href="/sign_out">Sign out</a>
-          </span>
+            {this.renderNavMenu()}
+          </div>
       );
     }
     return (
-      <span className="logIn">
-        <a className="signInButton" href="/sign_in">Log in</a>
-        {/* <p> or </p>
-        <a href="/sign_up">Sign up</a> */}
-      </span>
+      <div className="logIn">
+        <a href="/features">Roadmap</a>
+        <a className="signUp" href="/sign_up">Sign up</a>
+        <a href="/sign_in">or log in</a>
+      </div>
     );
   }
 

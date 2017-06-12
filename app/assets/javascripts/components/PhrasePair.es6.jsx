@@ -6,8 +6,10 @@ class PhrasePair extends React.Component {
       isEditingPhrase: false,
       sourcePhrase: this.props.initialSourcePhrase,
       targetPhrase: this.props.initialTargetPhrase,
+      isSourceVideoLoading: false,
+      isTargetVideoLoading: false,
     };
-    this.toggleEditingPhraseStat = this.toggleEditingPhraseState.bind(this);
+    this.toggleEditingPhraseState = this.toggleEditingPhraseState.bind(this);
     this.cancelEditingPhraseState = this.cancelEditingPhraseState.bind(this);
     this.onDeletePhraseClick = this.onDeletePhraseClick.bind(this);
     this.onSavePhraseClick = this.onSavePhraseClick.bind(this);
@@ -97,6 +99,91 @@ class PhrasePair extends React.Component {
     this.setState({ targetPhrase: e.target.value });
   }
 
+  renderVideoLoader() {
+    return (
+      <span className="loader">
+        <span><span></span></span>
+        <span><span></span></span>
+        <span><span></span></span>
+      </span>
+    );
+  }
+
+  renderSourceVideo(src) {
+    if (this.state.isSourceVideoLoading !== false) {
+      setTimeout(() => {
+        this.setState({ isSourceVideoLoading: false });
+      }, 10000);
+    }
+
+    if (false) {
+      return (
+        <div className="video">
+          {this.renderVideoLoader()}
+        </div>
+      );
+    }
+    return (
+      <div className="video">
+        {this.renderVideo(src)}
+      </div>
+    );
+  }
+
+  renderTargetVideo(src) {
+    if (this.state.isTargetVideoLoading !== false) {
+      setTimeout(() => {
+        this.setState({ isTargetVideoLoading: false });
+      }, 10000);
+    }
+
+    if (false) {
+      return (
+        <div className="video">
+          {this.renderVideoLoader()}
+        </div>
+      );
+    }
+    return (
+      <span>
+        <div className="video">
+          {this.renderVideo(src)}
+        </div>
+      </span>
+    );
+  }
+
+  renderVideo(src) {
+    return <video src={src} controls loop></video>
+  }
+
+  renderSourceInput(status, src) {
+    if(status) {
+      return <div className="video"><video src={this.state.sourcePhrase}></video></div>
+    } else {
+      return (
+        <input
+          value={this.state.sourcePhrase}
+          onChange={this.onSourceChange}
+          name="sourcePhrase"/>
+      );
+    }
+  }
+
+  renderTargetInput(status, src) {
+    if(status) {
+      return <div className="video"><video src={this.state.targetPhrase}></video></div>
+    } else {
+      return (
+        <input
+          value={this.state.targetPhrase}
+          onChange={this.onTargetChange}
+          name="targetPhrase"/>
+      );
+    }
+  }
+
+
   renderPhraseMenu() {
     if (this.props.isOwnedByCurrentUser && this.props.id) {
       if (this.state.isEditingPhrase) {
@@ -148,50 +235,50 @@ class PhrasePair extends React.Component {
       return (
         <ul>
           <form onSubmit={this.onSavePhraseClick}>
-            <li className="source text">
-              <input
-                value={this.state.sourcePhrase}
-                onChange={this.onSourceChange}
-                name="sourcePhrase"
-              />
+            <li className="source">
+              {
+                this.state.sourcePhrase.startsWith('https://s3.amazonaws.com/poly-video-uploads-dev/') ?
+                  this.renderSourceInput(true)
+                  :
+                  this.renderSourceInput(false)
+              }
             </li>
-            <li className="target text">
-              <input
-                value={this.state.targetPhrase}
-                onChange={this.onTargetChange}
-                name="targetPhrase"
-              />
+            <li className="target">
+              {
+                this.state.targetPhrase && this.state.targetPhrase.startsWith('https://s3.amazonaws.com/poly-video-uploads-dev/') ?
+                  this.renderTargetInput(true)
+                  :
+                  this.renderTargetInput(false)
+              }
             </li>
             { this.renderPhraseMenu() }
           </form>
         </ul>
       );
+    } else {
+      // Checks whether the source phrase or the target phrase is a video and renders video or a paragraph accordingly
+      return (
+        <ul>
+          <li className="source">
+            {
+              this.state.sourcePhrase.startsWith('https://s3.amazonaws.com/poly-video-uploads-dev/') ?
+                this.renderSourceVideo(this.state.sourcePhrase)
+                :
+                this.renderParagraph(this.state.sourcePhrase)
+            }
+          </li>
+          <li className="target">
+            {
+              this.state.targetPhrase && this.state.targetPhrase.startsWith('https://s3.amazonaws.com/poly-video-uploads-dev/') ?
+                this.renderTargetVideo(this.state.targetPhrase)
+                :
+                this.renderParagraph(this.state.targetPhrase)
+            }
+          </li>
+          { this.renderPhraseMenu() }
+        </ul>
+      );
     }
-    return (
-      <ul>
-        <li className="source text">
-          {this.renderParagraph(this.state.sourcePhrase)}
-        </li>
-        <li className="target text">
-          {this.renderParagraph(this.state.targetPhrase)}
-        </li>
-        { this.renderPhraseMenu() }
-      </ul>
-    );
-    // Commented out this part of code because it is unreachable
-    /*
-    return (
-      <ul>
-        <li className="source text">
-          <p>{this.state.sourcePhrase}</p>
-        </li>
-        <li className="target text">
-          <p>{this.state.targetPhrase}</p>
-        </li>
-        { this.renderPhraseMenu() }
-      </ul>
-    );
-    */
   }
 
   render() {

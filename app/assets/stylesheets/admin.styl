@@ -1,0 +1,68 @@
+.admin
+  float left
+  display inline-block
+  margin-top 63px
+  width 100%
+  padding 0 .5rem
+
+  section.set
+    display inline-block
+    float left
+    width (100/3)%
+    padding 0 .5rem
+
+    h3
+      font-weight 100
+
+    ul
+      padding 0
+      width 100%
+      margin 0
+      display inline-block
+      list-style-type none
+
+      li
+        a
+          .info
+            .clear
+              p
+                .small
+                  margin-left 1rem
+                  font-size .7em
+                  .date
+                    float right
+
+    &.users
+      table
+        width 100%
+        background white
+
+        thead
+          th
+            text-align right
+            font-weight 100
+            padding 1rem
+
+            &:first-of-type
+              text-align left
+
+        tbody
+          padding 0
+          margin 0
+          list-style-type none
+          width 100%
+          box-shadow 0 1px 2px rgba(0,0,0,0.1)
+          transition background 0.2s ease-in-out, opacity 0.2s ease-in-out
+
+          tr
+            td
+              padding 0
+              border-top 1px solid #eff5f7
+
+              a
+                padding 1rem
+                display block
+                text-decoration none
+
+            .right
+              text-align right

@@ -4,10 +4,12 @@ class SearchResults extends React.Component {
     this.renderCreateBookPanel = this.renderCreateBookPanel.bind(this);
     this.renderCreateBookButton = this.renderCreateBookButton.bind(this);
     this.renderSearchResults = this.renderSearchResults.bind(this);
-    this.renderSourceResultSection = this.renderSourceResultSection.bind(this);
-    this.renderSourceResults = this.renderSourceResults.bind(this);
-    this.renderTargetResultSection = this.renderTargetResultSection.bind(this);
-    this.renderTargetResults = this.renderTargetResults.bind(this);
+    this.renderUserSection = this.renderUserSection.bind(this);
+    this.renderUserResults = this.renderUserResults.bind(this)
+    this.renderLanguageResultsSection = this.renderLanguageResultsSection.bind(this)
+    this.renderLanguageResults = this.renderLanguageResults.bind(this)
+    // this.renderPhraseSection = this.renderPhraseSection.bind(this)
+    // this.renderPhraseResults = this.renderPhraseResults.bind(this)
   }
 
   renderCreateBookPanel() {
@@ -30,37 +32,64 @@ class SearchResults extends React.Component {
   }
 
   renderSearchResults() {
-    if (this.props.sourceLanguage.length != 0 || this.props.targetLanguage != 0) {
+    if (this.props.language.length != 0 || this.props.user.length != 0 /*|| this.props.phrase.length != 0*/) {
       return (
         <div className="search">
-          {this.renderSourceResultSection()}
-          {this.renderTargetResultSection()}
+          {this.renderUserSection()}
+          {this.renderLanguageResultsSection()}
+          {/*{this.renderPhraseSection()}*/}
         </div>
       );
+    } else {
+      return (
+        <span className="emptySearch">No results for "{this.props.query}"</span>
+      );
     }
-    return (
-      <span className="emptySearch">No results for "{this.props.query}"</span>
-    );
   }
 
-  renderSourceResultSection() {
-    if (this.props.sourceLanguage.length != 0) {
+  renderUserSection() {
+    if (this.props.user.length != 0) {
       return (
         <div className="indexContent">
           <div className="controlPanel">
-            <p>Source Language contains "{this.props.query}"</p>
-            <span className="bookCount search">{this.props.sourceLanguage.length}</span>
+            <p>Usernames containing "{this.props.query}"</p>
+            <span className="bookCount search">{this.props.user.length}</span>
           </div>
           <ul className="bookEntryList">
-            {this.renderSourceResults()}
+            {this.renderUserResults()}
           </ul>
         </div>
       );
     }
   }
 
-  renderSourceResults() {
-    return this.props.sourceLanguage.map(book => (
+  renderUserResults() {
+    return this.props.user.map(user => (
+      <UserSearchResult
+      user={user}
+      key={user.id}/>
+      )
+    );
+  }
+
+  renderLanguageResultsSection() {
+    if (this.props.language.length != 0) {
+      return (
+        <div className="indexContent">
+          <div className="controlPanel">
+            <p>Books containing "{this.props.query}"</p>
+            <span className="bookCount search">{this.props.language.length}</span>
+          </div>
+          <ul className="bookEntryList">
+            {this.renderLanguageResults()}
+          </ul>
+        </div>
+      );
+    }
+  }
+
+  renderLanguageResults() {
+    return this.props.language.map(book => (
       <BookEntry
         users={this.props.users}
         book={book}
@@ -70,32 +99,30 @@ class SearchResults extends React.Component {
     );
   }
 
-  renderTargetResultSection() {
-    if (this.props.targetLanguage.length != 0) {
-      return (
-        <div className="indexContent">
-          <div className="controlPanel">
-            <p>Target Language contains "{this.props.query}"</p>
-            <span className="bookCount search">{this.props.targetLanguage.length}</span>
-          </div>
-          <ul className="bookEntryList">
-            {this.renderTargetResults()}
-          </ul>
-        </div>
-      );
-    }
-  }
+  // renderPhraseSection() {
+  //   if (this.props.phrase.length != 0) {
+  //     return (
+  //       <div className="indexContent">
+  //         <div className="controlPanel">
+  //           <p>Phrases containing "{this.props.query}"</p>
+  //           <span className="bookCount search">{this.props.phrase.length}</span>
+  //         </div>
+  //         <ul className="bookEntryList">
+  //           {this.renderPhraseResults()}
+  //         </ul>
+  //       </div>
+  //     );
+  //   }
+  // }
 
-  renderTargetResults() {
-    return this.props.targetLanguage.map(book => (
-      <BookEntry
-        users={this.props.users}
-        book={book}
-        key={book.id}
-        cardinality={this.props.cardinality}
-      />)
-    );
-  }
+  // renderPhraseResults() {
+  //   return this.props.phrase.map(phrase => (
+  //     <PhraseSearchResult
+  //       phrase={phrase}
+  //       key={phrase.id}
+  //     />)
+  //   );
+  // }
 
   render() {
     return (
@@ -106,9 +133,9 @@ class SearchResults extends React.Component {
           logo={this.props.logo}
           detail={this.props.detail}
           search={this.props.search}
+          menu={this.props.menu}
         />
         <div className="dashboard">
-          <span className="backgroundElement" />
           {this.renderSearchResults()}
           {this.renderCreateBookButton()}
         </div>

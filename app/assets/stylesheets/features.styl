@@ -1,0 +1,82 @@
+#featureContainer
+  width 600px
+  background $white
+  boxShadow()
+  display block
+  border-radius $radius
+  margin auto
+  float left
+  margin-left 20px
+  overflow auto
+  position relative
+  margin-top 80px
+
+  h2
+    font-weight 100
+    font-size 2em
+    background $blue
+    color $white
+    padding 20px 40px
+    margin 0
+    boxShadow()
+
+    span
+      font-size .4em
+      margin-top 18px
+      float right
+
+  .content
+    padding 20px 40px 40px
+
+    p
+      text-indent 1em
+
+      a
+        text-indent 0
+
+    ul
+      padding-left 1em
+      list-style-type none
+
+    > ul
+      padding 0
+
+      > li
+        p
+          padding 0 0.5em
+        >ul
+          padding .8em 1em 1.2em
+
+          >li
+            &:nth-of-type(2n-1)
+              background $whiteHover
+
+        b
+          background $blue
+          color $white
+          width 100%
+          padding 1em
+          display block
+
+          &.deployed
+            font-style italic
+            text-decoration none
+            &::after
+              content "(Deployed)"
+              float right
+
+        li
+          padding .15em 0
+
+          input:checked + span
+            color $darkBlue
+
+          span
+            font-size .8em
+            color $grey
+  a
+    border-bottom 3px solid $yellow
+    line-height 12px
+    display inline-block
+    text-decoration none
+    text-shadow 1px 1px 0px $white, -1px 1px $white, 1px 0px 0px $white, -1px 0 0 $white

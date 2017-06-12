@@ -1,6 +1,6 @@
 <%= render 'layouts/header'%>
 <div id="login">
-  <span><a href="/">Home</a></span>
+  <!-- <span><a href="/">Home</a></span> -->
   <h2>Sign up</h2>
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <%= devise_error_messages! %>
@@ -31,6 +31,8 @@
     <div class="actions">
       <%= f.submit "Sign up" %>
     </div>
+
+    <span class="center">Already have an account?  &nbsp;<%= render "devise/shared/links" %></span>
   <% end %>
-  <%= render "devise/shared/links" %>
+
 </div>

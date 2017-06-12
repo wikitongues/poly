@@ -1,11 +1,11 @@
 nav
   height 63px
-  background white
+  background $white
   boxShadow()
-  position relative
+  position fixed
   z-index 5
   width 100%
-  min-width 970px
+  min-width 600px
   float left
   padding 0
   margin-bottom 20px
@@ -15,7 +15,7 @@ nav
 
     &.icon.home
       height 40px
-      width 180px
+      width 40px
       float left
 
       img
@@ -34,44 +34,70 @@ nav
         transition all $time ease-in-out
 
       &:hover, &:focus
-        outline none
-        > img
-          margin-left -2px
-
-        .detail
-          width 122px
-          margin-left 3px
+            outline none
 
   a,
-  span.logIn a,
-  span.logIn p
+  div.logIn a,
+  div.logIn p
     display inline-block
     text-decoration none
 
-  .loggedIn
-    height 33px
-    width 140px
+  .logIn, .loggedIn
     float right
-    overflow hidden
+    margin 15px
 
-    &:hover
-      height 62px
-      box-shadow 0 1px 2px 1px rgba(0,0,0,0.15)
+  .logIn
+    p
+      padding 9px
+      margin 0
 
-      a
-        &:first-of-type
-          border-radius $radius $radius 0 0
-        &:last-of-type
-          border-top none
-          border-radius 0 0 $radius $radius
+    a
+      textButton()
+      background transparent
+      color black
 
-        &:hover
-          background $buttonBlue
-          color white
+      &.signUp
+        color $white
+        background $blue
+        border 1px solid rgba(71,153,252,0.1)
+
+      &:visited
+        background transparent
+
+  .loggedIn
+    float right
+    position relative
+    cursor pointer
+
+    &.rails //for non-react views
+      .currentUser
+        padding-right 16px
+
+    .currentUser
+      textButton()
+      padding-right 0
+      float left
+      height 31px
+      background transparent
+      color $darkBlue
+
+      span,
+      img
+        float left
+
+      img
+        height 35px
+        padding 10px
+        display inline-block
+        margin-top -10px
+        margin-left 5px
 
     a
       width 100%
-      background white
+      background $white
+
+      &:hover
+        background lighten($blue,90%)
 
       span
         display block
@@ -79,14 +105,49 @@ nav
       img.mobile
         display none
 
-  .currentUser
-    float left
+    .navMenu
+      width 100%
+      min-width 130px
+      position absolute
+      top 50px
+      left 50%
+      transform translateX(-50%)
+      background white
+      padding 3px
+      border-radius $radius
+      box-shadow 0 1px 2px rgba(0,0,0,0.15)
+
+      a
+        font-size .8rem
+        padding .5rem
+        white-space nowrap
+
+      &::after,
+      &::before
+        bottom 100%
+        left 50%
+        border solid transparent
+        content " "
+        height 0
+        width 0
+        position absolute
+        pointer-events none
+
+      &::after
+        border-color transparent
+        border-bottom-color #fff
+        border-width 10px
+        margin-left -10px
+
+      &::before
+        border-color transparent
+        border-bottom-color #adbcc9
+        border-width 11px
+        margin-left -11px
 
   form
     max-width 600px
-    min-width 450px
-    margin-top 13px
-    width 100%
+    margin-top 5px
     float left
     position absolute
     left 50%
@@ -94,7 +155,7 @@ nav
 
     img
       float left
-      margin 9px -55px 0 18px
+      margin 17px -55px 0 18px
       position relative
       height 20px
       pointer-events none
@@ -103,11 +164,11 @@ nav
       border-radius $radius
       width 100%
       font-size 16px
-      padding 8px 8px 8px 55px
+      padding 17px 8px 15px 50px
       float left
-      border 1px solid #eee
-      // border-right none
+      border none
       font-weight 100
+      placeholder-color($grey)
 
       &:focus, &:hover
-        background #fafafa
+        background $whiteHover

@@ -1,11 +1,144 @@
+#profile.editProfile
+  width initial
+  z-index 2
+
+  .userInformation
+    float none
+    margin auto
+    display inline-block
+    width 600px
+
+    .wrapper
+      background lighten($whiteHover, 70%)
+
+      .details
+        width 400px
+        background white
+        border-left 1px solid darken($whiteHover, 0%)
+
+        p
+          font-size 1em
+          display inline-block
+
+          &.joined
+            font-size .8em
+
+        form
+          margin-bottom 30px
+          display inline-block
+          width 100%
+
+          &:nth-of-type(2)
+            border-top 1px solid $whiteHover
+
+          .field_with_errors
+            input
+              placeholder-color($red)
+
+              &:focus
+                placeholder-color(transparent)
+
+          #error_explanation
+            display inline-block
+
+            h2
+              display none
+
+            ul
+              list-style-type none
+              padding 0
+
+              li
+                float left
+                font-size .8em
+                color #767676
+                font-style italic
+                color #aaa
+                background $whiteHover
+                padding 5px 8px
+                border-radius $radius
+
+        input
+          margin-bottom 10px
+          padding 5px 0
+
+          &#user_username
+            font-size 2em
+
+        input, textarea
+          outline none
+          border none
+          background white
+          color #295671
+          resize none
+          width 100%
+          float left
+          display inline-block
+          font-size 1em
+
+          &[type="submit"]
+            color $blue
+            width 100%
+            text-align left
+            cursor pointer
+            padding 10px 0
+
+          &:not([type="submit"])
+            border-bottom 2px solid $source
+
+        label
+          float left
+          width 100%
+          font-size .7em
+          color #aaa
+          margin 5px 0
+
+        span.note
+          float left
+          font-size .8em
+          color #767676
+
+          &.email
+            margin 1em -0px
+            font-style italic
+            color #aaa
+            background $whiteHover
+            padding 5px 8px
+            border-radius $radius
+
+        .dangerZone
+          border-top 1px solid $whiteHover
+          display inline-block
+
+          p
+            width 100%
+            color $red
+
+          form
+            margin 1em 0
+            display inline-block
+            width 100%
+
+            input
+              font-size 1em
+              padding .7em
+              border-radius $radius
+              border 1px solid $darkRed
+              background $red
+              color $white
+              width 100%
+              text-align center
+              cursor pointer
+              margin 0
+
 #login
   width 600px
-  background white
+  background $white
   boxShadow()
   padding 40px
   display block
   border-radius $radius
-  margin auto
+  margin 80px auto
   overflow auto
   position relative
 
@@ -57,7 +190,7 @@
         border-bottom-color #f7f7f7
 
       &:focus
-        border-bottom-color $hover
+        border-bottom-color $yellow
 
     .field_with_errors
       input
@@ -97,14 +230,14 @@
         opacity 1
 
   .actions
-    margin 20px
+    margin 20px 0
 
     input
       margin auto
       display block
       cursor pointer
       textButton()
-      color white
+      color $white
       font-size 16px
 
     &.delete
@@ -125,7 +258,7 @@
 
     a
       cursor pointer
-      color lighten($blue, 35%)
+      color lighten($darkBlue, 35%)
       text-decoration none
 
       &:hover

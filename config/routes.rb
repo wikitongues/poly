@@ -15,6 +15,10 @@ Rails.application.routes.draw do
   resources :dashboard, only: [:index]
   resources :favorites, only: [:create, :destroy]
 
+  get "/video-upload" => "video_uploads#presigned_url"
+  get "/features" => "features#show"
+  get "/admin" => "admin#show"
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

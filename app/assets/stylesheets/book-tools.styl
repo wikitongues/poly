@@ -6,7 +6,7 @@
   .tools
     width 600px
     display table
-    background $buttonBlue
+    background $blue
     margin auto
     boxShadow()
     position relative
@@ -38,8 +38,9 @@
         height 44px
         width 44px
         margin 8px
+        transition background ease-in-out $time
 
-        &:focus
+        &:active
           background darken(#147eff, 6%)
 
         img
@@ -53,10 +54,10 @@
       display block
       z-index 5
       width 480px
-      color white
+      color $white
 
       h1
-        text-transform capitalize
+        // text-transform capitalize
         width 46%
         float left
         text-align center

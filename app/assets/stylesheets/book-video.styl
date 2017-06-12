@@ -1,0 +1,121 @@
+.videoComponent
+  display inline-block
+  width 100%
+  position relative
+  float left
+  background #fafcfc
+  box-shadow 0 -1px 2px rgba(0,0,0,0.1)
+  border-top 1px solid #f0f3f5
+
+  video
+    background black
+    margin auto
+    display block
+    min-height 450px
+    transition height $time ease-in-out
+
+  .videoControls
+    bottom 0
+    left 0
+    right 0
+    position absolute
+    padding 0 30px 30px
+
+    .videoButtonContainer
+      border solid 4px $white
+      width 65px
+      height 65px
+      padding 0
+      border-radius 100%
+      cursor pointer
+      outline none
+      background none
+      float right
+      margin-left 15px
+
+      .videoButton
+        border none
+        margin 11px
+        width 35px
+        height 35px
+        border-radius 10%
+        background #ff2200
+        transition all ease-in-out $time
+        animation recording 15*$time infinite linear
+
+        &.startRecording
+          border none
+          margin 2px
+          width 53px
+          height 53px
+          border-radius 100%
+          background #ff2200
+          animation none
+
+    button.close, button.text
+      width 45px
+      height 45px
+      padding 0
+      border-radius 100%
+      cursor pointer
+      outline none
+      background #5d5d5d
+      background rgba(50,50,50,0.3)
+      margin 10px 0
+
+      &.close
+        float left
+
+      &.text
+        float right
+
+        .blurry
+          -webkit-filter blur(10px)
+          -moz-filter blur(10px)
+          -o-filter blur(10px)
+          -ms-filter blur(10px)
+          filter blur(10px)
+
+      img
+        margin 12px
+        width 21px
+        height 21px
+
+.progress
+  display none
+  height 60px
+
+.progress-message
+  width 100%
+  height 20px
+  text-align center
+  font-size 14pt
+  margin-top 15px
+  margin-bottom 10px
+
+.progress-hint
+  text-align center
+  font-size 9pt
+  height 10px
+  margin-bottom 10px
+  opacity 0.5
+
+.progress-bar
+  background-color rgba(128, 128, 128, 0.1)
+  width 100%
+  height 10px
+
+  div
+    background-color $blue
+    height 10px
+    width 1%
+
+
+@keyframes recording {
+  0%,100% {
+    opacity .3
+  }
+  50% {
+    opacity 1
+  }
+}

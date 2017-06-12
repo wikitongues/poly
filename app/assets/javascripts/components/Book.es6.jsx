@@ -8,6 +8,11 @@ class Book extends React.Component {
       isDescriptionTruncated: true,
       isFavoriteBook: this.isFavoriteBook(),
       errors: [],
+      isNewPhrase: false,
+      isDescriptionPlaying: false,
+      isInputVideo: false,
+      stream: '',
+      isVideoRecording: false,
     };
     this.onSourcePhraseSubmit = this.onSourcePhraseSubmit.bind(this);
     this.onTargetPhraseSubmit = this.onTargetPhraseSubmit.bind(this);
@@ -34,9 +39,25 @@ class Book extends React.Component {
     this.favoriteImage = this.favoriteImage.bind(this);
     this.isFavoriteBook = this.isFavoriteBook.bind(this);
     this.renderFavoriteButton = this.renderFavoriteButton.bind(this);
+    // video
+    this.onToggleInputType = this.onToggleInputType.bind(this);
+    this.onSaveStream = this.onSaveStream.bind(this);
+    this.onStopStream = this.onStopStream.bind(this);
+    this.onClearStream = this.onClearStream.bind(this);
+    this.onStopRecordingClick = this.onStopRecordingClick.bind(this);
+    this.onStartRecordingClick = this.onStartRecordingClick.bind(this);
+    this.onRenderVideoInput = this.onRenderVideoInput.bind(this);
+    this.playButton = this.playButton.bind(this);
+    this.pauseButton = this.pauseButton.bind(this);
+    this.onDeleteVideoDescription = this.onDeleteVideoDescription.bind(this);
+    this.onCloseVideoComponent = this.onCloseVideoComponent.bind(this);
+    this.onDescriptionVideoSubmit = this.onDescriptionVideoSubmit.bind(this)
   }
 
-  onSourcePhraseSubmit(sourcePhrase) {
+  onSourcePhraseSubmit(sourcePhrase, isNewPhrase) {
+    if (isNewPhrase) {
+      this.setState({ isNewPhrase: true });
+    }
     const newPhrasePair = { source_phrase: sourcePhrase };
     const newPhrasePairs = this.state.phrasePairs;
     newPhrasePairs.push(newPhrasePair);
@@ -91,6 +112,10 @@ class Book extends React.Component {
 
   onSaveBookClick() {
     this.state.errors = [];
+    this.state.book.source_language = this.state.book.source_language_draft;
+    this.state.book.target_language = this.state.book.target_language_draft;
+    this.state.book.title = this.state.book.title_draft;
+    this.state.book.description = this.state.book.description_draft;
     if (this.state.book.title && this.state.book.source_language && this.state.book.target_language) {
       $.ajax({
         url: '/books/' + this.state.book.id,
@@ -121,18 +146,26 @@ class Book extends React.Component {
     const newBook = this.state.book;
     const newState = this.state;
 
-    const sourceLanguage = this.state.book.source_language;
-    const targetLanguage = this.state.book.target_language;
+    const sourceLanguageDraft = this.state.book.source_language_draft;
+    const targetLanguageDraft = this.state.book.target_language_draft;
 
-    newBook.source_language = targetLanguage;
-    newBook.target_language = sourceLanguage;
+    newBook.source_language_draft = targetLanguageDraft;
+    newBook.target_language_draft = sourceLanguageDraft;
 
     newState.book = newBook;
     this.setState(newState);
   }
 
   toggleEditingBookState() {
-    this.setState({ isEditingBook: true });
+    const modBook = this.state.book;
+    modBook.title_draft = modBook.title;
+    modBook.description_draft = modBook.description;
+    modBook.source_language_draft = modBook.source_language;
+    modBook.target_language_draft = modBook.target_language;
+    this.setState({
+      isEditingBook: true,
+      book: modBook
+    });
   }
 
   cancelEditingBookState() {
@@ -142,6 +175,7 @@ class Book extends React.Component {
   onInputChange(e) {
     const newBook = this.state.book;
     const newState = this.state;
+
     newBook[e.target.name] = e.target.value;
     newState.book = newBook;
     this.setState(newState);
@@ -199,28 +233,23 @@ class Book extends React.Component {
       if (this.state.isEditingBook) {
         return (
           <div className="menu saving">
-            <button title="Flip" onClick={this.onInvertLanguagesClick} className="icon">
+            <button
+              title="Flip"
+              onClick={this.onInvertLanguagesClick}
+              className="icon">
               <img src={this.props.flipAlt} />
             </button>
-            <button title="Save" onClick={this.onSaveBookClick} className="icon">
+            <button
+              title="Save"
+              onClick={this.onSaveBookClick}
+              className="icon">
               <img src={this.props.saveAlt} alt="Save" />
             </button>
-            <button title="Cancel" onClick={this.cancelEditingBookState} className="close icon">
+            <button
+              title="Cancel"
+              onClick={this.cancelEditingBookState}
+              className="close icon">
               <img src={this.props.closeAlt}/>
-            </button>
-          </div>
-        );
-      } else {
-        return (
-          <div className="menu">
-            <button title="Menu" className="more icon">
-              <img src={this.props.menuAlt}/>
-            </button>
-            <button title="Edit" onClick={this.toggleEditingBookState} className="icon" tabIndex="-1">
-              <img src={this.props.editAlt}/>
-            </button>
-            <button title="Delete" onClick={this.onDeleteBookClick} className="icon" tabIndex="-1">
-              <img src={this.props.deleteAlt}/>
             </button>
           </div>
         );
@@ -255,10 +284,11 @@ class Book extends React.Component {
     if (this.state.isEditingBook) {
       return (
         <input
-          name="title"
+          name="title_draft"
           className="title new isEditing"
+          dir="auto"
           onChange={this.onInputChange}
-          value={this.state.book.title}
+          value={this.state.book.title_draft}
         />
       );
     }
@@ -313,6 +343,188 @@ class Book extends React.Component {
     return <p className="description">{this.state.book.description}</p>;
   }
 
+
+  //  VIDEO
+
+  renderVideoDescription() {
+    if (this.state.isInputVideo == false) {
+      if (this.state.book.video_description) {
+        if (this.state.isEditingBook) {
+          return (
+            <div className="videoDescription">
+              <div className="videoComponent">
+                <video src={this.state.book.video_description} loop width="600"></video>
+                <div className="videoControls">
+                  {this.renderPlayButton()}
+                  <button type="button" title="Remove video" onClick={this.onDeleteVideoDescription} className="text icon">
+                    <img src={this.props.deleteAlt} alt="close" />
+                  </button>
+                </div>
+              </div>
+            </div>
+          )
+        } else {
+          return <div className="videoDescription"><div className="videoComponent"><video src={this.state.book.video_description} loop width="600"></video><div className="videoControls">{this.renderPlayButton()}</div></div></div>
+        }
+      } else {
+        if (this.state.isEditingBook) {
+          return <button type="button" title="Add a video introduction" onClick={this.onToggleInputType} className="addVideoButton">Add a video introduction</button>
+        }
+      }
+    } else {
+      return(
+        <div className="videoDescription" ref="video">
+          <Video
+            onRenderVideoInput={this.onRenderVideoInput}
+            renderRecordButton={this.renderRecordButton}
+            onCancelEditPhrase={this.onCancelEditPhrase}
+            onCloseVideoComponent={this.onCloseVideoComponent}
+            onStartRecordingClick={this.onStartRecordingClick}
+            onStopRecordingClick={this.onStopRecordingClick}
+            onSourceVideoSubmit={this.onDescriptionVideoSubmit}
+            onTargetVideoSubmit={this.onTargetVideoSubmit}
+            onToggleInputType={this.onToggleInputType}
+            onClearStream={this.onClearStream}
+            closeAlt={this.props.closeAlt}
+            isVideoRecording={this.state.isVideoRecording}
+            isInputVideo={this.state.isInputVideo}
+            onSaveStream={this.onSaveStream}
+            onStopStream={this.onStopStream}
+            mediaConstraints={this.state.mediaConstraints}
+            stream={this.state.stream}
+            isTargetInputActive={this.state.isTargetInputActive}
+            sourceLanguage={this.props.sourceLanguage}
+            targetLanguage={this.props.targetLanguage}
+            author={this.props.currentUser.username}
+            width={600}
+            videoPhrase={false}
+          />
+        </div>
+      )
+    }
+  }
+
+  renderPlayButton() {
+    if(this.state.isDescriptionPlaying) {
+      return (
+        <button className="play descriptionVideoPause" type="button" onClick={this.pauseButton} title="Pause">
+            <img src={this.props.pause}/>
+        </button>
+      )
+    } else {
+      return (
+        <button type="button" onClick={this.playButton} title="Play" className="play">
+          <img src={this.props.play}/>
+        </button>
+      )
+    }
+  }
+
+  playButton() {
+    this.setState({isDescriptionPlaying:!this.state.isDescriptionPlaying})
+    $("video")[0].play()
+  }
+
+  pauseButton() {
+    this.setState({isDescriptionPlaying:!this.state.isDescriptionPlaying})
+    $("video")[0].pause()
+  }
+
+  onDeleteVideoDescription() {
+    const newBook = this.state.book;
+    const newState = this.state;
+
+    newBook.video_description = "";
+    newState.book = newBook;
+    this.setState(newState);
+  }
+
+  onToggleInputType() {
+    this.setState({ isInputVideo: !this.state.isInputVideo });
+  }
+
+  onRenderVideoInput() {
+    if (this.state.isInputVideo) {
+      const video = document.getElementById('camera-stream');
+      video.muted = true;
+      const self = this;
+
+      if (navigator.mediaDevices === undefined) {
+        navigator.mediaDevices = {};
+      }
+
+      if (navigator.mediaDevices.getUserMedia === undefined) {
+        navigator.mediaDevices.getUserMedia = (constraints) => {
+          const getUserMedia = (navigator.getUserMedia ||
+            navigator.webkitGetUserMedia ||
+            navigator.mozGetUserMedia);
+
+          if (!getUserMedia) {
+            self.onCloseVideoComponent();
+            alert('Sorry, your browser does not support the video recording.\n(In order to access the video recording, try again with one of these browsers: Chrome, Firefox, Edge, Opera.)');
+            return Promise.reject(new Error('getUserMedia is not implemented in this browser'));
+          }
+          return new Promise((resolve, reject) => {
+            getUserMedia.call(navigator, constraints, resolve, reject);
+          });
+        };
+      }
+      navigator.mediaDevices.getUserMedia({ audio: true, video: true })
+      .then((stream) => {
+        self.onSaveStream(stream);
+        video.controls = false;
+        video.src = window.URL.createObjectURL(stream);
+      })
+      .catch((err) => {
+        console.log(err.name + ": " + err.message);
+      });
+    }
+  }
+
+  onStartRecordingClick() {
+    this.setState({ isVideoRecording: !this.state.isVideoRecording });
+  }
+
+  onStopRecordingClick() {
+    this.setState({ isVideoRecording: !this.state.isVideoRecording, hasVideoDescription: true });
+  }
+
+  onSaveStream(stream) {
+    this.setState({stream: stream});
+  }
+
+  onCloseVideoComponent() {
+    this.setState({
+      isVideoRecording: false,
+      isInputVideo: false
+    });
+    if (this.state.stream !== '') {
+      this.onStopStream();
+    }
+  }
+
+  onStopStream() {
+    const tracks = this.state.stream.getTracks();
+    tracks[0].stop();
+    tracks[1].stop();
+    this.onClearStream();
+  }
+
+  onClearStream() {
+    this.setState({stream: ''});
+  }
+
+  onDescriptionVideoSubmit(video) {
+    const newBook = this.state.book;
+    const newState = this.state;
+
+    newBook.video_description = video;
+    newState.book = newBook;
+    this.setState(newState);
+  }
+
+  // END VIDEO
+
   renderDescription() {
     if (this.state.book.description) {
       if (this.state.isEditingBook) {
@@ -320,27 +532,31 @@ class Book extends React.Component {
           <textarea
             rows="4"
             className="description new isEditing"
-            name="description"
+            name="description_draft"
+            dir="auto"
             onChange={this.onInputChange}
-            value={this.state.book.description}
+            value={this.state.book.description_draft}
+          />
+        );
+      } else {
+        return <span>{this.renderTruncatedDescription()}</span>;
+      }
+    } else {
+      if (this.state.isEditingBook) {
+        return (
+          <textarea
+            rows="4"
+            className="description new isEditing"
+            name="description_draft"
+            dir="auto"
+            onChange={this.onInputChange}
+            value={this.state.book.description_draft}
+            placeholder="Describe the contents of your book,
+            Ex: A collection of useful phrases in Laputa, a Swiftian
+            language spoken in Balnibarbi and a number of other islands..."
           />
         );
       }
-      return <span>{this.renderTruncatedDescription()}</span>;
-    }
-    if (this.state.isEditingBook) {
-      return (
-        <textarea
-          rows="5"
-          className="description new isEditing"
-          name="description"
-          onChange={this.onInputChange}
-          value={this.state.book.description}
-          placeholder="Describe the contents of your book,
-          Ex: A collection of useful phrases in Laputa, a Swiftian
-          language spoken in Balnibarbi and a number of other islands..."
-        />
-      );
     }
   }
 
@@ -349,9 +565,9 @@ class Book extends React.Component {
       return (
         <input
           className="new isEditing"
-          name="source_language"
+          name="source_language_draft"
           onChange={this.onInputChange}
-          value={this.state.book.source_language}
+          value={this.state.book.source_language_draft}
         />
       );
     }
@@ -367,9 +583,9 @@ class Book extends React.Component {
       return (
         <input
           className="new isEditing"
-          name="target_language"
+          name="target_language_draft"
           onChange={this.onInputChange}
-          value={this.state.book.target_language}
+          value={this.state.book.target_language_draft}
         />
       );
     }
@@ -412,6 +628,7 @@ class Book extends React.Component {
           logo={this.props.logo}
           detail={this.props.detail}
           search={this.props.search}
+          menu={this.props.menu}
         />
         <span className="backgroundElement" />
         <div className="book">
@@ -427,9 +644,10 @@ class Book extends React.Component {
             { this.renderBookMenu() }
           </div>
           <div className="info">
-            <div className="wrapper">
+            <div className="wrapper" dir="auto">
               { this.renderTitle() }
               { this.renderAuthor() }
+              { this.renderVideoDescription() }
               { this.renderDescription() }
             </div>
           </div>
@@ -447,7 +665,16 @@ class Book extends React.Component {
           save={this.props.save}
           delete={this.props.delete}
           edit={this.props.edit}
+          text={this.props.text}
+          textAlt={this.props.textAlt}
+          video={this.props.video}
+          videoAlt={this.props.videoAlt}
           close={this.props.close}
+          closeAlt={this.props.closeAlt}
+          sourceLanguage={this.state.book.source_language}
+          targetLanguage={this.state.book.target_language}
+          author={this.state.book.user_id}
+          isNewPhrase={this.state.isNewPhrase}
           />
         </div>
       </div>
@@ -507,4 +734,3 @@ Book.propTypes = {
   edit: React.PropTypes.string,
   close: React.PropTypes.string,
 };
-
