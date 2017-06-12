@@ -9,5 +9,9 @@ class AdminController < ApplicationController
     end
 
     @currentUser = current_user
+
+    unless current_user.try(:admin?)
+      redirect_to '/dashboard'
+    end
   end
 end
