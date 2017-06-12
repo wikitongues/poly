@@ -49,6 +49,17 @@ class Admin extends React.Component {
     })
   }
 
+  renderLanguages() {
+    return this.props.books.map((book) => {
+      return (
+        <LanguageEntry
+          users={this.props.users}
+          book={book} key={book.id}
+        />
+      )
+    })
+  }
+
   render() {
     return (
       <div className="container">
@@ -80,6 +91,20 @@ class Admin extends React.Component {
             <ul className="bookEntryList">
               {this.renderBooks()}
             </ul>
+          </section>
+          <section className="set users">
+            <h3>Languages</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>Source language</th>
+                  <th>Target language</th>
+                </tr>
+              </thead>
+              <tbody>
+                {this.renderLanguages()}
+              </tbody>
+            </table>
           </section>
       </div>
     </div>
