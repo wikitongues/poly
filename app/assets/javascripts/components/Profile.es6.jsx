@@ -239,7 +239,7 @@ class Profile extends React.Component {
           <div className="dashboard">
             <div className="indexContent">
               <div className="controlPanel">
-                <p>Recent books</p>
+                <p>Latest books</p>
               </div>
               <ul className="bookEntryList">
                 {this.renderAllBooks()}
