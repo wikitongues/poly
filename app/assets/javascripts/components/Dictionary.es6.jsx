@@ -446,9 +446,6 @@ class Dictionary extends React.Component {
           <button title="Underline"><span>U</span></button>
           <button title="Headers"><span className="small">T</span>T</button>
         </span>
-        <button title="Cancel" onClick={this.onCancelEditPhrase} className="close icon">
-          <img src={this.props.close} alt="close" />
-        </button>
         {this.renderInputOptions()}
       </div>
     );
