@@ -57,6 +57,7 @@ class Admin extends React.Component {
           logo={this.props.logo}
           detail={this.props.detail}
           search={this.props.search}
+          menu={this.props.menu}
         />
         <div className="admin">
           <section className="set users">
