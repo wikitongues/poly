@@ -1,3 +1,5 @@
+const DraftJS = require('draft-js');
+// import {Editor, EditorState} from 'draft-js';
 class Dictionary extends React.Component {
 
   constructor(props) {
