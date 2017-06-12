@@ -1,0 +1,2 @@
+      invoke  active_record
+   identical    db/migrate/20170612030930_change_admin_column_on_user.rb
