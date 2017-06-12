@@ -1,10 +1,10 @@
 class AdminController < ApplicationController
   def show
-    @books = Book.includes(:user).order("created_at DESC").limit(10).map do |book|
+    @books = Book.includes(:user).order("created_at DESC").limit(20).map do |book|
       BookSerializer.new(book)
     end
 
-    @users = User.includes(:books).order("created_at DESC").limit(10).map do |user|
+    @users = User.includes(:books).order("created_at DESC").map do |user|
       UserSerializer.new(user)
     end
 
