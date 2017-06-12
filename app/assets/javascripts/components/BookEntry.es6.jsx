@@ -10,7 +10,6 @@ class BookEntry extends React.Component {
        <li className="bookEntry">
         <a href={'/books/'+this.props.book.id}>
           <section className="info">
-            {/* <span className="banner"><img src=""/></span> */}
             <section className="clear">
                 <h2 className="title"title={this.props.book.title}>{this.props.book.title}</h2>
               <section className="details">
