@@ -1,5 +1,3 @@
-const DraftJS = require('draft-js');
-// import {Editor, EditorState} from 'draft-js';
 class Dictionary extends React.Component {
 
   constructor(props) {
@@ -360,6 +358,8 @@ class Dictionary extends React.Component {
       <div>
         { this.renderInputMethod() }
         <form className="newPhrase" onSubmit={this.onSourcePhraseSubmit}>
+          debugger
+          <RichText/>
           <input
             ref="sourceInput"
             value={this.state.sourcePhrase}
