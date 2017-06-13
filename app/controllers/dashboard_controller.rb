@@ -5,8 +5,10 @@ class DashboardController < SecureController
   def index
     @user = current_user
     @hashedEmail = Digest::MD5.hexdigest(@user.email)
-    @books = Book.includes(:user).joins(:phrase_pairs).order("created_at DESC").limit(10).map do |book|
-      BookSerializer.new(book)
+    @books = Book
+      .most_recent_with_content(12)
+      .map do |book|
+        BookSerializer.new(book)
     end
     @authoredBooks = Book
       .where(user_id: @user)
