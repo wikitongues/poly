@@ -7,9 +7,7 @@
     "type": "git",
     "url": "git://github.com/wikitongues/poly.git"
   },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "scripts": {},
   "license": "GPL-3.0+",
   "dependencies": {
     "browserify": "~10.2.4",
