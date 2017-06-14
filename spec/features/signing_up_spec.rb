@@ -10,7 +10,9 @@ describe "Signing up as a user" do
     fill_in "user[email]", with: "test@email.com"
     fill_in "user[password]", with: "password"
     fill_in "user[password_confirmation]", with: "password"
-    click_on "Sign up"
+    within find(".new_user") do
+      click_on "Sign up"
+   end
 
     expect(page).to have_content("Welcome! You have signed up")
   end

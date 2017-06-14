@@ -1,0 +1,8 @@
+deployment:
+  staging:
+    branch: master
+    heroku:
+      appname: poly-staging
+machine:
+  environment:
+    RAILS_ENV: test
