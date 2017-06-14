@@ -358,6 +358,8 @@ class Dictionary extends React.Component {
       <div>
         { this.renderInputMethod() }
         <form className="newPhrase" onSubmit={this.onSourcePhraseSubmit}>
+          debugger
+          <RichText/>
           <input
             ref="sourceInput"
             value={this.state.sourcePhrase}
@@ -440,6 +442,12 @@ class Dictionary extends React.Component {
   renderInputMethod() {
     return (
       <div className="inputMethod">
+        <span className="text">
+          <button title="Bold">B</button>
+          <button title="Italic">I</button>
+          <button title="Underline"><span>U</span></button>
+          <button title="Headers"><span className="small">T</span>T</button>
+        </span>
         {this.renderInputOptions()}
       </div>
     );

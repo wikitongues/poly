@@ -69,6 +69,35 @@
     background #fafcfc
     border-top 2px solid #e9f1f3
 
+    span.text
+      button
+        span
+          font-weight bold
+        span
+          &.small
+            font-weight bolder
+            font-size .6em
+
+    button
+      float left
+      margin 5px 3px
+      width 40px
+      height 40px
+      border-radius 100%
+      border-color transparent
+      outline none
+      background transparent
+      font-weight bold
+      font-size 1em
+      cursor pointer
+      color #4f6387
+
+      &.close
+        float right
+
+      &:hover
+          background-color #EFF5F7
+
     label
       float left
       background transparent
@@ -95,6 +124,7 @@
         border-radius 100%
         outline none
         background-color transparent
+
         &.text
           background #E9F1F3
 
@@ -106,6 +136,18 @@
 
         .video
           opacity .5
+
+    button[title="Italic"]
+      font-style italic
+      padding 2px 8px 2px 4px
+
+    button[title="Underline"]
+      span
+        border-bottom 2px solid
+        display block
+        height 22px
+        width 15px
+        margin -12px auto
 
   .newPhrase
     float left
