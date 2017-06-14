@@ -8,6 +8,8 @@ class AdminController < ApplicationController
       UserSerializer.new(user)
     end
 
+    @phrases = PhrasePair.includes(:books).order("created_at DESC")
+
     @currentUser = current_user
 
     unless current_user.try(:admin?)
