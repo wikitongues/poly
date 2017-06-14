@@ -11,6 +11,10 @@ gem 'pg', '~> 0.15'
 gem 'tilt'
 # Use Stylus for stylesheets
 gem 'stylus'
+
+# Launchy launches localhost:3000 on rails server
+gem 'launchy'
+
 # For compilation of assets during deployment (e.g. for heroku).
 gem 'therubyracer', platforms: :ruby
 # Use Uglifier as compressor for JavaScript assets

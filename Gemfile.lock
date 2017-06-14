@@ -121,6 +121,8 @@ GEM
       jsonapi-renderer (= 0.1.1.beta1)
     jsonapi-parser (0.1.1.beta3)
     jsonapi-renderer (0.1.1.beta1)
+    launchy (2.4.3)
+      addressable (~> 2.3)
     libv8 (3.16.14.17)
     lodash-rails (4.17.2)
       railties (>= 3.1)
@@ -267,6 +269,7 @@ DEPENDENCIES
   factory_girl_rails (~> 4.0)
   jbuilder (~> 2.0)
   jquery-rails
+  launchy
   lodash-rails
   pg (~> 0.15)
   pry
