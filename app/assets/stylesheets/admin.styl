@@ -12,7 +12,7 @@
     padding 0 .5rem
 
     &.two-col
-      width 100%
+      width ((100%/3)*2)%
 
       .wrapper
         *
@@ -27,6 +27,8 @@
       margin 0
       display inline-block
       list-style-type none
+      max-height 45vh
+      overflow-y scroll
 
       li
         a
