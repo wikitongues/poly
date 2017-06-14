@@ -1,14 +1,22 @@
 class AdminController < ApplicationController
   def show
-    @books = Book.includes(:user).order("created_at DESC").map do |book|
+    @books = Book.includes(:user).order("created_at DESC").limit(20).map do |book|
       BookSerializer.new(book)
     end
 
-    @users = User.includes(:books).order("created_at DESC").map do |user|
+    @booksCount = Book.count
+
+    @users = User.includes(:books).order("created_at DESC").limit(20).map do |user|
       UserSerializer.new(user)
     end
 
-    @phrases = PhrasePair.includes(:books).order("created_at DESC")
+    @usersCount = User.count
+
+    @phrases = PhrasePair.includes(:book).order("created_at DESC").limit(20).map do |phrase|
+      PhraseSerializer.new(phrase)
+    end
+
+    @phrasesCount = PhrasePair.count
 
     @currentUser = current_user
 
