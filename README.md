@@ -15,6 +15,8 @@ Poly streamlines the process of creating and sharing dictionaries between any tw
   1. [Install](#install)
   1. [Run](#run)
   1. [Test](#test)
+    1. [Staging and Production](#staging-and-production)
+    1. [Continuous Integration](#continuous-integration)
     1. [Browser testing](#browser-testing)
 1. [Usage](#usage)
 1. [Feature map](#feature-map)
@@ -105,6 +107,12 @@ To run tests:
 ```shell
 rspec
 ```
+
+### Staging and Production
+Poly has both a [Staging server](https://poly-staging.herokuapp.com/) and the [live production server](www.poly.wikitongues.org).
+
+### Continuous Integration
+Poly uses Continuous integration as provided by [CircleCI.com](https://circleci.com). Right out of the box, it provides automated testing and automatically deploys merged changes to the [staging server](https://poly-staging.herokuapp.com)
 
 ### Browser Testing
 We're proud to do our live, web-based browser testing together with the awesome people at [BrowserStack](http://browserstack.com).
