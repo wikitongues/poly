@@ -19,6 +19,10 @@ class User < ActiveRecord::Base
     AdminNotifications.new_user_email(self).deliver
   end
 
+  def send_user_welcome
+    UserNotifications.welcome_new_user(self).deliver
+  end
+
   def authored_books
       books.order("created_at DESC").to_a
   end
