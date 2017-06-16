@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   has_many :favorite_books
   has_many :favorites, through: :favorite_books, source: :book
 
-  after_create :send_admin_notification
+  after_create :send_admin_notification, :send_user_welcome
   def send_admin_notification
     AdminNotifications.new_user_email(self).deliver
   end
