@@ -10,6 +10,7 @@ html
     margin 0
     display inline-block
     background $whiteHover
+    background #FFEDE6
 
     .container
       display inline-block
@@ -78,10 +79,23 @@ p.version
   z-index 0
   width 100%
   height 210px
-  background #adbcc9
-  border-bottom 3px solid #99a1b7
+  background #BFE7EC
+  border-color #BFE7EC
+  // border-bottom 3px solid #99a1b7
   left 0
   top 60px
+
+  &::after
+    background-color transparent
+    height 4vh
+    width 100%
+    content ""
+    position absolute
+    bottom -83px
+    left 0
+    border-left 100vw solid
+    border-left-color inherit
+    border-bottom 64px solid transparent
 
 .requiredField
   color #e00038
