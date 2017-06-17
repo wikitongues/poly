@@ -1,7 +1,7 @@
 class UserNotifications < ApplicationMailer
+  add_template_helper(EmailHelper)
   def welcome_new_user(user)
     @user = user
-    mail(to: 'poly@wikitongues.org', subject: 'New user: '+@user.username)
-    # UserNotifications.welcome_new_user(to: 'poly@wikitongues.org', subject: 'Welcome to Poly!')
+    mail(to: user.email, subject: "Welcome to Poly!")
   end
 end
