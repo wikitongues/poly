@@ -60,8 +60,8 @@ class Dictionary extends React.Component {
     this.setState({ phrasePairs: newProps.initialPhrasePairs });
   }
 
-  onAddNewPhraseButtonClick() {
-    this.setState({ isPhraseInputActive: !this.state.isPhraseInputActive });
+  onAddNewPhraseButtonClick(props) {
+    this.setState({ isPhraseInputActive: true});
   }
 
   onSourcePhraseChange(e) {

@@ -3,7 +3,7 @@
   display block
   position relative
   z-index 1
-  margin auto
+  margin 0 auto 4px
   font-size 1.2em
   padding 0
   background $white
@@ -11,6 +11,7 @@
   width 100%
   max-width 600px
   border-top 2px solid #f4f8f9
+  border-bottom: 1px solid #e9f1f3;
 
   &.new
     min-height 0
@@ -111,7 +112,6 @@
     float left
     width 100%
     border-top 1px solid #f0F3F5
-    border-bottom 5px solid #FAFCFC
     overflow hidden
     transition height $time ease-in-out, margin-top $time ease-in-out, margin-bottom $time ease-in-out
 
@@ -145,7 +145,3 @@
       cursor pointer
       font-size 1em
       outline none
-
-    input,
-    button.savePhrase
-      border-bottom 1px solid #E9F1F3

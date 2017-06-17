@@ -11,6 +11,13 @@
     width (100/3)%
     padding 0 .5rem
 
+    &.two-col
+      width ((100%/3)*2)%
+
+      .wrapper
+        *
+          text-align left
+
     h3
       font-weight 100
 
@@ -20,6 +27,8 @@
       margin 0
       display inline-block
       list-style-type none
+      max-height 45vh
+      overflow-y scroll
 
       li
         a
@@ -32,16 +41,22 @@
                   .date
                     float right
 
-    &.users
+    .wrapper
+      max-height 45vh
+      overflow-y scroll
+
       table
         width 100%
         background white
 
         thead
+          width 100%
+
           th
+            white-space nowrap
             text-align right
             font-weight 100
-            padding 1rem
+            padding .5rem
 
             &:first-of-type
               text-align left
@@ -49,18 +64,20 @@
         tbody
           padding 0
           margin 0
-          list-style-type none
           width 100%
           box-shadow 0 1px 2px rgba(0,0,0,0.1)
           transition background 0.2s ease-in-out, opacity 0.2s ease-in-out
 
           tr
+            width 100%
+
             td
               padding 0
               border-top 1px solid #eff5f7
+              overflow hidden
 
               a
-                padding 1rem
+                padding .4rem
                 display block
                 text-decoration none
 
