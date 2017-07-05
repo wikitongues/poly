@@ -17,7 +17,7 @@ class Book < ActiveRecord::Base
   end
 
   def send_admin_notification
-    AdminNotifications.new_book_email(self).deliver
+    AdminNotifications.new_book_email(self).deliver_now if Rails.env.production?
   end
 
   def children?
