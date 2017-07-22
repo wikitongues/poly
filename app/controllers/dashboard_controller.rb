@@ -16,11 +16,14 @@ class DashboardController < SecureController
       .map do |book|
           BookSerializer.new(book)
     end
-    @favorites = @user.favorites
+    
+    @favorites = FavoriteBook
+      .where(user_id: @user)
       .order("created_at DESC")
-      .map do |book|
-          BookSerializer.new(book)
+      .map do |fav_book|
+         BookSerializer.new(Book.find(fav_book.book_id))
     end
+    
   end
 
 end
