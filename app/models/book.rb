@@ -7,13 +7,14 @@ class Book < ActiveRecord::Base
   validates :user, presence: true
 
   after_create :send_admin_notification
+  self.per_page = 10
 
-  def self.most_recent_with_content(limit = 10)
+  def self.most_recent_with_content(page = 1)
     joins(:phrase_pairs)
       .uniq
       .includes(:user)
       .order("created_at DESC")
-      .limit(limit)
+      .paginate(:page => page)
   end
 
   def send_admin_notification

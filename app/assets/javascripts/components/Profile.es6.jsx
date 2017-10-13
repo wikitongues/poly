@@ -5,6 +5,9 @@ class Profile extends React.Component {
     this.state = {
       showingFavorites: false,
       showingBooks: true,
+      books: this.props.books,
+      request_more_books_sent: false,
+      pageNumber: 2
     };
     this.renderAllBooks = this.renderAllBooks.bind(this);
     this.renderAuthoredBooks = this.renderAuthoredBooks.bind(this);
@@ -17,10 +20,66 @@ class Profile extends React.Component {
     this.renderDashboardList = this.renderDashboardList.bind(this);
     this.renderEditButton = this.renderEditButton.bind(this);
     this.renderUserContent = this.renderUserContent.bind(this);
+    this.loadMoreBooksOnScroll = this.loadMoreBooksOnScroll.bind(this);
+    this.loadMoreBooks = this.loadMoreBooks.bind(this);
+    this.loadBooksRequest = this.loadBooksRequest.bind(this);
+  }
+
+  componentDidMount(){
+    window.addEventListener('scroll', this.loadMoreBooksOnScroll);
+  }
+
+  loadMoreBooksOnScroll(){
+    var scrollTop = (document.documentElement && document.documentElement.scrollTop) || document.body.scrollTop;
+    var scrollHeight = (document.documentElement && document.documentElement.scrollHeight) || document.body.scrollHeight;
+    var clientHeight = document.documentElement.clientHeight || window.innerHeight;
+    var scrolledToBottom = Math.ceil(scrollTop + clientHeight) >= scrollHeight;
+
+    if (scrolledToBottom) {
+      window.scrollTo(0, document.body.offsetHeight - 350);
+      this.loadMoreBooks();
+    }
+  }
+
+  loadMoreBooks(){
+    if (this.state.request_more_books_sent) {
+      return;
+    }
+
+    setTimeout(this.loadBooksRequest, 2000);
+
+    this.setState({request_more_books_sent: true});
+  }
+
+  loadBooksRequest(){
+    $.ajax({
+      url: "http://localhost:3000/books/show_more",
+      data: {page: this.state.pageNumber},
+      method: "GET",
+      success: function(data, textStatus, jqXHR) {
+        if(data.length > 0){
+            books = this.state.books.concat(data);
+            pageNumber = this.state.pageNumber;
+            pageNumber = pageNumber + 1;
+            this.setState({
+              books: books,
+              request_more_books_sent: false,
+              pageNumber: pageNumber
+            });
+        }else{
+          this.setState({
+            request_more_books_sent: false
+          });
+        }
+      }.bind(this),
+      error: function(jqXHR, textStatus, errorThrown) {
+        this.request_more_books_sent = false;
+      }.bind(this)
+    });
   }
 
   renderAllBooks() {
-    return this.props.books.map((book) => {
+    return this.state.books.map((book) => {
       return (
         <BookEntry
           // users={this.props.userData}
