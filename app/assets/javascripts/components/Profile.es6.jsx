@@ -23,10 +23,22 @@ class Profile extends React.Component {
     this.loadMoreBooksOnScroll = this.loadMoreBooksOnScroll.bind(this);
     this.loadMoreBooks = this.loadMoreBooks.bind(this);
     this.loadBooksRequest = this.loadBooksRequest.bind(this);
+    this.renderBookLoader = this.renderBookLoader.bind(this);
   }
 
   componentDidMount(){
     window.addEventListener('scroll', this.loadMoreBooksOnScroll);
+  }
+
+  renderBookLoader(){
+    if (this.state.request_more_books_sent) {
+      return(
+        <ul className="bookEntryList">
+          <hr/>
+          <div className="book-loader"></div>
+        </ul>
+      );
+    }
   }
 
   loadMoreBooksOnScroll(){
@@ -303,6 +315,7 @@ class Profile extends React.Component {
               <ul className="bookEntryList">
                 {this.renderAllBooks()}
               </ul>
+              {this.renderBookLoader()}
             </div>
             {this.renderCreateBookButton()}
           </div>
