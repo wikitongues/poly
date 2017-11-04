@@ -150,23 +150,29 @@ class Dictionary extends React.Component {
   }
 
   onDeletePhrasePair(phrasePairId) {
-    if (window.confirm('Are you sure you want to delete this phrase?')) {
-      $.ajax({
-        url: '/phrase_pairs/' + phrasePairId,
-        type: 'DELETE',
-        success: function (response) {
-          const phrasePairs = this.state.phrasePairs;
-          const indexToRemove = _.findIndex(phrasePairs, (phrasePair) => {
-            return phrasePair.id == response.id;
-          });
-          phrasePairs.splice(indexToRemove, 1);
-          this.setState({ phrasePairs });
-        }.bind(this),
-        error() {
-          console.log('Error: Could not delete phrase pair');
-        },
-      });
-    }
+    bootbox.confirm({
+        message: 'Are you sure you want to delete this phrase?',
+        closeButton: false,
+        callback: (result) => {
+          if (result === true) {
+            $.ajax({
+              url: '/phrase_pairs/' + phrasePairId,
+              type: 'DELETE',
+              success: function (response) {
+                const phrasePairs = this.state.phrasePairs;
+                const indexToRemove = _.findIndex(phrasePairs, (phrasePair) => {
+                  return phrasePair.id == response.id;
+                });
+                phrasePairs.splice(indexToRemove, 1);
+                this.setState({ phrasePairs });
+              }.bind(this),
+              error() {
+                console.log('Error: Could not delete phrase pair');
+              },
+            });
+          }
+        }
+    });
   }
 
   onCancelEditPhrase() {
