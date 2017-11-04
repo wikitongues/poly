@@ -13,11 +13,18 @@ class UsersController < ApplicationController
       BookSerializer.new(book)
     end
 
-    @favorites = @user.favorites
+    @favorites = FavoriteBook
+      .where(user_id: @user)
       .order("created_at DESC")
-      .map do |book|
+      .map do |fav_book|
+        begin
+          book = Book.find(fav_book.book_id)
           BookSerializer.new(book)
+        rescue
+          fav_book.destroy
+        end
     end
+    
     # if @user.present?
     #   @phrase_pairs = @user.phrase_pairs
     #   authorize @user
