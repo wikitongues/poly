@@ -64,8 +64,11 @@ class Profile extends React.Component {
   }
 
   loadBooksRequest(){
+    var relative_path = window.location.href
+    cutted_path_with_slashes = relative_path.split("/");
+    URL =  cutted_path_with_slashes[0] + "//" + cutted_path_with_slashes[2];
     $.ajax({
-      url: "http://localhost:3000/books/show_more",
+      url: URL + "/books/show_more",
       data: {page: this.state.pageNumber},
       method: "GET",
       success: function(data, textStatus, jqXHR) {
