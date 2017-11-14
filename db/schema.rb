@@ -36,11 +36,6 @@ ActiveRecord::Schema.define(version: 20170612030930) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "languages", force: :cascade do |t|
-    t.string "name"
-    t.string "iso"
-  end
-
   create_table "phrase_pairs", force: :cascade do |t|
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false

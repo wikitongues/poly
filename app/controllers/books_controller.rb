@@ -29,7 +29,7 @@ class BooksController < AuthenticatedController
       render json: { id: book.id }, status: :ok
     else
       skip_authorization
-      render json: { errors: book.errors.messages }, status: 422
+      render json: { errors: book.errors.full_messages }, status: 422
     end
   end
 
@@ -53,7 +53,7 @@ class BooksController < AuthenticatedController
      if book.update_attributes(create_or_update_params)
       render json: {}, status: :ok
      else
-      render json: { errors: book.errors.messages }, status: 422
+      render json: { errors: book.errors.full_messages }, status: 422
      end
     else
       skip_authorization
