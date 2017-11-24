@@ -86,7 +86,10 @@ class Profile extends React.Component {
     }
     return (
       <li className="emptyList">
-        <h2>No favorites</h2>
+        <p>
+          You haven't favorited any books yet<br />
+          You have to make the <img src={this.props.unstar} name="unlit"></img> shines <img src={this.props.star} name="shine"></img>
+        </p>
       </li>
     );
   }
