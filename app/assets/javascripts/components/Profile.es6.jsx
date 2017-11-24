@@ -75,7 +75,7 @@ class Profile extends React.Component {
       return this.props.favorites.map((book) => {
         return (
           <BookEntry
-            users={this.props.userData}
+            user={this.props.userData}
             book={book}
             key={book.id}
             cardinality={this.props.cardinality}

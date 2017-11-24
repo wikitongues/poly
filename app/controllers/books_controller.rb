@@ -37,6 +37,13 @@ class BooksController < AuthenticatedController
     if book.present?
       authorize book
       book.destroy
+      
+      # Also destroy FavoriteBook records of this book
+      FavoriteBook.where(book_id: params[:id])
+        .map do |fav_book|
+          fav_book.destroy
+        end
+      
       render json: {}, status: :ok
     else
       skip_authorization
