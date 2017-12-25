@@ -39,7 +39,7 @@ class Dictionary extends React.Component {
     this.renderInputOptions = this.renderInputOptions.bind(this);
     this.renderVideoInput = this.renderVideoInput.bind(this);
     this.renderInputMethod = this.renderInputMethod.bind(this);
-    this.onSaveEditPharse = this.onSaveEditPharse.bind(this);
+    this.onSaveEditPhrase = this.onSaveEditPhrase.bind(this);
   }
 
   componentDidUpdate() {
@@ -176,7 +176,7 @@ class Dictionary extends React.Component {
     });
   }
 
-  onSaveEditPharse(phrasePairId, sourcePhrase, targetPhrase){
+  onSaveEditPhrase(phrasePairId, sourcePhrase, targetPhrase){
     let { phrasePairs } = this.state;
     for( var i = 0 ; i < phrasePairs.length; i++){
       if(phrasePairs[i]['id'] == phrasePairId){
@@ -313,7 +313,7 @@ class Dictionary extends React.Component {
           initialTargetPhrase={phrasePair.target_phrase}
           key={index}
           onDeletePhrasePair={this.onDeletePhrasePair}
-          onSaveEditPharse={this.onSaveEditPharse}
+          onSaveEditPhrase={this.onSaveEditPhrase}
           menu={this.props.menu}
           flip={this.props.flip}
           save={this.props.save}
