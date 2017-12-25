@@ -87,8 +87,10 @@ class Profile extends React.Component {
     return (
       <li className="emptyList">
         <p>
-          You haven't favorited any books yet<br />
-          You have to make the <img src={this.props.unstar} name="unlit"></img> shines <img src={this.props.star} name="shine"></img>
+          Your favorite books will show up here.
+          <br/>
+          <br/>
+          Click on a star <img src={this.props.unstar} name="unlit"></img> to favorite a book <img src={this.props.star} name="shine">.</img>
         </p>
       </li>
     );
