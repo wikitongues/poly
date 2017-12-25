@@ -19,6 +19,7 @@ class Book extends React.Component {
     this.saveNewPhrasePair = this.saveNewPhrasePair.bind(this);
     this.onDeleteBookClick = this.onDeleteBookClick.bind(this);
     this.onSaveBookClick = this.onSaveBookClick.bind(this);
+    this.onSaveBookKeyDown = this.onSaveBookKeyDown.bind(this);
     this.onInvertLanguagesClick = this.onInvertLanguagesClick.bind(this);
     this.toggleEditingBookState = this.toggleEditingBookState.bind(this);
     this.cancelEditingBookState = this.cancelEditingBookState.bind(this);
@@ -52,6 +53,14 @@ class Book extends React.Component {
     this.onDeleteVideoDescription = this.onDeleteVideoDescription.bind(this);
     this.onCloseVideoComponent = this.onCloseVideoComponent.bind(this);
     this.onDescriptionVideoSubmit = this.onDescriptionVideoSubmit.bind(this)
+  }
+
+  componentWillMount(){
+    document.addEventListener('keydown', this.onSaveBookKeyDown, false);
+  }
+
+  componentWillUnmount(){
+    document.removeEventListener('keydown', this.onSaveBookKeyDown, false);
   }
 
   onSourcePhraseSubmit(sourcePhrase, isNewPhrase) {
@@ -108,6 +117,13 @@ class Book extends React.Component {
         }
       },
     });
+  }
+
+  onSaveBookKeyDown (event) {
+    var returnKeyCode = 13;
+    if (event.keyCode == returnKeyCode && this.state.isEditingBook){
+      this.onSaveBookClick();
+    }
   }
 
   onSaveBookClick() {
