@@ -48,7 +48,7 @@ class Profile extends React.Component {
     var scrolledToBottom = Math.ceil(scrollTop + clientHeight) >= scrollHeight;
 
     if (scrolledToBottom) {
-      window.scrollTo(0, document.body.offsetHeight - 350);
+      window.scrollTo(0, document.body.offsetHeight - 700);
       this.loadMoreBooks();
     }
   }
