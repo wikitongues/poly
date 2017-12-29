@@ -15,8 +15,14 @@ class User < ActiveRecord::Base
   has_many :favorites, through: :favorite_books, source: :book
 
   after_create :send_admin_notification
+  after_create :send_user_welcome
+
   def send_admin_notification
-    AdminNotifications.new_user_email(self).deliver
+    AdminNotifications.new_user_email(self).deliver_now if Rails.env.production?
+  end
+
+  def send_user_welcome
+    UserNotifications.welcome_new_user(self).deliver_now if Rails.env.production?
   end
 
   def authored_books

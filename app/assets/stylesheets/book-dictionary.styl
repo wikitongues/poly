@@ -3,7 +3,7 @@
   display block
   position relative
   z-index 1
-  margin auto
+  margin 0 auto 4px
   font-size 1.2em
   padding 0
   background $white
@@ -11,6 +11,7 @@
   width 100%
   max-width 600px
   border-top 2px solid #f4f8f9
+  border-bottom 1px solid darken(#e9f1f3, 2%)
 
   &.new
     min-height 0
@@ -99,19 +100,19 @@
           background #E9F1F3
 
         &:nth-child(2)
-          transition opacity 0.2s ease-in
+          padding-top 2px
+          padding-left 2px
+
+          img
+            opacity 0.5
 
         &:hover
           background-color #EFF5F7
-
-        .video
-          opacity .5
 
   .newPhrase
     float left
     width 100%
     border-top 1px solid #f0F3F5
-    border-bottom 5px solid #FAFCFC
     overflow hidden
     transition height $time ease-in-out, margin-top $time ease-in-out, margin-bottom $time ease-in-out
 
@@ -138,14 +139,10 @@
       width 100px
       text-align center
       font-weight 400
-      padding 23px 0
+      padding 24px 0
       margin 0
       border-left 2px solid #eee
       display inline-block
       cursor pointer
       font-size 1em
       outline none
-
-    input,
-    button.savePhrase
-      border-bottom 1px solid #E9F1F3
