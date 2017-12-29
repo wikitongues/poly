@@ -58,6 +58,7 @@ class PhrasePair extends React.Component {
           },
         },
         success: function () {
+          this.props.onSaveEditPharse(this.props.id, this.state.sourcePhrase, this.state.targetPhrase);
           this.toggleEditingPhraseState();
         }.bind(this),
         error() {

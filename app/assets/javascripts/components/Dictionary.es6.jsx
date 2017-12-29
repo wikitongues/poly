@@ -39,6 +39,7 @@ class Dictionary extends React.Component {
     this.renderInputOptions = this.renderInputOptions.bind(this);
     this.renderVideoInput = this.renderVideoInput.bind(this);
     this.renderInputMethod = this.renderInputMethod.bind(this);
+    this.onSaveEditPhrase = this.onSaveEditPhrase.bind(this);
   }
 
   componentDidUpdate() {
@@ -150,23 +151,41 @@ class Dictionary extends React.Component {
   }
 
   onDeletePhrasePair(phrasePairId) {
-    if (window.confirm('Are you sure you want to delete this phrase?')) {
-      $.ajax({
-        url: '/phrase_pairs/' + phrasePairId,
-        type: 'DELETE',
-        success: function (response) {
-          const phrasePairs = this.state.phrasePairs;
-          const indexToRemove = _.findIndex(phrasePairs, (phrasePair) => {
-            return phrasePair.id == response.id;
-          });
-          phrasePairs.splice(indexToRemove, 1);
-          this.setState({ phrasePairs });
-        }.bind(this),
-        error() {
-          console.log('Error: Could not delete phrase pair');
-        },
-      });
+    bootbox.confirm({
+        message: 'Are you sure you want to delete this phrase?',
+        closeButton: false,
+        callback: (result) => {
+          if (result === true) {
+            $.ajax({
+              url: '/phrase_pairs/' + phrasePairId,
+              type: 'DELETE',
+              success: function (response) {
+                const phrasePairs = this.state.phrasePairs;
+                const indexToRemove = _.findIndex(phrasePairs, (phrasePair) => {
+                  return phrasePair.id == response.id;
+                });
+                phrasePairs.splice(indexToRemove, 1);
+                this.setState({ phrasePairs });
+              }.bind(this),
+              error() {
+                console.log('Error: Could not delete phrase pair');
+              },
+            });
+          }
+        }
+    });
+  }
+
+  onSaveEditPhrase(phrasePairId, sourcePhrase, targetPhrase){
+    let { phrasePairs } = this.state;
+    for( var i = 0 ; i < phrasePairs.length; i++){
+      if(phrasePairs[i]['id'] == phrasePairId){
+        phrasePairs[i]['source_phrase'] = sourcePhrase;
+        phrasePairs[i]['target_phrase'] = targetPhrase;
+        break;
+      }
     }
+    this.setState({phrasePairs});
   }
 
   onCancelEditPhrase() {
@@ -294,6 +313,7 @@ class Dictionary extends React.Component {
           initialTargetPhrase={phrasePair.target_phrase}
           key={index}
           onDeletePhrasePair={this.onDeletePhrasePair}
+          onSaveEditPhrase={this.onSaveEditPhrase}
           menu={this.props.menu}
           flip={this.props.flip}
           save={this.props.save}

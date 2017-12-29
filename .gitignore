@@ -53,3 +53,5 @@ node_modules
 
 # Ignore Byebug command history file.
 .byebug_history
+
+*~
