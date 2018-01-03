@@ -5,6 +5,7 @@ class Book < ActiveRecord::Base
   belongs_to :user
 
   validates :user, presence: true
+  validates_presence_of :title, :source_language, :target_language
 
   after_create :send_admin_notification
   self.per_page = 10

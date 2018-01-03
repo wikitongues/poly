@@ -50,7 +50,7 @@ class NewBook extends React.Component {
           window.location.href = '/books/' + book.id;
         },
         error(error) {
-          console.log(error);
+          printErrors(error);
         },
       });
     } else {
