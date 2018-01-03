@@ -59,6 +59,7 @@ Version 0.2 focuses on developing core features that are not structural. Breakin
 Version 0.3 introduces breaking changes to the schema for implementation of book type and status, as well as for phrase operations like reordering and rich-text.
 
 ### Platform
+- [x] ~~Infinite scrolling~~
 - [ ] Security audit
 - [ ] Embed books on other sites
 - [ ] Social sharing
