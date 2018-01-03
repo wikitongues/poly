@@ -1,5 +1,5 @@
 class BooksController < AuthenticatedController
-  skip_before_filter :authenticate_user!, only: [:show]
+  skip_before_filter :authenticate_user!, only: [:show, :show_more]
 
   def show
     @users=User.all
@@ -77,6 +77,19 @@ class BooksController < AuthenticatedController
     else
       redirect_to :back, notice: 'Nothing happened.'
     end
+  end
+
+  def show_more
+    skip_authorization
+    page = params[:page]
+
+    books = Book
+      .most_recent_with_content(page)
+      .map do |book|
+        BookSerializer.new(book)
+    end
+
+    render json: books, status: 200
   end
 
   private

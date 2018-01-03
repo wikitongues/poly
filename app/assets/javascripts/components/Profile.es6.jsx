@@ -5,6 +5,10 @@ class Profile extends React.Component {
     this.state = {
       showingFavorites: false,
       showingBooks: true,
+      books: this.props.books,
+      requestMoreBooksSent: false,
+      pageNumber: 2,
+      dashHeight: 0,
     };
     this.renderAllBooks = this.renderAllBooks.bind(this);
     this.renderAuthoredBooks = this.renderAuthoredBooks.bind(this);
@@ -17,13 +21,73 @@ class Profile extends React.Component {
     this.renderDashboardList = this.renderDashboardList.bind(this);
     this.renderEditButton = this.renderEditButton.bind(this);
     this.renderUserContent = this.renderUserContent.bind(this);
+    this.loadMoreBooksOnScroll = this.loadMoreBooksOnScroll.bind(this);
+    this.loadMoreBooks = this.loadMoreBooks.bind(this);
+    this.loadBooksRequest = this.loadBooksRequest.bind(this);
+    this.renderBookLoader = this.renderBookLoader.bind(this);
+  }
+
+  componentDidMount(){
+    window.addEventListener('scroll', this.loadMoreBooksOnScroll);
+  }
+
+  loadMoreBooksOnScroll(){
+    const dashHeight = this.divElement.clientHeight;
+    this.setState({ dashHeight });
+
+    var yPosition = (document.documentElement && document.documentElement.scrollTop) || document.body.scrollTop;
+    var clientHeight = document.documentElement.clientHeight || window.innerHeight; // height of client window
+    var scrolledToBottom = yPosition >= dashHeight - Math.ceil(clientHeight*1.3); // begins load when content is 1/3 of the client height below the screen
+
+    if (scrolledToBottom) {
+      this.loadMoreBooks();
+    }
+  }
+
+  loadMoreBooks(){
+    if (this.state.requestMoreBooksSent) {
+      return;
+    }
+
+    setTimeout(this.loadBooksRequest, 1000);
+
+    this.setState({requestMoreBooksSent: true});
+  }
+
+  loadBooksRequest(){
+    var relative_path = window.location.href
+    cut_path_with_slashes = relative_path.split("/");
+    URL =  cut_path_with_slashes[0] + "//" + cut_path_with_slashes[2];
+    $.ajax({
+      url: URL + "/books/show_more",
+      data: {page: this.state.pageNumber},
+      method: "GET",
+      success: function(data, textStatus, jqXHR) {
+        if(data.length > 0){
+            books = this.state.books.concat(data);
+            pageNumber = this.state.pageNumber;
+            pageNumber = pageNumber + 1;
+            this.setState({
+              books: books,
+              requestMoreBooksSent: false,
+              pageNumber: pageNumber
+            });
+        }else{
+          this.setState({
+            requestMoreBooksSent: false
+          });
+        }
+      }.bind(this),
+      error: function(jqXHR, textStatus, errorThrown) {
+        this.requestMoreBooksSent = false;
+      }.bind(this)
+    });
   }
 
   renderAllBooks() {
-    return this.props.books.map((book) => {
+    return this.state.books.map((book) => {
       return (
         <BookEntry
-          // users={this.props.userData}
           book={book}
           key={book.id}
           cardinality={this.props.cardinality}
@@ -50,7 +114,7 @@ class Profile extends React.Component {
         if (this.props.currentUser) {
           return (
             <li className="emptyList">
-              <p>You haven't created any books yet. <a href="/books/new">Create your first book</a></p>
+              <p>You haven't created any books yet.<a href="/books/new">Create your first book</a></p>
             </li>
           );
         } else {
@@ -87,9 +151,7 @@ class Profile extends React.Component {
     return (
       <li className="emptyList">
         <p>
-          Your favorite books will show up here.
-          <br/>
-          <br/>
+          <span className="prompt">Your favorite books will show up here.</span>
           Click on a star <img src={this.props.unstar} name="unlit"></img> to favorite a book <img src={this.props.star} name="shine">.</img>
         </p>
       </li>
@@ -207,6 +269,16 @@ class Profile extends React.Component {
     }
   }
 
+  renderBookLoader(){
+    if (this.state.requestMoreBooksSent) {
+      return(
+        <span className="bookLoader">
+          <Progress/>
+        </span>
+      );
+    }
+  }
+
   render() {
     const createdDate = new Date(this.props.userData.created_at);
     const createdYear = createdDate.getUTCFullYear();
@@ -246,9 +318,11 @@ class Profile extends React.Component {
               <div className="controlPanel">
                 <p>Latest books</p>
               </div>
-              <ul className="bookEntryList">
+              <ul className="bookEntryList" ref={ (divElement) => this.divElement = divElement} >
                 {this.renderAllBooks()}
+                {this.renderBookLoader()}
               </ul>
+
             </div>
             {this.renderCreateBookButton()}
           </div>

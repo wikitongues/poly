@@ -123,43 +123,48 @@
               background lighten(#90A2B7, 10%)
 
         .bookEntryList
-          li.emptyList
-            p
-              font-size 1em
-              font-weight 100
-              margin 0
-              padding 25px 30px 25px 30px
-              display inline-block
-              text-align center
-              color darken($grey,30%)
-              font-size .8em
-              width 100%
+          li
+            &.emptyList
+              p
+                font-size 1em
+                font-weight 100
+                margin 0
+                padding 25px 30px 25px 30px
+                display inline-block
+                text-align center
+                color darken($grey,30%)
+                font-size .8em
+                width 100%
 
-              img
-                width 15px
-                height 15px
-                margin 0 2px -2px 0
+                .prompt
+                  margin-bottom 15px
+                  display block
 
-              a
-                font-size 1.2em
-                padding 5px 5px 0 5px
-                text-decoration none
-                color $blue
-                border none
+                img
+                  width 15px
+                  height 15px
+                  margin 0 2px -2px 0
 
-                &:active
+                a
+                  font-size 1.2em
+                  padding 15px 5px 0 5px
+                  text-decoration none
+                  color $blue
                   border none
 
-          li.bookEntry
-            a
-              section.info
-                .clear
-                  .title
-                    font-size 1em
+                  &:active
+                    border none
 
-                .meta
-                  .date
-                    margin-bottom 0
+            &.bookEntry
+              a
+                section.info
+                  .clear
+                    .title
+                      font-size 1em
+
+                  .meta
+                    .date
+                      margin-bottom 0
 
     .indexContent
       width 100%
@@ -244,3 +249,4 @@
 
     ul
       float left
+      width 100%

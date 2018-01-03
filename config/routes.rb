@@ -8,8 +8,11 @@ Rails.application.routes.draw do
 
   get "/search" => "searches#search"
 
-  resources :books, only: [:show, :new, :create, :destroy, :update]
+  scope 'books' do
+    get :show_more, to: 'books#show_more'
+  end
 
+  resources :books, only: [:show, :new, :create, :destroy, :update]
   resources :phrase_pairs, only: [:create, :destroy, :update]
   resources :users, only: [:show]
   resources :dashboard, only: [:index]
