@@ -140,11 +140,8 @@ class Book extends React.Component {
         success: function () {
           this.cancelEditingBookState();
         }.bind(this),
-        error() {
-          bootbox.alert({
-            message: 'Something went wrong',
-            closeButton: false,
-          });
+        error(error) {
+          printErrors(error);
         },
       });
     } else {
