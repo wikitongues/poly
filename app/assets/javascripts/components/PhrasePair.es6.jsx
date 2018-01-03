@@ -226,7 +226,7 @@ class PhrasePair extends React.Component {
     }
     return (
       <p>
-        <Progress />
+        <Progress/>
       </p>
     );
   }
