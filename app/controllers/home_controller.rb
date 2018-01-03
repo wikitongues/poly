@@ -2,7 +2,7 @@ class HomeController < ApplicationController
 
   def index
     @books = Book
-      .most_recent_with_content(10)
+      .most_recent_with_content
       .map do |book|
         BookSerializer.new(book)
     end
