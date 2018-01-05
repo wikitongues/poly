@@ -67,6 +67,7 @@ Version 0.3 introduces breaking changes to the schema for implementation of book
 ### Books
 - [ ] Document scroll position progress marker
 - [ ] Show favorite icon in dashboard
+- [ ] Phrase inline comments and social interactions such as likes and emojis
 - [ ] Fixed position book languages sub-header
 - [ ] Book type - ***Breaking change***
   - [ ] Public/Private ([In Progress](https://github.com/wikitongues/poly/tree/draft-books))
@@ -87,8 +88,12 @@ Version 0.3 introduces breaking changes to the schema for implementation of book
 - [x] ~~Video descriptions~~ - ***Breaking change***
 
 ### Users
-- [ ] User-to-user contributions
+- [ ] User to user book contributions
 - [ ] User upload profile picture
+- [ ] User notifications [Example](https://gorails.com/episodes/in-app-messaging-between-users)
+  - [ ] When an owned book gets favorited
+  - [ ] When a user receives a message
+- [ ] User to user messaging
 - [x] ~~User edit profile data~~
 
 ### Search
