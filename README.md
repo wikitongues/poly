@@ -174,4 +174,4 @@ TLDR: be nice. But go read it anyway.
 # License
 > Poly uses the GNU General Purpose License v3.
 
-Read the license in detail [here](https://github.com/wikitongues/poly/blob/master/LICENSE.md).
+Read the license in detail [here](https://github.com/wikitongues/poly/blob/master/LICENSE.txt).
