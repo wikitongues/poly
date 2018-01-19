@@ -6,7 +6,7 @@ class DashboardController < SecureController
     @user = current_user
     @hashedEmail = Digest::MD5.hexdigest(@user.email)
     @books = Book
-      .most_recent_with_content
+      .most_recent_with_content(@user.id)
       .map do |book|
         BookSerializer.new(book)
     end
@@ -16,7 +16,7 @@ class DashboardController < SecureController
       .map do |book|
           BookSerializer.new(book)
     end
-    
+
     @favorites = FavoriteBook
       .where(user_id: @user)
       .order("created_at DESC")
@@ -28,7 +28,7 @@ class DashboardController < SecureController
           fav_book.destroy
         end
     end
-    
+
   end
 
 end

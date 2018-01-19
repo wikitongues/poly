@@ -38,13 +38,13 @@ class BooksController < AuthenticatedController
     if book.present?
       authorize book
       book.destroy
-      
+
       # Also destroy FavoriteBook records of this book
       FavoriteBook.where(book_id: params[:id])
         .map do |fav_book|
           fav_book.destroy
         end
-      
+
       render json: {}, status: :ok
     else
       skip_authorization
@@ -87,8 +87,9 @@ class BooksController < AuthenticatedController
     skip_authorization
     page = params[:page]
 
+    current_user_id = (current_user.nil?) ? nil : current_user.id
     books = Book
-      .most_recent_with_content(page)
+      .most_recent_with_content(current_user_id, page)
       .map do |book|
         BookSerializer.new(book)
     end
