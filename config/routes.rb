@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'videos/index'
+
   devise_for :users,
              path: "",
              path_names: { edit: "/account/edit"}
