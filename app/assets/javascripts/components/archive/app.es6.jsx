@@ -4,6 +4,8 @@ class ArchiveApp extends React.Component {
   }
 
   render() {
-    return <ArchiveLanding />;
+    return (
+      <ArchiveLanding />
+    );
   }
 }

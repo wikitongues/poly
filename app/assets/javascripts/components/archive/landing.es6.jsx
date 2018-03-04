@@ -1,11 +1,11 @@
-class ArchiveApp extends React.Component {
+class ArchiveLanding extends React.Component {
   constructor(props) {
     super(props);
   }
 
   render() {
     return (
-      <div className=''>
+      <div className='archive-page'>
       </div>
     );
   }
