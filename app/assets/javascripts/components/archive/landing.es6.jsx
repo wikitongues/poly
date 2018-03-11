@@ -7,7 +7,10 @@ class ArchiveLanding extends React.Component {
     return (
       <div className='archive-page'>
         <div className='archive-background'>
-          <img src="/assets/archive/landing.png" />
+          <div className='archive-bg-container'>
+            <img src="/assets/archive/landing.png" />
+            <h1 className='archive-title'> WikiTongues Archive </h1>
+          </div>
         </div>
 
         <div className="archive-video-container">

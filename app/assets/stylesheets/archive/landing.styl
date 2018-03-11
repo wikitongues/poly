@@ -5,22 +5,43 @@
 
 .archive-background {
   position: absolute;
-  top: -150px;
-  left: 0px;
-  right: 0px;
+  left: 0;
+  right: 0;
+
+  .archive-bg-container {
+    position: relative;
+  }
 
   img {
+    position: absolute;
     width: 100%;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+  }
+
+  .archive-title {
+    position: absolute;
+    width: 100%;
+    top: 80px;
+
+    color: #fff;
+    font-size: 60px;
+    font-weight: 700;
+    text-shadow: 0px 2px 4px rgba(82,70,70,.5);
+    text-align: center;
   }
 }
 
 .archive-video-container {
+  position: relative;
+  top: 230px;
+
   display: block;
-  margin: 0 auto;
+  margin: 0 auto 80px auto;
   padding: 16px;
   width: 800px;
   height: 1000px;
-  position: relative;
 
   background-color: white;
   box-shadow: 0px 4px 4px rgba(0,0,0,.2);
