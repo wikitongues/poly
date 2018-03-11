@@ -4,6 +4,11 @@ class ArchiveLanding extends React.Component {
   }
 
   render() {
+    let videos = [];
+    for (let i = 0; i < 20; i++) {
+      videos.push(<div className='archive-video' />);
+    }
+
     return (
       <div className='archive-page'>
         <div className='archive-background'>
@@ -17,6 +22,7 @@ class ArchiveLanding extends React.Component {
         </div>
 
         <div className="archive-video-container">
+          {videos}
         </div>
       </div>
     );
