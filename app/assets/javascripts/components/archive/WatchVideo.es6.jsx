@@ -1,17 +1,19 @@
-const Player = require('video-react').Player;
-
 class WatchVideo extends React.Component {
   constructor(props) {
     super(props);
   }
 
   render() {
-
     return (
-      <div className='watch-video-container' autoplay>
-        <video width="800" height="600" autoplay>
-          <source src="https://s3-us-west-2.amazonaws.com/cdn.hackthenorth.com/videos/b3cd186e908294701708d23825b74f91.mp4" type="video/mp4" />
+      <div className='watch-video-container'>
+        <h2 className='watch-video-title'> {this.props.title} </h2>
+        <video className="watch-video-component" autoPlay controls>
+          <source src={this.props.videoUrl} type="video/mp4" />
         </video>
+
+        <p className='watch-video-description'>
+          {this.props.description}
+        </p>
       </div>
     );
   }

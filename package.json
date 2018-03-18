@@ -13,8 +13,7 @@
     "browserify-fs": "^1.0.0",
     "browserify-incremental": "^3.0.1",
     "file-system": "^2.2.1",
-    "recordrtc": "^5.4.6",
-    "video-react": "^0.10.3"
+    "recordrtc": "^5.4.6"
   },
   "devDependencies": {
     "browserify": "^10.2.6"
