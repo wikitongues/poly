@@ -5,8 +5,14 @@ class ArchiveLanding extends React.Component {
 
   render() {
     let videos = [];
-    for (let i = 0; i < 20; i++) {
-      videos.push(<div className='archive-video' />);
+    for (let i = 0; i < 21; i++) {
+      videos.push(
+        <ArchiveVideoCard 
+          video_id={123} 
+          video_title='Edith speaking Spanish' 
+          date='March 30, 2016' 
+          iso_codes='Russian, English, Spanish'/>
+        );
     }
 
     return (
