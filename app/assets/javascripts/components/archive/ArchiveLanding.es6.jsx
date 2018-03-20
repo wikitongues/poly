@@ -4,17 +4,6 @@ class ArchiveLanding extends React.Component {
   }
 
   render() {
-    let videos = [];
-    for (let i = 0; i < 21; i++) {
-      videos.push(
-        <ArchiveVideoCard 
-          video_id={123} 
-          video_title='Edith speaking Spanish' 
-          date='March 30, 2016' 
-          iso_codes='Russian, English, Spanish'/>
-        );
-    }
-
     return (
       <div className='archive-page'>
         <div className='archive-background'>
@@ -28,7 +17,7 @@ class ArchiveLanding extends React.Component {
         </div>
 
         <div className="archive-video-container">
-          {videos}
+          {this.props.videos}
         </div>
       </div>
     );

@@ -4,8 +4,17 @@ class ArchiveApp extends React.Component {
   }
 
   render() {
+  	var videoComponents = this.props.data.map(function(video) {
+	    return (
+	       <ArchiveVideoCard 
+	          video_id={video["IDv2"]} 
+	          video_title='Edith speaking Spanish' 
+	          date={video["Date added"]}
+	          iso_codes={video["Languages Used"]}/>
+	    );
+  	})
     return (
-      <ArchiveLanding />
+      <ArchiveLanding videos={videoComponents}/>
     );
   }
 }
