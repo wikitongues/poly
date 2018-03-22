@@ -7,8 +7,8 @@ class VideosController < ApplicationController
   end
 
   def show
-    debugger
     @video = get_by_id(:id)
+    render "video"
   end
 
   def create
