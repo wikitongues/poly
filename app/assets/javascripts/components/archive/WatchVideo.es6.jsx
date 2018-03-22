@@ -19,4 +19,7 @@ class WatchVideo extends React.Component {
   }
 }
 
-
+WatchVideo.propTypes = {
+  srt_url: React.PropTypes.string,
+  video_url: React.PropTypes.string,
+};
