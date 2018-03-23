@@ -12,7 +12,7 @@ class ArchiveVideoCard extends React.Component {
     return (
       <div className="archive-video-card" onClick={this.viewVideo.bind(this)}>
         <div className="archive-video-card-thumbnail">
-          <img src={this.props.img_url ? defaultThumbnail : defaultThumbnail} />
+          <img src={this.props.img_url ? this.props.img_url : defaultThumbnail} />
         </div>
           <div className="archive-video-metadata">
             <div className="archive-video-card-title">{this.props.video_title}</div>
