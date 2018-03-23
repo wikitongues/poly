@@ -22,9 +22,10 @@ class VideosController < ApplicationController
   end
 
   def get_by_id(id)
-    data = load_data
-    key = data[0].keys[0]
-    line = load_data.find { |row| row[key] == id }
+    # The quotes in "IDv2" below don't come from the keyboard - they are
+    # unicode quotation marks. Typing a double quote in their place
+    # will not work!
+    line = load_data.find { |row| row["﻿IDv2"] == id }
     line
     # filename = 'archive/resources/video_data.csv'
     # CSV.find(filename, :headers => true)
