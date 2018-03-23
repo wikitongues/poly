@@ -7,10 +7,8 @@ class VideosController < ApplicationController
   end
 
   def show
-    video_data = load_data
-    @video = get_by_id(:id)
-
-    render json: :id
+    @video = get_by_id(params[:id])
+    render 'video'
   end
 
   private
@@ -25,7 +23,8 @@ class VideosController < ApplicationController
 
   def get_by_id(id)
     data = load_data
-    line = load_data.find { |row| row["Speakers"] == "Dr.KarelOliva__20160330" }
+    key = data[0].keys[0]
+    line = load_data.find { |row| row[key] == id }
     line
     # filename = 'archive/resources/video_data.csv'
     # CSV.find(filename, :headers => true)
