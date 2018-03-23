@@ -27,14 +27,5 @@ class VideosController < ApplicationController
     # will not work!
     line = load_data.find { |row| row["﻿IDv2"] == id }
     line
-    # filename = 'archive/resources/video_data.csv'
-    # CSV.find(filename, :headers => true)
-    # contents = File.read(filename)
-    # parsed_contents = CSV.parse(contents, :headers => true)
-    # row = parsed_contents.find { |line| line['IDv2'] == 'Dr.KarelOliva_20160330_ces+eng+bul+ita+deu+rus' }
-    # if row
-    #   row.to_hash
-    # end
-    # row
   end
 end
