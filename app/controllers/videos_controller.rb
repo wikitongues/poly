@@ -3,7 +3,7 @@ require 'csv'
 class VideosController < ApplicationController
   def index
   	video_data = load_data
-  	@videos = video_data[0..4]
+  	@videos = video_data[0..17]
   end
 
   def show

@@ -1,37 +1,51 @@
 .archive-video-card {
   flex-basis: 300px;
   flex-grow: 1;
-  height: 330px;
   margin: 16px;
 
   box-shadow: 0px 2px 4px rgba(0,0,0,.2);
   border-radius: 4px;
+  cursor: pointer;
+  transition: box-shadow 0.2s;
+}
+
+.archive-video-card:hover {
+  box-shadow: 0px 6px 6px rgba(0,0,0,.2);
 }
 
 .archive-video-card-thumbnail{
-	height: 200px;
-	overflow: hidden;
+  height: 230px;
+  overflow: hidden;
 
-	img {
-		max-width: 100%;
+  img {
+    max-width: 100%;
   }
 }
 
 .archive-video-metadata{
-	margin-left: 24px;
-	margin-right: 24px;
+  margin-left: 24px;
+  margin-right: 24px;
+  padding-bottom: 16px;
 
-	.archive-video-card-title {
-		font-family: HelveticaNeue;
-		font-size: 24px;
-		text-align: left;
-		margin-top: 12px;
-		margin-bottom: 12px;
-	}
+  .archive-video-card-title {
+    font-family: HelveticaNeue;
+    font-size: 24px;
+    text-align: left;
+    margin-top: 12px;
+    margin-bottom: 6px;
+  }
 
-	.archive-video-card-details{
-		font-family: HelveticaNeue;
-	  font-size: 16px;
-	  font-weight: 300;
-	}
+  .archive-video-card-title:link,
+  .archive-video-card-title:visited {
+    text-decoration: none;
+    color: #000;
+  }
+
+
+
+  .archive-video-card-details{
+    font-family: HelveticaNeue;
+    font-size: 16px;
+    font-weight: 300;
+  }
 }
