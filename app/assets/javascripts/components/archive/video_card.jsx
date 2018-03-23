@@ -3,11 +3,16 @@ class ArchiveVideoCard extends React.Component {
     super(props);
   }
 
+  viewVideo() {
+    window.location = '/videos/' + this.props.video_id;
+  }
+
   render() {
-    return ( 
-      <div className="archive-video-card">
+    var defaultThumbnail = '/assets/archive/video_thumbnail_test.jpg';
+    return (
+      <div className="archive-video-card" onClick={this.viewVideo.bind(this)}>
         <div className="archive-video-card-thumbnail">
-          <img src="/assets/archive/video_thumbnail_test.jpg" />
+          <img src={this.props.img_url ? this.props.img_url : defaultThumbnail} />
         </div>
           <div className="archive-video-metadata">
             <div className="archive-video-card-title">{this.props.video_title}</div>
@@ -26,4 +31,5 @@ ArchiveVideoCard.propTypes = {
   video_title: React.PropTypes.string,
   date: React.PropTypes.string,
   iso_codes: React.PropTypes.string,
+  img_url: React.PropTypes.string,
 };
