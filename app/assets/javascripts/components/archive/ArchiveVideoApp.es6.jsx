@@ -16,10 +16,9 @@ class ArchiveVideoApp extends React.Component {
         <div className="archive-watch-container">
           <a className="archive-back-home" href="/videos/index">
           </a>
-          <WatchVideo videoUrl="https://s3-us-west-2.amazonaws.com/cdn.hackthenorth.com/videos/b3cd186e908294701708d23825b74f91.mp4" title="Archive" description="This is a description" />
+          {this.props.video}
         </div>
       </div>
     );
   }
 }
-

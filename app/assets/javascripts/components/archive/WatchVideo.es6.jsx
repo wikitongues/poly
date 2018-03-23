@@ -10,6 +10,8 @@ class WatchVideo extends React.Component {
         <video className="watch-video-component" autoPlay controls>
           <source src={this.props.videoUrl} type="video/mp4" />
         </video>
+        <div>{this.props.srtUrl}</div>
+        <div>{this.props.id}</div>
 
         <p className='watch-video-description'>
           {this.props.description}
