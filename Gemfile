@@ -7,6 +7,7 @@ gem 'rails', '4.2.7.1'
 gem 'pg', '~> 0.15'
 # Use SCSS for stylesheets
 # gem 'sass-rails', '~> 5.0'
+gem 'webpacker', '~> 3.4'
 # Tilt is included with sass-rails, but not stylus
 gem 'tilt'
 # Use Stylus for stylesheets

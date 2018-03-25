@@ -10,10 +10,18 @@
   "scripts": {},
   "license": "GPL-3.0+",
   "dependencies": {
+    "@rails/webpacker": "^3.4.1",
+    "babel-preset-react": "^6.24.1",
     "browserify": "~10.2.4",
     "browserify-fs": "^1.0.0",
     "browserify-incremental": "^3.0.1",
     "file-system": "^2.2.1",
+    "prop-types": "^15.6.1",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
     "recordrtc": "^5.4.6"
+  },
+  "devDependencies": {
+    "webpack-dev-server": "2.11.2"
   }
 }

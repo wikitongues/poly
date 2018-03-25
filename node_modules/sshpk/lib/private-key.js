@@ -1,4 +1,4 @@
-// Copyright 2015 Joyent, Inc.
+// Copyright 2017 Joyent, Inc.
 
 module.exports = PrivateKey;
 
@@ -10,8 +10,11 @@ var Signature = require('./signature');
 var errs = require('./errors');
 var util = require('util');
 var utils = require('./utils');
+var dhe = require('./dhe');
+var generateECDSA = dhe.generateECDSA;
+var generateED25519 = dhe.generateED25519;
 var edCompat;
-var ed;
+var nacl;
 
 try {
 	edCompat = require('./ed-compat');
@@ -34,6 +37,7 @@ formats['rfc4253'] = require('./formats/rfc4253');
 formats['ssh-private'] = require('./formats/ssh-private');
 formats['openssh'] = formats['ssh-private'];
 formats['ssh'] = formats['ssh-private'];
+formats['dnssec'] = require('./formats/dnssec');
 
 function PrivateKey(opts) {
 	assert.object(opts, 'options');
@@ -80,49 +84,44 @@ PrivateKey.prototype.toPublic = function () {
 	return (this._pubCache);
 };
 
-PrivateKey.prototype.derive = function (newType, newSize) {
+PrivateKey.prototype.derive = function (newType) {
 	assert.string(newType, 'type');
-	assert.optionalNumber(newSize, 'size');
-	var priv, pub;
+	var priv, pub, pair;
 
 	if (this.type === 'ed25519' && newType === 'curve25519') {
-		if (ed === undefined)
-			ed = require('jodid25519');
+		if (nacl === undefined)
+			nacl = require('tweetnacl');
 
-		priv = this.part.r.data;
+		priv = this.part.k.data;
 		if (priv[0] === 0x00)
 			priv = priv.slice(1);
-		priv = priv.slice(0, 32);
 
-		pub = ed.dh.publicKey(priv);
-		priv = utils.mpNormalize(Buffer.concat([priv, pub]));
+		pair = nacl.box.keyPair.fromSecretKey(new Uint8Array(priv));
+		pub = new Buffer(pair.publicKey);
 
 		return (new PrivateKey({
 			type: 'curve25519',
 			parts: [
-				{ name: 'R', data: utils.mpNormalize(pub) },
-				{ name: 'r', data: priv }
+				{ name: 'A', data: utils.mpNormalize(pub) },
+				{ name: 'k', data: utils.mpNormalize(priv) }
 			]
 		}));
 	} else if (this.type === 'curve25519' && newType === 'ed25519') {
-		if (ed === undefined)
-			ed = require('jodid25519');
+		if (nacl === undefined)
+			nacl = require('tweetnacl');
 
-		priv = this.part.r.data;
+		priv = this.part.k.data;
 		if (priv[0] === 0x00)
 			priv = priv.slice(1);
-		priv = priv.slice(0, 32);
 
-		pub = ed.eddsa.publicKey(priv.toString('binary'));
-		pub = new Buffer(pub, 'binary');
-
-		priv = utils.mpNormalize(Buffer.concat([priv, pub]));
+		pair = nacl.sign.keyPair.fromSeed(new Uint8Array(priv));
+		pub = new Buffer(pair.publicKey);
 
 		return (new PrivateKey({
 			type: 'ed25519',
 			parts: [
-				{ name: 'R', data: utils.mpNormalize(pub) },
-				{ name: 'r', data: priv }
+				{ name: 'A', data: utils.mpNormalize(pub) },
+				{ name: 'k', data: utils.mpNormalize(priv) }
 			]
 		}));
 	}
@@ -163,12 +162,14 @@ PrivateKey.prototype.createSign = function (hashAlgo) {
 	var oldSign = v.sign.bind(v);
 	var key = this.toBuffer('pkcs1');
 	var type = this.type;
+	var curve = this.curve;
 	v.sign = function () {
 		var sig = oldSign(key);
 		if (typeof (sig) === 'string')
 			sig = new Buffer(sig, 'binary');
 		sig = Signature.parse(sig, type, 'asn1');
 		sig.hashAlgorithm = hashAlgo;
+		sig.curve = curve;
 		return (sig);
 	};
 	return (v);
@@ -208,6 +209,25 @@ PrivateKey.isPrivateKey = function (obj, ver) {
 	return (utils.isCompatible(obj, PrivateKey, ver));
 };
 
+PrivateKey.generate = function (type, options) {
+	if (options === undefined)
+		options = {};
+	assert.object(options, 'options');
+
+	switch (type) {
+	case 'ecdsa':
+		if (options.curve === undefined)
+			options.curve = 'nistp256';
+		assert.string(options.curve, 'options.curve');
+		return (generateECDSA(options.curve));
+	case 'ed25519':
+		return (generateED25519());
+	default:
+		throw (new Error('Key generation not supported with key ' +
+		    'type "' + type + '"'));
+	}
+};
+
 /*
  * API versions for PrivateKey:
  * [1,0] -- initial ver
@@ -215,8 +235,9 @@ PrivateKey.isPrivateKey = function (obj, ver) {
  * [1,2] -- added defaultHashAlgorithm
  * [1,3] -- added derive, ed, createDH
  * [1,4] -- first tagged version
+ * [1,5] -- changed ed25519 part names and format
  */
-PrivateKey.prototype._sshpkApiVersion = [1, 4];
+PrivateKey.prototype._sshpkApiVersion = [1, 5];
 
 PrivateKey._oldVersionDetect = function (obj) {
 	assert.func(obj.toPublic);

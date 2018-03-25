@@ -110,6 +110,26 @@ return true if upper bound is exclusive.
 
 return true if lower bound is exclusive.
 
+## ltgt.start(range, default)
+
+The start of the range. This takes into account direction (reverse)
+If a `start` is not provided, `default` is used.
+
+## ltgt.end(range, default)
+
+The end of the range. This takes into account direction (reverse)
+If a `end` is not provided, `default` is used.
+
+## ltgt.startInclusive(range)
+
+returns true if the range should start at the exact value returned
+by `start(range)` otherwise, it should skip one input.
+
+## ltgt.endInclusive(range)
+
+returns true if the range should include the exact value returned
+by `end(range)` otherwise, it should end on that value.
+
 ## ltgt.toLtgt(range, _range, map, lowerBound, upperBound)
 
 convert a range to a new ltgt range. `_range`
@@ -124,3 +144,7 @@ so can be used as an encode function.
 ## License
 
 MIT
+
+
+
+

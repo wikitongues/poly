@@ -5,9 +5,11 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'es6-shim-polyfill'%>
   <%= javascript_include_tag 'es6-promises-polyfill'%>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <!-- <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %> -->
   <%= javascript_include_tag 'client'%>
   <%= javascript_include_tag 'cors-upload'%>
+  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag "hello_react", "data-turbolinks-track": "reload" %>
   <!-- <%= favicon_link_tag 'favicon.ico' %> -->
   <%= csrf_meta_tags %>
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -29,6 +31,9 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <%= javascript_include_tag 'bootbox'%>
   <script>setTimeout("$('#notice').fadeOut('4000')", 3000)</script>
+
+  <%= javascript_pack_tag 'application' %>
+  <%= javascript_include_tag 'application' %>
 
 </body>
 </html>
