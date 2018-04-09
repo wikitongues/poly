@@ -8,7 +8,6 @@ Planned features for future releases.
   1. [Version 0.1 - *deployed*](#version-01-deployed)
   1. [Version 0.2 - *deployed*](#version-02-deployed)
   1. [Version 0.3 - *progress*](#version--03)
-  1. [Version 0.4](#version-04)
   1. [Version 1.0](#version-10)
 
 ## Version 0.1, *Deployed*
@@ -63,12 +62,17 @@ Version 0.3 introduces breaking changes to the schema for implementation of book
 - [ ] Security audit
 - [ ] Embed books on other sites
 - [ ] Social sharing
+- [ ] User-facing data import / export
+- [ ] Dashboard 2.0
 
 ### Books
 - [ ] Document scroll position progress marker
 - [ ] Show favorite icon in dashboard
 - [ ] Phrase inline comments and social interactions such as likes and emojis
 - [ ] Fixed position book languages sub-header
+- [ ] Upvote and downvote books
+- [ ] Add tags to books
+- [ ] Collaborative and multi-author Books
 - [ ] Book type - ***Breaking change***
   - [ ] Public/Private ([In Progress](https://github.com/wikitongues/poly/tree/draft-books))
   - [ ] Licenses
@@ -79,15 +83,18 @@ Version 0.3 introduces breaking changes to the schema for implementation of book
   - [ ] Reorder phrases
     - [ ] Alphabetically
     - [ ] Arbitrarily (Drag & drop)
+  - [ ] Translate this book (Template from source phrases)
 - [ ] Rich text - ***Breaking change***
   - [ ] Descriptions
   - [ ] Phrases
 - Phrases - ***Breaking change***
   - [ ] Transcribe video phrases
   - [ ] Upload video phrases
+  - [ ] Upvote and downvote phrases
 - [x] ~~Video descriptions~~ - ***Breaking change***
 
 ### Users
+- [ ] Follow a user
 - [ ] User to user book contributions
 - [ ] User upload profile picture
 - [ ] User notifications [Example](https://gorails.com/episodes/in-app-messaging-between-users)
@@ -101,20 +108,6 @@ Version 0.3 introduces breaking changes to the schema for implementation of book
 - [ ] Search by content (In Progress)
 - [x] ~~Search by title~~
 - [x] ~~Search by author~~
-
-## Version 0.4
-
-### Platform
-- [ ] User-facing data import / export
-
-### Books
-- [ ] Add tags to books
-- [ ] Collaborative Books
-
-### Users
-- [ ] Follow a user
-
-### Search
 - [ ] Search by tags
 
 ## Version 1.0
@@ -124,3 +117,10 @@ Version 0.3 introduces breaking changes to the schema for implementation of book
 - [ ] Offline-first architecture
 - [ ] Public API
 - [ ] Language object model
+
+#### Email
+- [ ] Retention email campaign
+  - [ ] Weekly summaries
+  - [ ] Interactions
+    - [ ] Someone has favorited your book
+    - [ ] Someone has suggested a change to your book
