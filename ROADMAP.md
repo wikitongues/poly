@@ -60,8 +60,9 @@ Version 0.3 introduces breaking changes to the schema for implementation of book
 ### Platform
 - [x] ~~Infinite scrolling~~
 - [ ] Security audit
-- [ ] Embed books on other sites
-- [ ] Social sharing
+- [ ] [Code test coverage](https://github.com/wikitongues/poly/issues/270)
+- [ ] [Embed books on other sites](https://github.com/wikitongues/poly/issues/146)
+- [ ] [Social sharing](https://github.com/wikitongues/poly/issues/214)
 - [ ] User-facing data import / export
 - [ ] Dashboard 2.0
 
@@ -75,23 +76,26 @@ Version 0.3 introduces breaking changes to the schema for implementation of book
 - [ ] Collaborative and multi-author Books
 - [ ] Book type - ***Breaking change***
   - [ ] Public/Private ([In Progress](https://github.com/wikitongues/poly/tree/draft-books))
-  - [ ] Licenses
+  - [ ] [Licenses](https://github.com/wikitongues/poly/issues/206)
   - [ ] Book templates
   - [ ] Single language books
 - [ ] Dictionary operations - ***Breaking change*** [Example](https://facebook.github.io/draft-js/docs/overview.html#content)
   - [ ] Delete multiple phrases
-  - [ ] Reorder phrases
+  - [ ] [Reorder phrases](https://github.com/wikitongues/poly/issues/245)
     - [ ] Alphabetically
     - [ ] Arbitrarily (Drag & drop)
   - [ ] Translate this book (Template from source phrases)
-- [ ] Rich text - ***Breaking change***
+- [ ] [Rich text](https://github.com/wikitongues/poly/issues/141) - ***Breaking change***
   - [ ] Descriptions
   - [ ] Phrases
-- Phrases - ***Breaking change***
+- [ ] Phrases - ***Breaking change***
   - [ ] Transcribe video phrases
-  - [ ] Upload video phrases
+  - [ ] [Upload video phrases](https://github.com/wikitongues/poly/issues/207)
   - [ ] Upvote and downvote phrases
+  - [ ] [Audio phrases](https://github.com/wikitongues/poly/issues/267)
+  - [ ] [Phrase pairs should allow video and text simultaneously](https://github.com/wikitongues/poly/issues/282)
 - [x] ~~Video descriptions~~ - ***Breaking change***
+  - [ ] [Upload video description](https://github.com/wikitongues/poly/issues/207)
 
 ### Users
 - [ ] Follow a user
@@ -105,7 +109,7 @@ Version 0.3 introduces breaking changes to the schema for implementation of book
 
 ### Search
 - [ ] Search term highlighting [Example](https://github.com/bvaughn/react-highlight-words)
-- [ ] Search by content (In Progress)
+- [ ] [Search by content (In Progress)](https://github.com/wikitongues/poly/issues/205)
 - [x] ~~Search by title~~
 - [x] ~~Search by author~~
 - [ ] Search by tags
