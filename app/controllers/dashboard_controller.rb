@@ -16,7 +16,7 @@ class DashboardController < SecureController
       .map do |book|
           BookSerializer.new(book)
     end
-    
+
     @favorites = FavoriteBook
       .where(user_id: @user)
       .order("created_at DESC")
@@ -28,7 +28,6 @@ class DashboardController < SecureController
           fav_book.destroy
         end
     end
-    
   end
 
 end
