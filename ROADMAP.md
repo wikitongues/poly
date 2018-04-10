@@ -65,6 +65,7 @@ Version 0.3 introduces breaking changes to the schema for implementation of book
 - [ ] [Social sharing](https://github.com/wikitongues/poly/issues/214)
 - [ ] User-facing data import / export
 - [ ] Dashboard 2.0
+- [ ] [Migration to Webpacker](https://github.com/wikitongues/poly/issues/302)
 
 ### Books
 - [ ] Document scroll position progress marker
