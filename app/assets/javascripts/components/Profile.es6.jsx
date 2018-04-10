@@ -144,6 +144,8 @@ class Profile extends React.Component {
             key={book.id}
             cardinality={this.props.cardinality}
             phrase={this.props.phrase}
+            star={this.props.star}
+            favorite_books={this.state.showingFavorites}
           />
         );
       });
