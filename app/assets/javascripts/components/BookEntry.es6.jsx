@@ -3,6 +3,12 @@ class BookEntry extends React.Component {
     super(props);
   }
 
+  renderFavoriteButton() {
+    if (this.props.favorite_books) {
+      return <img src={this.props.star} alt="Favorite" />
+    }
+  }
+
   render() {
     const createdDate = new Date(this.props.book.created_at);
     const createdYear = createdDate.getUTCFullYear();
