@@ -58,6 +58,12 @@ class HomeIndex extends React.Component {
           </div>
           {this.renderCreateBookButton()}
       </div>
+      <Footer
+          currentUser={this.props.currentUser}
+          logo={this.props.logo}
+          detail={this.props.detail}
+          search={this.props.search}
+        />
     </div>
     );
   }

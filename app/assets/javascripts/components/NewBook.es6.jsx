@@ -308,6 +308,9 @@ class NewBook extends React.Component {
             </section>
           </form>
         </div>
+        <Footer
+          logo={this.props.wikitongues}
+        />
       </div>
     );
   }

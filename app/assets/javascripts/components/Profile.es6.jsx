@@ -329,6 +329,9 @@ class Profile extends React.Component {
             {this.renderCreateBookButton()}
           </div>
         </div>
+        <Footer
+          logo={this.props.wikitongues}
+        />
       </div>
     );
   }

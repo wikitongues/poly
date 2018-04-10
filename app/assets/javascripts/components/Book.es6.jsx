@@ -690,6 +690,9 @@ class Book extends React.Component {
           isNewPhrase={this.state.isNewPhrase}
           />
         </div>
+        <Footer
+          logo={this.props.wikitongues}
+        />
       </div>
     );
   }
