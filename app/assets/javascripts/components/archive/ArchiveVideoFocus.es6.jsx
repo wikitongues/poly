@@ -19,6 +19,7 @@ class ArchiveVideoFocus extends React.Component {
 	       <WatchVideo
             id={this.props.data['IDv2']}
             videoUrl={urls.video_url}
+            srtFile={urls.srt_url}
             title={speaker+ ' speaking ' + language}
             description={this.props.data['Demographics']}
 	          srtUrl={this.props.data['Caption File Link']}/>;
