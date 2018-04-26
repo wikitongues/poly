@@ -5,6 +5,8 @@ class ArchiveVideoFocus extends React.Component {
 
   render() {
     let video = this.props.data;
+    let urls = this.props.urls
+    console.log(urls)
 
     // TODO: Refactor repetitive code
     var language = video['Languages Used'].split(',')[0];
@@ -16,7 +18,7 @@ class ArchiveVideoFocus extends React.Component {
   	var videoData =
 	       <WatchVideo
             id={this.props.data['IDv2']}
-            videoUrl="https://s3-us-west-2.amazonaws.com/cdn.hackthenorth.com/videos/b3cd186e908294701708d23825b74f91.mp4"
+            videoUrl={urls.video_url}
             title={speaker+ ' speaking ' + language}
             description={this.props.data['Demographics']}
 	          srtUrl={this.props.data['Caption File Link']}/>;
@@ -24,4 +26,4 @@ class ArchiveVideoFocus extends React.Component {
       <ArchiveVideoApp video={ videoData }/>
     );
   }
-}
+jk }
