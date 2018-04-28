@@ -7,8 +7,9 @@ class Profile extends React.Component {
       showingBooks: true,
       books: this.props.books,
       requestMoreBooksSent: false,
-      pageNumber: 2,
+      pageNumber: 1,
       dashHeight: 0,
+      maxNumberOfBigScreenRequests: 4
     };
     this.renderAllBooks = this.renderAllBooks.bind(this);
     this.renderAuthoredBooks = this.renderAuthoredBooks.bind(this);
@@ -25,10 +26,29 @@ class Profile extends React.Component {
     this.loadMoreBooks = this.loadMoreBooks.bind(this);
     this.loadBooksRequest = this.loadBooksRequest.bind(this);
     this.renderBookLoader = this.renderBookLoader.bind(this);
+    this.checkBigScreen = this.checkBigScreen.bind(this);
   }
 
   componentDidMount(){
     window.addEventListener('scroll', this.loadMoreBooksOnScroll);
+    this.checkBigScreen();
+  }
+
+  checkBigScreen(){
+    if(this.isBigScreen() && this.state.maxNumberOfBigScreenRequests > 0){
+      this.setState({
+        maxNumberOfBigScreenRequests: this.state.maxNumberOfBigScreenRequests - 1
+      })
+      this.loadBooksRequest();
+    }else{
+      this.setState({
+        maxNumberOfBigScreenRequests: 0
+      })
+    }
+  }
+
+  isBigScreen(){
+      return document.documentElement.clientHeight == document.documentElement.scrollHeight;
   }
 
   loadMoreBooksOnScroll(){
@@ -60,7 +80,7 @@ class Profile extends React.Component {
     URL =  cut_path_with_slashes[0] + "//" + cut_path_with_slashes[2];
     $.ajax({
       url: URL + "/books/show_more",
-      data: {page: this.state.pageNumber},
+      data: {page: this.state.pageNumber + 1},
       method: "GET",
       success: function(data, textStatus, jqXHR) {
         if(data.length > 0){
@@ -80,6 +100,13 @@ class Profile extends React.Component {
       }.bind(this),
       error: function(jqXHR, textStatus, errorThrown) {
         this.requestMoreBooksSent = false;
+      }.bind(this),
+      complete: function(textStatus, jqXHR){
+        if(this.isBigScreen()){
+          if(this.state.maxNumberOfBigScreenRequests > 0){
+            setTimeout(this.checkBigScreen, 1000)
+          }
+        }
       }.bind(this)
     });
   }
