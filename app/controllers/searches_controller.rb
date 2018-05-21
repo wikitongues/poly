@@ -5,11 +5,29 @@ class SearchesController < ApplicationController
 
     if params[:q].length > 0
       q = params[:q].downcase
-      @language = Book.all.select{ |book| book if are_close?(q, book.source_language.downcase) || are_close?(q, book.target_language.downcase) || are_close?(q, book.title.downcase)}.sort_by{|book| book.created_at}
-        .reverse
-        .map do |book|
-          BookSerializer.new(book)
+      glottocode = params[:glottocode]
+
+      # guess the glottocode if it is not set
+      if glottocode.length == 0
+        res_id = id_check(q)
+        if res_id != nil
+          glottocode = res_id
         end
+      end
+
+      if glottocode.length > 0
+        @language = Book.all.select{ |book| book if q == book.source_language.downcase || q == book.target_language.downcase || q == book.title.downcase || glottocode == book.target_language_id || glottocode == book.source_language_id}.sort_by{|book| book.created_at}
+          .reverse
+          .map do |book|
+            BookSerializer.new(book)
+          end
+      else
+        @language = Book.all.select{ |book| book if q == book.source_language.downcase || q == book.target_language.downcase || q == book.title.downcase}.sort_by{|book| book.created_at}
+          .reverse
+          .map do |book|
+            BookSerializer.new(book)
+          end
+      end
 
       @user = User.all.select{ |user| user if are_close?(q, user.username.downcase) }.sort_by{|user| user.created_at}
         .reverse
@@ -32,6 +50,18 @@ class SearchesController < ApplicationController
   end
 
   private
+    # TODO this function copied from books_controller. put in a helper class
+    # given an identifier string, get the language ID
+    # only returns an ID if the verbatim search returns exactly one result
+    def id_check(input_lang)
+      # TODO do not hard-code this URL, move to a config constant
+      url_string = 'http://localhost:6543/search?q=' + input_lang + '&whole=true'
+      uri = URI(url_string)
+      result = Net::HTTP.get_response(uri)
+      json_obj = JSON.parse(result.body)
+      parsed_result = (json_obj != nil && json_obj.length == 1) ? json_obj[0]['glottocode'] : nil
+      return parsed_result
+    end
     #Damerau–Levenshtein distance algorithm (https://en.wikipedia.org/wiki/Damerau%E2%80%93Levenshtein_distance)
     def are_close?(q, target)
 
