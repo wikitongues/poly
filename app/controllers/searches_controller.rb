@@ -8,14 +8,14 @@ class SearchesController < ApplicationController
       glottocode = params[:glottocode]
 
       # guess the glottocode if it is not set
-      if glottocode.length == 0
+      if glottocode == nil || glottocode.length == 0
         res_id = id_check(q)
         if res_id != nil
           glottocode = res_id
         end
       end
 
-      if glottocode.length > 0
+      if glottocode != nil && glottocode.length > 0
         @language = Book.all.select{ |book| book if q == book.source_language.downcase || q == book.target_language.downcase || q == book.title.downcase || glottocode == book.target_language_id || glottocode == book.source_language_id}.sort_by{|book| book.created_at}
           .reverse
           .map do |book|
