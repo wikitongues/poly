@@ -74,30 +74,25 @@
 
     .cardinality
       section
-        input
-          placeholder-color(#DEEDFE)
-          width 47%
-          text-align center
-          float left
-          background lighten($blue,20%)
-          border-radius $radius
-          font-size 1.3em
-          padding 8px 0 9px
-          margin 9px 0 8px
-          position initial
-          color $white
-
-          &:focus
-            background lighten($blue,40%)
-
+        .autosuggest
           &:first-of-type
             margin-right 3%
 
           &:last-of-type
             margin-left 3%
+        input
+          placeholder-color(#DEEDFE)
+          position initial
+          text-align center
+          padding 8px 0 9px
+          margin 9px 0 8px
+          background lighten($blue,20%)
+          font-size 1.3em
+          color $white
+          border-radius $radius
 
-          &.isEditing
-            width 46%
+          &:focus
+            background lighten($blue,40%)
 
   .isEditing
     border-bottom-color #ddd

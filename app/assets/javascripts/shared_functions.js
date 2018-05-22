@@ -8,3 +8,18 @@ function printErrors(error){
     });
   }
 }
+
+function asyncSearchLanguage(query, callback) {
+  // TODO don't hardcode URL
+  const url = `http://localhost:6543/search?q=${query}`
+  return $.ajax({
+    url: url,
+    type: 'GET',
+    success(res) {
+      callback(res);
+    },
+    error(error) {
+      printErrors(error);
+    },
+  });
+}
