@@ -3,6 +3,12 @@ class BookEntry extends React.Component {
     super(props);
   }
 
+  renderFavoriteButton() {
+    if (this.props.favorite_books) {
+      return <img src={this.props.star} alt="Favorite" />
+    }
+  }
+
   render() {
     const createdDate = new Date(this.props.book.created_at);
     const createdYear = createdDate.getUTCFullYear();
@@ -15,7 +21,7 @@ class BookEntry extends React.Component {
         <a href={'/books/'+this.props.book.id}>
           <section className="info">
             <section className="clear">
-                <h2 className="title" title={this.props.book.title}>{this.props.book.title}</h2>
+              {this.renderFavoriteButton()}<h2 className="title" title={this.props.book.title}>{this.props.book.title}</h2>
               <section className="details">
                 <p className="count" title={this.props.book.phrase_pairs.length+" Phrases"}>{this.props.book.phrase_pairs.length}</p>
                 <p className="source language" title={this.props.book.source_language}>

@@ -8,7 +8,6 @@ Planned features for future releases.
   1. [Version 0.1 - *deployed*](#version-01-deployed)
   1. [Version 0.2 - *deployed*](#version-02-deployed)
   1. [Version 0.3 - *progress*](#version--03)
-  1. [Version 0.4](#version-04)
   1. [Version 1.0](#version-10)
 
 ## Version 0.1, *Deployed*
@@ -61,33 +60,46 @@ Version 0.3 introduces breaking changes to the schema for implementation of book
 ### Platform
 - [x] ~~Infinite scrolling~~
 - [ ] Security audit
-- [ ] Embed books on other sites
-- [ ] Social sharing
+- [ ] [Code test coverage](https://github.com/wikitongues/poly/issues/270)
+- [ ] [Embed books on other sites](https://github.com/wikitongues/poly/issues/146)
+- [ ] [Social sharing](https://github.com/wikitongues/poly/issues/214)
+- [ ] User-facing data import / export
+- [ ] Dashboard 2.0
+- [ ] [Migration to Webpacker](https://github.com/wikitongues/poly/issues/302)
 
 ### Books
 - [ ] Document scroll position progress marker
 - [ ] Show favorite icon in dashboard
 - [ ] Phrase inline comments and social interactions such as likes and emojis
 - [ ] Fixed position book languages sub-header
+- [ ] Upvote and downvote books
+- [ ] Add tags to books
+- [ ] Collaborative and multi-author Books
 - [ ] Book type - ***Breaking change***
   - [ ] Public/Private ([In Progress](https://github.com/wikitongues/poly/tree/draft-books))
-  - [ ] Licenses
+  - [ ] [Licenses](https://github.com/wikitongues/poly/issues/206)
   - [ ] Book templates
   - [ ] Single language books
 - [ ] Dictionary operations - ***Breaking change*** [Example](https://facebook.github.io/draft-js/docs/overview.html#content)
   - [ ] Delete multiple phrases
-  - [ ] Reorder phrases
+  - [ ] [Reorder phrases](https://github.com/wikitongues/poly/issues/245)
     - [ ] Alphabetically
     - [ ] Arbitrarily (Drag & drop)
-- [ ] Rich text - ***Breaking change***
+  - [ ] Translate this book (Template from source phrases)
+- [ ] [Rich text](https://github.com/wikitongues/poly/issues/141) - ***Breaking change***
   - [ ] Descriptions
   - [ ] Phrases
-- Phrases - ***Breaking change***
+- [ ] Phrases - ***Breaking change***
   - [ ] Transcribe video phrases
-  - [ ] Upload video phrases
+  - [ ] [Upload video phrases](https://github.com/wikitongues/poly/issues/207)
+  - [ ] Upvote and downvote phrases
+  - [ ] [Audio phrases](https://github.com/wikitongues/poly/issues/267)
+  - [ ] [Phrase pairs should allow video and text simultaneously](https://github.com/wikitongues/poly/issues/282)
 - [x] ~~Video descriptions~~ - ***Breaking change***
+  - [ ] [Upload video description](https://github.com/wikitongues/poly/issues/207)
 
 ### Users
+- [ ] Follow a user
 - [ ] User to user book contributions
 - [ ] User upload profile picture
 - [ ] User notifications [Example](https://gorails.com/episodes/in-app-messaging-between-users)
@@ -98,23 +110,9 @@ Version 0.3 introduces breaking changes to the schema for implementation of book
 
 ### Search
 - [ ] Search term highlighting [Example](https://github.com/bvaughn/react-highlight-words)
-- [ ] Search by content (In Progress)
+- [ ] [Search by content (In Progress)](https://github.com/wikitongues/poly/issues/205)
 - [x] ~~Search by title~~
 - [x] ~~Search by author~~
-
-## Version 0.4
-
-### Platform
-- [ ] User-facing data import / export
-
-### Books
-- [ ] Add tags to books
-- [ ] Collaborative Books
-
-### Users
-- [ ] Follow a user
-
-### Search
 - [ ] Search by tags
 
 ## Version 1.0
@@ -124,3 +122,10 @@ Version 0.3 introduces breaking changes to the schema for implementation of book
 - [ ] Offline-first architecture
 - [ ] Public API
 - [ ] Language object model
+
+#### Email
+- [ ] Retention email campaign
+  - [ ] Weekly summaries
+  - [ ] Interactions
+    - [ ] Someone has favorited your book
+    - [ ] Someone has suggested a change to your book
