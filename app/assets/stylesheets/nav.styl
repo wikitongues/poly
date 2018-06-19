@@ -159,13 +159,50 @@ nav
       position relative
       height 20px
       pointer-events none
+      z-index 1
+
+    .autosuggest
+      display table
+      width 100%
+      float left
+
+    .dropdown-menu
+      position absolute
+      top 50px
+      background-color $grey
+      width 100%
+      max-height 250px
+      overflow scroll
+      box-shadow 0px 8px 16px 0px rgba(0,0,0,0.2)
+      z-index 20
+
+      .item
+        height 83px
+        background-color #FAFAFA
+        padding-top 18px
+        padding-left 24px
+        white-space nowrap
+        overflow hidden
+        text-overflow ellipsis
+        border-bottom 1px solid lighten($source, 35%)
+        .title
+          color #11252F
+          font-size 20px
+        .subtitle
+          font-size 14px
+          color $grey
+
+      .item-highlighted
+        background-color $white
+
+    .hiddenInput
+      display none
 
     input
       border-radius $radius
       width 100%
       font-size 16px
       padding 17px 8px 15px 50px
-      float left
       border none
       font-weight 100
       placeholder-color($grey)

@@ -13,6 +13,10 @@ class NewBook extends React.Component {
       stream: '',
       isVideoRecording: false,
       isDescriptionPlaying: false,
+      sourceLanguageSuggestions: [],
+      targetLanguageSuggestions: [],
+      source_language_id: '',
+      target_language_id: '',
     };
     this.onCloseVideoComponent = this.onCloseVideoComponent.bind(this);
     this.onInputChange = this.onInputChange.bind(this);
@@ -223,6 +227,36 @@ class NewBook extends React.Component {
     $("video")[0].pause()
   }
 
+  languageSearchOnSelect(value, item, languageField, languageIdField, suggestionsField) {
+    this.setState({
+      [languageField]: value,
+      [languageIdField]: item.glottocode,
+      [suggestionsField]: [item]
+    });
+  }
+
+  languageSearchOnChange(value, languageField, languageIdField, suggestionsField) {
+    this.setState({ [languageField]: value, [languageIdField]: '' });
+
+    if(value.length > 2){
+      var req = asyncSearchLanguage(
+        value,
+        res => {
+          if (res.length == 0 || res[0].message) {
+            this.setState({ [suggestionsField]: [] });
+          } else {
+            this.setState({ [suggestionsField]: res });
+            if (res.length == 1) {
+              this.setState({ [languageIdField]: res[0].glottocode });
+            }
+          }
+        }
+      );
+    } else {
+      this.setState({ [suggestionsField]: [] });
+    }
+  }
+
   render() {
     return (
       <div className="container">
@@ -242,23 +276,47 @@ class NewBook extends React.Component {
               </span>
               <section className="cardinality">
                 <section>
-                  <input
-                    className="new language source"
-                    type="text"
-                    name="source_language"
-                    placeholder="Source language"
-                    value={this.state.sourceLanguage}
-                    onChange={this.onInputChange}
-                  />
+                  <div className="autosuggest">
+                    <LanguageSearchBar
+                      inputProps={{ className: "new language source", name: "source_language", placeholder: "Source language" }}
+                      value={this.state.source_language}
+                      items={this.state.sourceLanguageSuggestions}
+                      onSelect={(value, item) => this.languageSearchOnSelect(
+                        value,
+                        item,
+                        "source_language",
+                        "source_language_id",
+                        "sourceLanguageSuggestions"
+                      )}
+                      onChange={(event, value) => this.languageSearchOnChange(
+                        value,
+                        "source_language",
+                        "source_language_id",
+                        "sourceLanguageSuggestions"
+                      )}
+                    />
+                  </div>
                   <img src={this.props.cardinality} alt="" />
-                  <input
-                    className="new language target"
-                    type="text"
-                    name="target_language"
-                    placeholder="Target language"
-                    value={this.state.targetLanguager}
-                    onChange={this.onInputChange}
-                  />
+                  <div className="autosuggest">
+                    <LanguageSearchBar
+                      inputProps={{ className: "new language target", name: "target_language", placeholder: "Target language" }}
+                      value={this.state.target_language}
+                      items={this.state.targetLanguageSuggestions}
+                      onSelect={(value, item) => this.languageSearchOnSelect(
+                          value,
+                          item,
+                          "target_language",
+                          "target_language_id",
+                          "targetLanguageSuggestions"
+                      )}
+                      onChange={(event, value) => this.languageSearchOnChange(
+                        value,
+                        "target_language",
+                        "target_language_id",
+                        "targetLanguageSuggestions"
+                      )}
+                    />
+                  </div>
                 </section>
               </section>
               {/* <button title="Menu" className="more icon">
