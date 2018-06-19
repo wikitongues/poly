@@ -86,6 +86,9 @@ To start the application locally, run:
 ```shell
 rails server
 ```
+
+You will also need to run `./local_dev.sh` to compile some stylesheets for the archive.
+
 Then, visit the app at [http://localhost:3000](http://localhost:3000).
 
 <!-- ## Alternative Workflow with Convox and Docker

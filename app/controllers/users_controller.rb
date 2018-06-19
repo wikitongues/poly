@@ -24,7 +24,7 @@ class UsersController < ApplicationController
           fav_book.destroy
         end
     end
-    
+
     # if @user.present?
     #   @phrase_pairs = @user.phrase_pairs
     #   authorize @user

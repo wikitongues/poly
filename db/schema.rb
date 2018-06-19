@@ -11,21 +11,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171115173256) do
+ActiveRecord::Schema.define(version: 20180426211506) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "archive_videos", force: :cascade do |t|
+    t.string "video_id"
+    t.string "video_url"
+    t.string "srt_url"
+  end
+
   create_table "books", force: :cascade do |t|
-    t.string   "title",             null: false
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.string   "title",              null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
     t.string   "description"
-    t.string   "source_language",   null: false
-    t.string   "target_language",   null: false
-    t.integer  "user_id",           null: false
-    t.string   "status"
+    t.string   "source_language",    null: false
+    t.string   "target_language",    null: false
+    t.integer  "user_id",            null: false
     t.string   "video_description"
+    t.string   "source_language_id"
+    t.string   "target_language_id"
   end
 
   add_index "books", ["user_id"], name: "index_books_on_user_id", using: :btree
@@ -67,6 +74,12 @@ ActiveRecord::Schema.define(version: 20171115173256) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
+
+  create_table "videos", id: false, force: :cascade do |t|
+    t.integer "id"
+    t.string  "video_url"
+    t.string  "srt_url"
+  end
 
   add_foreign_key "books", "users"
 end
