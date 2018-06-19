@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'videos/index' => 'videos#index'
+  get '/videos/:id' => 'videos#show'
 
   devise_for :users,
              path: "",
