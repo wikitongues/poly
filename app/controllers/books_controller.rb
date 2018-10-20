@@ -87,8 +87,9 @@ class BooksController < AuthenticatedController
     skip_authorization
     page = params[:page]
 
+    current_user_id = (current_user.nil?) ? nil : current_user.id
     books = Book
-      .most_recent_with_content(page)
+      .most_recent_with_content(current_user_id, page)
       .map do |book|
         BookSerializer.new(book)
     end

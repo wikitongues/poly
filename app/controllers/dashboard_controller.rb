@@ -6,7 +6,7 @@ class DashboardController < SecureController
     @user = current_user
     @hashedEmail = Digest::MD5.hexdigest(@user.email)
     @books = Book
-      .most_recent_with_content
+      .most_recent_with_content(@user.id)
       .map do |book|
         BookSerializer.new(book)
     end

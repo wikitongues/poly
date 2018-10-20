@@ -10,8 +10,10 @@ class Book < ActiveRecord::Base
   after_create :send_admin_notification
   self.per_page = 10
 
-  def self.most_recent_with_content(page = 1)
-    joins(:phrase_pairs)
+  def self.most_recent_with_content(current_user_id = nil, page = 1)
+    where
+      .not(user_id: current_user_id)
+      .joins(:phrase_pairs)
       .uniq
       .includes(:user)
       .order("created_at DESC")
