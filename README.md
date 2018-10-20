@@ -144,9 +144,12 @@ The app requires a number of secret keys to function correctly. Features that wi
 |<img src="https://avatars1.githubusercontent.com/u/2080065?v=3&s=100" width="100px"/>|[Freddie Andrade](https://github.com/FredericoAndrade)|
 |:---|:---|
 |<img src="https://avatars3.githubusercontent.com/u/2336288?v=3&s=100" width="100px"/>|[Chris Voxland](https://github.com/ChrisVoxland)|
+
+# Core contributors
 |<img src="https://avatars1.githubusercontent.com/u/12382534?v=3&s=100" width="100px"/>|[Ben Arias](https://github.com/bjlaa)|
-
-
+|---|---|
+|<img src="https://avatars0.githubusercontent.com/u/12483994?s=400&v=4" width="100px"/>|[Amr Adel](https://github.com/AmrAdelKhalil)|
+|<img src="https://avatars2.githubusercontent.com/u/5375262?s=400&v=4" width="100px"/>|[Scott Rohrer](https://github.com/smrohrer)|
 
 # Contribute
 We are actively looking for help developing Poly. If you're interested in getting involved, be sure to [let us know](mailto:poly@wikitongues.org)!

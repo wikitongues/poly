@@ -28,7 +28,6 @@ class DashboardController < SecureController
           fav_book.destroy
         end
     end
-
   end
 
 end
