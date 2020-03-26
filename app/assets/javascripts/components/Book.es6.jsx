@@ -486,7 +486,7 @@ class Book extends React.Component {
       .then((stream) => {
         self.onSaveStream(stream);
         video.controls = false;
-        video.src = window.URL.createObjectURL(stream);
+        video.srcObject = stream;
       })
       .catch((err) => {
         console.log(err.name + ": " + err.message);

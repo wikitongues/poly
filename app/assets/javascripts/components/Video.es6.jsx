@@ -59,7 +59,7 @@ Video = React.createClass( {
 
     const video = document.getElementById('camera-stream');
     const stream = this.props.stream;
-    video.src = window.URL.createObjectURL(stream);
+    video.srcObject = stream;
 
     const options = {
       mimeType: 'video/webm',
