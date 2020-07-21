@@ -238,7 +238,7 @@ class PhrasePair extends React.Component {
           <form onSubmit={this.onSavePhraseClick}>
             <li className="source">
               {
-                this.state.sourcePhrase.startsWith('https://s3.amazonaws.com/poly-video-uploads-dev/') ?
+                this.state.sourcePhrase.startsWith(`https://${this.props.awsBucket}.s3.amazonaws.com/`) ?
                   this.renderSourceInput(true)
                   :
                   this.renderSourceInput(false)
@@ -246,7 +246,7 @@ class PhrasePair extends React.Component {
             </li>
             <li className="target">
               {
-                this.state.targetPhrase && this.state.targetPhrase.startsWith('https://s3.amazonaws.com/poly-video-uploads-dev/') ?
+                this.state.targetPhrase && this.state.targetPhrase.startsWith(`https://${this.props.awsBucket}.s3.amazonaws.com/`) ?
                   this.renderTargetInput(true)
                   :
                   this.renderTargetInput(false)
@@ -262,7 +262,7 @@ class PhrasePair extends React.Component {
         <ul>
           <li className="source">
             {
-              this.state.sourcePhrase.startsWith('https://s3.amazonaws.com/poly-video-uploads-dev/') ?
+              this.state.sourcePhrase.startsWith(`https://${this.props.awsBucket}.s3.amazonaws.com/`) ?
                 this.renderSourceVideo(this.state.sourcePhrase)
                 :
                 this.renderParagraph(this.state.sourcePhrase)
@@ -270,7 +270,7 @@ class PhrasePair extends React.Component {
           </li>
           <li className="target">
             {
-              this.state.targetPhrase && this.state.targetPhrase.startsWith('https://s3.amazonaws.com/poly-video-uploads-dev/') ?
+              this.state.targetPhrase && this.state.targetPhrase.startsWith(`https://${this.props.awsBucket}.s3.amazonaws.com/`) ?
                 this.renderTargetVideo(this.state.targetPhrase)
                 :
                 this.renderParagraph(this.state.targetPhrase)
@@ -303,4 +303,5 @@ PhrasePair.propTypes = {
   menu: React.PropTypes.string,
   edit: React.PropTypes.string,
   delete: React.PropTypes.string,
+  awsBucket: React.PropTypes.string
 };

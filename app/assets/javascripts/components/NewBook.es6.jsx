@@ -146,7 +146,7 @@ class NewBook extends React.Component {
   renderVideoDescription() {
     if(this.state.isInputVideo == false) {
       if(this.state.hasVideoDescription) {
-        return <div className="videoDescription"><div className="videoComponent"><video src={this.state.video_description} loop width="600"></video>{this.renderPlayButton()}</div></div>
+        return <div className="videoDescription"><div className="videoComponent"><video src={this.state.video_description} loop></video>{this.renderPlayButton()}</div></div>
       } else {
         return <button type="button" title="Add a video" onClick={this.onToggleInputType} className="addVideoButton">Add a video introduction</button>
       }

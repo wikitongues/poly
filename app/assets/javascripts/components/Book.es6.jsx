@@ -366,7 +366,7 @@ class Book extends React.Component {
           return (
             <div className="videoDescription">
               <div className="videoComponent">
-                <video src={this.state.book.video_description} loop width="600"></video>
+                <video src={this.state.book.video_description} loop></video>
                 <div className="videoControls">
                   {this.renderPlayButton()}
                   <button type="button" title="Remove video" onClick={this.onDeleteVideoDescription} className="text icon">
@@ -377,7 +377,7 @@ class Book extends React.Component {
             </div>
           )
         } else {
-          return <div className="videoDescription"><div className="videoComponent"><video src={this.state.book.video_description} loop width="600"></video><div className="videoControls">{this.renderPlayButton()}</div></div></div>
+          return <div className="videoDescription"><div className="videoComponent"><video src={this.state.book.video_description} loop></video><div className="videoControls">{this.renderPlayButton()}</div></div></div>
         }
       } else {
         if (this.state.isEditingBook) {
@@ -411,6 +411,7 @@ class Book extends React.Component {
             author={this.props.currentUser.username}
             width={600}
             videoPhrase={false}
+            awsBucket={this.props.awsBucket}
           />
         </div>
       )
@@ -688,6 +689,7 @@ class Book extends React.Component {
           targetLanguage={this.state.book.target_language}
           author={this.state.book.user_id}
           isNewPhrase={this.state.isNewPhrase}
+          awsBucket={this.props.awsBucket}
           />
         </div>
       </div>
@@ -746,4 +748,5 @@ Book.propTypes = {
   delete: React.PropTypes.string,
   edit: React.PropTypes.string,
   close: React.PropTypes.string,
+  awsBucket: React.PropTypes.string
 };

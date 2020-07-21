@@ -302,7 +302,8 @@ class Dictionary extends React.Component {
               delete={this.props.delete}
               edit={this.props.edit}
               close={this.props.close}
-              newPhrase="newPhrase" />
+              newPhrase="newPhrase" 
+              awsBucket={this.props.awsBucket} />
         );
       }
       return (
@@ -320,6 +321,7 @@ class Dictionary extends React.Component {
           delete={this.props.delete}
           edit={this.props.edit}
           close={this.props.close}
+          awsBucket={this.props.awsBucket}
         />
       );
     });
@@ -500,4 +502,5 @@ Dictionary.propTypes = {
   delete: React.PropTypes.string,
   edit: React.PropTypes.string,
   close: React.PropTypes.string,
+  awsBucket: React.PropTypes.string
 };
