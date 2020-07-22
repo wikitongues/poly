@@ -143,7 +143,7 @@ Video = React.createClass( {
 
 
       this.onPresignedUrlFetchSuccess = function (file, response) {
-        const objectUrl = `https://${this.props.awsBucket}.s3.amazonaws.com/${response.object_key}`;
+        const objectUrl = `https://${self.props.awsBucket}.s3.amazonaws.com/${response.object_key}`;
 
         self.setState({currentVideoUploadUrl: objectUrl});
 

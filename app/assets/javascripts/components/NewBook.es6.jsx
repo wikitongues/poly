@@ -177,6 +177,7 @@ class NewBook extends React.Component {
             author={this.props.currentUser.username}
             width={600}
             videoPhrase={false}
+            awsBucket={this.props.awsBucket}
           />
         </div>
       )

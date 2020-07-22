@@ -452,6 +452,7 @@ class Dictionary extends React.Component {
             author={this.props.author}
             width={600}
             videoPhrase={true}
+            awsBucket={this.props.awsBucket}
           />
         </div>
       );
