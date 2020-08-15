@@ -328,4 +328,5 @@ NewBook.propTypes = {
   unstar: React.PropTypes.string,
   cardinality: React.PropTypes.string,
   menuAlt: React.PropTypes.string,
+  awsBucket: React.PropTypes.string
 };
