@@ -4,7 +4,7 @@ class PhraseSearchResult extends React.Component {
       <ul>
         <li className="source">
           {
-            this.props.phrase.source_phrase.startsWith('https://s3.amazonaws.com/poly-video-uploads-dev/') ?
+            this.props.phrase.source_phrase.startsWith(`https://${this.props.awsBucket}.s3.amazonaws.com/`) ?
               this.renderSourceVideo(this.props.phrase.source_phrase)
               :
               this.renderParagraph(this.props.phrase.source_phrase)
@@ -12,7 +12,7 @@ class PhraseSearchResult extends React.Component {
         </li>
         <li className="target">
           {
-            this.props.phrase.target_phrase && this.props.phrase.target_phrase.startsWith('https://s3.amazonaws.com/poly-video-uploads-dev/') ?
+            this.props.phrase.target_phrase && this.props.phrase.target_phrase.startsWith(`https://${this.props.awsBucket}.s3.amazonaws.com/`) ?
               this.renderTargetVideo(this.props.phrase.target_phrase)
               :
               this.renderParagraph(this.props.phrase.target_phrase)
@@ -76,5 +76,5 @@ class PhraseSearchResult extends React.Component {
 }
 
 BookEntry.propTypes = {
-
+  awsBucket: React.PropTypes.string
 };

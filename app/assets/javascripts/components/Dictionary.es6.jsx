@@ -262,7 +262,7 @@ class Dictionary extends React.Component {
       .then((stream) => {
         self.onSaveStream(stream);
         video.controls = false;
-        video.src = window.URL.createObjectURL(stream);
+        video.srcObject = stream;
       })
       .catch((err) => {
         console.log(err.name + ": " + err.message);
@@ -302,7 +302,8 @@ class Dictionary extends React.Component {
               delete={this.props.delete}
               edit={this.props.edit}
               close={this.props.close}
-              newPhrase="newPhrase" />
+              newPhrase="newPhrase" 
+              awsBucket={this.props.awsBucket} />
         );
       }
       return (
@@ -320,6 +321,7 @@ class Dictionary extends React.Component {
           delete={this.props.delete}
           edit={this.props.edit}
           close={this.props.close}
+          awsBucket={this.props.awsBucket}
         />
       );
     });
@@ -450,6 +452,7 @@ class Dictionary extends React.Component {
             author={this.props.author}
             width={600}
             videoPhrase={true}
+            awsBucket={this.props.awsBucket}
           />
         </div>
       );
@@ -500,4 +503,5 @@ Dictionary.propTypes = {
   delete: React.PropTypes.string,
   edit: React.PropTypes.string,
   close: React.PropTypes.string,
+  awsBucket: React.PropTypes.string
 };

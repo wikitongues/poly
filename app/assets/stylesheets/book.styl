@@ -146,6 +146,9 @@
           margin 0
           position relative
 
+          video
+            width 600px
+
           button
             &.play
               width 45px
@@ -190,3 +193,11 @@
 
       p.author.new
         color $grey
+
+@media (max-width:720px)
+  .videoDescription
+    width 100% !important
+    margin 0 !important
+
+    video 
+      width 100% !important

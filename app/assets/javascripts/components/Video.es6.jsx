@@ -59,7 +59,7 @@ Video = React.createClass( {
 
     const video = document.getElementById('camera-stream');
     const stream = this.props.stream;
-    video.src = window.URL.createObjectURL(stream);
+    video.srcObject = stream;
 
     const options = {
       mimeType: 'video/webm',
@@ -143,7 +143,7 @@ Video = React.createClass( {
 
 
       this.onPresignedUrlFetchSuccess = function (file, response) {
-        const objectUrl = `https://s3.amazonaws.com/poly-video-uploads-dev/${response.object_key}`;
+        const objectUrl = `https://${self.props.awsBucket}.s3.amazonaws.com/${response.object_key}`;
 
         self.setState({currentVideoUploadUrl: objectUrl});
 
